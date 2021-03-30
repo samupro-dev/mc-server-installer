@@ -17,6 +17,9 @@ bash <(curl -s https://raw.githubusercontent.com/samupro-dev/mc-server-installer
 #### OR
 download the **updated-server-installer.sh** file and use the `chmod +x updated-server-installer.sh` command and start the installer with _./updated-server-installer.sh_
 
+## Problems with the script?
+If you find any bugs or want to recommend some new features, write them [here](https://github.com/samupro-dev/mc-server-installer/issues/new/choose)
+
 ## To do
 - [ ] Italian translation
 - [ ] Script optimization
