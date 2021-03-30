@@ -80,23 +80,23 @@ sleep 1
 ## Options ##
 #############
 function bungee {
-  bash <(wget -O - 'https://github.com/samupro-dev/mc-server-installer/src/bungee.sh')
+  bash <(wget -O - 'https://raw.githubusercontent.com/samupro-dev/mc-server-installer/main/src/bungee.sh')
 }
 
 function spigot {
-  bash <(wget -O - 'https://github.com/samupro-dev/mc-server-installer/src/spigot.sh')
+  bash <(wget -O - 'https://raw.githubusercontent.com/samupro-dev/mc-server-installer/main/src/spigot.sh')
 }
 
 function bedrock {
-  bash <(wget -O - 'https://github.com/samupro-dev/mc-server-installer/src/bedrock.sh')
+  bash <(wget -O - 'https://raw.githubusercontent.com/samupro-dev/mc-server-installer/main/src/bedrock.sh')
 }
 
 function modded {
-  bash <(wget -O - 'https://github.com/samupro-dev/mc-server-installer/src/modded.sh')
+  bash <(wget -O - 'https://raw.githubusercontent.com/samupro-dev/mc-server-installer/main/src/modded.sh')
 }
 
 function vanilla {
-  bash <(wget -O - 'https://github.com/samupro-dev/mc-server-installer/src/vanilla.sh')
+  bash <(wget -O - 'https://raw.githubusercontent.com/samupro-dev/mc-server-installer/main/src/vanilla.sh')
 }
 
 ###########
