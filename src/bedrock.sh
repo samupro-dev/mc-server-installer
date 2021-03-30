@@ -80,9 +80,9 @@ function nukkitxlatest {
 
 function nukkitxsuccess {
   echo -e " "
-  echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_"
+  echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
   echo -e "${LIGHT_GREEN} Your server was successfully installed!\n   ${CYAN}* Version: ${WHITE}NukkitX\n   ${CYAN}* Location: ${WHITE}${bedrockfolder}\n   ${CYAN}* RAM: ${WHITE}${bedrockmem}M\n   ${CYAN}* Port: ${WHITE}${bedrockport} ${COLOR_NULL}"
-  echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_"
+  echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
   exit
 }
 
