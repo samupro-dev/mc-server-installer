@@ -115,7 +115,7 @@ function vanilla1165 {
 function vanilla1164 {
   echo -e " "
   cd ${vanillafolder}
-  wget https://serverjars.com/jars/vanilla/vanilla/vanilla-1.16.5.jar
+  wget https://serverjars.com/jars/vanilla/vanilla/vanilla-1.16.4.jar
   echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
   echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
   / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
@@ -131,7 +131,7 @@ function vanilla1164 {
 function vanilla1163 {
   echo -e " "
   cd ${vanillafolder}
-  wget https://serverjars.com/jars/vanilla/vanilla/vanilla-1.16.5.jar
+  wget https://serverjars.com/jars/vanilla/vanilla/vanilla-1.16.3.jar
   echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
   echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
   / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
@@ -147,7 +147,7 @@ function vanilla1163 {
 function vanilla1162 {
   echo -e " "
   cd ${vanillafolder}
-  wget https://serverjars.com/jars/vanilla/vanilla/vanilla-1.16.5.jar
+  wget https://serverjars.com/jars/vanilla/vanilla/vanilla-1.16.2.jar
   echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
   echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
   / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
@@ -163,7 +163,7 @@ function vanilla1162 {
 function vanilla1161 {
   echo -e " "
   cd ${vanillafolder}
-  wget https://serverjars.com/jars/vanilla/vanilla/vanilla-1.16.5.jar
+  wget https://serverjars.com/jars/vanilla/vanilla/vanilla-1.16.1.jar
   echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
   echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
   / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
@@ -179,7 +179,7 @@ function vanilla1161 {
 function vanilla116 {
   echo -e " "
   cd ${vanillafolder}
-  wget https://serverjars.com/jars/vanilla/vanilla/vanilla-1.16.5.jar
+  wget https://serverjars.com/jars/vanilla/vanilla/vanilla-1.16.jar
   echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
   echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
   / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
@@ -195,7 +195,7 @@ function vanilla116 {
 function vanilla1152 {
   echo -e " "
   cd ${vanillafolder}
-  wget https://serverjars.com/jars/vanilla/vanilla/vanilla-1.16.5.jar
+  wget https://serverjars.com/jars/vanilla/vanilla/vanilla-1.15.2.jar
   echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
   echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
   / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
@@ -211,7 +211,7 @@ function vanilla1152 {
 function vanilla1151 {
   echo -e " "
   cd ${vanillafolder}
-  wget https://serverjars.com/jars/vanilla/vanilla/vanilla-1.16.5.jar
+  wget https://serverjars.com/jars/vanilla/vanilla/vanilla-1.15.1.jar
   echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
   echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
   / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
@@ -227,7 +227,7 @@ function vanilla1151 {
 function vanilla115 {
   echo -e " "
   cd ${vanillafolder}
-  wget https://serverjars.com/jars/vanilla/vanilla/vanilla-1.16.5.jar
+  wget https://serverjars.com/jars/vanilla/vanilla/vanilla-1.15.jar
   echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
   echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
   / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
@@ -243,7 +243,7 @@ function vanilla115 {
 function vanilla1144 {
   echo -e " "
   cd ${vanillafolder}
-  wget https://serverjars.com/jars/vanilla/vanilla/vanilla-1.16.5.jar
+  wget https://serverjars.com/jars/vanilla/vanilla/vanilla-1.14.4.jar
   echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
   echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
   / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
@@ -259,7 +259,7 @@ function vanilla1144 {
 function vanilla1143 {
   echo -e " "
   cd ${vanillafolder}
-  wget https://serverjars.com/jars/vanilla/vanilla/vanilla-1.16.5.jar
+  wget https://serverjars.com/jars/vanilla/vanilla/vanilla-1.14.3.jar
   echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
   echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
   / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
@@ -275,7 +275,7 @@ function vanilla1143 {
 function vanilla1142 {
   echo -e " "
   cd ${vanillafolder}
-  wget https://serverjars.com/jars/vanilla/vanilla/vanilla-1.16.5.jar
+  wget https://serverjars.com/jars/vanilla/vanilla/vanilla-1.14.2.jar
   echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
   echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
   / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
@@ -291,7 +291,7 @@ function vanilla1142 {
 function vanilla1141 {
   echo -e " "
   cd ${vanillafolder}
-  wget https://serverjars.com/jars/vanilla/vanilla/vanilla-1.16.5.jar
+  wget https://serverjars.com/jars/vanilla/vanilla/vanilla-1.14.1.jar
   echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
   echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
   / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
@@ -307,7 +307,7 @@ function vanilla1141 {
 function vanilla114 {
   echo -e " "
   cd ${vanillafolder}
-  wget https://serverjars.com/jars/vanilla/vanilla/vanilla-1.16.5.jar
+  wget https://serverjars.com/jars/vanilla/vanilla/vanilla-1.14.jar
   echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
   echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
   / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
@@ -323,7 +323,7 @@ function vanilla114 {
 function vanilla1132 {
   echo -e " "
   cd ${vanillafolder}
-  wget https://serverjars.com/jars/vanilla/vanilla/vanilla-1.16.5.jar
+  wget https://serverjars.com/jars/vanilla/vanilla/vanilla-1.13.2.jar
   echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
   echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
   / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
@@ -339,7 +339,7 @@ function vanilla1132 {
 function vanilla1131 {
   echo -e " "
   cd ${vanillafolder}
-  wget https://serverjars.com/jars/vanilla/vanilla/vanilla-1.16.5.jar
+  wget https://serverjars.com/jars/vanilla/vanilla/vanilla-1.13.1.jar
   echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
   echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
   / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
@@ -355,7 +355,7 @@ function vanilla1131 {
 function vanilla113 {
   echo -e " "
   cd ${vanillafolder}
-  wget https://serverjars.com/jars/vanilla/vanilla/vanilla-1.16.5.jar
+  wget https://serverjars.com/jars/vanilla/vanilla/vanilla-1.13.jar
   echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
   echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
   / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
@@ -371,7 +371,7 @@ function vanilla113 {
 function vanilla1122 {
   echo -e " "
   cd ${vanillafolder}
-  wget https://serverjars.com/jars/vanilla/vanilla/vanilla-1.16.5.jar
+  wget https://serverjars.com/jars/vanilla/vanilla/vanilla-1.12.2.jar
   echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
   echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
   / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
@@ -387,7 +387,7 @@ function vanilla1122 {
 function vanilla1121 {
   echo -e " "
   cd ${vanillafolder}
-  wget https://serverjars.com/jars/vanilla/vanilla/vanilla-1.16.5.jar
+  wget https://serverjars.com/jars/vanilla/vanilla/vanilla-1.12.1.jar
   echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
   echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
   / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
@@ -403,7 +403,7 @@ function vanilla1121 {
 function vanilla112 {
   echo -e " "
   cd ${vanillafolder}
-  wget https://serverjars.com/jars/vanilla/vanilla/vanilla-1.16.5.jar
+  wget https://serverjars.com/jars/vanilla/vanilla/vanilla-1.12.jar
   echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
   echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
   / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
@@ -419,7 +419,7 @@ function vanilla112 {
 function vanilla1112 {
   echo -e " "
   cd ${vanillafolder}
-  wget https://serverjars.com/jars/vanilla/vanilla/vanilla-1.16.5.jar
+  wget https://serverjars.com/jars/vanilla/vanilla/vanilla-1.11.2.jar
   echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
   echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
   / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
@@ -435,7 +435,7 @@ function vanilla1112 {
 function vanilla1111 {
   echo -e " "
   cd ${vanillafolder}
-  wget https://serverjars.com/jars/vanilla/vanilla/vanilla-1.16.5.jar
+  wget https://serverjars.com/jars/vanilla/vanilla/vanilla-1.11.1.jar
   echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
   echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
   / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
@@ -451,7 +451,7 @@ function vanilla1111 {
 function vanilla111 {
   echo -e " "
   cd ${vanillafolder}
-  wget https://serverjars.com/jars/vanilla/vanilla/vanilla-1.16.5.jar
+  wget https://serverjars.com/jars/vanilla/vanilla/vanilla-1.11.jar
   echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
   echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
   / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
@@ -467,7 +467,7 @@ function vanilla111 {
 function vanilla1102 {
   echo -e " "
   cd ${vanillafolder}
-  wget https://serverjars.com/jars/vanilla/vanilla/vanilla-1.16.5.jar
+  wget https://serverjars.com/jars/vanilla/vanilla/vanilla-1.10.2.jar
   echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
   echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
   / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
@@ -483,7 +483,7 @@ function vanilla1102 {
 function vanilla194 {
   echo -e " "
   cd ${vanillafolder}
-  wget https://serverjars.com/jars/vanilla/vanilla/vanilla-1.16.5.jar
+  wget https://serverjars.com/jars/vanilla/vanilla/vanilla-1.9.4.jar
   echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
   echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
   / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
@@ -499,7 +499,7 @@ function vanilla194 {
 function vanilla193 {
   echo -e " "
   cd ${vanillafolder}
-  wget https://serverjars.com/jars/vanilla/vanilla/vanilla-1.16.5.jar
+  wget https://serverjars.com/jars/vanilla/vanilla/vanilla-1.9.3.jar
   echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
   echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
   / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
@@ -515,7 +515,7 @@ function vanilla193 {
 function vanilla192 {
   echo -e " "
   cd ${vanillafolder}
-  wget https://serverjars.com/jars/vanilla/vanilla/vanilla-1.16.5.jar
+  wget https://serverjars.com/jars/vanilla/vanilla/vanilla-1.9.2.jar
   echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
   echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
   / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
@@ -531,7 +531,7 @@ function vanilla192 {
 function vanilla191 {
   echo -e " "
   cd ${vanillafolder}
-  wget https://serverjars.com/jars/vanilla/vanilla/vanilla-1.16.5.jar
+  wget https://serverjars.com/jars/vanilla/vanilla/vanilla-1.9.1.jar
   echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
   echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
   / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
@@ -547,7 +547,7 @@ function vanilla191 {
 function vanilla19 {
   echo -e " "
   cd ${vanillafolder}
-  wget https://serverjars.com/jars/vanilla/vanilla/vanilla-1.16.5.jar
+  wget https://serverjars.com/jars/vanilla/vanilla/vanilla-1.9.jar
   echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
   echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
   / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
@@ -563,7 +563,7 @@ function vanilla19 {
 function vanilla188 {
   echo -e " "
   cd ${vanillafolder}
-  wget https://serverjars.com/jars/vanilla/vanilla/vanilla-1.16.5.jar
+  wget https://serverjars.com/jars/vanilla/vanilla/vanilla-1.8.8.jar
   echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
   echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
   / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
@@ -579,7 +579,7 @@ function vanilla188 {
 function vanilla187 {
   echo -e " "
   cd ${vanillafolder}
-  wget https://serverjars.com/jars/vanilla/vanilla/vanilla-1.16.5.jar
+  wget https://serverjars.com/jars/vanilla/vanilla/vanilla-1.8.7.jar
   echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
   echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
   / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
@@ -595,7 +595,7 @@ function vanilla187 {
 function vanilla186 {
   echo -e " "
   cd ${vanillafolder}
-  wget https://serverjars.com/jars/vanilla/vanilla/vanilla-1.16.5.jar
+  wget https://serverjars.com/jars/vanilla/vanilla/vanilla-1.8.6.jar
   echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
   echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
   / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
@@ -611,7 +611,7 @@ function vanilla186 {
 function vanilla185 {
   echo -e " "
   cd ${vanillafolder}
-  wget https://serverjars.com/jars/vanilla/vanilla/vanilla-1.16.5.jar
+  wget https://serverjars.com/jars/vanilla/vanilla/vanilla-1.8.5.jar
   echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
   echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
   / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
@@ -627,7 +627,7 @@ function vanilla185 {
 function vanilla184 {
   echo -e " "
   cd ${vanillafolder}
-  wget https://serverjars.com/jars/vanilla/vanilla/vanilla-1.16.5.jar
+  wget https://serverjars.com/jars/vanilla/vanilla/vanilla-1.8.4.jar
   echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
   echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
   / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
@@ -643,7 +643,7 @@ function vanilla184 {
 function vanilla183 {
   echo -e " "
   cd ${vanillafolder}
-  wget https://serverjars.com/jars/vanilla/vanilla/vanilla-1.16.5.jar
+  wget https://serverjars.com/jars/vanilla/vanilla/vanilla-1.8.3.jar
   echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
   echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
   / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
@@ -659,7 +659,7 @@ function vanilla183 {
 function vanilla182 {
   echo -e " "
   cd ${vanillafolder}
-  wget https://serverjars.com/jars/vanilla/vanilla/vanilla-1.16.5.jar
+  wget https://serverjars.com/jars/vanilla/vanilla/vanilla-1.8.2.jar
   echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
   echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
   / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
@@ -675,7 +675,7 @@ function vanilla182 {
 function vanilla181 {
   echo -e " "
   cd ${vanillafolder}
-  wget https://serverjars.com/jars/vanilla/vanilla/vanilla-1.16.5.jar
+  wget https://serverjars.com/jars/vanilla/vanilla/vanilla-1.8.1.jar
   echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
   echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
   / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
@@ -691,7 +691,7 @@ function vanilla181 {
 function vanilla18 {
   echo -e " "
   cd ${vanillafolder}
-  wget https://serverjars.com/jars/vanilla/vanilla/vanilla-1.16.5.jar
+  wget https://serverjars.com/jars/vanilla/vanilla/vanilla-1.8.jar
   echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
   echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
   / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
@@ -707,7 +707,7 @@ function vanilla18 {
 function vanilla1710 {
   echo -e " "
   cd ${vanillafolder}
-  wget https://serverjars.com/jars/vanilla/vanilla/vanilla-1.16.5.jar
+  wget https://serverjars.com/jars/vanilla/vanilla/vanilla-1.7.10.jar
   echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
   echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
   / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
