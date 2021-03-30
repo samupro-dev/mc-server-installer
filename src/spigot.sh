@@ -527,9 +527,9 @@ function spigot18 {
 
 function spigottsuccess {
   echo -e " "
-  echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_"
+  echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
   echo -e "${LIGHT_GREEN} Your server was successfully installed!\n   ${CYAN}* Version: ${WHITE}Spigot ${SPIGOTVERSIONSEL}\n   ${CYAN}* Location: ${WHITE}${spigotfolder}\n   ${CYAN}* RAM: ${WHITE}${spigotmem}M\n   ${CYAN}* Port: ${WHITE}${spigotport} ${COLOR_NULL}"
-  echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_"
+  echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
   exit
 }
 
@@ -710,9 +710,9 @@ function paper188 {
 
 function papersuccess {
   echo -e " "
-  echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_"
+  echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
   echo -e "${LIGHT_GREEN} Your server was successfully installed!\n   ${CYAN}* Version: ${WHITE}Paper ${PAPERVERSIONSEL}\n   ${CYAN}* Location: ${WHITE}${spigotfolder}\n   ${CYAN}* RAM: ${WHITE}${spigotmem}M\n   ${CYAN}* Port: ${WHITE}${spigotport} ${COLOR_NULL}"
-  echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_"
+  echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
   exit
 }
 
@@ -836,9 +836,9 @@ function yatopia1162 {
 
 function yatopiasuccess {
   echo -e " "
-  echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_"
+  echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
   echo -e "${LIGHT_GREEN} Your server was successfully installed!\n   ${CYAN}* Version: ${WHITE}Yatopia ${YATOPIAVERSIONSEL}\n   ${CYAN}* Location: ${WHITE}${spigotfolder}\n   ${CYAN}* RAM: ${WHITE}${spigotmem}M\n   ${CYAN}* Port: ${WHITE}${spigotport} ${COLOR_NULL}"
-  echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_"
+  echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
   exit
 }
 
@@ -884,9 +884,9 @@ function tuinity1165 {
 
 function tuinitysuccess {
   echo -e " "
-  echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_"
+  echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
   echo -e "${LIGHT_GREEN} Your server was successfully installed!\n   ${CYAN}* Version: ${WHITE}Tuinity ${TUINITYVERSIONSEL}\n   ${CYAN}* Location: ${WHITE}${spigotfolder}\n   ${CYAN}* RAM: ${WHITE}${spigotmem}M\n   ${CYAN}* Port: ${WHITE}${spigotport} ${COLOR_NULL}"
-  echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_"
+  echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
   exit
 }
 
@@ -938,9 +938,9 @@ function glowstone1122 {
 
 function glowstonesuccess {
   echo -e " "
-  echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_"
+  echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
   echo -e "${LIGHT_GREEN} Your server was successfully installed!\n   ${CYAN}* Version: ${WHITE}Glowstone ${GLOWSTONEVERSIONSEL}\n   ${CYAN}* Location: ${WHITE}${glowstonefolder}\n   ${CYAN}* RAM: ${WHITE}${glowstonemem}M\n   ${CYAN}* Port: ${WHITE}${glowstoneport} ${COLOR_NULL}"
-  echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_"
+  echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
   exit
 }
 
