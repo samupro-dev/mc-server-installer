@@ -59,9 +59,9 @@ function bungeecord {
   java -Xms128M -Xmx${bungeemem}M -jar BungeeCord.jar" > RunMe.sh
   chmod +x RunMe.sh
   echo -e " "
-  echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_"
+  echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
   echo -e "${LIGHT_GREEN} Your server was successfully installed!\n   ${CYAN}* Version: ${WHITE}BungeeCord\n   ${CYAN}* Location: ${WHITE}${bungeefolder}\n   ${CYAN}* RAM: ${WHITE}${bungeemem}M ${COLOR_NULL}"
-  echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_"
+  echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
   exit
 }
 
@@ -81,9 +81,9 @@ function waterfall {
   java -Xms128M -Xmx${bungeemem}M -jar Waterfall.jar" > RunMe.sh
   chmod +x RunMe.sh
   echo -e " "
-  echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_"
+  echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
   echo -e "${LIGHT_GREEN} Your server was successfully installed!\n   ${CYAN}* Version: ${WHITE}Waterfall\n   ${CYAN}* Location: ${WHITE}${bungeefolder}\n   ${CYAN}* RAM: ${WHITE}${bungeemem}M ${COLOR_NULL}"
-  echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_"
+  echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
   exit
 }
 
@@ -103,9 +103,9 @@ function travertine {
   java -Xms128M -Xmx${bungeemem}M -jar Travertine.jar" > RunMe.sh
   chmod +x RunMe.sh
   echo -e " "
-  echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_"
+  echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
   echo -e "${LIGHT_GREEN} Your server was successfully installed!\n   ${CYAN}* Version: ${WHITE}Travertine\n   ${CYAN}* Location: ${WHITE}${bungeefolder}\n   ${CYAN}* RAM: ${WHITE}${bungeemem}M ${COLOR_NULL}"
-  echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_"
+  echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
   exit
 }
 
@@ -126,9 +126,9 @@ function flamecord {
   java -Xms128M -Xmx${bungeemem}M -jar FlameCord.jar" > RunMe.sh
   chmod +x RunMe.sh
   echo -e " "
-  echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_"
+  echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
   echo -e "${LIGHT_GREEN} Your server was successfully installed!\n   ${CYAN}* Version: ${WHITE}FlameCord\n   ${CYAN}* Location: ${WHITE}${bungeefolder}\n   ${CYAN}* RAM: ${WHITE}${bungeemem}M ${COLOR_NULL}"
-  echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_"
+  echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
   exit
 }
 
@@ -149,9 +149,9 @@ function velocity {
   java -Xms128M -Xmx${bungeemem}M -jar Velocity.jar" > RunMe.sh
   chmod +x RunMe.sh
   echo -e " "
-  echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_"
+  echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
   echo -e "${LIGHT_GREEN} Your server was successfully installed!\n   ${CYAN}* Version: ${WHITE}Velocity\n   ${CYAN}* Location: ${WHITE}${bungeefolder}\n   ${CYAN}* RAM: ${WHITE}${bungeemem}M ${COLOR_NULL}"
-  echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_"
+  echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
   exit
 }
 
@@ -172,9 +172,9 @@ function hexacord {
   java -Xms128M -Xmx${bungeemem}M -jar hexacord.jar" >> RunMe.sh
   chmod +x RunMe.sh
   echo -e " "
-  echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_"
+  echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
   echo -e "${LIGHT_GREEN} Your server was successfully installed!\n   ${CYAN}* Version: ${WHITE}HexaCord\n   ${CYAN}* Location: ${WHITE}${bungeefolder}\n   ${CYAN}* RAM: ${WHITE}${bungeemem}M ${COLOR_NULL}"
-  echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_"
+  echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
   exit
 }
 
