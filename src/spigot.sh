@@ -60,7 +60,7 @@ function spigottversion {
   echo -e "${CYAN} Select the server version. ${COLOR_NULL}"
   select SPIGOTVERSIONSEL in "${SPIGOTVERSION[@]}"; do
     case "$REPLY" in
-    1) spigot1165 | exit ;;
+    1) spigot1165 && exit ;;
     2) spigot1164 ;;
     3) spigot1163 ;;
     4) spigot1162 ;;
