@@ -60,7 +60,7 @@ function spigottversion {
   echo -e "${CYAN} Select the server version. ${COLOR_NULL}"
   select SPIGOTVERSIONSEL in "${SPIGOTVERSION[@]}"; do
     case "$REPLY" in
-    1) spigot1165 ;;
+    1) spigot1165 | exit ;;
     2) spigot1164 ;;
     3) spigot1163 ;;
     4) spigot1162 ;;
@@ -940,7 +940,7 @@ function glowstonesuccess {
   echo -e " "
   echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
   echo -e "${LIGHT_GREEN} Your server was successfully installed!\n   ${CYAN}* Version: ${WHITE}Glowstone ${GLOWSTONEVERSIONSEL}\n   ${CYAN}* Location: ${WHITE}${glowstonefolder}\n   ${CYAN}* RAM: ${WHITE}${glowstonemem}M\n   ${CYAN}* Port: ${WHITE}${glowstoneport} ${COLOR_NULL}"
-  echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL} | exit"
+  echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
 }
 
 spigot
