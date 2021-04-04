@@ -725,7 +725,7 @@ function vanillasuccess {
   echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
   echo -e "${LIGHT_GREEN} Your server was successfully installed!\n   ${CYAN}* Version: ${WHITE}Vanilla ${VANILLAVERSIONSEL}\n   ${CYAN}* Location: ${WHITE}${vanillafolder}\n   ${CYAN}* RAM: ${WHITE}${vanillamem}M\n   ${CYAN}* Port: ${WHITE}${vanillaport} ${COLOR_NULL}"
   echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
-  exit 1
+  exit
 }
 
 vanilla
