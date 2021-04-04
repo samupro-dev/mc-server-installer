@@ -26,3 +26,9 @@ If you find any bugs or want to recommend some new features, write them [here](h
 - [ ] More forks
 - [x] Java installation if it is not installed
 - [ ] A better interface
+
+## Changelogs
+#### v0.2
+- Fixed bug with colors
+- Added support for CentOS
+- Now it also checks if java is installed
