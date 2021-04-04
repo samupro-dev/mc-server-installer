@@ -941,7 +941,8 @@ function glowstonesuccess {
   echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
   echo -e "${LIGHT_GREEN} Your server was successfully installed!\n   ${CYAN}* Version: ${WHITE}Glowstone ${GLOWSTONEVERSIONSEL}\n   ${CYAN}* Location: ${WHITE}${glowstonefolder}\n   ${CYAN}* RAM: ${WHITE}${glowstonemem}M\n   ${CYAN}* Port: ${WHITE}${glowstoneport} ${COLOR_NULL}"
   echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
-  exit 0
+  exit
+  exit
 }
 
 spigot
