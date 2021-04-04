@@ -175,7 +175,7 @@ function hexacord {
   echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
   echo -e "${LIGHT_GREEN} Your server was successfully installed!\n   ${CYAN}* Version: ${WHITE}HexaCord\n   ${CYAN}* Location: ${WHITE}${bungeefolder}\n   ${CYAN}* RAM: ${WHITE}${bungeemem}M ${COLOR_NULL}"
   echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
-  exit 1
+  exit
 }
 
 bungee
