@@ -6,6 +6,7 @@ A multifunctional script to install a minecraft server in just a few steps.
 
 * Spigot, Vanilla, Modded, Bungee, Bedrock server installer
 * Download the latest stable versions
+* Install Java automatically
 * Self-updated script
 
 ## Usage
