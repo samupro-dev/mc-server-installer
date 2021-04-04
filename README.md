@@ -24,3 +24,5 @@ If you find any bugs or want to recommend some new features, write them [here](h
 - [ ] Italian translation
 - [ ] Script optimization
 - [ ] More forks
+- [ ] Java installation if it is not installed
+- [ ] OS version selector
