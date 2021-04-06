@@ -29,6 +29,8 @@ If you find any bugs or want to recommend some new features, write them [here](h
 - [ ] A better interface
 
 ## Changelogs
+#### v0.3
+- Fixed bug where the script would not close when the installation was finished
 #### v0.2
 - Fixed bug with colors
 - Added support for CentOS
