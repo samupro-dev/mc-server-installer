@@ -23,7 +23,7 @@ echo -e "${PURPLE}  ██████  ▄▄▄       ███▄ ▄██�
 ░  ░  ░    ░   ▒   ░      ░    ░░░ ░ ░ ░░         ░░   ░ ░ ░ ░ ▒  
       ░        ░  ░       ░      ░                 ░         ░ ░  
                 https://github.com/samupro-dev
-                                                  v0.2${COLOR_NULL}"
+                                                  v0.3${COLOR_NULL}"
 echo -e "\n"
 echo -e "${LIGHT_BLUE} This script makes it easy to install a minecraft server. ${COLOR_NULL}"
 sleep 1
@@ -99,22 +99,27 @@ sleep 1
 #############
 function bungee {
   bash <(wget -O - 'https://raw.githubusercontent.com/samupro-dev/mc-server-installer/main/src/bungee.sh')
+  exit
 }
 
 function spigot {
   bash <(wget -O - 'https://raw.githubusercontent.com/samupro-dev/mc-server-installer/main/src/spigot.sh')
+  exit
 }
 
 function bedrock {
   bash <(wget -O - 'https://raw.githubusercontent.com/samupro-dev/mc-server-installer/main/src/bedrock.sh')
+  exit
 }
 
 function modded {
   bash <(wget -O - 'https://raw.githubusercontent.com/samupro-dev/mc-server-installer/main/src/modded.sh')
+  exit
 }
 
 function vanilla {
   bash <(wget -O - 'https://raw.githubusercontent.com/samupro-dev/mc-server-installer/main/src/vanilla.sh')
+  exit
 }
 
 ###########
