@@ -29,6 +29,9 @@ If you find any bugs or want to recommend some new features, write them [here](h
 - [ ] A better interface
 
 ## Changelogs
+#### v0.4
+- Now if the java installation refuses it does not exit the script
+- Added Purpur fork
 #### v0.3
 - Fixed bug where the script would not close when the installation was finished
 #### v0.2
