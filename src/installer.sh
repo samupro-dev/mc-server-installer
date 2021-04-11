@@ -23,7 +23,7 @@ echo -e "${PURPLE}  ██████  ▄▄▄       ███▄ ▄██�
 ░  ░  ░    ░   ▒   ░      ░    ░░░ ░ ░ ░░         ░░   ░ ░ ░ ░ ▒  
       ░        ░  ░       ░      ░                 ░         ░ ░  
                 https://github.com/samupro-dev
-                                                  v0.3${COLOR_NULL}"
+                                                  v0.4${COLOR_NULL}"
 echo -e "\n"
 echo -e "${LIGHT_BLUE} This script makes it easy to install a minecraft server. ${COLOR_NULL}"
 sleep 1
@@ -76,13 +76,13 @@ echo -e " ${YELLOW} curl is installed, the script will work fine! ${COLOR_NULL}"
 echo -e " "
 
 if ! [ -x "$(command -v java)" ]; then
-  echo -e "${ERROR} ${LIGHT_RED} java is required in order for this script to work. ${COLOR_NULL}"
+  echo -e "${ERROR} ${LIGHT_RED} java is not installed. ${COLOR_NULL}"
   while true
   do
-    echo -e -n "${YELLOW} Do you want to install java (Y/n)? ${COLOR_NULL}"
+    echo -e -n "${YELLOW} Do you want to install java (Y/n)? (optional) ${COLOR_NULL}"
     read installjava
     case "$installjava" in
-      n|N|no|No|NO) exit;;
+      n|N|no|No|NO) break;;
       y|Y|yes|Yes|YES) apt-get install -y apt-transport-https ca-certificates dirmngr gnupg && wget -qO - https://adoptopenjdk.jfrog.io/adoptopenjdk/api/gpg/key/public | apt-key add - && add-apt-repository --yes https://adoptopenjdk.jfrog.io/adoptopenjdk/deb/ && apt-get -y update && apt-get install -y adoptopenjdk-11-hotspot || yum install -y java-11-openjdk
       break;;
       *) echo -e "${ERROR} ${LIGHT_RED}The argument you entered is incorrect! ${COLOR_NULL}";;
