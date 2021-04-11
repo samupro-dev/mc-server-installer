@@ -961,7 +961,7 @@ function purpur {
 }
 
 function purpurversion {
-  PURPURVERSION=("1.16.5" "1.16.4" 1.16.3 1.16.2 1.16.1 1.15.2 1.15.1 1.15 1.14.4 1.14.3 1.14.2 1.14.1 "Cancel")
+  PURPURVERSION=("1.16.5" "1.16.4" "1.16.3" "1.16.2" "1.16.1" "1.15.2" "1.15.1" "1.15" "1.14.4" "1.14.3" "1.14.2" "1.14.1" "Cancel")
   echo -e "${CYAN} Select the server version. ${COLOR_NULL}"
   select PURPURVERSIONSEL in "${PURPURVERSION[@]}"; do
     case "$REPLY" in
