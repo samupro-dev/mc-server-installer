@@ -29,7 +29,7 @@ function spigot {
   echo -e -n "${YELLOW} Enter the port of the server. (ex. 25565): ${COLOR_NULL}"
   read spigotport
   echo -e "${CYAN} Server type selected: ${YELLOW}Spigot ${COLOR_NULL}"
-  SPIGOTTYPE=("Spigot" "Paper" "Yatopia" "Tuinity" "Glowstone" "Cancel")
+  SPIGOTTYPE=("Spigot" "Paper" "Yatopia" "Tuinity" "Purpur" "Glowstone" "Cancel")
   echo -e "${CYAN} Select the type of fork that suits you best! ${COLOR_NULL}"
   select OPTION in "${SPIGOTTYPE[@]}"; do
     case "$REPLY" in
@@ -37,8 +37,9 @@ function spigot {
     2) paper ;;
     3) yatopia ;;
     4) tuinity ;;
-    5) glowstone ;;
-    6) exit ;;
+    5) purpur ;;
+    6) glowstone ;;
+    7) exit ;;
     *) echo -e "${ERROR} ${LIGHT_RED}The argument you entered is incorrect! ${COLOR_NULL}";;
     esac
   done
@@ -940,6 +941,251 @@ function glowstonesuccess {
   echo -e " "
   echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
   echo -e "${LIGHT_GREEN} Your server was successfully installed!\n   ${CYAN}* Version: ${WHITE}Glowstone ${GLOWSTONEVERSIONSEL}\n   ${CYAN}* Location: ${WHITE}${glowstonefolder}\n   ${CYAN}* RAM: ${WHITE}${glowstonemem}M\n   ${CYAN}* Port: ${WHITE}${glowstoneport} ${COLOR_NULL}"
+  echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
+  exit
+}
+
+
+
+
+
+function purpur {
+  echo -e "\n"
+  mkdir ${spigotfolder}
+  cd ${spigotfolder}
+  echo -e "${YELLOW} I am setting up the server port. . . ${COLOR_NULL}"
+  echo "server-port=${spigotport}" > server.properties
+  echo -e "${YELLOW} The eula file has been created. ${COLOR_NULL}"
+  echo "eula=true" > eula.txt
+  purpurversion
+}
+
+function purpurversion {
+  PURPURVERSION=("1.16.5" "1.16.4" 1.16.3 1.16.2 1.16.1 1.15.2 1.15.1 1.15 1.14.4 1.14.3 1.14.2 1.14.1 "Cancel")
+  echo -e "${CYAN} Select the server version. ${COLOR_NULL}"
+  select PURPURVERSIONSEL in "${PURPURVERSION[@]}"; do
+    case "$REPLY" in
+    1) purpur1165 ;;
+    2) purpur1164 ;;
+    3) purpur1163 ;;
+    4) purpur1162 ;;
+    5) purpur1161 ;;
+    6) purpur1152 ;;
+    7) purpur1151 ;;
+    8) purpur115 ;;
+    9) purpur1144 ;;
+    10) purpur1143 ;;
+    11) purpur1142 ;;
+    12) purpur1141 ;;
+    13) exit ;;
+    *) echo -e "${ERROR} ${LIGHT_RED}The argument you entered is incorrect! ${COLOR_NULL}";;
+    esac
+  done
+}
+
+function purpur1165 {
+  echo -e " "
+  cd ${spigotfolder}
+  wget https://ci.pl3x.net/job/Purpur/lastSuccessfulBuild/artifact/final/*zip*/final.zip
+  unzip final.zip
+  cd final/
+  mv purpurclip-*.jar ..
+  cd ..
+  rm -r final/
+  rm final.zip
+  mv purpurclip-*.jar	purpur-1.16.5.jar
+  echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
+  echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
+  / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
+  \__ \ /(__)\  )    (  )(__)(  )___/ )   / )(_)( 
+  (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
+          https://github.com/samupro-dev'
+  echo -e ' '
+  java -Xms128M -Xmx${spigotmem}M -jar purpur-1.16.5.jar nogui" > RunMe.sh
+  chmod +x RunMe.sh
+  purpursuccess
+}
+
+function purpur1164 {
+  echo -e " "
+  cd ${spigotfolder}
+  curl -o purpur-1.16.4.jar https://purpur.pl3x.net/api/v1/purpur/1.16.4/956/download
+  echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
+  echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
+  / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
+  \__ \ /(__)\  )    (  )(__)(  )___/ )   / )(_)( 
+  (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
+          https://github.com/samupro-dev'
+  echo -e ' '
+  java -Xms128M -Xmx${spigotmem}M -jar purpur-1.16.4.jar nogui" > RunMe.sh
+  chmod +x RunMe.sh
+  purpursuccess
+}
+
+function purpur1163 {
+  echo -e " "
+  cd ${spigotfolder}
+  curl -o purpur-1.16.3.jar https://purpur.pl3x.net/api/v1/purpur/1.16.3/808/download
+  echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
+  echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
+  / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
+  \__ \ /(__)\  )    (  )(__)(  )___/ )   / )(_)( 
+  (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
+          https://github.com/samupro-dev'
+  echo -e ' '
+  java -Xms128M -Xmx${spigotmem}M -jar purpur-1.16.3.jar nogui" > RunMe.sh
+  chmod +x RunMe.sh
+  purpursuccess
+}
+
+function purpur1162 {
+  echo -e " "
+  cd ${spigotfolder}
+  curl -o purpur-1.16.2.jar https://purpur.pl3x.net/api/v1/purpur/1.16.2/750/download
+  echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
+  echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
+  / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
+  \__ \ /(__)\  )    (  )(__)(  )___/ )   / )(_)( 
+  (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
+          https://github.com/samupro-dev'
+  echo -e ' '
+  java -Xms128M -Xmx${spigotmem}M -jar purpur-1.16.2.jar nogui" > RunMe.sh
+  chmod +x RunMe.sh
+  purpursuccess
+}
+
+function purpur1161 {
+  echo -e " "
+  cd ${spigotfolder}
+  curl -o purpur-1.16.1.jar https://purpur.pl3x.net/api/v1/purpur/1.16.1/710/download
+  echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
+  echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
+  / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
+  \__ \ /(__)\  )    (  )(__)(  )___/ )   / )(_)( 
+  (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
+          https://github.com/samupro-dev'
+  echo -e ' '
+  java -Xms128M -Xmx${spigotmem}M -jar purpur-1.16.1.jar nogui" > RunMe.sh
+  chmod +x RunMe.sh
+  purpursuccess
+}
+
+function purpur1152 {
+  echo -e " "
+  cd ${spigotfolder}
+  curl -o purpur-1.15.2.jar https://purpur.pl3x.net/api/v1/purpur/1.15.2/606/download
+  echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
+  echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
+  / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
+  \__ \ /(__)\  )    (  )(__)(  )___/ )   / )(_)( 
+  (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
+          https://github.com/samupro-dev'
+  echo -e ' '
+  java -Xms128M -Xmx${spigotmem}M -jar purpur-1.15.2.jar nogui" > RunMe.sh
+  chmod +x RunMe.sh
+  purpursuccess
+}
+
+function purpur1151 {
+  echo -e " "
+  cd ${spigotfolder}
+  curl -o purpur-1.15.1.jar https://purpur.pl3x.net/api/v1/purpur/1.15.1/397/download
+  echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
+  echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
+  / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
+  \__ \ /(__)\  )    (  )(__)(  )___/ )   / )(_)( 
+  (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
+          https://github.com/samupro-dev'
+  echo -e ' '
+  java -Xms128M -Xmx${spigotmem}M -jar purpur-1.15.1.jar nogui" > RunMe.sh
+  chmod +x RunMe.sh
+  purpursuccess
+}
+
+function purpur115 {
+  echo -e " "
+  cd ${spigotfolder}
+  curl -o purpur-1.15.jar https://purpur.pl3x.net/api/v1/purpur/1.15/346/download
+  echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
+  echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
+  / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
+  \__ \ /(__)\  )    (  )(__)(  )___/ )   / )(_)( 
+  (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
+          https://github.com/samupro-dev'
+  echo -e ' '
+  java -Xms128M -Xmx${spigotmem}M -jar purpur-1.15.jar nogui" > RunMe.sh
+  chmod +x RunMe.sh
+  purpursuccess
+}
+
+function purpur1144 {
+  echo -e " "
+  cd ${spigotfolder}
+  curl -o purpur-1.14.4.jar https://purpur.pl3x.net/api/v1/purpur/1.14.4/337/download
+  echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
+  echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
+  / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
+  \__ \ /(__)\  )    (  )(__)(  )___/ )   / )(_)( 
+  (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
+          https://github.com/samupro-dev'
+  echo -e ' '
+  java -Xms128M -Xmx${spigotmem}M -jar purpur-1.14.4.jar nogui" > RunMe.sh
+  chmod +x RunMe.sh
+  purpursuccess
+}
+
+function purpur1143 {
+  echo -e " "
+  cd ${spigotfolder}
+  curl -o purpur-1.14.3.jar https://purpur.pl3x.net/api/v1/purpur/1.14.3/202/download
+  echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
+  echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
+  / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
+  \__ \ /(__)\  )    (  )(__)(  )___/ )   / )(_)( 
+  (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
+          https://github.com/samupro-dev'
+  echo -e ' '
+  java -Xms128M -Xmx${spigotmem}M -jar purpur-1.14.3.jar nogui" > RunMe.sh
+  chmod +x RunMe.sh
+  purpursuccess
+}
+
+function purpur1142 {
+  echo -e " "
+  cd ${spigotfolder}
+  curl -o purpur-1.14.2.jar https://purpur.pl3x.net/api/v1/purpur/1.14.2/126/download
+  echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
+  echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
+  / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
+  \__ \ /(__)\  )    (  )(__)(  )___/ )   / )(_)( 
+  (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
+          https://github.com/samupro-dev'
+  echo -e ' '
+  java -Xms128M -Xmx${spigotmem}M -jar purpur-1.14.2.jar nogui" > RunMe.sh
+  chmod +x RunMe.sh
+  purpursuccess
+}
+
+function purpur1141 {
+  echo -e " "
+  cd ${spigotfolder}
+  curl -o purpur-1.14.1.jar https://purpur.pl3x.net/api/v1/purpur/1.14.1/63/download
+  echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
+  echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
+  / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
+  \__ \ /(__)\  )    (  )(__)(  )___/ )   / )(_)( 
+  (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
+          https://github.com/samupro-dev'
+  echo -e ' '
+  java -Xms128M -Xmx${spigotmem}M -jar purpur-1.14.1.jar nogui" > RunMe.sh
+  chmod +x RunMe.sh
+  purpursuccess
+}
+
+function purpursuccess {
+  echo -e " "
+  echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
+  echo -e "${LIGHT_GREEN} Your server was successfully installed!\n   ${CYAN}* Version: ${WHITE}Purpur ${PURPURVERSIONSEL}\n   ${CYAN}* Location: ${WHITE}${spigotfolder}\n   ${CYAN}* RAM: ${WHITE}${spigotmem}M\n   ${CYAN}* Port: ${WHITE}${spigotport} ${COLOR_NULL}"
   echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
   exit
 }
