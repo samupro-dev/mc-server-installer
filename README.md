@@ -23,12 +23,16 @@ If you find any bugs or want to recommend some new features, write them [here](h
 
 ## To do
 - [ ] Italian translation
-- [ ] Script optimization
+- [x] Script optimization
 - [ ] More forks
 - [x] Java installation if it is not installed
 - [ ] A better interface
 
 ## Changelogs
+#### v0.5
+- Optimized all scripts
+- Recoded the scripts
+- Fixed problem with Yatopia fork
 #### v0.4
 - Now if the java installation refuses it does not exit the script
 - Added Purpur fork
