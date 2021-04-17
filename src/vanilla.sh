@@ -100,614 +100,278 @@ function vanilla1165 {
   echo -e " "
   cd ${vanillafolder}
   wget https://serverjars.com/jars/vanilla/vanilla/vanilla-1.16.5.jar
-  echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
-  echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
-  / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
-  \__ \ /(__)\  )    (  )(__)(  )___/ )   / )(_)( 
-  (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
-          https://github.com/samupro-dev'
-  echo -e ' '
-  java -Xms128M -Xmx${vanillamem}M -jar vanilla-1.16.5.jar nogui" > RunMe.sh
-  chmod +x RunMe.sh
-  vanillasuccess
+  starterFile
 }
 
 function vanilla1164 {
   echo -e " "
   cd ${vanillafolder}
   wget https://serverjars.com/jars/vanilla/vanilla/vanilla-1.16.4.jar
-  echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
-  echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
-  / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
-  \__ \ /(__)\  )    (  )(__)(  )___/ )   / )(_)( 
-  (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
-          https://github.com/samupro-dev'
-  echo -e ' '
-  java -Xms128M -Xmx${vanillamem}M -jar vanilla-1.16.4.jar nogui" > RunMe.sh
-  chmod +x RunMe.sh
-  vanillasuccess
+  starterFile
 }
 
 function vanilla1163 {
   echo -e " "
   cd ${vanillafolder}
   wget https://serverjars.com/jars/vanilla/vanilla/vanilla-1.16.3.jar
-  echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
-  echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
-  / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
-  \__ \ /(__)\  )    (  )(__)(  )___/ )   / )(_)( 
-  (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
-          https://github.com/samupro-dev'
-  echo -e ' '
-  java -Xms128M -Xmx${vanillamem}M -jar vanilla-1.16.3.jar nogui" > RunMe.sh
-  chmod +x RunMe.sh
-  vanillasuccess
+  starterFile
 }
 
 function vanilla1162 {
   echo -e " "
   cd ${vanillafolder}
   wget https://serverjars.com/jars/vanilla/vanilla/vanilla-1.16.2.jar
-  echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
-  echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
-  / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
-  \__ \ /(__)\  )    (  )(__)(  )___/ )   / )(_)( 
-  (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
-          https://github.com/samupro-dev'
-  echo -e ' '
-  java -Xms128M -Xmx${vanillamem}M -jar vanilla-1.16.2.jar nogui" > RunMe.sh
-  chmod +x RunMe.sh
-  vanillasuccess
+  starterFile
 }
 
 function vanilla1161 {
   echo -e " "
   cd ${vanillafolder}
   wget https://serverjars.com/jars/vanilla/vanilla/vanilla-1.16.1.jar
-  echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
-  echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
-  / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
-  \__ \ /(__)\  )    (  )(__)(  )___/ )   / )(_)( 
-  (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
-          https://github.com/samupro-dev'
-  echo -e ' '
-  java -Xms128M -Xmx${vanillamem}M -jar vanilla-1.16.1.jar nogui" > RunMe.sh
-  chmod +x RunMe.sh
-  vanillasuccess
+  starterFile
 }
 
 function vanilla116 {
   echo -e " "
   cd ${vanillafolder}
   wget https://serverjars.com/jars/vanilla/vanilla/vanilla-1.16.jar
-  echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
-  echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
-  / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
-  \__ \ /(__)\  )    (  )(__)(  )___/ )   / )(_)( 
-  (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
-          https://github.com/samupro-dev'
-  echo -e ' '
-  java -Xms128M -Xmx${vanillamem}M -jar vanilla-1.16.jar nogui" > RunMe.sh
-  chmod +x RunMe.sh
-  vanillasuccess
+  starterFile
 }
 
 function vanilla1152 {
   echo -e " "
   cd ${vanillafolder}
   wget https://serverjars.com/jars/vanilla/vanilla/vanilla-1.15.2.jar
-  echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
-  echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
-  / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
-  \__ \ /(__)\  )    (  )(__)(  )___/ )   / )(_)( 
-  (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
-          https://github.com/samupro-dev'
-  echo -e ' '
-  java -Xms128M -Xmx${vanillamem}M -jar vanilla-1.15.2.jar nogui" > RunMe.sh
-  chmod +x RunMe.sh
-  vanillasuccess
+  starterFile
 }
 
 function vanilla1151 {
   echo -e " "
   cd ${vanillafolder}
   wget https://serverjars.com/jars/vanilla/vanilla/vanilla-1.15.1.jar
-  echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
-  echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
-  / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
-  \__ \ /(__)\  )    (  )(__)(  )___/ )   / )(_)( 
-  (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
-          https://github.com/samupro-dev'
-  echo -e ' '
-  java -Xms128M -Xmx${vanillamem}M -jar vanilla-1.15.1.jar nogui" > RunMe.sh
-  chmod +x RunMe.sh
-  vanillasuccess
+  starterFile
 }
 
 function vanilla115 {
   echo -e " "
   cd ${vanillafolder}
   wget https://serverjars.com/jars/vanilla/vanilla/vanilla-1.15.jar
-  echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
-  echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
-  / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
-  \__ \ /(__)\  )    (  )(__)(  )___/ )   / )(_)( 
-  (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
-          https://github.com/samupro-dev'
-  echo -e ' '
-  java -Xms128M -Xmx${vanillamem}M -jar vanilla-1.15.jar nogui" > RunMe.sh
-  chmod +x RunMe.sh
-  vanillasuccess
+  starterFile
 }
 
 function vanilla1144 {
   echo -e " "
   cd ${vanillafolder}
   wget https://serverjars.com/jars/vanilla/vanilla/vanilla-1.14.4.jar
-  echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
-  echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
-  / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
-  \__ \ /(__)\  )    (  )(__)(  )___/ )   / )(_)( 
-  (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
-          https://github.com/samupro-dev'
-  echo -e ' '
-  java -Xms128M -Xmx${vanillamem}M -jar vanilla-1.14.4.jar nogui" > RunMe.sh
-  chmod +x RunMe.sh
-  vanillasuccess
+  starterFile
 }
 
 function vanilla1143 {
   echo -e " "
   cd ${vanillafolder}
   wget https://serverjars.com/jars/vanilla/vanilla/vanilla-1.14.3.jar
-  echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
-  echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
-  / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
-  \__ \ /(__)\  )    (  )(__)(  )___/ )   / )(_)( 
-  (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
-          https://github.com/samupro-dev'
-  echo -e ' '
-  java -Xms128M -Xmx${vanillamem}M -jar vanilla-1.14.3.jar nogui" > RunMe.sh
-  chmod +x RunMe.sh
-  vanillasuccess
+  starterFile
 }
 
 function vanilla1142 {
   echo -e " "
   cd ${vanillafolder}
   wget https://serverjars.com/jars/vanilla/vanilla/vanilla-1.14.2.jar
-  echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
-  echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
-  / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
-  \__ \ /(__)\  )    (  )(__)(  )___/ )   / )(_)( 
-  (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
-          https://github.com/samupro-dev'
-  echo -e ' '
-  java -Xms128M -Xmx${vanillamem}M -jar vanilla-1.14.2.jar nogui" > RunMe.sh
-  chmod +x RunMe.sh
-  vanillasuccess
+  starterFile
 }
 
 function vanilla1141 {
   echo -e " "
   cd ${vanillafolder}
   wget https://serverjars.com/jars/vanilla/vanilla/vanilla-1.14.1.jar
-  echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
-  echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
-  / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
-  \__ \ /(__)\  )    (  )(__)(  )___/ )   / )(_)( 
-  (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
-          https://github.com/samupro-dev'
-  echo -e ' '
-  java -Xms128M -Xmx${vanillamem}M -jar vanilla-1.14.1.jar nogui" > RunMe.sh
-  chmod +x RunMe.sh
-  vanillasuccess
+  starterFile
 }
 
 function vanilla114 {
   echo -e " "
   cd ${vanillafolder}
   wget https://serverjars.com/jars/vanilla/vanilla/vanilla-1.14.jar
-  echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
-  echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
-  / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
-  \__ \ /(__)\  )    (  )(__)(  )___/ )   / )(_)( 
-  (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
-          https://github.com/samupro-dev'
-  echo -e ' '
-  java -Xms128M -Xmx${vanillamem}M -jar vanilla-1.14.jar nogui" > RunMe.sh
-  chmod +x RunMe.sh
-  vanillasuccess
+  starterFile
 }
 
 function vanilla1132 {
   echo -e " "
   cd ${vanillafolder}
   wget https://serverjars.com/jars/vanilla/vanilla/vanilla-1.13.2.jar
-  echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
-  echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
-  / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
-  \__ \ /(__)\  )    (  )(__)(  )___/ )   / )(_)( 
-  (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
-          https://github.com/samupro-dev'
-  echo -e ' '
-  java -Xms128M -Xmx${vanillamem}M -jar vanilla-1.13.2.jar nogui" > RunMe.sh
-  chmod +x RunMe.sh
-  vanillasuccess
+  starterFile
 }
 
 function vanilla1131 {
   echo -e " "
   cd ${vanillafolder}
   wget https://serverjars.com/jars/vanilla/vanilla/vanilla-1.13.1.jar
-  echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
-  echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
-  / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
-  \__ \ /(__)\  )    (  )(__)(  )___/ )   / )(_)( 
-  (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
-          https://github.com/samupro-dev'
-  echo -e ' '
-  java -Xms128M -Xmx${vanillamem}M -jar vanilla-1.13.1.jar nogui" > RunMe.sh
-  chmod +x RunMe.sh
-  vanillasuccess
+  starterFile
 }
 
 function vanilla113 {
   echo -e " "
   cd ${vanillafolder}
   wget https://serverjars.com/jars/vanilla/vanilla/vanilla-1.13.jar
-  echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
-  echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
-  / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
-  \__ \ /(__)\  )    (  )(__)(  )___/ )   / )(_)( 
-  (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
-          https://github.com/samupro-dev'
-  echo -e ' '
-  java -Xms128M -Xmx${vanillamem}M -jar vanilla-1.13.jar nogui" > RunMe.sh
-  chmod +x RunMe.sh
-  vanillasuccess
+  starterFile
 }
 
 function vanilla1122 {
   echo -e " "
   cd ${vanillafolder}
   wget https://serverjars.com/jars/vanilla/vanilla/vanilla-1.12.2.jar
-  echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
-  echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
-  / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
-  \__ \ /(__)\  )    (  )(__)(  )___/ )   / )(_)( 
-  (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
-          https://github.com/samupro-dev'
-  echo -e ' '
-  java -Xms128M -Xmx${vanillamem}M -jar vanilla-1.12.2.jar nogui" > RunMe.sh
-  chmod +x RunMe.sh
-  vanillasuccess
+  starterFile
 }
 
 function vanilla1121 {
   echo -e " "
   cd ${vanillafolder}
   wget https://serverjars.com/jars/vanilla/vanilla/vanilla-1.12.1.jar
-  echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
-  echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
-  / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
-  \__ \ /(__)\  )    (  )(__)(  )___/ )   / )(_)( 
-  (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
-          https://github.com/samupro-dev'
-  echo -e ' '
-  java -Xms128M -Xmx${vanillamem}M -jar vanilla-1.12.1.jar nogui" > RunMe.sh
-  chmod +x RunMe.sh
-  vanillasuccess
+  starterFile
 }
 
 function vanilla112 {
   echo -e " "
   cd ${vanillafolder}
   wget https://serverjars.com/jars/vanilla/vanilla/vanilla-1.12.jar
-  echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
-  echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
-  / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
-  \__ \ /(__)\  )    (  )(__)(  )___/ )   / )(_)( 
-  (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
-          https://github.com/samupro-dev'
-  echo -e ' '
-  java -Xms128M -Xmx${vanillamem}M -jar vanilla-1.12.jar nogui" > RunMe.sh
-  chmod +x RunMe.sh
-  vanillasuccess
+  starterFile
 }
 
 function vanilla1112 {
   echo -e " "
   cd ${vanillafolder}
   wget https://serverjars.com/jars/vanilla/vanilla/vanilla-1.11.2.jar
-  echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
-  echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
-  / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
-  \__ \ /(__)\  )    (  )(__)(  )___/ )   / )(_)( 
-  (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
-          https://github.com/samupro-dev'
-  echo -e ' '
-  java -Xms128M -Xmx${vanillamem}M -jar vanilla-1.11.2.jar nogui" > RunMe.sh
-  chmod +x RunMe.sh
-  vanillasuccess
+  starterFile
 }
 
 function vanilla1111 {
   echo -e " "
   cd ${vanillafolder}
   wget https://serverjars.com/jars/vanilla/vanilla/vanilla-1.11.1.jar
-  echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
-  echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
-  / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
-  \__ \ /(__)\  )    (  )(__)(  )___/ )   / )(_)( 
-  (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
-          https://github.com/samupro-dev'
-  echo -e ' '
-  java -Xms128M -Xmx${vanillamem}M -jar vanilla-1.11.1.jar nogui" > RunMe.sh
-  chmod +x RunMe.sh
-  vanillasuccess
+  starterFile
 }
 
 function vanilla111 {
   echo -e " "
   cd ${vanillafolder}
   wget https://serverjars.com/jars/vanilla/vanilla/vanilla-1.11.jar
-  echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
-  echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
-  / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
-  \__ \ /(__)\  )    (  )(__)(  )___/ )   / )(_)( 
-  (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
-          https://github.com/samupro-dev'
-  echo -e ' '
-  java -Xms128M -Xmx${vanillamem}M -jar vanilla-1.11.jar nogui" > RunMe.sh
-  chmod +x RunMe.sh
-  vanillasuccess
+  starterFile
 }
 
 function vanilla1102 {
   echo -e " "
   cd ${vanillafolder}
   wget https://serverjars.com/jars/vanilla/vanilla/vanilla-1.10.2.jar
-  echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
-  echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
-  / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
-  \__ \ /(__)\  )    (  )(__)(  )___/ )   / )(_)( 
-  (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
-          https://github.com/samupro-dev'
-  echo -e ' '
-  java -Xms128M -Xmx${vanillamem}M -jar vanilla-1.10.2.jar nogui" > RunMe.sh
-  chmod +x RunMe.sh
-  vanillasuccess
+  starterFile
 }
 
 function vanilla194 {
   echo -e " "
   cd ${vanillafolder}
   wget https://serverjars.com/jars/vanilla/vanilla/vanilla-1.9.4.jar
-  echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
-  echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
-  / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
-  \__ \ /(__)\  )    (  )(__)(  )___/ )   / )(_)( 
-  (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
-          https://github.com/samupro-dev'
-  echo -e ' '
-  java -Xms128M -Xmx${vanillamem}M -jar vanilla-1.9.4.jar nogui" > RunMe.sh
-  chmod +x RunMe.sh
-  vanillasuccess
+  starterFile
 }
 
 function vanilla193 {
   echo -e " "
   cd ${vanillafolder}
   wget https://serverjars.com/jars/vanilla/vanilla/vanilla-1.9.3.jar
-  echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
-  echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
-  / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
-  \__ \ /(__)\  )    (  )(__)(  )___/ )   / )(_)( 
-  (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
-          https://github.com/samupro-dev'
-  echo -e ' '
-  java -Xms128M -Xmx${vanillamem}M -jar vanilla-1.9.3.jar nogui" > RunMe.sh
-  chmod +x RunMe.sh
-  vanillasuccess
+  starterFile
 }
 
 function vanilla192 {
   echo -e " "
   cd ${vanillafolder}
   wget https://serverjars.com/jars/vanilla/vanilla/vanilla-1.9.2.jar
-  echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
-  echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
-  / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
-  \__ \ /(__)\  )    (  )(__)(  )___/ )   / )(_)( 
-  (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
-          https://github.com/samupro-dev'
-  echo -e ' '
-  java -Xms128M -Xmx${vanillamem}M -jar vanilla-1.9.2.jar nogui" > RunMe.sh
-  chmod +x RunMe.sh
-  vanillasuccess
+  starterFile
 }
 
 function vanilla191 {
   echo -e " "
   cd ${vanillafolder}
   wget https://serverjars.com/jars/vanilla/vanilla/vanilla-1.9.1.jar
-  echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
-  echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
-  / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
-  \__ \ /(__)\  )    (  )(__)(  )___/ )   / )(_)( 
-  (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
-          https://github.com/samupro-dev'
-  echo -e ' '
-  java -Xms128M -Xmx${vanillamem}M -jar vanilla-1.9.1.jar nogui" > RunMe.sh
-  chmod +x RunMe.sh
-  vanillasuccess
+  starterFile
 }
 
 function vanilla19 {
   echo -e " "
   cd ${vanillafolder}
   wget https://serverjars.com/jars/vanilla/vanilla/vanilla-1.9.jar
-  echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
-  echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
-  / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
-  \__ \ /(__)\  )    (  )(__)(  )___/ )   / )(_)( 
-  (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
-          https://github.com/samupro-dev'
-  echo -e ' '
-  java -Xms128M -Xmx${vanillamem}M -jar vanilla-1.9.jar nogui" > RunMe.sh
-  chmod +x RunMe.sh
-  vanillasuccess
+  starterFile
 }
 
 function vanilla188 {
   echo -e " "
   cd ${vanillafolder}
   wget https://serverjars.com/jars/vanilla/vanilla/vanilla-1.8.8.jar
-  echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
-  echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
-  / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
-  \__ \ /(__)\  )    (  )(__)(  )___/ )   / )(_)( 
-  (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
-          https://github.com/samupro-dev'
-  echo -e ' '
-  java -Xms128M -Xmx${vanillamem}M -jar vanilla-1.8.8.jar nogui" > RunMe.sh
-  chmod +x RunMe.sh
-  vanillasuccess
+  starterFile
 }
 
 function vanilla187 {
   echo -e " "
   cd ${vanillafolder}
   wget https://serverjars.com/jars/vanilla/vanilla/vanilla-1.8.7.jar
-  echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
-  echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
-  / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
-  \__ \ /(__)\  )    (  )(__)(  )___/ )   / )(_)( 
-  (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
-          https://github.com/samupro-dev'
-  echo -e ' '
-  java -Xms128M -Xmx${vanillamem}M -jar vanilla-1.8.7.jar nogui" > RunMe.sh
-  chmod +x RunMe.sh
-  vanillasuccess
+  starterFile
 }
 
 function vanilla186 {
   echo -e " "
   cd ${vanillafolder}
   wget https://serverjars.com/jars/vanilla/vanilla/vanilla-1.8.6.jar
-  echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
-  echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
-  / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
-  \__ \ /(__)\  )    (  )(__)(  )___/ )   / )(_)( 
-  (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
-          https://github.com/samupro-dev'
-  echo -e ' '
-  java -Xms128M -Xmx${vanillamem}M -jar vanilla-1.8.6.jar nogui" > RunMe.sh
-  chmod +x RunMe.sh
-  vanillasuccess
+  starterFile
 }
 
 function vanilla185 {
   echo -e " "
   cd ${vanillafolder}
   wget https://serverjars.com/jars/vanilla/vanilla/vanilla-1.8.5.jar
-  echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
-  echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
-  / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
-  \__ \ /(__)\  )    (  )(__)(  )___/ )   / )(_)( 
-  (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
-          https://github.com/samupro-dev'
-  echo -e ' '
-  java -Xms128M -Xmx${vanillamem}M -jar vanilla-1.8.5.jar nogui" > RunMe.sh
-  chmod +x RunMe.sh
-  vanillasuccess
+  starterFile
 }
 
 function vanilla184 {
   echo -e " "
   cd ${vanillafolder}
   wget https://serverjars.com/jars/vanilla/vanilla/vanilla-1.8.4.jar
-  echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
-  echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
-  / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
-  \__ \ /(__)\  )    (  )(__)(  )___/ )   / )(_)( 
-  (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
-          https://github.com/samupro-dev'
-  echo -e ' '
-  java -Xms128M -Xmx${vanillamem}M -jar vanilla-1.8.4.jar nogui" > RunMe.sh
-  chmod +x RunMe.sh
-  vanillasuccess
+  starterFile
 }
 
 function vanilla183 {
   echo -e " "
   cd ${vanillafolder}
   wget https://serverjars.com/jars/vanilla/vanilla/vanilla-1.8.3.jar
-  echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
-  echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
-  / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
-  \__ \ /(__)\  )    (  )(__)(  )___/ )   / )(_)( 
-  (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
-          https://github.com/samupro-dev'
-  echo -e ' '
-  java -Xms128M -Xmx${vanillamem}M -jar vanilla-1.8.3.jar nogui" > RunMe.sh
-  chmod +x RunMe.sh
-  vanillasuccess
+  starterFile
 }
 
 function vanilla182 {
   echo -e " "
   cd ${vanillafolder}
   wget https://serverjars.com/jars/vanilla/vanilla/vanilla-1.8.2.jar
-  echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
-  echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
-  / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
-  \__ \ /(__)\  )    (  )(__)(  )___/ )   / )(_)( 
-  (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
-          https://github.com/samupro-dev'
-  echo -e ' '
-  java -Xms128M -Xmx${vanillamem}M -jar vanilla-1.8.2.jar nogui" > RunMe.sh
-  chmod +x RunMe.sh
-  vanillasuccess
+  starterFile
 }
 
 function vanilla181 {
   echo -e " "
   cd ${vanillafolder}
   wget https://serverjars.com/jars/vanilla/vanilla/vanilla-1.8.1.jar
-  echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
-  echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
-  / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
-  \__ \ /(__)\  )    (  )(__)(  )___/ )   / )(_)( 
-  (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
-          https://github.com/samupro-dev'
-  echo -e ' '
-  java -Xms128M -Xmx${vanillamem}M -jar vanilla-1.8.1.jar nogui" > RunMe.sh
-  chmod +x RunMe.sh
-  vanillasuccess
+  starterFile
 }
 
 function vanilla18 {
   echo -e " "
   cd ${vanillafolder}
   wget https://serverjars.com/jars/vanilla/vanilla/vanilla-1.8.jar
-  echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
-  echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
-  / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
-  \__ \ /(__)\  )    (  )(__)(  )___/ )   / )(_)( 
-  (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
-          https://github.com/samupro-dev'
-  echo -e ' '
-  java -Xms128M -Xmx${vanillamem}M -jar vanilla-1.8.jar nogui" > RunMe.sh
-  chmod +x RunMe.sh
-  vanillasuccess
+  starterFile
 }
 
 function vanilla1710 {
   echo -e " "
   cd ${vanillafolder}
   wget https://serverjars.com/jars/vanilla/vanilla/vanilla-1.7.10.jar
+  starterFile
+}
+
+## RunMe ##
+function starterFile {
+  cd ${vanillafolder}
   echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
   echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
   / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
@@ -715,12 +379,13 @@ function vanilla1710 {
   (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
           https://github.com/samupro-dev'
   echo -e ' '
-  java -Xms128M -Xmx${vanillamem}M -jar vanilla-1.7.10.jar nogui" > RunMe.sh
+  java -Xms128M -Xmx${vanillamem}M -jar vanilla-${VANILLAVERSIONSEL}.jar nogui" >> RunMe.sh
   chmod +x RunMe.sh
-  vanillasuccess
+  successInstall
 }
 
-function vanillasuccess {
+## Success ##
+function successInstall {
   echo -e " "
   echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
   echo -e "${LIGHT_GREEN} Your server was successfully installed!\n   ${CYAN}* Version: ${WHITE}Vanilla ${VANILLAVERSIONSEL}\n   ${CYAN}* Location: ${WHITE}${vanillafolder}\n   ${CYAN}* RAM: ${WHITE}${vanillamem}M\n   ${CYAN}* Port: ${WHITE}${vanillaport} ${COLOR_NULL}"
