@@ -45,6 +45,7 @@ function spigot {
   done
 } 
 
+## Spigot ##
 function spigott {
   echo -e "\n"
   mkdir ${spigotfolder}
@@ -98,422 +99,193 @@ function spigot1165 {
   echo -e " "
   cd ${spigotfolder}
   wget https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar
-  echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
-  echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
-  / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
-  \__ \ /(__)\  )    (  )(__)(  )___/ )   / )(_)( 
-  (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
-          https://github.com/samupro-dev'
-  echo -e ' '
-  java -Xms128M -Xmx${spigotmem}M -jar BuildTools.jar --rev 1.16.5 nogui" > RunMe.sh
-  chmod +x RunMe.sh
-  spigottsuccess
+  starterFileSpigot
 }
 
 function spigot1164 {
   echo -e " "
   cd ${spigotfolder}
   wget https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar
-  echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
-  echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
-  / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
-  \__ \ /(__)\  )    (  )(__)(  )___/ )   / )(_)( 
-  (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
-          https://github.com/samupro-dev'
-  echo -e ' '
-  java -Xms128M -Xmx${spigotmem}M -jar BuildTools.jar --rev 1.16.4 nogui" > RunMe.sh
-  chmod +x RunMe.sh
-  spigottsuccess
+  starterFileSpigot
 }
 
 function spigot1163 {
   echo -e " "
   cd ${spigotfolder}
   wget https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar
-  echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
-  echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
-  / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
-  \__ \ /(__)\  )    (  )(__)(  )___/ )   / )(_)( 
-  (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
-          https://github.com/samupro-dev'
-  echo -e ' '
-  java -Xms128M -Xmx${spigotmem}M -jar BuildTools.jar --rev 1.16.3 nogui" > RunMe.sh
-  chmod +x RunMe.sh
-  spigottsuccess
+  starterFileSpigot
 }
 
 function spigot1162 {
   echo -e " "
   cd ${spigotfolder}
   wget https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar
-  echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
-  echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
-  / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
-  \__ \ /(__)\  )    (  )(__)(  )___/ )   / )(_)( 
-  (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
-          https://github.com/samupro-dev'
-  echo -e ' '
-  java -Xms128M -Xmx${spigotmem}M -jar BuildTools.jar --rev 1.16.2 nogui" > RunMe.sh
-  chmod +x RunMe.sh
-  spigottsuccess
+  starterFileSpigot
 }
 
 function spigot1161 {
   echo -e " "
   cd ${spigotfolder}
   wget https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar
-  echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
-  echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
-  / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
-  \__ \ /(__)\  )    (  )(__)(  )___/ )   / )(_)( 
-  (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
-          https://github.com/samupro-dev'
-  echo -e ' '
-  java -Xms128M -Xmx${spigotmem}M -jar BuildTools.jar --rev 1.16.1 nogui" > RunMe.sh
-  chmod +x RunMe.sh
-  spigottsuccess
+  starterFileSpigot
 }
 
 function spigot1152 {
   echo -e " "
   cd ${spigotfolder}
   wget https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar
-  echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
-  echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
-  / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
-  \__ \ /(__)\  )    (  )(__)(  )___/ )   / )(_)( 
-  (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
-          https://github.com/samupro-dev'
-  echo -e ' '
-  java -Xms128M -Xmx${spigotmem}M -jar BuildTools.jar --rev 1.15.2 nogui" > RunMe.sh
-  chmod +x RunMe.sh
-  spigottsuccess
+  starterFileSpigot
 }
 
 function spigot1151 {
   echo -e " "
   cd ${spigotfolder}
   wget https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar
-  echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
-  echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
-  / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
-  \__ \ /(__)\  )    (  )(__)(  )___/ )   / )(_)( 
-  (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
-          https://github.com/samupro-dev'
-  echo -e ' '
-  java -Xms128M -Xmx${spigotmem}M -jar BuildTools.jar --rev 1.15.1 nogui" > RunMe.sh
-  chmod +x RunMe.sh
-  spigottsuccess
+  starterFileSpigot
 }
 
 function spigot115 {
   echo -e " "
   cd ${spigotfolder}
   wget https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar
-  echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
-  echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
-  / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
-  \__ \ /(__)\  )    (  )(__)(  )___/ )   / )(_)( 
-  (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
-          https://github.com/samupro-dev'
-  echo -e ' '
-  java -Xms128M -Xmx${spigotmem}M -jar BuildTools.jar --rev 1.15 nogui" > RunMe.sh
-  chmod +x RunMe.sh
-  spigottsuccess
+  starterFileSpigot
 }
 
 function spigot1444 {
   echo -e " "
   cd ${spigotfolder}
   wget https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar
-  echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
-  echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
-  / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
-  \__ \ /(__)\  )    (  )(__)(  )___/ )   / )(_)( 
-  (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
-          https://github.com/samupro-dev'
-  echo -e ' '
-  java -Xms128M -Xmx${spigotmem}M -jar BuildTools.jar --rev 1.14.4 nogui" > RunMe.sh
-  chmod +x RunMe.sh
-  spigottsuccess
+  starterFileSpigot
 }
 
 function spigot1143 {
   echo -e " "
   cd ${spigotfolder}
   wget https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar
-  echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
-  echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
-  / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
-  \__ \ /(__)\  )    (  )(__)(  )___/ )   / )(_)( 
-  (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
-          https://github.com/samupro-dev'
-  echo -e ' '
-  java -Xms128M -Xmx${spigotmem}M -jar BuildTools.jar --rev 1.14.3 nogui" > RunMe.sh
-  chmod +x RunMe.sh
-  spigottsuccess
+  starterFileSpigot
 }
 
 function spigot1142 {
   echo -e " "
   cd ${spigotfolder}
   wget https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar
-  echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
-  echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
-  / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
-  \__ \ /(__)\  )    (  )(__)(  )___/ )   / )(_)( 
-  (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
-          https://github.com/samupro-dev'
-  echo -e ' '
-  java -Xms128M -Xmx${spigotmem}M -jar BuildTools.jar --rev 1.14.2 nogui" > RunMe.sh
-  chmod +x RunMe.sh
-  spigottsuccess
+  starterFileSpigot
 }
 
 function spigot1141 {
   echo -e " "
   cd ${spigotfolder}
   wget https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar
-  echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
-  echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
-  / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
-  \__ \ /(__)\  )    (  )(__)(  )___/ )   / )(_)( 
-  (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
-          https://github.com/samupro-dev'
-  echo -e ' '
-  java -Xms128M -Xmx${spigotmem}M -jar BuildTools.jar --rev 1.14.1 nogui" > RunMe.sh
-  chmod +x RunMe.sh
-  spigottsuccess
+  starterFileSpigot
 }
 
 function spigot114 {
   echo -e " "
   cd ${spigotfolder}
   wget https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar
-  echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
-  echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
-  / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
-  \__ \ /(__)\  )    (  )(__)(  )___/ )   / )(_)( 
-  (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
-          https://github.com/samupro-dev'
-  echo -e ' '
-  java -Xms128M -Xmx${spigotmem}M -jar BuildTools.jar --rev 1.14 nogui" > RunMe.sh
-  chmod +x RunMe.sh
-  spigottsuccess
+  starterFileSpigot
 }
 
 function spigot1132 {
   echo -e " "
   cd ${spigotfolder}
   wget https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar
-  echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
-  echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
-  / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
-  \__ \ /(__)\  )    (  )(__)(  )___/ )   / )(_)( 
-  (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
-          https://github.com/samupro-dev'
-  echo -e ' '
-  java -Xms128M -Xmx${spigotmem}M -jar BuildTools.jar --rev 1.13.2 nogui" > RunMe.sh
-  chmod +x RunMe.sh
-  spigottsuccess
+  starterFileSpigot
 }
 
 function spigot1131 {
   echo -e " "
   cd ${spigotfolder}
   wget https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar
-  echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
-  echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
-  / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
-  \__ \ /(__)\  )    (  )(__)(  )___/ )   / )(_)( 
-  (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
-          https://github.com/samupro-dev'
-  echo -e ' '
-  java -Xms128M -Xmx${spigotmem}M -jar BuildTools.jar --rev 1.13.1 nogui" > RunMe.sh
-  chmod +x RunMe.sh
-  spigottsuccess
+  starterFileSpigot
 }
 
 function spigot113 {
   echo -e " "
   cd ${spigotfolder}
   wget https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar
-  echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
-  echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
-  / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
-  \__ \ /(__)\  )    (  )(__)(  )___/ )   / )(_)( 
-  (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
-          https://github.com/samupro-dev'
-  echo -e ' '
-  java -Xms128M -Xmx${spigotmem}M -jar BuildTools.jar --rev 1.13 nogui" > RunMe.sh
-  chmod +x RunMe.sh
-  spigottsuccess
+  starterFileSpigot
 }
 
 function spigot1122 {
   echo -e " "
   cd ${spigotfolder}
   wget https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar
-  echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
-  echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
-  / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
-  \__ \ /(__)\  )    (  )(__)(  )___/ )   / )(_)( 
-  (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
-          https://github.com/samupro-dev'
-  echo -e ' '
-  java -Xms128M -Xmx${spigotmem}M -jar BuildTools.jar --rev 1.12.2 nogui" > RunMe.sh
-  chmod +x RunMe.sh
-  spigottsuccess
+  starterFileSpigot
 }
 
 function spigot1121 {
   echo -e " "
   cd ${spigotfolder}
   wget https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar
-  echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
-  echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
-  / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
-  \__ \ /(__)\  )    (  )(__)(  )___/ )   / )(_)( 
-  (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
-          https://github.com/samupro-dev'
-  echo -e ' '
-  java -Xms128M -Xmx${spigotmem}M -jar BuildTools.jar --rev 1.12.1 nogui" > RunMe.sh
-  chmod +x RunMe.sh
-  spigottsuccess
+  starterFileSpigot
 }
 
 function spigot112 {
   echo -e " "
   cd ${spigotfolder}
   wget https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar
-  echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
-  echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
-  / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
-  \__ \ /(__)\  )    (  )(__)(  )___/ )   / )(_)( 
-  (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
-          https://github.com/samupro-dev'
-  echo -e ' '
-  java -Xms128M -Xmx${spigotmem}M -jar BuildTools.jar --rev 1.12 nogui" > RunMe.sh
-  chmod +x RunMe.sh
-  spigottsuccess
+  starterFileSpigot
 }
 
 function spigot111 {
   echo -e " "
   cd ${spigotfolder}
   wget https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar
-  echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
-  echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
-  / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
-  \__ \ /(__)\  )    (  )(__)(  )___/ )   / )(_)( 
-  (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
-          https://github.com/samupro-dev'
-  echo -e ' '
-  java -Xms128M -Xmx${spigotmem}M -jar BuildTools.jar --rev 1.11 nogui" > RunMe.sh
-  chmod +x RunMe.sh
-  spigottsuccess
+  starterFileSpigot
 }
 
 function spigot1102 {
   echo -e " "
   cd ${spigotfolder}
   wget https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar
-  echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
-  echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
-  / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
-  \__ \ /(__)\  )    (  )(__)(  )___/ )   / )(_)( 
-  (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
-          https://github.com/samupro-dev'
-  echo -e ' '
-  java -Xms128M -Xmx${spigotmem}M -jar BuildTools.jar --rev 1.10.2 nogui" > RunMe.sh
-  chmod +x RunMe.sh
-  spigottsuccess
+  starterFileSpigot
 }
 
 function spigot194 {
   echo -e " "
   cd ${spigotfolder}
   wget https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar
-  echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
-  echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
-  / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
-  \__ \ /(__)\  )    (  )(__)(  )___/ )   / )(_)( 
-  (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
-          https://github.com/samupro-dev'
-  echo -e ' '
-  java -Xms128M -Xmx${spigotmem}M -jar BuildTools.jar --rev 1.9.4 nogui" > RunMe.sh
-  chmod +x RunMe.sh
-  spigottsuccess
+  starterFileSpigot
 }
 
 function spigot192 {
   echo -e " "
   cd ${spigotfolder}
   wget https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar
-  echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
-  echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
-  / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
-  \__ \ /(__)\  )    (  )(__)(  )___/ )   / )(_)( 
-  (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
-          https://github.com/samupro-dev'
-  echo -e ' '
-  java -Xms128M -Xmx${spigotmem}M -jar BuildTools.jar --rev 1.9.2 nogui" > RunMe.sh
-  chmod +x RunMe.sh
-  spigottsuccess
+  starterFileSpigot
 }
 
 function spigot19 {
   echo -e " "
   cd ${spigotfolder}
   wget https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar
-  echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
-  echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
-  / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
-  \__ \ /(__)\  )    (  )(__)(  )___/ )   / )(_)( 
-  (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
-          https://github.com/samupro-dev'
-  echo -e ' '
-  java -Xms128M -Xmx${spigotmem}M -jar BuildTools.jar --rev 1.9 nogui" > RunMe.sh
-  chmod +x RunMe.sh
-  spigottsuccess
+  starterFileSpigot
 }
 
 function spigot188 {
   echo -e " "
   cd ${spigotfolder}
   wget https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar
-  echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
-  echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
-  / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
-  \__ \ /(__)\  )    (  )(__)(  )___/ )   / )(_)( 
-  (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
-          https://github.com/samupro-dev'
-  echo -e ' '
-  java -Xms128M -Xmx${spigotmem}M -jar BuildTools.jar --rev 1.8.8 nogui" > RunMe.sh
-  chmod +x RunMe.sh
-  spigottsuccess
+  starterFileSpigot
 }
 
 function spigot183 {
   echo -e " "
   cd ${spigotfolder}
   wget https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar
-  echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
-  echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
-  / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
-  \__ \ /(__)\  )    (  )(__)(  )___/ )   / )(_)( 
-  (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
-          https://github.com/samupro-dev'
-  echo -e ' '
-  java -Xms128M -Xmx${spigotmem}M -jar BuildTools.jar --rev 1.8.3 nogui" > RunMe.sh
-  chmod +x RunMe.sh
-  spigottsuccess
+  starterFileSpigot
 }
 
 function spigot18 {
   echo -e " "
   cd ${spigotfolder}
   wget https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar
+  starterFileSpigot
+}
+
+function starterFileSpigot {
+  cd ${spigotfolder}
   echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
   echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
   / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
@@ -521,12 +293,12 @@ function spigot18 {
   (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
           https://github.com/samupro-dev'
   echo -e ' '
-  java -Xms128M -Xmx${spigotmem}M -jar BuildTools.jar --rev 1.8 nogui" > RunMe.sh
+  java -Xms128M -Xmx${spigotmem}M -jar BuildTools.jar --rev ${SPIGOTVERSIONSEL} nogui" >> RunMe.sh
   chmod +x RunMe.sh
-  spigottsuccess
+  successInstallSpigot
 }
 
-function spigottsuccess {
+function successInstallSpigot {
   echo -e " "
   echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
   echo -e "${LIGHT_GREEN} Your server was successfully installed!\n   ${CYAN}* Version: ${WHITE}Spigot ${SPIGOTVERSIONSEL}\n   ${CYAN}* Location: ${WHITE}${spigotfolder}\n   ${CYAN}* RAM: ${WHITE}${spigotmem}M\n   ${CYAN}* Port: ${WHITE}${spigotport} ${COLOR_NULL}"
@@ -534,6 +306,7 @@ function spigottsuccess {
   exit
 }
 
+## Paper ##
 function paper {
   echo -e "\n"
   mkdir ${spigotfolder}
@@ -569,134 +342,67 @@ function paper1165 {
   echo -e " "
   cd ${spigotfolder}
   curl -o paper-1.16.5.jar https://papermc.io/api/v1/paper/1.16.5/latest/download
-  echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
-  echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
-  / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
-  \__ \ /(__)\  )    (  )(__)(  )___/ )   / )(_)( 
-  (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
-          https://github.com/samupro-dev'
-  echo -e ' '
-  java -Xms128M -Xmx${spigotmem}M -jar paper-1.16.5.jar nogui" > RunMe.sh
-  chmod +x RunMe.sh
-  papersuccess
+  starterFilePaper
 }
 
 function paper1152 {
   echo -e " "
   cd ${spigotfolder}
   curl -o paper-1.15.2.jar https://papermc.io/api/v1/paper/1.15.2/latest/download
-  echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
-  echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
-  / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
-  \__ \ /(__)\  )    (  )(__)(  )___/ )   / )(_)( 
-  (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
-          https://github.com/samupro-dev'
-  echo -e ' '
-  java -Xms128M -Xmx${spigotmem}M -jar paper-1.15.2.jar nogui" > RunMe.sh
-  chmod +x RunMe.sh
-  papersuccess
+  starterFilePaper
 }
 
 function paper1144 {
   echo -e " "
   cd ${spigotfolder}
   curl -o paper-1.14.4.jar https://papermc.io/api/v1/paper/1.14.4/latest/download
-  echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
-  echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
-  / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
-  \__ \ /(__)\  )    (  )(__)(  )___/ )   / )(_)( 
-  (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
-          https://github.com/samupro-dev'
-  echo -e ' '
-  java -Xms128M -Xmx${spigotmem}M -jar paper-1.14.4.jar nogui" > RunMe.sh
-  chmod +x RunMe.sh
-  papersuccess
+  starterFilePaper
 }
 
 function paper1132 {
   echo -e " "
   cd ${spigotfolder}
   curl -o paper-1.13.2.jar https://papermc.io/api/v1/paper/1.13.2/latest/download
-  echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
-  echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
-  / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
-  \__ \ /(__)\  )    (  )(__)(  )___/ )   / )(_)( 
-  (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
-          https://github.com/samupro-dev'
-  echo -e ' '
-  java -Xms128M -Xmx${spigotmem}M -jar paper-1.13.2.jar nogui" > RunMe.sh
-  chmod +x RunMe.sh
-  papersuccess
+  starterFilePaper
 }
 
 function paper1122 {
   echo -e " "
   cd ${spigotfolder}
   curl -o paper-1.12.2.jar https://papermc.io/api/v1/paper/1.12.2/latest/download
-  echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
-  echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
-  / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
-  \__ \ /(__)\  )    (  )(__)(  )___/ )   / )(_)( 
-  (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
-          https://github.com/samupro-dev'
-  echo -e ' '
-  java -Xms128M -Xmx${spigotmem}M -jar paper-1.12.2.jar nogui" > RunMe.sh
-  chmod +x RunMe.sh
-  papersuccess
+  starterFilePaper
 }
 
 function paper1112 {
   echo -e " "
   cd ${spigotfolder}
   curl -o paper-1.11.2.jar https://papermc.io/api/v1/paper/1.11.2/latest/download
-  echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
-  echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
-  / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
-  \__ \ /(__)\  )    (  )(__)(  )___/ )   / )(_)( 
-  (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
-          https://github.com/samupro-dev'
-  echo -e ' '
-  java -Xms128M -Xmx${spigotmem}M -jar paper-1.11.2.jar nogui" > RunMe.sh
-  chmod +x RunMe.sh
-  papersuccess
+  starterFilePaper
 }
 
 function paper1102 {
   echo -e " "
   cd ${spigotfolder}
   curl -o paper-1.10.2.jar https://papermc.io/api/v1/paper/1.10.2/latest/download
-  echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
-  echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
-  / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
-  \__ \ /(__)\  )    (  )(__)(  )___/ )   / )(_)( 
-  (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
-          https://github.com/samupro-dev'
-  echo -e ' '
-  java -Xms128M -Xmx${spigotmem}M -jar paper-1.10.2.jar nogui" > RunMe.sh
-  chmod +x RunMe.sh
-  papersuccess
+  starterFilePaper
 }
 
 function paper194 {
   echo -e " "
   cd ${spigotfolder}
   curl -o paper-1.9.4.jar https://papermc.io/api/v1/paper/1.9.4/latest/download
-  echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
-  echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
-  / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
-  \__ \ /(__)\  )    (  )(__)(  )___/ )   / )(_)( 
-  (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
-          https://github.com/samupro-dev'
-  echo -e ' '
-  java -Xms128M -Xmx${spigotmem}M -jar paper-1.9.4.jar nogui" > RunMe.sh
-  chmod +x RunMe.sh
-  papersuccess
+  starterFilePaper
 }
 
 function paper188 {
   echo -e " "
   cd ${spigotfolder}
   curl -o paper-1.8.8.jar https://papermc.io/api/v1/paper/1.8.8/latest/download
+  starterFilePaper
+}
+
+function starterFilePaper {
+  cd ${spigotfolder}
   echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
   echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
   / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
@@ -704,12 +410,12 @@ function paper188 {
   (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
           https://github.com/samupro-dev'
   echo -e ' '
-  java -Xms128M -Xmx${spigotmem}M -jar paper-1.8.8.jar nogui" > RunMe.sh
+  java -Xms128M -Xmx${spigotmem}M -jar paper-${PAPERVERSIONSEL}.jar nogui" >> RunMe.sh
   chmod +x RunMe.sh
-  papersuccess
+  successInstallPaper
 }
 
-function papersuccess {
+function successInstallPaper {
   echo -e " "
   echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
   echo -e "${LIGHT_GREEN} Your server was successfully installed!\n   ${CYAN}* Version: ${WHITE}Paper ${PAPERVERSIONSEL}\n   ${CYAN}* Location: ${WHITE}${spigotfolder}\n   ${CYAN}* RAM: ${WHITE}${spigotmem}M\n   ${CYAN}* Port: ${WHITE}${spigotport} ${COLOR_NULL}"
@@ -717,6 +423,7 @@ function papersuccess {
   exit
 }
 
+## Yatopia ##
 function yatopia {
   echo -e "\n"
   mkdir ${spigotfolder}
@@ -753,17 +460,8 @@ function yatopia1165 {
   cd ..
   rm target.zip
   rm -r target/
-  mv yatopia-1.16.5-*.jar yatopia-1.16.4.jar
-  echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
-  echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
-  / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
-  \__ \ /(__)\  )    (  )(__)(  )___/ )   / )(_)( 
-  (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
-          https://github.com/samupro-dev'
-  echo -e ' '
-  java -Xms128M -Xmx${spigotmem}M -jar yatopia-1.16.4.jar nogui" > RunMe.sh
-  chmod +x RunMe.sh
-  yatopiasuccess
+  mv yatopia-1.16.5-*.jar yatopia-1.16.5.jar
+  starterFileYatopia
 }
 
 function yatopia1164 {
@@ -777,16 +475,7 @@ function yatopia1164 {
   rm target.zip
   rm -r target/
   mv yatopia-1.16.4-*.jar yatopia-1.16.4.jar
-  echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
-  echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
-  / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
-  \__ \ /(__)\  )    (  )(__)(  )___/ )   / )(_)( 
-  (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
-          https://github.com/samupro-dev'
-  echo -e ' '
-  java -Xms128M -Xmx${spigotmem}M -jar yatopia-1.16.4.jar nogui" > RunMe.sh
-  chmod +x RunMe.sh
-  yatopiasuccess
+  starterFileYatopia
 }
 
 function yatopia1163 {
@@ -800,16 +489,7 @@ function yatopia1163 {
   rm target.zip
   rm -r target/
   mv yatopia-1.16.3-*.jar yatopia-1.16.3.jar
-  echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
-  echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
-  / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
-  \__ \ /(__)\  )    (  )(__)(  )___/ )   / )(_)( 
-  (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
-          https://github.com/samupro-dev'
-  echo -e ' '
-  java -Xms128M -Xmx${spigotmem}M -jar yatopia-1.16.3.jar nogui" > RunMe.sh
-  chmod +x RunMe.sh
-  yatopiasuccess
+  starterFileYatopia
 }
 
 function yatopia1162 {
@@ -823,6 +503,11 @@ function yatopia1162 {
   rm target.zip
   rm -r target/
   mv yatopia-1.16.2-*.jar yatopia-1.16.2.jar
+  starterFileYatopia
+}
+
+function starterFileYatopia {
+  cd ${spigotfolder}
   echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
   echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
   / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
@@ -830,12 +515,12 @@ function yatopia1162 {
   (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
           https://github.com/samupro-dev'
   echo -e ' '
-  java -Xms128M -Xmx${spigotmem}M -jar yatopia-1.16.2.jar nogui" > RunMe.sh
+  java -Xms128M -Xmx${spigotmem}M -jar yatopia-${YATOPIAVERSIONSEL}.jar nogui" >> RunMe.sh
   chmod +x RunMe.sh
-  yatopiasuccess
+  successInstallYatopia
 }
 
-function yatopiasuccess {
+function successInstallYatopia {
   echo -e " "
   echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
   echo -e "${LIGHT_GREEN} Your server was successfully installed!\n   ${CYAN}* Version: ${WHITE}Yatopia ${YATOPIAVERSIONSEL}\n   ${CYAN}* Location: ${WHITE}${spigotfolder}\n   ${CYAN}* RAM: ${WHITE}${spigotmem}M\n   ${CYAN}* Port: ${WHITE}${spigotport} ${COLOR_NULL}"
@@ -843,6 +528,7 @@ function yatopiasuccess {
   exit
 }
 
+## Tunity ##
 function tuinity {
   echo -e "\n"
   mkdir ${spigotfolder}
@@ -871,6 +557,11 @@ function tuinity1165 {
   cd ${spigotfolder}
   wget https://ci.codemc.io/job/Spottedleaf/job/Tuinity/lastSuccessfulBuild/artifact/tuinity-paperclip.jar
   mv tuinity-paperclip.jar tuinity-1.16.5.jar
+  starterFileTunity
+}
+
+function starterFileTunity {
+  cd ${spigotfolder}
   echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
   echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
   / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
@@ -878,12 +569,12 @@ function tuinity1165 {
   (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
           https://github.com/samupro-dev'
   echo -e ' '
-  java -Xms128M -Xmx${spigotmem}M -jar tuinity-1.16.5.jar nogui" > RunMe.sh
+  java -Xms128M -Xmx${spigotmem}M -jar tuinity-${YATOPIAVERSIONSEL}.jar nogui" >> RunMe.sh
   chmod +x RunMe.sh
-  tuinitysuccess
+  successInstallTunity
 }
 
-function tuinitysuccess {
+function successInstallTunity {
   echo -e " "
   echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
   echo -e "${LIGHT_GREEN} Your server was successfully installed!\n   ${CYAN}* Version: ${WHITE}Tuinity ${TUINITYVERSIONSEL}\n   ${CYAN}* Location: ${WHITE}${spigotfolder}\n   ${CYAN}* RAM: ${WHITE}${spigotmem}M\n   ${CYAN}* Port: ${WHITE}${spigotport} ${COLOR_NULL}"
@@ -891,6 +582,7 @@ function tuinitysuccess {
   exit
 }
 
+## Glowstone ##
 function glowstone {
   echo -e "\n"
   echo -e -n "${CYAN} Enter the RAM to be assigned in MB (ex. 512): ${COLOR_NULL}"
@@ -925,6 +617,11 @@ function glowstone1122 {
   cd ${glowstonefolder}
   wget https://repo.glowstone.net/repository/releases/net/glowstone/glowstone/2020.12.0/glowstone-2020.12.0.jar
   mv glowstone-2020.12.0.jar glowstone-1.12.2.jar
+  starterFileGlowstone
+}
+
+function starterFileGlowstone {
+  cd ${spigotfolder}
   echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
   echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
   / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
@@ -932,12 +629,12 @@ function glowstone1122 {
   (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
           https://github.com/samupro-dev'
   echo -e ' '
-  java -Xms128M -Xmx${glowstonemem}M -jar glowstone-1.12.2.jar nogui" > RunMe.sh
+  java -Xms128M -Xmx${spigotmem}M -jar glowstone-${GLOWSTONEVERSIONSEL}.jar nogui" >> RunMe.sh
   chmod +x RunMe.sh
-  glowstonesuccess
+  successInstallGlowstone
 }
 
-function glowstonesuccess {
+function successInstallGlowstone {
   echo -e " "
   echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
   echo -e "${LIGHT_GREEN} Your server was successfully installed!\n   ${CYAN}* Version: ${WHITE}Glowstone ${GLOWSTONEVERSIONSEL}\n   ${CYAN}* Location: ${WHITE}${glowstonefolder}\n   ${CYAN}* RAM: ${WHITE}${glowstonemem}M\n   ${CYAN}* Port: ${WHITE}${glowstoneport} ${COLOR_NULL}"
@@ -945,10 +642,7 @@ function glowstonesuccess {
   exit
 }
 
-
-
-
-
+## Purpur ##
 function purpur {
   echo -e "\n"
   mkdir ${spigotfolder}
@@ -994,182 +688,88 @@ function purpur1165 {
   rm -r final/
   rm final.zip
   mv purpurclip-*.jar	purpur-1.16.5.jar
-  echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
-  echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
-  / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
-  \__ \ /(__)\  )    (  )(__)(  )___/ )   / )(_)( 
-  (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
-          https://github.com/samupro-dev'
-  echo -e ' '
-  java -Xms128M -Xmx${spigotmem}M -jar purpur-1.16.5.jar nogui" > RunMe.sh
-  chmod +x RunMe.sh
-  purpursuccess
+  starterFilePurpur
 }
 
 function purpur1164 {
   echo -e " "
   cd ${spigotfolder}
   curl -o purpur-1.16.4.jar https://purpur.pl3x.net/api/v1/purpur/1.16.4/956/download
-  echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
-  echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
-  / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
-  \__ \ /(__)\  )    (  )(__)(  )___/ )   / )(_)( 
-  (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
-          https://github.com/samupro-dev'
-  echo -e ' '
-  java -Xms128M -Xmx${spigotmem}M -jar purpur-1.16.4.jar nogui" > RunMe.sh
-  chmod +x RunMe.sh
-  purpursuccess
+  starterFilePurpur
 }
 
 function purpur1163 {
   echo -e " "
   cd ${spigotfolder}
   curl -o purpur-1.16.3.jar https://purpur.pl3x.net/api/v1/purpur/1.16.3/808/download
-  echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
-  echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
-  / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
-  \__ \ /(__)\  )    (  )(__)(  )___/ )   / )(_)( 
-  (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
-          https://github.com/samupro-dev'
-  echo -e ' '
-  java -Xms128M -Xmx${spigotmem}M -jar purpur-1.16.3.jar nogui" > RunMe.sh
-  chmod +x RunMe.sh
-  purpursuccess
+  starterFilePurpur
 }
 
 function purpur1162 {
   echo -e " "
   cd ${spigotfolder}
   curl -o purpur-1.16.2.jar https://purpur.pl3x.net/api/v1/purpur/1.16.2/750/download
-  echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
-  echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
-  / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
-  \__ \ /(__)\  )    (  )(__)(  )___/ )   / )(_)( 
-  (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
-          https://github.com/samupro-dev'
-  echo -e ' '
-  java -Xms128M -Xmx${spigotmem}M -jar purpur-1.16.2.jar nogui" > RunMe.sh
-  chmod +x RunMe.sh
-  purpursuccess
+  starterFilePurpur
 }
 
 function purpur1161 {
   echo -e " "
   cd ${spigotfolder}
   curl -o purpur-1.16.1.jar https://purpur.pl3x.net/api/v1/purpur/1.16.1/710/download
-  echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
-  echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
-  / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
-  \__ \ /(__)\  )    (  )(__)(  )___/ )   / )(_)( 
-  (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
-          https://github.com/samupro-dev'
-  echo -e ' '
-  java -Xms128M -Xmx${spigotmem}M -jar purpur-1.16.1.jar nogui" > RunMe.sh
-  chmod +x RunMe.sh
-  purpursuccess
+  starterFilePurpur
 }
 
 function purpur1152 {
   echo -e " "
   cd ${spigotfolder}
   curl -o purpur-1.15.2.jar https://purpur.pl3x.net/api/v1/purpur/1.15.2/606/download
-  echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
-  echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
-  / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
-  \__ \ /(__)\  )    (  )(__)(  )___/ )   / )(_)( 
-  (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
-          https://github.com/samupro-dev'
-  echo -e ' '
-  java -Xms128M -Xmx${spigotmem}M -jar purpur-1.15.2.jar nogui" > RunMe.sh
-  chmod +x RunMe.sh
-  purpursuccess
+  starterFilePurpur
 }
 
 function purpur1151 {
   echo -e " "
   cd ${spigotfolder}
   curl -o purpur-1.15.1.jar https://purpur.pl3x.net/api/v1/purpur/1.15.1/397/download
-  echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
-  echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
-  / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
-  \__ \ /(__)\  )    (  )(__)(  )___/ )   / )(_)( 
-  (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
-          https://github.com/samupro-dev'
-  echo -e ' '
-  java -Xms128M -Xmx${spigotmem}M -jar purpur-1.15.1.jar nogui" > RunMe.sh
-  chmod +x RunMe.sh
-  purpursuccess
+  starterFilePurpur
 }
 
 function purpur115 {
   echo -e " "
   cd ${spigotfolder}
   curl -o purpur-1.15.jar https://purpur.pl3x.net/api/v1/purpur/1.15/346/download
-  echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
-  echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
-  / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
-  \__ \ /(__)\  )    (  )(__)(  )___/ )   / )(_)( 
-  (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
-          https://github.com/samupro-dev'
-  echo -e ' '
-  java -Xms128M -Xmx${spigotmem}M -jar purpur-1.15.jar nogui" > RunMe.sh
-  chmod +x RunMe.sh
-  purpursuccess
+  starterFilePurpur
 }
 
 function purpur1144 {
   echo -e " "
   cd ${spigotfolder}
   curl -o purpur-1.14.4.jar https://purpur.pl3x.net/api/v1/purpur/1.14.4/337/download
-  echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
-  echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
-  / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
-  \__ \ /(__)\  )    (  )(__)(  )___/ )   / )(_)( 
-  (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
-          https://github.com/samupro-dev'
-  echo -e ' '
-  java -Xms128M -Xmx${spigotmem}M -jar purpur-1.14.4.jar nogui" > RunMe.sh
-  chmod +x RunMe.sh
-  purpursuccess
+  starterFilePurpur
 }
 
 function purpur1143 {
   echo -e " "
   cd ${spigotfolder}
   curl -o purpur-1.14.3.jar https://purpur.pl3x.net/api/v1/purpur/1.14.3/202/download
-  echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
-  echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
-  / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
-  \__ \ /(__)\  )    (  )(__)(  )___/ )   / )(_)( 
-  (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
-          https://github.com/samupro-dev'
-  echo -e ' '
-  java -Xms128M -Xmx${spigotmem}M -jar purpur-1.14.3.jar nogui" > RunMe.sh
-  chmod +x RunMe.sh
-  purpursuccess
+  starterFilePurpur
 }
 
 function purpur1142 {
   echo -e " "
   cd ${spigotfolder}
   curl -o purpur-1.14.2.jar https://purpur.pl3x.net/api/v1/purpur/1.14.2/126/download
-  echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
-  echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
-  / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
-  \__ \ /(__)\  )    (  )(__)(  )___/ )   / )(_)( 
-  (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
-          https://github.com/samupro-dev'
-  echo -e ' '
-  java -Xms128M -Xmx${spigotmem}M -jar purpur-1.14.2.jar nogui" > RunMe.sh
-  chmod +x RunMe.sh
-  purpursuccess
+  starterFilePurpur
 }
 
 function purpur1141 {
   echo -e " "
   cd ${spigotfolder}
   curl -o purpur-1.14.1.jar https://purpur.pl3x.net/api/v1/purpur/1.14.1/63/download
+  starterFilePurpur
+}
+
+function starterFilePurpur {
+  cd ${spigotfolder}
   echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
   echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
   / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
@@ -1177,12 +777,12 @@ function purpur1141 {
   (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
           https://github.com/samupro-dev'
   echo -e ' '
-  java -Xms128M -Xmx${spigotmem}M -jar purpur-1.14.1.jar nogui" > RunMe.sh
+  java -Xms128M -Xmx${spigotmem}M -jar purpur-${PURPURVERSIONSEL}.jar nogui" >> RunMe.sh
   chmod +x RunMe.sh
-  purpursuccess
+  successInstallPurpur
 }
 
-function purpursuccess {
+function successInstallPurpur {
   echo -e " "
   echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
   echo -e "${LIGHT_GREEN} Your server was successfully installed!\n   ${CYAN}* Version: ${WHITE}Purpur ${PURPURVERSIONSEL}\n   ${CYAN}* Location: ${WHITE}${spigotfolder}\n   ${CYAN}* RAM: ${WHITE}${spigotmem}M\n   ${CYAN}* Port: ${WHITE}${spigotport} ${COLOR_NULL}"
