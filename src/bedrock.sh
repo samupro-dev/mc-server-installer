@@ -31,7 +31,7 @@ function bedrock {
   echo -e "${CYAN} Server type selected: ${YELLOW}Bedrock ${COLOR_NULL}"
   BEDROCKTYPE=("NukkitX" "Cancel")
   echo -e "${CYAN} Select the type of fork that suits you best! ${COLOR_NULL}"
-  select OPTION in "${BEDROCKTYPE[@]}"; do
+  select BEDROCKTYPESEL in "${BEDROCKTYPE[@]}"; do
     case "$REPLY" in
     1) nukkitx ;;
     2) exit ;;
@@ -40,6 +40,7 @@ function bedrock {
   done
 }
 
+## NukkitX ##
 function nukkitx {
   echo -e "\n"
   mkdir ${bedrockfolder}
@@ -65,7 +66,13 @@ function nukkitxlatest {
   echo -e " "
   cd ${bedrockfolder}
   wget https://ci.opencollab.dev/job/NukkitX/job/Nukkit/job/master/lastSuccessfulBuild/artifact/target/nukkit-1.0-SNAPSHOT.jar
-  mv nukkit-1.0-SNAPSHOT.jar nukkitx-latest.jar
+  mv nukkit-1.0-SNAPSHOT.jar NukkitX.jar
+  starterFile
+}
+
+## RunMe ##
+function starterFile {
+  cd ${bedrockfolder}
   echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
   echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
   / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
@@ -73,15 +80,16 @@ function nukkitxlatest {
   (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
           https://github.com/samupro-dev'
   echo -e ' '
-  java -Xms128M -Xmx${bedrockmem}M -jar nukkitx-latest.jar nogui" > RunMe.sh
+  java -Xms128M -Xmx${bedrockmem}M -jar ${BEDROCKTYPESEL}.jar nogui" >> RunMe.sh
   chmod +x RunMe.sh
-  nukkitxsuccess
+  successInstall
 }
 
-function nukkitxsuccess {
+## Success ##
+function successInstall {
   echo -e " "
   echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
-  echo -e "${LIGHT_GREEN} Your server was successfully installed!\n   ${CYAN}* Version: ${WHITE}NukkitX\n   ${CYAN}* Location: ${WHITE}${bedrockfolder}\n   ${CYAN}* RAM: ${WHITE}${bedrockmem}M\n   ${CYAN}* Port: ${WHITE}${bedrockport} ${COLOR_NULL}"
+  echo -e "${LIGHT_GREEN} Your server was successfully installed!\n   ${CYAN}* Version: ${WHITE}${BEDROCKTYPESEL}\n   ${CYAN}* Location: ${WHITE}${bedrockfolder}\n   ${CYAN}* RAM: ${WHITE}${bedrockmem}M\n   ${CYAN}* Port: ${WHITE}${bedrockport} ${COLOR_NULL}"
   echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
   exit
 }
