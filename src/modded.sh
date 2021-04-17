@@ -31,7 +31,7 @@ function modded {
   echo -e "${CYAN} Server type selected: ${YELLOW}Modded ${COLOR_NULL}"
   MODDEDTYPE=("Magma" "Cancel")
   echo -e "${CYAN} Select the type of fork that suits you best! ${COLOR_NULL}"
-  select OPTION in "${MODDEDTYPE[@]}"; do
+  select MODDEDTYPESEL in "${MODDEDTYPE[@]}"; do
     case "$REPLY" in
     1) magma ;;
     2) exit ;;
@@ -40,6 +40,7 @@ function modded {
   done
 }
 
+## Magma ##
 function magma {
   echo -e "\n"
   mkdir ${moddedfolder}
@@ -67,6 +68,12 @@ function magma1122 {
   echo -e " "
   cd ${moddedfolder}
   curl -o magma-1.12.2.jar https://api.magmafoundation.org/api/resources/magma/1.12.2/dev/latest/download
+  starterFileMagma
+}
+
+## RunMe ##
+function starterFileMagma {
+  cd ${moddedfolder}
   echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
   echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
   / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
@@ -74,15 +81,16 @@ function magma1122 {
   (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
           https://github.com/samupro-dev'
   echo -e ' '
-  java -Xms128M -Xmx${moddedmem}M -jar magma-1.12.2.jar nogui" > RunMe.sh
+  java -Xms128M -Xmx${moddedmem}M -jar magma-${MAGMAVERSIONSEL}.jar nogui" >> RunMe.sh
   chmod +x RunMe.sh
-  nukkitxsuccess
+  successInstall
 }
 
-function magmasuccess {
+## Success ##
+function successInstall {
   echo -e " "
   echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
-  echo -e "${LIGHT_GREEN} Your server was successfully installed!\n   ${CYAN}* Version: ${WHITE}Magma\n   ${CYAN}* Location: ${WHITE}${moddedfolder}\n   ${CYAN}* RAM: ${WHITE}${moddedmem}M\n   ${CYAN}* Port: ${WHITE}${moddedport} ${COLOR_NULL}"
+  echo -e "${LIGHT_GREEN} Your server was successfully installed!\n   ${CYAN}* Version: ${WHITE}${MODDEDTYPESEL}\n   ${CYAN}* Location: ${WHITE}${moddedfolder}\n   ${CYAN}* RAM: ${WHITE}${moddedmem}M\n   ${CYAN}* Port: ${WHITE}${moddedport} ${COLOR_NULL}"
   echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
   exit
 }
