@@ -23,7 +23,7 @@ echo -e "${PURPLE}  ██████  ▄▄▄       ███▄ ▄██�
 ░  ░  ░    ░   ▒   ░      ░    ░░░ ░ ░ ░░         ░░   ░ ░ ░ ░ ▒  
       ░        ░  ░       ░      ░                 ░         ░ ░  
                 https://github.com/samupro-dev
-                                                  v0.5${COLOR_NULL}"
+                                                  v0.6${COLOR_NULL}"
 echo -e "\n"
 echo -e "${LIGHT_BLUE} This script makes it easy to install a minecraft server. ${COLOR_NULL}"
 sleep 1
@@ -83,7 +83,7 @@ if ! [ -x "$(command -v java)" ]; then
     read installjava
     case "$installjava" in
       n|N|no|No|NO) break;;
-      y|Y|yes|Yes|YES) apt-get install -y apt-transport-https ca-certificates dirmngr gnupg && wget -qO - https://adoptopenjdk.jfrog.io/adoptopenjdk/api/gpg/key/public | apt-key add - && add-apt-repository --yes https://adoptopenjdk.jfrog.io/adoptopenjdk/deb/ && apt-get -y update && apt-get install -y adoptopenjdk-11-hotspot || yum install -y java-11-openjdk
+      y|Y|yes|Yes|YES) apt-get install -y software-properties-common && apt-get install -y apt-transport-https ca-certificates dirmngr gnupg && wget -qO - https://adoptopenjdk.jfrog.io/adoptopenjdk/api/gpg/key/public | apt-key add - && add-apt-repository --yes https://adoptopenjdk.jfrog.io/adoptopenjdk/deb/ && apt-get -y update && apt-get install -y adoptopenjdk-11-hotspot || yum install -y java-11-openjdk
       break;;
       *) echo -e "${ERROR} ${LIGHT_RED}The argument you entered is incorrect! ${COLOR_NULL}";;
     esac
