@@ -71,7 +71,7 @@ function magma1122 {
   starterFileMagma
 }
 
-## RunMe ##
+## Starter ##
 function starterFileMagma {
   cd ${moddedfolder}
   echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
@@ -81,8 +81,8 @@ function starterFileMagma {
   (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
           https://github.com/samupro-dev'
   echo -e ' '
-  java -Xms128M -Xmx${moddedmem}M -jar magma-${MAGMAVERSIONSEL}.jar nogui" >> RunMe.sh
-  chmod +x RunMe.sh
+  java -Xms128M -Xmx${moddedmem}M -jar magma-${MAGMAVERSIONSEL}.jar nogui" >> starter.sh
+  chmod +x starter.sh
   successInstall
 }
 
@@ -92,6 +92,7 @@ function successInstall {
   echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
   echo -e "${LIGHT_GREEN} Your server was successfully installed!\n   ${CYAN}* Version: ${WHITE}${MODDEDTYPESEL}\n   ${CYAN}* Location: ${WHITE}${moddedfolder}\n   ${CYAN}* RAM: ${WHITE}${moddedmem}M\n   ${CYAN}* Port: ${WHITE}${moddedport} ${COLOR_NULL}"
   echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
+  echo -e "${YELLOW}To start the server use the ${LIGHT_RED}./starter.sh ${YELLOW}command${COLOR_NULL}"
   exit
 }
 
