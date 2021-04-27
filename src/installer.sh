@@ -23,7 +23,7 @@ echo -e "${PURPLE}  ██████  ▄▄▄       ███▄ ▄██�
 ░  ░  ░    ░   ▒   ░      ░    ░░░ ░ ░ ░░         ░░   ░ ░ ░ ░ ▒  
       ░        ░  ░       ░      ░                 ░         ░ ░  
                 https://github.com/samupro-dev
-                                                  v0.6${COLOR_NULL}"
+                                                  v0.7${COLOR_NULL}"
 echo -e "\n"
 echo -e "${LIGHT_BLUE} This script makes it easy to install a minecraft server. ${COLOR_NULL}"
 sleep 1
@@ -38,9 +38,7 @@ fi
 echo -e " ${DONE} ${LIGHT_GREEN}Congratulations, this script will be run as root. ${COLOR_NULL}"
 echo -e "\n"
 
-##############
 ## Required ##
-##############
 if ! [ -x "$(command -v wget)" ]; then
   echo -e "${ERROR} ${LIGHT_RED} wget is required in order for this script to work. ${COLOR_NULL}"
   while true
@@ -94,9 +92,7 @@ echo -e "\n"
 
 sleep 1
 
-#############
 ## Options ##
-#############
 function bungee {
   bash <(wget -O - 'https://raw.githubusercontent.com/samupro-dev/mc-server-installer/main/src/bungee.sh')
   exit
@@ -122,9 +118,7 @@ function vanilla {
   exit
 }
 
-###########
 ## Types ##
-###########
 echo -e "${LIGHT_GREEN} Hi, before starting I would like to know what kind of server to install. ${COLOR_NULL}"
 SERVERTYPE=("Proxy" "Spigot" "Bedrock" "Modded" "Vanilla" "Cancel")
 echo -e "${CYAN} Select the type of server that suits you best! ${COLOR_NULL}"
