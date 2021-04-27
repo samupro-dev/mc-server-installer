@@ -29,6 +29,9 @@ If you find any bugs or want to recommend some new features, write them [here](h
 - [ ] A better interface
 
 ## Changelogs
+#### v0.7
+- Startup file renamed
+- Added small text on using the startup file
 #### v0.6
 - Fixed problem with java installation
 #### v0.5
