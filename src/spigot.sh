@@ -293,8 +293,8 @@ function starterFileSpigot {
   (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
           https://github.com/samupro-dev'
   echo -e ' '
-  java -Xms128M -Xmx${spigotmem}M -jar BuildTools.jar --rev ${SPIGOTVERSIONSEL} nogui" >> RunMe.sh
-  chmod +x RunMe.sh
+  java -Xms128M -Xmx${spigotmem}M -jar BuildTools.jar --rev ${SPIGOTVERSIONSEL} nogui" >> starter.sh
+  chmod +x starter.sh
   successInstallSpigot
 }
 
@@ -303,6 +303,7 @@ function successInstallSpigot {
   echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
   echo -e "${LIGHT_GREEN} Your server was successfully installed!\n   ${CYAN}* Version: ${WHITE}Spigot ${SPIGOTVERSIONSEL}\n   ${CYAN}* Location: ${WHITE}${spigotfolder}\n   ${CYAN}* RAM: ${WHITE}${spigotmem}M\n   ${CYAN}* Port: ${WHITE}${spigotport} ${COLOR_NULL}"
   echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
+  echo -e "${YELLOW}To start the server use the ${LIGHT_RED}./starter.sh ${YELLOW}command${COLOR_NULL}"
   exit
 }
 
@@ -410,8 +411,8 @@ function starterFilePaper {
   (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
           https://github.com/samupro-dev'
   echo -e ' '
-  java -Xms128M -Xmx${spigotmem}M -jar paper-${PAPERVERSIONSEL}.jar nogui" >> RunMe.sh
-  chmod +x RunMe.sh
+  java -Xms128M -Xmx${spigotmem}M -jar paper-${PAPERVERSIONSEL}.jar nogui" >> starter.sh
+  chmod +x starter.sh
   successInstallPaper
 }
 
@@ -420,6 +421,7 @@ function successInstallPaper {
   echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
   echo -e "${LIGHT_GREEN} Your server was successfully installed!\n   ${CYAN}* Version: ${WHITE}Paper ${PAPERVERSIONSEL}\n   ${CYAN}* Location: ${WHITE}${spigotfolder}\n   ${CYAN}* RAM: ${WHITE}${spigotmem}M\n   ${CYAN}* Port: ${WHITE}${spigotport} ${COLOR_NULL}"
   echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
+  echo -e "${YELLOW}To start the server use the ${LIGHT_RED}./starter.sh ${YELLOW}command${COLOR_NULL}"
   exit
 }
 
@@ -515,8 +517,8 @@ function starterFileYatopia {
   (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
           https://github.com/samupro-dev'
   echo -e ' '
-  java -Xms128M -Xmx${spigotmem}M -jar yatopia-${YATOPIAVERSIONSEL}.jar nogui" >> RunMe.sh
-  chmod +x RunMe.sh
+  java -Xms128M -Xmx${spigotmem}M -jar yatopia-${YATOPIAVERSIONSEL}.jar nogui" >> starter.sh
+  chmod +x starter.sh
   successInstallYatopia
 }
 
@@ -525,6 +527,7 @@ function successInstallYatopia {
   echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
   echo -e "${LIGHT_GREEN} Your server was successfully installed!\n   ${CYAN}* Version: ${WHITE}Yatopia ${YATOPIAVERSIONSEL}\n   ${CYAN}* Location: ${WHITE}${spigotfolder}\n   ${CYAN}* RAM: ${WHITE}${spigotmem}M\n   ${CYAN}* Port: ${WHITE}${spigotport} ${COLOR_NULL}"
   echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
+  echo -e "${YELLOW}To start the server use the ${LIGHT_RED}./starter.sh ${YELLOW}command${COLOR_NULL}"
   exit
 }
 
@@ -569,8 +572,8 @@ function starterFileTunity {
   (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
           https://github.com/samupro-dev'
   echo -e ' '
-  java -Xms128M -Xmx${spigotmem}M -jar tuinity-${YATOPIAVERSIONSEL}.jar nogui" >> RunMe.sh
-  chmod +x RunMe.sh
+  java -Xms128M -Xmx${spigotmem}M -jar tuinity-${YATOPIAVERSIONSEL}.jar nogui" >> starter.sh
+  chmod +x starter.sh
   successInstallTunity
 }
 
@@ -579,6 +582,7 @@ function successInstallTunity {
   echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
   echo -e "${LIGHT_GREEN} Your server was successfully installed!\n   ${CYAN}* Version: ${WHITE}Tuinity ${TUINITYVERSIONSEL}\n   ${CYAN}* Location: ${WHITE}${spigotfolder}\n   ${CYAN}* RAM: ${WHITE}${spigotmem}M\n   ${CYAN}* Port: ${WHITE}${spigotport} ${COLOR_NULL}"
   echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
+  echo -e "${YELLOW}To start the server use the ${LIGHT_RED}./starter.sh ${YELLOW}command${COLOR_NULL}"
   exit
 }
 
@@ -629,8 +633,8 @@ function starterFileGlowstone {
   (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
           https://github.com/samupro-dev'
   echo -e ' '
-  java -Xms128M -Xmx${spigotmem}M -jar glowstone-${GLOWSTONEVERSIONSEL}.jar nogui" >> RunMe.sh
-  chmod +x RunMe.sh
+  java -Xms128M -Xmx${spigotmem}M -jar glowstone-${GLOWSTONEVERSIONSEL}.jar nogui" >> starter.sh
+  chmod +x starter.sh
   successInstallGlowstone
 }
 
@@ -639,6 +643,7 @@ function successInstallGlowstone {
   echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
   echo -e "${LIGHT_GREEN} Your server was successfully installed!\n   ${CYAN}* Version: ${WHITE}Glowstone ${GLOWSTONEVERSIONSEL}\n   ${CYAN}* Location: ${WHITE}${glowstonefolder}\n   ${CYAN}* RAM: ${WHITE}${glowstonemem}M\n   ${CYAN}* Port: ${WHITE}${glowstoneport} ${COLOR_NULL}"
   echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
+  echo -e "${YELLOW}To start the server use the ${LIGHT_RED}./starter.sh ${YELLOW}command${COLOR_NULL}"
   exit
 }
 
@@ -777,8 +782,8 @@ function starterFilePurpur {
   (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
           https://github.com/samupro-dev'
   echo -e ' '
-  java -Xms128M -Xmx${spigotmem}M -jar purpur-${PURPURVERSIONSEL}.jar nogui" >> RunMe.sh
-  chmod +x RunMe.sh
+  java -Xms128M -Xmx${spigotmem}M -jar purpur-${PURPURVERSIONSEL}.jar nogui" >> starter.sh
+  chmod +x starter.sh
   successInstallPurpur
 }
 
@@ -787,6 +792,7 @@ function successInstallPurpur {
   echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
   echo -e "${LIGHT_GREEN} Your server was successfully installed!\n   ${CYAN}* Version: ${WHITE}Purpur ${PURPURVERSIONSEL}\n   ${CYAN}* Location: ${WHITE}${spigotfolder}\n   ${CYAN}* RAM: ${WHITE}${spigotmem}M\n   ${CYAN}* Port: ${WHITE}${spigotport} ${COLOR_NULL}"
   echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
+  echo -e "${YELLOW}To start the server use the ${LIGHT_RED}./starter.sh ${YELLOW}command${COLOR_NULL}"
   exit
 }
 
