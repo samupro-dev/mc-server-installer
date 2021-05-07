@@ -29,6 +29,8 @@ If you find any bugs or want to recommend some new features, write them [here](h
 - [ ] A better interface
 
 ## Changelogs
+#### v0.8
+- Changed the download link of the Vanilla jar with the official Mojang link
 #### v0.7
 - Startup file renamed
 - Added small text on using the startup file
