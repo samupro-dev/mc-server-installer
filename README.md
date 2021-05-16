@@ -29,6 +29,10 @@ If you find any bugs or want to recommend some new features, write them [here](h
 - [ ] A better interface
 
 ## Changelogs
+#### v1.0
+- Update the download link of the FlameCord fork
+- Added the SportPaper fork
+- Fixed issue with the Glowstone fork
 #### v0.9
 - Added the Mohist fork
 #### v0.8
