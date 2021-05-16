@@ -29,7 +29,7 @@ function spigot {
   echo -e -n "${YELLOW} Enter the port of the server. (ex. 25565): ${COLOR_NULL}"
   read spigotport
   echo -e "${CYAN} Server type selected: ${YELLOW}Spigot ${COLOR_NULL}"
-  SPIGOTTYPE=("Spigot" "Paper" "Yatopia" "Tuinity" "Purpur" "Glowstone" "Cancel")
+  SPIGOTTYPE=("Spigot" "Paper" "Yatopia" "Tuinity" "Purpur" "Glowstone" "SportPaper" "Cancel")
   echo -e "${CYAN} Select the type of fork that suits you best! ${COLOR_NULL}"
   select OPTION in "${SPIGOTTYPE[@]}"; do
     case "$REPLY" in
@@ -39,7 +39,8 @@ function spigot {
     4) tuinity ;;
     5) purpur ;;
     6) glowstone ;;
-    7) exit ;;
+    7) sportpaper ;;
+    8) exit ;;
     *) echo -e "${ERROR} ${LIGHT_RED}The argument you entered is incorrect! ${COLOR_NULL}";;
     esac
   done
@@ -589,16 +590,8 @@ function successInstallTunity {
 ## Glowstone ##
 function glowstone {
   echo -e "\n"
-  echo -e -n "${CYAN} Enter the RAM to be assigned in MB (ex. 512): ${COLOR_NULL}"
-  read glowstonemem
-  echo -e -n "${CYAN} Enter the location of the server folder. (ex. /root/glowstone): ${COLOR_NULL}"
-  read glowstonefolder
-  mkdir ${glowstonefolder}
-  cd ${glowstonefolder}
-  echo -e -n "${YELLOW} Enter the port of the server. (ex. 25599): ${COLOR_NULL}"
-  read glowstoneport
   echo -e "${YELLOW} I am setting up the server port. . . ${COLOR_NULL}"
-  echo "server-port=${glowstoneport}" > server.properties
+  echo "server-port=${spigotport}" > server.properties
   echo -e "${YELLOW} The eula file has been created. ${COLOR_NULL}"
   echo "eula=true" > eula.txt
   glowstoneversion
@@ -641,7 +634,7 @@ function starterFileGlowstone {
 function successInstallGlowstone {
   echo -e " "
   echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
-  echo -e "${LIGHT_GREEN} Your server was successfully installed!\n   ${CYAN}* Version: ${WHITE}Glowstone ${GLOWSTONEVERSIONSEL}\n   ${CYAN}* Location: ${WHITE}${glowstonefolder}\n   ${CYAN}* RAM: ${WHITE}${glowstonemem}M\n   ${CYAN}* Port: ${WHITE}${glowstoneport} ${COLOR_NULL}"
+  echo -e "${LIGHT_GREEN} Your server was successfully installed!\n   ${CYAN}* Version: ${WHITE}Glowstone ${GLOWSTONEVERSIONSEL}\n   ${CYAN}* Location: ${WHITE}${spigotfolder}\n   ${CYAN}* RAM: ${WHITE}${spigotmem}M\n   ${CYAN}* Port: ${WHITE}${spigotport} ${COLOR_NULL}"
   echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
   echo -e "${YELLOW}To start the server use the ${LIGHT_RED}./starter.sh ${YELLOW}command${COLOR_NULL}"
   exit
@@ -791,6 +784,61 @@ function successInstallPurpur {
   echo -e " "
   echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
   echo -e "${LIGHT_GREEN} Your server was successfully installed!\n   ${CYAN}* Version: ${WHITE}Purpur ${PURPURVERSIONSEL}\n   ${CYAN}* Location: ${WHITE}${spigotfolder}\n   ${CYAN}* RAM: ${WHITE}${spigotmem}M\n   ${CYAN}* Port: ${WHITE}${spigotport} ${COLOR_NULL}"
+  echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
+  echo -e "${YELLOW}To start the server use the ${LIGHT_RED}./starter.sh ${YELLOW}command${COLOR_NULL}"
+  exit
+}
+
+## SportPaper ##
+function sportpaper {
+  echo -e "\n"
+  mkdir ${spigotfolder}
+  cd ${spigotfolder}
+  echo -e "${YELLOW} I am setting up the server port. . . ${COLOR_NULL}"
+  echo "server-port=${spigotport}" > server.properties
+  echo -e "${YELLOW} The eula file has been created. ${COLOR_NULL}"
+  echo "eula=true" > eula.txt
+  sportpaperversion
+}
+
+function sportpaperversion {
+  SPORTPAPERVERSION=("1.8.8" "Cancel")
+  echo -e "${CYAN} Select the server version. ${COLOR_NULL}"
+  select SPORTPAPERVERSIONSEL in "${SPORTPAPERVERSION[@]}"; do
+    case "$REPLY" in
+    1) sportpaper188 ;;
+    2) exit ;;
+    *) echo -e "${ERROR} ${LIGHT_RED}The argument you entered is incorrect! ${COLOR_NULL}";;
+    esac
+  done
+}
+
+function sportpaper188 {
+  echo -e " "
+  cd ${spigotfolder}
+  wget https://github.com/linsaftw/SportPaper/releases/latest/download/sportpaper-1.8.8-R0.1-SNAPSHOT.jar
+  mv sportpaper-1.8.8-R0.1-SNAPSHOT.jar sportpaper-1.8.8.jar
+  starterFileSportPaper
+}
+
+function starterFileSportPaper {
+  cd ${spigotfolder}
+  echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
+  echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
+  / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
+  \__ \ /(__)\  )    (  )(__)(  )___/ )   / )(_)( 
+  (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
+          https://github.com/samupro-dev'
+  echo -e ' '
+  java -Xms128M -Xmx${spigotmem}M -jar sportpaper-${SPORTPAPERVERSIONSEL}.jar nogui" >> starter.sh
+  chmod +x starter.sh
+  successInstallSportPaper
+}
+
+function successInstallSportPaper {
+  echo -e " "
+  echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
+  echo -e "${LIGHT_GREEN} Your server was successfully installed!\n   ${CYAN}* Version: ${WHITE}SportPaper ${SPORTPAPERVERSIONSEL}\n   ${CYAN}* Location: ${WHITE}${spigotfolder}\n   ${CYAN}* RAM: ${WHITE}${spigotmem}M\n   ${CYAN}* Port: ${WHITE}${spigotport} ${COLOR_NULL}"
   echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
   echo -e "${YELLOW}To start the server use the ${LIGHT_RED}./starter.sh ${YELLOW}command${COLOR_NULL}"
   exit
