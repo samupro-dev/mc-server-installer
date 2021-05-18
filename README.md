@@ -29,6 +29,8 @@ If you find any bugs or want to recommend some new features, write them [here](h
 - [ ] A better interface
 
 ## Changelogs
+#### v1.1
+- Fixed problem with FlameCord fork
 #### v1.0
 - Update the download link of the FlameCord fork
 - Added the SportPaper fork
