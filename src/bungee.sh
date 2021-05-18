@@ -80,7 +80,6 @@ function flamecord {
   cd ${bungeefolder}
   echo -e "${CYAN} Downloading the jar file. . . ${COLOR_NULL}"
   wget https://github.com/2lstudios-mc/FlameCord/releases/latest/download/FlameCord.jar
-  mv FlameCord-0.4.6.jar FlameCord.jar
   starterFile
 }
 
