@@ -29,7 +29,7 @@ function spigot {
   echo -e -n "${YELLOW} Enter the port of the server. (ex. 25565): ${COLOR_NULL}"
   read spigotport
   echo -e "${CYAN} Server type selected: ${YELLOW}Spigot ${COLOR_NULL}"
-  SPIGOTTYPE=("Spigot" "Paper" "Yatopia" "Tuinity" "Purpur" "Glowstone" "SportPaper" "Cancel")
+  SPIGOTTYPE=("Spigot" "Paper" "Yatopia" "Tuinity" "Purpur" "Glowstone" "SportPaper" "FlamePaper" "Cancel")
   echo -e "${CYAN} Select the type of fork that suits you best! ${COLOR_NULL}"
   select OPTION in "${SPIGOTTYPE[@]}"; do
     case "$REPLY" in
@@ -40,7 +40,8 @@ function spigot {
     5) purpur ;;
     6) glowstone ;;
     7) sportpaper ;;
-    8) exit ;;
+    8) flamepaper;;
+    9) exit ;;
     *) echo -e "${ERROR} ${LIGHT_RED}The argument you entered is incorrect! ${COLOR_NULL}";;
     esac
   done
@@ -839,6 +840,61 @@ function successInstallSportPaper {
   echo -e " "
   echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
   echo -e "${LIGHT_GREEN} Your server was successfully installed!\n   ${CYAN}* Version: ${WHITE}SportPaper ${SPORTPAPERVERSIONSEL}\n   ${CYAN}* Location: ${WHITE}${spigotfolder}\n   ${CYAN}* RAM: ${WHITE}${spigotmem}M\n   ${CYAN}* Port: ${WHITE}${spigotport} ${COLOR_NULL}"
+  echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
+  echo -e "${YELLOW}To start the server use the ${LIGHT_RED}./starter.sh ${YELLOW}command${COLOR_NULL}"
+  exit
+}
+
+## FlamePaper ##
+function flamepaper {
+  echo -e "\n"
+  mkdir ${spigotfolder}
+  cd ${spigotfolder}
+  echo -e "${YELLOW} I am setting up the server port. . . ${COLOR_NULL}"
+  echo "server-port=${spigotport}" > server.properties
+  echo -e "${YELLOW} The eula file has been created. ${COLOR_NULL}"
+  echo "eula=true" > eula.txt
+  flamepaperversion
+}
+
+function flamepaperversion {
+  FLAMEPAPERVERSION=("1.8.8" "Cancel")
+  echo -e "${CYAN} Select the server version. ${COLOR_NULL}"
+  select FLAMEPAPERVERSIONSEL in "${FLAMEPAPERVERSION[@]}"; do
+    case "$REPLY" in
+    1) flamepaper188 ;;
+    2) exit ;;
+    *) echo -e "${ERROR} ${LIGHT_RED}The argument you entered is incorrect! ${COLOR_NULL}";;
+    esac
+  done
+}
+
+function flamepaper188 {
+  echo -e " "
+  cd ${spigotfolder}
+  wget https://github.com/2lstudios-mc/FlamePaper/releases/latest/download/abe8d00/FlamePaper.jar
+  mv FlamePaper.jar FlamePaper-1.8.8.jar
+  starterFileFlamePaper
+}
+
+function starterFileFlamePaper {
+  cd ${spigotfolder}
+  echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
+  echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
+  / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
+  \__ \ /(__)\  )    (  )(__)(  )___/ )   / )(_)( 
+  (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
+          https://github.com/samupro-dev'
+  echo -e ' '
+  java -Xms128M -Xmx${spigotmem}M -jar FlamePaper-${FLAMEPAPERVERSIONSEL}.jar nogui" >> starter.sh
+  chmod +x starter.sh
+  successInstallFlamePaper
+}
+
+function successInstallFlamePaper {
+  echo -e " "
+  echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
+  echo -e "${LIGHT_GREEN} Your server was successfully installed!\n   ${CYAN}* Version: ${WHITE}FlamePaper ${FLAMEPAPERVERSIONSEL}\n   ${CYAN}* Location: ${WHITE}${spigotfolder}\n   ${CYAN}* RAM: ${WHITE}${spigotmem}M\n   ${CYAN}* Port: ${WHITE}${spigotport} ${COLOR_NULL}"
   echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
   echo -e "${YELLOW}To start the server use the ${LIGHT_RED}./starter.sh ${YELLOW}command${COLOR_NULL}"
   exit
