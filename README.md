@@ -29,6 +29,9 @@ If you find any bugs or want to recommend some new features, write them [here](h
 - [ ] A better interface
 
 ## Changelogs
+#### v1.3
+- Added the Arclight fork
+- Fixed problem with modded installer
 #### v1.2
 - Added the FlamePaper fork
 #### v1.1
