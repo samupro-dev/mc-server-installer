@@ -29,13 +29,14 @@ function modded {
   echo -e -n "${YELLOW} Enter the port of the server. (ex. 25565): ${COLOR_NULL}"
   read moddedport
   echo -e "${CYAN} Server type selected: ${YELLOW}Modded ${COLOR_NULL}"
-  MODDEDTYPE=("Magma" "Mohist" "Cancel")
+  MODDEDTYPE=("Magma" "Mohist" "Arclight" "Cancel")
   echo -e "${CYAN} Select the type of fork that suits you best! ${COLOR_NULL}"
   select MODDEDTYPESEL in "${MODDEDTYPE[@]}"; do
     case "$REPLY" in
     1) magma ;;
     2) mohist ;;
-    3) exit ;;
+    3) arclight ;;
+    4) exit ;;
     *) echo -e "${ERROR} ${LIGHT_RED}The argument you entered is incorrect! ${COLOR_NULL}";;
     esac
   done
@@ -46,8 +47,6 @@ function magma {
   echo -e "\n"
   mkdir ${moddedfolder}
   cd ${moddedfolder}
-  echo -e -n "${YELLOW} Enter the port of the server. (ex. 25599): ${COLOR_NULL}"
-  read magmaport
   echo -e "${YELLOW} I am setting up the server port. . . ${COLOR_NULL}"
   echo "server-port=${moddedport}" > server.properties
   magmaversion
@@ -100,8 +99,6 @@ function mohist {
   echo -e "\n"
   mkdir ${moddedfolder}
   cd ${moddedfolder}
-  echo -e -n "${YELLOW} Enter the port of the server. (ex. 25599): ${COLOR_NULL}"
-  read mohistport
   echo -e "${YELLOW} I am setting up the server port. . . ${COLOR_NULL}"
   echo "server-port=${moddedport}" > server.properties
   mohistversion
@@ -160,6 +157,80 @@ function successInstallMohist {
   echo -e " "
   echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
   echo -e "${LIGHT_GREEN} Your server was successfully installed!\n   ${CYAN}* Version: ${WHITE}${MODDEDTYPESEL} ${MOHISTVERSIONSEL}\n   ${CYAN}* Location: ${WHITE}${moddedfolder}\n   ${CYAN}* RAM: ${WHITE}${moddedmem}M\n   ${CYAN}* Port: ${WHITE}${moddedport} ${COLOR_NULL}"
+  echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
+  echo -e "${YELLOW}To start the server use the ${LIGHT_RED}./starter.sh ${YELLOW}command${COLOR_NULL}"
+  exit
+}
+
+## Arclight ##
+function arclight {
+  echo -e "\n"
+  mkdir ${moddedfolder}
+  cd ${moddedfolder}
+  echo -e "${YELLOW} I am setting up the server port. . . ${COLOR_NULL}"
+  echo "server-port=${moddedport}" > server.properties
+  arclightversion
+}
+
+function arclightversion {
+  ARCLIGHTVERSION=("1.16.5" "1.15.2" "1.14.4" "Cancel")
+  echo -e "${CYAN} Select the server version. ${COLOR_NULL}"
+  select ARCLIGHTVERSIONSEL in "${ARCLIGHTVERSION[@]}"; do
+    case "$REPLY" in
+    1) arclight1165 ;;
+    2) arclight1152 ;;
+    3) arclight1144 ;;
+    4) exit ;;
+    *) echo -e "${ERROR} ${LIGHT_RED}The argument you entered is incorrect! ${COLOR_NULL}";;
+    esac
+  done
+}
+
+function arclight1165 {
+  echo -e " "
+  cd ${moddedfolder}
+  curl --silent "https://api.github.com/repos/IzzelAliz/Arclight/releases/latest" |
+    grep '"browser_download_url":' |
+    sed -E 's/.*"([^"]+)".*/\1/' |
+    xargs wget
+    mv arclight-forge-1.16-*.jar arclight-1.16.5.jar
+  starterFileArclight
+}
+
+function arclight1152 {
+  echo -e " "
+  cd ${moddedfolder}
+  wget https://github.com/IzzelAliz/Arclight/releases/download/1.15%2F1.0.17/arclight-forge-1.15-1.0.17.jar
+  mv arclight-forge-1.15-1.0.17.jar arclight-1.15.2.jar
+  starterFileArclight
+}
+
+function arclight1144 {
+  echo -e " "
+  cd ${moddedfolder}
+  wget https://github.com/IzzelAliz/Arclight/releases/download/1.0.6/arclight-forge-1.14-1.0.6.jar
+  mv arclight-forge-1.14-1.0.6.jar arclight-1.14.4.jar
+  starterFileArclight
+}
+
+function starterFileArclight {
+  cd ${moddedfolder}
+  echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
+  echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
+  / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
+  \__ \ /(__)\  )    (  )(__)(  )___/ )   / )(_)( 
+  (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
+          https://github.com/samupro-dev'
+  echo -e ' '
+  java -Xms128M -Xmx${moddedmem}M -jar arclight-${ARCLIGHTVERSIONSEL}.jar nogui" >> starter.sh
+  chmod +x starter.sh
+  successInstallArclight
+}
+
+function successInstallarclight {
+  echo -e " "
+  echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
+  echo -e "${LIGHT_GREEN} Your server was successfully installed!\n   ${CYAN}* Version: ${WHITE}${MODDEDTYPESEL} ${ARCLIGHTVERSIONSEL}\n   ${CYAN}* Location: ${WHITE}${moddedfolder}\n   ${CYAN}* RAM: ${WHITE}${moddedmem}M\n   ${CYAN}* Port: ${WHITE}${moddedport} ${COLOR_NULL}"
   echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
   echo -e "${YELLOW}To start the server use the ${LIGHT_RED}./starter.sh ${YELLOW}command${COLOR_NULL}"
   exit
