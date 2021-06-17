@@ -10,6 +10,7 @@ PURPLE="\e[0;35m"
 CYAN="\e[0;36m"
 WHITE="\e[1;37m"
 LIGHT_PURPLE="\e[1;35m"
+VERSION=$(curl -L https://raw.githubusercontent.com/samupro-dev/mc-server-installer/main/src/version.sh)
 
 clear
 echo -e "\n"
@@ -23,7 +24,7 @@ echo -e "${PURPLE}  ██████  ▄▄▄       ███▄ ▄██�
 ░  ░  ░    ░   ▒   ░      ░    ░░░ ░ ░ ░░         ░░   ░ ░ ░ ░ ▒  
       ░        ░  ░       ░      ░                 ░         ░ ░  
                 https://github.com/samupro-dev
-                                                  v1.3${COLOR_NULL}"
+                                                  v${VERSION}${COLOR_NULL}"
 echo -e "\n"
 echo -e "${LIGHT_BLUE} This script makes it easy to install a minecraft server. ${COLOR_NULL}"
 sleep 1
