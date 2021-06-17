@@ -341,7 +341,7 @@ function starterFileSpigot {
   (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
           https://github.com/samupro-dev'
   echo -e ' '
-  java -Xms128M -Xmx${spigotmem}M -jar BuildTools.jar nogui" >> starter.sh
+  java -Xms128M -Xmx${spigotmem}M -jar spigot-${SPIGOTVERSIONSEL}.jar nogui" >> starter.sh
   chmod +x starter.sh
   successInstallSpigot
 }
