@@ -29,6 +29,12 @@ If you find any bugs or want to recommend some new features, write them [here](h
 - [ ] A better interface
 
 ## Changelogs
+#### v1.4
+- Vanilla jar updated to 1.17
+- Fixed problem with Vanilla jars
+- The installer of the Spigot fork has been improved
+- Spigot fork updated to 1.17
+- Improved the installer.sh
 #### v1.3
 - Added the Arclight fork
 - Fixed problem with modded installer
