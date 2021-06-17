@@ -60,47 +60,57 @@ function spigott {
 }
 
 function spigottversion {
-  SPIGOTVERSION=("1.16.5" "1.16.4" "1.16.3" "1.16.2" "1.16.1" "1.15.2" "1.15.1" "1.15" "1.14.4" "1.14.3" "1.14.2" "1.14.1" "1.14" "1.13.2" "1.13.1" "1.13" "1.12.2" "1.12.1" "1.12" "1.11" "1.10.2" "1.9.4" "1.9.2" "1.9" "1.8.8" "1.8.3" "1.8" "Cancel")
+  SPIGOTVERSION=("1.17" "1.16.5" "1.16.4" "1.16.3" "1.16.2" "1.16.1" "1.15.2" "1.15.1" "1.15" "1.14.4" "1.14.3" "1.14.2" "1.14.1" "1.14" "1.13.2" "1.13.1" "1.13" "1.12.2" "1.12.1" "1.12" "1.11" "1.10.2" "1.9.4" "1.9.2" "1.9" "1.8.8" "1.8.3" "1.8" "Cancel")
   echo -e "${CYAN} Select the server version. ${COLOR_NULL}"
   select SPIGOTVERSIONSEL in "${SPIGOTVERSION[@]}"; do
     case "$REPLY" in
-    1) spigot1165 ;;
-    2) spigot1164 ;;
-    3) spigot1163 ;;
-    4) spigot1162 ;;
-    5) spigot1161 ;;
-    6) spigot1152 ;;
-    7) spigot1151 ;;
-    8) spigot115 ;;
-    9) spigot1444 ;;
-    10) spigot1143 ;;
-    11) spigot1142 ;;
-    12) spigot1141 ;;
-    13) spigot114 ;;
-    14) spigot1132 ;;
-    15) spigot1131 ;;
-    16) spigot113 ;;
-    17) spigot1122 ;;
-    18) spigot1121 ;;
-    19) spigot112 ;;
-    20) spigot111 ;;
-    21) spigot1102 ;;
-    22) spigot194 ;;
-    23) spigot192 ;;
-    24) spigot19 ;;
-    25) spigot188 ;;
-    26) spigot183 ;;
-    27) spigot18 ;;
-    28) exit ;;
+    1) spigot117 ;;
+    2) spigot1165 ;;
+    3) spigot1164 ;;
+    4) spigot1163 ;;
+    5) spigot1162 ;;
+    6) spigot1161 ;;
+    7) spigot1152 ;;
+    8) spigot1151 ;;
+    9) spigot115 ;;
+    10) spigot1444 ;;
+    11) spigot1143 ;;
+    12) spigot1142 ;;
+    13) spigot1141 ;;
+    14) spigot114 ;;
+    15) spigot1132 ;;
+    16) spigot1131 ;;
+    17) spigot113 ;;
+    18) spigot1122 ;;
+    19) spigot1121 ;;
+    20) spigot112 ;;
+    21) spigot111 ;;
+    22) spigot1102 ;;
+    23) spigot194 ;;
+    24) spigot192 ;;
+    25) spigot19 ;;
+    26) spigot188 ;;
+    27) spigot183 ;;
+    28) spigot18 ;;
+    29) exit ;;
     *) echo -e "${ERROR} ${LIGHT_RED}The argument you entered is incorrect! ${COLOR_NULL}";;
     esac
   done
+}
+
+function spigot117 {
+  echo -e " "
+  cd ${spigotfolder}
+  wget https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar
+  compilerSpigot
+  starterFileSpigot
 }
 
 function spigot1165 {
   echo -e " "
   cd ${spigotfolder}
   wget https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar
+  compilerSpigot
   starterFileSpigot
 }
 
@@ -108,6 +118,7 @@ function spigot1164 {
   echo -e " "
   cd ${spigotfolder}
   wget https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar
+  compilerSpigot
   starterFileSpigot
 }
 
@@ -115,6 +126,7 @@ function spigot1163 {
   echo -e " "
   cd ${spigotfolder}
   wget https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar
+  compilerSpigot
   starterFileSpigot
 }
 
@@ -122,6 +134,7 @@ function spigot1162 {
   echo -e " "
   cd ${spigotfolder}
   wget https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar
+  compilerSpigot
   starterFileSpigot
 }
 
@@ -129,6 +142,7 @@ function spigot1161 {
   echo -e " "
   cd ${spigotfolder}
   wget https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar
+  compilerSpigot
   starterFileSpigot
 }
 
@@ -136,6 +150,7 @@ function spigot1152 {
   echo -e " "
   cd ${spigotfolder}
   wget https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar
+  compilerSpigot
   starterFileSpigot
 }
 
@@ -143,6 +158,7 @@ function spigot1151 {
   echo -e " "
   cd ${spigotfolder}
   wget https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar
+  compilerSpigot
   starterFileSpigot
 }
 
@@ -150,6 +166,7 @@ function spigot115 {
   echo -e " "
   cd ${spigotfolder}
   wget https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar
+  compilerSpigot
   starterFileSpigot
 }
 
@@ -157,6 +174,7 @@ function spigot1444 {
   echo -e " "
   cd ${spigotfolder}
   wget https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar
+  compilerSpigot
   starterFileSpigot
 }
 
@@ -164,6 +182,7 @@ function spigot1143 {
   echo -e " "
   cd ${spigotfolder}
   wget https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar
+  compilerSpigot
   starterFileSpigot
 }
 
@@ -171,6 +190,7 @@ function spigot1142 {
   echo -e " "
   cd ${spigotfolder}
   wget https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar
+  compilerSpigot
   starterFileSpigot
 }
 
@@ -178,6 +198,7 @@ function spigot1141 {
   echo -e " "
   cd ${spigotfolder}
   wget https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar
+  compilerSpigot
   starterFileSpigot
 }
 
@@ -185,6 +206,7 @@ function spigot114 {
   echo -e " "
   cd ${spigotfolder}
   wget https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar
+  compilerSpigot
   starterFileSpigot
 }
 
@@ -192,6 +214,7 @@ function spigot1132 {
   echo -e " "
   cd ${spigotfolder}
   wget https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar
+  compilerSpigot
   starterFileSpigot
 }
 
@@ -199,6 +222,7 @@ function spigot1131 {
   echo -e " "
   cd ${spigotfolder}
   wget https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar
+  compilerSpigot
   starterFileSpigot
 }
 
@@ -206,6 +230,7 @@ function spigot113 {
   echo -e " "
   cd ${spigotfolder}
   wget https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar
+  compilerSpigot
   starterFileSpigot
 }
 
@@ -213,6 +238,7 @@ function spigot1122 {
   echo -e " "
   cd ${spigotfolder}
   wget https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar
+  compilerSpigot
   starterFileSpigot
 }
 
@@ -220,6 +246,7 @@ function spigot1121 {
   echo -e " "
   cd ${spigotfolder}
   wget https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar
+  compilerSpigot
   starterFileSpigot
 }
 
@@ -227,6 +254,7 @@ function spigot112 {
   echo -e " "
   cd ${spigotfolder}
   wget https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar
+  compilerSpigot
   starterFileSpigot
 }
 
@@ -234,6 +262,7 @@ function spigot111 {
   echo -e " "
   cd ${spigotfolder}
   wget https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar
+  compilerSpigot
   starterFileSpigot
 }
 
@@ -241,6 +270,7 @@ function spigot1102 {
   echo -e " "
   cd ${spigotfolder}
   wget https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar
+  compilerSpigot
   starterFileSpigot
 }
 
@@ -248,6 +278,7 @@ function spigot194 {
   echo -e " "
   cd ${spigotfolder}
   wget https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar
+  compilerSpigot
   starterFileSpigot
 }
 
@@ -255,6 +286,7 @@ function spigot192 {
   echo -e " "
   cd ${spigotfolder}
   wget https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar
+  compilerSpigot
   starterFileSpigot
 }
 
@@ -262,6 +294,7 @@ function spigot19 {
   echo -e " "
   cd ${spigotfolder}
   wget https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar
+  compilerSpigot
   starterFileSpigot
 }
 
@@ -269,6 +302,7 @@ function spigot188 {
   echo -e " "
   cd ${spigotfolder}
   wget https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar
+  compilerSpigot
   starterFileSpigot
 }
 
@@ -276,6 +310,7 @@ function spigot183 {
   echo -e " "
   cd ${spigotfolder}
   wget https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar
+  compilerSpigot
   starterFileSpigot
 }
 
@@ -283,7 +318,18 @@ function spigot18 {
   echo -e " "
   cd ${spigotfolder}
   wget https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar
+  compilerSpigot
   starterFileSpigot
+}
+
+function compilerSpigot {
+  cd ${spigotfolder}
+  echo -e "${YELLOW} The build of the jar is in progress. . . (it will take a while)${COLOR_NULL}"
+  curl -O -J -L https://javadl.oracle.com/webapps/download/AutoDL?BundleId=244575_d7fc238d0cbf4b0dac67be84580cfb4b
+  mv 'AutoDL\?BundleId\=244575_d7fc238d0cbf4b0dac67be84580cfb4b' jre-8u291-linux.tar.gz
+  tar -zxvf jre-8u291-linux.tar.gz 
+  "${spigotfolder}/jre1.8.0_291/bin/java" -jar BuildTools.jar --rev ${SPIGOTVERSIONSEL} > /dev/null
+  rm -r -v !("spigot-${SPIGOTVERSIONSEL}.jar")
 }
 
 function starterFileSpigot {
@@ -295,7 +341,7 @@ function starterFileSpigot {
   (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
           https://github.com/samupro-dev'
   echo -e ' '
-  java -Xms128M -Xmx${spigotmem}M -jar BuildTools.jar --rev ${SPIGOTVERSIONSEL} nogui" >> starter.sh
+  java -Xms128M -Xmx${spigotmem}M -jar BuildTools.jar nogui" >> starter.sh
   chmod +x starter.sh
   successInstallSpigot
 }
