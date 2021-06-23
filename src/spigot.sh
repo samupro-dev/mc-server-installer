@@ -368,23 +368,31 @@ function paper {
 }
 
 function paperversion {
-  PAPERVERSION=("1.16.5" "1.15.2" "1.14.4" "1.13.2" "1.12.2" "1.11.2" "1.10.2" "1.9.4" "1.8.8" "Cancel")
+  PAPERVERSION=("1.17" "1.16.5" "1.15.2" "1.14.4" "1.13.2" "1.12.2" "1.11.2" "1.10.2" "1.9.4" "1.8.8" "Cancel")
   echo -e "${CYAN} Select the server version. ${COLOR_NULL}"
   select PAPERVERSIONSEL in "${PAPERVERSION[@]}"; do
     case "$REPLY" in
-    1) paper1165 ;;
-    2) paper1152 ;;
-    3) paper1144 ;;
-    4) paper1132 ;;
-    5) paper1122 ;;
-    6) paper1112 ;;
-    7) paper1102 ;;
-    8) paper194 ;;
-    9) paper188 ;;
-    10) exit ;;
+    1) paper117 ;;
+    2) paper1165 ;;
+    3) paper1152 ;;
+    4) paper1144 ;;
+    5) paper1132 ;;
+    6) paper1122 ;;
+    7) paper1112 ;;
+    8) paper1102 ;;
+    9) paper194 ;;
+    10) paper188 ;;
+    11) exit ;;
     *) echo -e "${ERROR} ${LIGHT_RED}The argument you entered is incorrect! ${COLOR_NULL}";;
     esac
   done
+}
+
+function paper117 {
+  echo -e " "
+  cd ${spigotfolder}
+  curl -o paper-1.17.jar https://papermc.io/api/v1/paper/1.17/latest/download
+  starterFilePaper
 }
 
 function paper1165 {
