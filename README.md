@@ -29,6 +29,9 @@ If you find any bugs or want to recommend some new features, write them [here](h
 - [ ] A better interface
 
 ## Changelogs
+#### v1.5
+- Waterfall fork updated to 1.17
+- Paper fork updated to 1.17
 #### v1.4
 - Vanilla jar updated to 1.17
 - Fixed problem with Vanilla jars
