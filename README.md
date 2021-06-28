@@ -29,6 +29,10 @@ If you find any bugs or want to recommend some new features, write them [here](h
 - [ ] A better interface
 
 ## Changelogs
+#### v1.6
+- Yatopia fork updated to 1.17
+- Tunity fork updated to 1.17
+- Purpur fork updated to 1.17
 #### v1.5
 - Waterfall fork updated to 1.17
 - Paper fork updated to 1.17
