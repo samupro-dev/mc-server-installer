@@ -494,18 +494,33 @@ function yatopia {
 }
 
 function yatopiaversion {
-  YATOPIAVERSION=("1.16.5" "1.16.4" "1.16.3" "1.16.2" "Cancel")
+  YATOPIAVERSION=("1.17" "1.16.5" "1.16.4" "1.16.3" "1.16.2" "Cancel")
   echo -e "${CYAN} Select the server version. ${COLOR_NULL}"
   select YATOPIAVERSIONSEL in "${YATOPIAVERSION[@]}"; do
     case "$REPLY" in
-    1) yatopia1165 ;;
-    1) yatopia1164 ;;
-    2) yatopia1163 ;;
-    3) yatopia1162 ;;
-    4) exit ;;
+    1) yatopia117 ;;
+    2) yatopia1165 ;;
+    3) yatopia1164 ;;
+    4) yatopia1163 ;;
+    5) yatopia1162 ;;
+    6) exit ;;
     *) echo -e "${ERROR} ${LIGHT_RED}The argument you entered is incorrect! ${COLOR_NULL}";;
     esac
   done
+}
+
+function yatopia117 {
+  echo -e " "
+  cd ${spigotfolder}
+  wget https://ci.codemc.io/job/YatopiaMC/job/Yatopia/job/ver%252F1.17/lastSuccessfulBuild/artifact/target/*zip*/target.zip
+  unzip target.zip
+  cd target/
+  mv yatopia-1.17-*.jar	..
+  cd ..
+  rm target.zip
+  rm -r target/
+  mv yatopia-1.17-*.jar yatopia-1.17.jar
+  starterFileYatopia
 }
 
 function yatopia1165 {
@@ -600,15 +615,24 @@ function tuinity {
 }
 
 function tuinityversion {
-  TUINITYVERSION=("1.16.5" "Cancel")
+  TUINITYVERSION=("1.17" "1.16.5" "Cancel")
   echo -e "${CYAN} Select the server version. ${COLOR_NULL}"
   select TUINITYVERSIONSEL in "${TUINITYVERSION[@]}"; do
     case "$REPLY" in
-    1) tuinity1165 ;;
-    4) exit ;;
+    1) tuinity117 ;;
+    2) tuinity1165 ;;
+    3) exit ;;
     *) echo -e "${ERROR} ${LIGHT_RED}The argument you entered is incorrect! ${COLOR_NULL}";;
     esac
   done
+}
+
+function tuinity117 {
+  echo -e " "
+  cd ${spigotfolder}
+  wget https://ci.codemc.io/job/Spottedleaf/job/Tuinity-1.17/lastSuccessfulBuild/artifact/tuinity-paperclip.jar
+  mv tuinity-paperclip.jar tuinity-1.17.jar
+  starterFileTunity
 }
 
 function tuinity1165 {
@@ -708,29 +732,30 @@ function purpur {
 }
 
 function purpurversion {
-  PURPURVERSION=("1.16.5" "1.16.4" "1.16.3" "1.16.2" "1.16.1" "1.15.2" "1.15.1" "1.15" "1.14.4" "1.14.3" "1.14.2" "1.14.1" "Cancel")
+  PURPURVERSION=("1.17" "1.16.5" "1.16.4" "1.16.3" "1.16.2" "1.16.1" "1.15.2" "1.15.1" "1.15" "1.14.4" "1.14.3" "1.14.2" "1.14.1" "Cancel")
   echo -e "${CYAN} Select the server version. ${COLOR_NULL}"
   select PURPURVERSIONSEL in "${PURPURVERSION[@]}"; do
     case "$REPLY" in
-    1) purpur1165 ;;
-    2) purpur1164 ;;
-    3) purpur1163 ;;
-    4) purpur1162 ;;
-    5) purpur1161 ;;
-    6) purpur1152 ;;
-    7) purpur1151 ;;
-    8) purpur115 ;;
-    9) purpur1144 ;;
-    10) purpur1143 ;;
-    11) purpur1142 ;;
-    12) purpur1141 ;;
-    13) exit ;;
+    1) purpur117 ;;
+    2) purpur1165 ;;
+    3) purpur1164 ;;
+    4) purpur1163 ;;
+    5) purpur1162 ;;
+    6) purpur1161 ;;
+    7) purpur1152 ;;
+    8) purpur1151 ;;
+    9) purpur115 ;;
+    10) purpur1144 ;;
+    11) purpur1143 ;;
+    12) purpur1142 ;;
+    13) purpur1141 ;;
+    14) exit ;;
     *) echo -e "${ERROR} ${LIGHT_RED}The argument you entered is incorrect! ${COLOR_NULL}";;
     esac
   done
 }
 
-function purpur1165 {
+function purpur117 {
   echo -e " "
   cd ${spigotfolder}
   wget https://ci.pl3x.net/job/Purpur/lastSuccessfulBuild/artifact/final/*zip*/final.zip
@@ -740,7 +765,14 @@ function purpur1165 {
   cd ..
   rm -r final/
   rm final.zip
-  mv purpurclip-*.jar	purpur-1.16.5.jar
+  mv purpurclip-*.jar	purpur-1.17.jar
+  starterFilePurpur
+}
+
+function purpur1165 {
+  echo -e " "
+  cd ${spigotfolder}
+  curl -o purpur-1.16.5.jar https://purpur.pl3x.net/api/v1/purpur/1.16.5/1171/download
   starterFilePurpur
 }
 
