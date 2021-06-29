@@ -30,6 +30,8 @@ If you find any bugs or want to recommend some new features, write them [here](h
 
 ## Changelogs
 #### v1.6
+- Fixed a word in the spigot installer
+#### v1.6
 - Yatopia fork updated to 1.17
 - Tunity fork updated to 1.17
 - Purpur fork updated to 1.17
