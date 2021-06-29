@@ -602,7 +602,7 @@ function successInstallYatopia {
   exit
 }
 
-## Tunity ##
+## Tuinity ##
 function tuinity {
   echo -e "\n"
   mkdir ${spigotfolder}
@@ -632,7 +632,7 @@ function tuinity117 {
   cd ${spigotfolder}
   wget https://ci.codemc.io/job/Spottedleaf/job/Tuinity-1.17/lastSuccessfulBuild/artifact/tuinity-paperclip.jar
   mv tuinity-paperclip.jar tuinity-1.17.jar
-  starterFileTunity
+  starterFileTuinity
 }
 
 function tuinity1165 {
@@ -640,10 +640,10 @@ function tuinity1165 {
   cd ${spigotfolder}
   wget https://ci.codemc.io/job/Spottedleaf/job/Tuinity/lastSuccessfulBuild/artifact/tuinity-paperclip.jar
   mv tuinity-paperclip.jar tuinity-1.16.5.jar
-  starterFileTunity
+  starterFileTuinity
 }
 
-function starterFileTunity {
+function starterFileTuinity {
   cd ${spigotfolder}
   echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
   echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
@@ -654,10 +654,10 @@ function starterFileTunity {
   echo -e ' '
   java -Xms128M -Xmx${spigotmem}M -jar tuinity-${YATOPIAVERSIONSEL}.jar nogui" >> starter.sh
   chmod +x starter.sh
-  successInstallTunity
+  successInstallTuinity
 }
 
-function successInstallTunity {
+function successInstallTuinity {
   echo -e " "
   echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
   echo -e "${LIGHT_GREEN} Your server was successfully installed!\n   ${CYAN}* Version: ${WHITE}Tuinity ${TUINITYVERSIONSEL}\n   ${CYAN}* Location: ${WHITE}${spigotfolder}\n   ${CYAN}* RAM: ${WHITE}${spigotmem}M\n   ${CYAN}* Port: ${WHITE}${spigotport} ${COLOR_NULL}"
