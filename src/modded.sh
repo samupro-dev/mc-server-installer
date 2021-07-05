@@ -29,14 +29,15 @@ function modded {
   echo -e -n "${YELLOW} Enter the port of the server. (ex. 25565): ${COLOR_NULL}"
   read moddedport
   echo -e "${CYAN} Server type selected: ${YELLOW}Modded ${COLOR_NULL}"
-  MODDEDTYPE=("Magma" "Mohist" "Arclight" "Cancel")
+  MODDEDTYPE=("Magma" "Mohist" "Arclight" "SpongeForge" "Cancel")
   echo -e "${CYAN} Select the type of fork that suits you best! ${COLOR_NULL}"
   select MODDEDTYPESEL in "${MODDEDTYPE[@]}"; do
     case "$REPLY" in
     1) magma ;;
     2) mohist ;;
     3) arclight ;;
-    4) exit ;;
+    4) spongeforge;;
+    5) exit ;;
     *) echo -e "${ERROR} ${LIGHT_RED}The argument you entered is incorrect! ${COLOR_NULL}";;
     esac
   done
@@ -200,8 +201,8 @@ function arclight1165 {
 function arclight1152 {
   echo -e " "
   cd ${moddedfolder}
-  wget https://github.com/IzzelAliz/Arclight/releases/download/1.15%2F1.0.17/arclight-forge-1.15-1.0.17.jar
-  mv arclight-forge-1.15-1.0.17.jar arclight-1.15.2.jar
+  wget https://github.com/IzzelAliz/Arclight/releases/download/1.15%2F1.0.19/arclight-forge-1.15-1.0.19.jar
+  mv arclight-forge-1.15-1.0.19.jar arclight-1.15.2.jar
   starterFileArclight
 }
 
@@ -231,6 +232,104 @@ function successInstallarclight {
   echo -e " "
   echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
   echo -e "${LIGHT_GREEN} Your server was successfully installed!\n   ${CYAN}* Version: ${WHITE}${MODDEDTYPESEL} ${ARCLIGHTVERSIONSEL}\n   ${CYAN}* Location: ${WHITE}${moddedfolder}\n   ${CYAN}* RAM: ${WHITE}${moddedmem}M\n   ${CYAN}* Port: ${WHITE}${moddedport} ${COLOR_NULL}"
+  echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
+  echo -e "${YELLOW}To start the server use the ${LIGHT_RED}./starter.sh ${YELLOW}command${COLOR_NULL}"
+  exit
+}
+
+## SpongeForge ##
+function spongeforge {
+  echo -e "\n"
+  mkdir ${moddedfolder}
+  cd ${moddedfolder}
+  echo -e "${YELLOW} I am setting up the server port. . . ${COLOR_NULL}"
+  echo "server-port=${moddedport}" > server.properties
+  spongeforgeversion
+}
+
+function spongeforgeversion {
+  SPONGEFORGEVERSION=("1.12.2" "1.12.1" "1.12" "1.11.2" "1.11" "1.10.2" "Cancel")
+  echo -e "${CYAN} Select the server version. ${COLOR_NULL}"
+  select SPONGEFORGEVERSIONSEL in "${SPONGEFORGEVERSION[@]}"; do
+    case "$REPLY" in
+    1) spongeforge1122 ;;
+    2) spongeforge1121 ;;
+    3) spongeforge112 ;;
+    4) spongeforge1112 ;;
+    5) spongeforge111 ;;
+    6) spongeforge1102 ;;
+    7) exit ;;
+    *) echo -e "${ERROR} ${LIGHT_RED}The argument you entered is incorrect! ${COLOR_NULL}";;
+    esac
+  done
+}
+
+function spongeforge1122 {
+  echo -e " "
+  cd ${moddedfolder}
+  wget https://repo.spongepowered.org/maven/org/spongepowered/spongeforge/1.12.2-2838-7.3.0/spongeforge-1.12.2-2838-7.3.0.jar
+  mv spongeforge-1.12.2-2838-7.3.0.jar spongeforge-1.12.2.jar
+  starterFileSpongeForge
+}
+
+function spongeforge1121 {
+  echo -e " "
+  cd ${moddedfolder}
+  wget https://repo.spongepowered.org/maven/org/spongepowered/spongeforge/1.12.1-2480-7.0.0-BETA-2643/spongeforge-1.12.1-2480-7.0.0-BETA-2643.jar
+  mv spongeforge-1.12.1-2480-7.0.0-BETA-2643.jar spongeforge-1.12.1.jar
+  starterFileSpongeForge
+}
+
+function spongeforge112 {
+  echo -e " "
+  cd ${moddedfolder}
+  wget https://repo.spongepowered.org/maven/org/spongepowered/spongeforge/1.12-2443-7.0.0-BETA-2498/spongeforge-1.12-2443-7.0.0-BETA-2498.jar
+  mv spongeforge-1.12-2443-7.0.0-BETA-2498.jar spongeforge-1.12.jar
+  starterFileSpongeForge
+}
+
+function spongeforge1112 {
+  echo -e " "
+  cd ${moddedfolder}
+  wget https://repo.spongepowered.org/maven/org/spongepowered/spongeforge/1.11.2-2476-6.1.0-BETA-2792/spongeforge-1.11.2-2476-6.1.0-BETA-2792.jar
+  mv spongeforge-1.11.2-2476-6.1.0-BETA-2792.jar spongeforge-1.11.2.jar
+  starterFileSpongeForge
+}
+
+function spongeforge111 {
+  echo -e " "
+  cd ${moddedfolder}
+  wget https://repo.spongepowered.org/maven/org/spongepowered/spongeforge/1.11-2195-6.0.0-BETA-2004/spongeforge-1.11-2195-6.0.0-BETA-2004.jar
+  mv spongeforge-1.11-2195-6.0.0-BETA-2004.jar spongeforge-1.11.jar
+  starterFileSpongeForge
+}
+
+function spongeforge1102 {
+  echo -e " "
+  cd ${moddedfolder}
+  wget https://repo.spongepowered.org/maven/org/spongepowered/spongeforge/1.10.2-2477-5.2.0-BETA-2793/spongeforge-1.10.2-2477-5.2.0-BETA-2793.jar
+  mv spongeforge-1.10.2-2477-5.2.0-BETA-2793.jar spongeforge-1.10.2.jar
+  starterFileSpongeForge
+}
+
+function starterFileSpongeForge {
+  cd ${moddedfolder}
+  echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
+  echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
+  / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
+  \__ \ /(__)\  )    (  )(__)(  )___/ )   / )(_)( 
+  (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
+          https://github.com/samupro-dev'
+  echo -e ' '
+  java -Xms128M -Xmx${moddedmem}M -jar spongeforge-${spongeforgeVERSIONSEL}.jar nogui" >> starter.sh
+  chmod +x starter.sh
+  successInstallSpongeForge
+}
+
+function successInstallSpongeForge {
+  echo -e " "
+  echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
+  echo -e "${LIGHT_GREEN} Your server was successfully installed!\n   ${CYAN}* Version: ${WHITE}${MODDEDTYPESEL} ${SPONGEFORGEVERSIONSEL}\n   ${CYAN}* Location: ${WHITE}${moddedfolder}\n   ${CYAN}* RAM: ${WHITE}${moddedmem}M\n   ${CYAN}* Port: ${WHITE}${moddedport} ${COLOR_NULL}"
   echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
   echo -e "${YELLOW}To start the server use the ${LIGHT_RED}./starter.sh ${YELLOW}command${COLOR_NULL}"
   exit
