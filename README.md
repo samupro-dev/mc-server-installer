@@ -29,6 +29,9 @@ If you find any bugs or want to recommend some new features, write them [here](h
 - [ ] A better interface
 
 ## Changelogs
+#### v1.8
+- Fixed problem with Arclight fork
+- Added the SpongeForge fork
 #### v1.7
 - Fixed a word in the spigot installer
 #### v1.6
