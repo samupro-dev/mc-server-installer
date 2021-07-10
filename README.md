@@ -29,6 +29,14 @@ If you find any bugs or want to recommend some new features, write them [here](h
 - [ ] A better interface
 
 ## Changelogs
+### v1.9
+- Vanilla jar updated to 1.17.1
+- Purpur fork updated to 1.17.1
+- Fixed link problem with Velocity fork
+- Tuinity fork updated to 1.17.1
+- Removed 1.17 from the Tuinity fork
+- Paper fork updated to 1.17.1
+- Spigot fork updated to 1.17.1
 #### v1.8
 - Fixed problem with Arclight fork
 - Added the SpongeForge fork
@@ -36,7 +44,7 @@ If you find any bugs or want to recommend some new features, write them [here](h
 - Fixed a word in the spigot installer
 #### v1.6
 - Yatopia fork updated to 1.17
-- Tunity fork updated to 1.17
+- Tuinity fork updated to 1.17
 - Purpur fork updated to 1.17
 #### v1.5
 - Waterfall fork updated to 1.17
