@@ -89,8 +89,8 @@ function velocity {
   mkdir ${bungeefolder}
   cd ${bungeefolder}
   echo -e "${CYAN} Downloading the jar file. . . ${COLOR_NULL}"
-  wget https://versions.velocitypowered.com/download/1.1.x-SNAPSHOT.jar
-  mv 1.1.x-SNAPSHOT.jar Velocity.jar
+  wget https://versions.velocitypowered.com/download/3.0.x-SNAPSHOT.jar
+  mv 3.0.x-SNAPSHOT.jar Velocity.jar
   starterFile
 }
 
