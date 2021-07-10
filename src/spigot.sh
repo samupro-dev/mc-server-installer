@@ -60,42 +60,51 @@ function spigott {
 }
 
 function spigottversion {
-  SPIGOTVERSION=("1.17" "1.16.5" "1.16.4" "1.16.3" "1.16.2" "1.16.1" "1.15.2" "1.15.1" "1.15" "1.14.4" "1.14.3" "1.14.2" "1.14.1" "1.14" "1.13.2" "1.13.1" "1.13" "1.12.2" "1.12.1" "1.12" "1.11" "1.10.2" "1.9.4" "1.9.2" "1.9" "1.8.8" "1.8.3" "1.8" "Cancel")
+  SPIGOTVERSION=("1.17.1" "1.17" "1.16.5" "1.16.4" "1.16.3" "1.16.2" "1.16.1" "1.15.2" "1.15.1" "1.15" "1.14.4" "1.14.3" "1.14.2" "1.14.1" "1.14" "1.13.2" "1.13.1" "1.13" "1.12.2" "1.12.1" "1.12" "1.11" "1.10.2" "1.9.4" "1.9.2" "1.9" "1.8.8" "1.8.3" "1.8" "Cancel")
   echo -e "${CYAN} Select the server version. ${COLOR_NULL}"
   select SPIGOTVERSIONSEL in "${SPIGOTVERSION[@]}"; do
     case "$REPLY" in
-    1) spigot117 ;;
-    2) spigot1165 ;;
-    3) spigot1164 ;;
-    4) spigot1163 ;;
-    5) spigot1162 ;;
-    6) spigot1161 ;;
-    7) spigot1152 ;;
-    8) spigot1151 ;;
-    9) spigot115 ;;
-    10) spigot1444 ;;
-    11) spigot1143 ;;
-    12) spigot1142 ;;
-    13) spigot1141 ;;
-    14) spigot114 ;;
-    15) spigot1132 ;;
-    16) spigot1131 ;;
-    17) spigot113 ;;
-    18) spigot1122 ;;
-    19) spigot1121 ;;
-    20) spigot112 ;;
-    21) spigot111 ;;
-    22) spigot1102 ;;
-    23) spigot194 ;;
-    24) spigot192 ;;
-    25) spigot19 ;;
-    26) spigot188 ;;
-    27) spigot183 ;;
-    28) spigot18 ;;
-    29) exit ;;
+    1) spigot1171 ;;
+    2) spigot117 ;;
+    3) spigot1165 ;;
+    4) spigot1164 ;;
+    5) spigot1163 ;;
+    6) spigot1162 ;;
+    7) spigot1161 ;;
+    8) spigot1152 ;;
+    9) spigot1151 ;;
+    10) spigot115 ;;
+    11) spigot1444 ;;
+    12) spigot1143 ;;
+    13) spigot1142 ;;
+    14) spigot1141 ;;
+    15) spigot114 ;;
+    16) spigot1132 ;;
+    17) spigot1131 ;;
+    18) spigot113 ;;
+    19) spigot1122 ;;
+    20) spigot1121 ;;
+    21) spigot112 ;;
+    22) spigot111 ;;
+    23) spigot1102 ;;
+    24) spigot194 ;;
+    25) spigot192 ;;
+    26) spigot19 ;;
+    27) spigot188 ;;
+    28) spigot183 ;;
+    29) spigot18 ;;
+    30) exit ;;
     *) echo -e "${ERROR} ${LIGHT_RED}The argument you entered is incorrect! ${COLOR_NULL}";;
     esac
   done
+}
+
+function spigot1171 {
+  echo -e " "
+  cd ${spigotfolder}
+  wget https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar
+  compilerSpigot
+  starterFileSpigot
 }
 
 function spigot117 {
@@ -368,24 +377,32 @@ function paper {
 }
 
 function paperversion {
-  PAPERVERSION=("1.17" "1.16.5" "1.15.2" "1.14.4" "1.13.2" "1.12.2" "1.11.2" "1.10.2" "1.9.4" "1.8.8" "Cancel")
+  PAPERVERSION=("1.17.1" "1.17" "1.16.5" "1.15.2" "1.14.4" "1.13.2" "1.12.2" "1.11.2" "1.10.2" "1.9.4" "1.8.8" "Cancel")
   echo -e "${CYAN} Select the server version. ${COLOR_NULL}"
   select PAPERVERSIONSEL in "${PAPERVERSION[@]}"; do
     case "$REPLY" in
-    1) paper117 ;;
-    2) paper1165 ;;
-    3) paper1152 ;;
-    4) paper1144 ;;
-    5) paper1132 ;;
-    6) paper1122 ;;
-    7) paper1112 ;;
-    8) paper1102 ;;
-    9) paper194 ;;
-    10) paper188 ;;
-    11) exit ;;
+    1) paper1171 ;;
+    2) paper117 ;;
+    3) paper1165 ;;
+    4) paper1152 ;;
+    5) paper1144 ;;
+    6) paper1132 ;;
+    7) paper1122 ;;
+    8) paper1112 ;;
+    9) paper1102 ;;
+    10) paper194 ;;
+    11) paper188 ;;
+    12) exit ;;
     *) echo -e "${ERROR} ${LIGHT_RED}The argument you entered is incorrect! ${COLOR_NULL}";;
     esac
   done
+}
+
+function paper1171 {
+  echo -e " "
+  cd ${spigotfolder}
+  curl -o paper-1.17.1.jar https://papermc.io/api/v1/paper/1.17.1/latest/download
+  starterFilePaper
 }
 
 function paper117 {
@@ -615,11 +632,11 @@ function tuinity {
 }
 
 function tuinityversion {
-  TUINITYVERSION=("1.17" "1.16.5" "Cancel")
+  TUINITYVERSION=("1.17.1" "1.16.5" "Cancel")
   echo -e "${CYAN} Select the server version. ${COLOR_NULL}"
   select TUINITYVERSIONSEL in "${TUINITYVERSION[@]}"; do
     case "$REPLY" in
-    1) tuinity117 ;;
+    1) tuinity1171 ;;
     2) tuinity1165 ;;
     3) exit ;;
     *) echo -e "${ERROR} ${LIGHT_RED}The argument you entered is incorrect! ${COLOR_NULL}";;
@@ -627,11 +644,11 @@ function tuinityversion {
   done
 }
 
-function tuinity117 {
+function tuinity1171 {
   echo -e " "
   cd ${spigotfolder}
   wget https://ci.codemc.io/job/Spottedleaf/job/Tuinity-1.17/lastSuccessfulBuild/artifact/tuinity-paperclip.jar
-  mv tuinity-paperclip.jar tuinity-1.17.jar
+  mv tuinity-paperclip.jar tuinity-1.17.1.jar
   starterFileTuinity
 }
 
@@ -732,30 +749,31 @@ function purpur {
 }
 
 function purpurversion {
-  PURPURVERSION=("1.17" "1.16.5" "1.16.4" "1.16.3" "1.16.2" "1.16.1" "1.15.2" "1.15.1" "1.15" "1.14.4" "1.14.3" "1.14.2" "1.14.1" "Cancel")
+  PURPURVERSION=("1.17.1" "1.17" "1.16.5" "1.16.4" "1.16.3" "1.16.2" "1.16.1" "1.15.2" "1.15.1" "1.15" "1.14.4" "1.14.3" "1.14.2" "1.14.1" "Cancel")
   echo -e "${CYAN} Select the server version. ${COLOR_NULL}"
   select PURPURVERSIONSEL in "${PURPURVERSION[@]}"; do
     case "$REPLY" in
-    1) purpur117 ;;
-    2) purpur1165 ;;
-    3) purpur1164 ;;
-    4) purpur1163 ;;
-    5) purpur1162 ;;
-    6) purpur1161 ;;
-    7) purpur1152 ;;
-    8) purpur1151 ;;
-    9) purpur115 ;;
-    10) purpur1144 ;;
-    11) purpur1143 ;;
-    12) purpur1142 ;;
-    13) purpur1141 ;;
-    14) exit ;;
+    1) purpur1171 ;;
+    2) purpur117 ;;
+    3) purpur1165 ;;
+    4) purpur1164 ;;
+    5) purpur1163 ;;
+    6) purpur1162 ;;
+    7) purpur1161 ;;
+    8) purpur1152 ;;
+    9) purpur1151 ;;
+    10) purpur115 ;;
+    11) purpur1144 ;;
+    12) purpur1143 ;;
+    13) purpur1142 ;;
+    14) purpur1141 ;;
+    15) exit ;;
     *) echo -e "${ERROR} ${LIGHT_RED}The argument you entered is incorrect! ${COLOR_NULL}";;
     esac
   done
 }
 
-function purpur117 {
+function purpur1171 {
   echo -e " "
   cd ${spigotfolder}
   wget https://ci.pl3x.net/job/Purpur/lastSuccessfulBuild/artifact/final/*zip*/final.zip
@@ -765,7 +783,14 @@ function purpur117 {
   cd ..
   rm -r final/
   rm final.zip
-  mv purpurclip-*.jar	purpur-1.17.jar
+  mv purpurclip-*.jar	purpur-1.17.1.jar
+  starterFilePurpur
+}
+
+function purpur117 {
+  echo -e " "
+  cd ${spigotfolder}
+  curl -o purpur-1.17.jar https://purpur.pl3x.net/api/v1/purpur/1.17/1255/download
   starterFilePurpur
 }
 
