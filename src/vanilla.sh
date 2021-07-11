@@ -87,12 +87,11 @@ function vanillaversion {
     37) vanilla186 ;;
     38) vanilla185 ;;
     39) vanilla184 ;;
-    40) vanilla184 ;;
-    41) vanilla183 ;;
-    42) vanilla182 ;;
-    43) vanilla181 ;;
-    44) vanilla1710 ;;
-    45) exit ;;
+    40) vanilla183 ;;
+    41) vanilla182 ;;
+    42) vanilla181 ;;
+    43) vanilla1710 ;;
+    44) exit ;;
     *) echo -e "${ERROR} ${LIGHT_RED}The argument you entered is incorrect! ${COLOR_NULL}";;
     esac
   done
