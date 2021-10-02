@@ -24,11 +24,17 @@ If you find any bugs or want to recommend some new features, write them [here](h
 ## To do
 - [ ] Italian translation
 - [x] Script optimization
-- [ ] More forks
+- [x] More forks
 - [x] Java installation if it is not installed
 - [ ] A better interface
 
 ## Changelogs
+### v2.0
+- Added version 1.16.5 of the Magma fork
+- Removed the Yatopia fork
+- Download links for the Purpur fork updated
+- Updated the download link of the FlamePaper fork
+- Added the Airplane fork
 ### v1.9
 - Vanilla jar updated to 1.17.1
 - Purpur fork updated to 1.17.1
