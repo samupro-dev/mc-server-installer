@@ -29,18 +29,18 @@ function spigot {
   echo -e -n "${YELLOW} Enter the port of the server. (ex. 25565): ${COLOR_NULL}"
   read spigotport
   echo -e "${CYAN} Server type selected: ${YELLOW}Spigot ${COLOR_NULL}"
-  SPIGOTTYPE=("Spigot" "Paper" "Yatopia" "Tuinity" "Purpur" "Glowstone" "SportPaper" "FlamePaper" "Cancel")
+  SPIGOTTYPE=("Spigot" "Paper" "Tuinity" "Purpur" "Glowstone" "SportPaper" "FlamePaper" "Airplane" "Cancel")
   echo -e "${CYAN} Select the type of fork that suits you best! ${COLOR_NULL}"
   select OPTION in "${SPIGOTTYPE[@]}"; do
     case "$REPLY" in
     1) spigott ;;
     2) paper ;;
-    3) yatopia ;;
-    4) tuinity ;;
-    5) purpur ;;
-    6) glowstone ;;
-    7) sportpaper ;;
-    8) flamepaper;;
+    3) tuinity ;;
+    4) purpur ;;
+    5) glowstone ;;
+    6) sportpaper ;;
+    7) flamepaper;;
+    8) airplane;;
     9) exit ;;
     *) echo -e "${ERROR} ${LIGHT_RED}The argument you entered is incorrect! ${COLOR_NULL}";;
     esac
@@ -498,127 +498,6 @@ function successInstallPaper {
   exit
 }
 
-## Yatopia ##
-function yatopia {
-  echo -e "\n"
-  mkdir ${spigotfolder}
-  cd ${spigotfolder}
-  echo -e "${YELLOW} I am setting up the server port. . . ${COLOR_NULL}"
-  echo "server-port=${spigotport}" > server.properties
-  echo -e "${YELLOW} The eula file has been created. ${COLOR_NULL}"
-  echo "eula=true" > eula.txt
-  yatopiaversion
-}
-
-function yatopiaversion {
-  YATOPIAVERSION=("1.17" "1.16.5" "1.16.4" "1.16.3" "1.16.2" "Cancel")
-  echo -e "${CYAN} Select the server version. ${COLOR_NULL}"
-  select YATOPIAVERSIONSEL in "${YATOPIAVERSION[@]}"; do
-    case "$REPLY" in
-    1) yatopia117 ;;
-    2) yatopia1165 ;;
-    3) yatopia1164 ;;
-    4) yatopia1163 ;;
-    5) yatopia1162 ;;
-    6) exit ;;
-    *) echo -e "${ERROR} ${LIGHT_RED}The argument you entered is incorrect! ${COLOR_NULL}";;
-    esac
-  done
-}
-
-function yatopia117 {
-  echo -e " "
-  cd ${spigotfolder}
-  wget https://ci.codemc.io/job/YatopiaMC/job/Yatopia/job/ver%252F1.17/lastSuccessfulBuild/artifact/target/*zip*/target.zip
-  unzip target.zip
-  cd target/
-  mv yatopia-1.17-*.jar	..
-  cd ..
-  rm target.zip
-  rm -r target/
-  mv yatopia-1.17-*.jar yatopia-1.17.jar
-  starterFileYatopia
-}
-
-function yatopia1165 {
-  echo -e " "
-  cd ${spigotfolder}
-  wget https://ci.codemc.io/job/YatopiaMC/job/Yatopia/job/ver%252F1.16.5/lastSuccessfulBuild/artifact/target/*zip*/target.zip
-  unzip target.zip
-  cd target/
-  mv yatopia-1.16.5-*.jar	..
-  cd ..
-  rm target.zip
-  rm -r target/
-  mv yatopia-1.16.5-*.jar yatopia-1.16.5.jar
-  starterFileYatopia
-}
-
-function yatopia1164 {
-  echo -e " "
-  cd ${spigotfolder}
-  wget https://ci.codemc.io/job/YatopiaMC/job/Yatopia/job/ver%252F1.16.4/lastSuccessfulBuild/artifact/target/*zip*/target.zip
-  unzip target.zip
-  cd target/
-  mv yatopia-1.16.4-*.jar	..
-  cd ..
-  rm target.zip
-  rm -r target/
-  mv yatopia-1.16.4-*.jar yatopia-1.16.4.jar
-  starterFileYatopia
-}
-
-function yatopia1163 {
-  echo -e " "
-  cd ${spigotfolder}
-  wget https://ci.codemc.io/job/YatopiaMC/job/Yatopia/job/ver%252F1.16.3/lastSuccessfulBuild/artifact/target/*zip*/target.zip
-  unzip target.zip
-  cd target/
-  mv yatopia-1.16.3-*.jar	..
-  cd ..
-  rm target.zip
-  rm -r target/
-  mv yatopia-1.16.3-*.jar yatopia-1.16.3.jar
-  starterFileYatopia
-}
-
-function yatopia1162 {
-  echo -e " "
-  cd ${spigotfolder}
-  wget https://ci.codemc.io/job/YatopiaMC/job/Yatopia/job/ver%252F1.16.2/lastSuccessfulBuild/artifact/target/*zip*/target.zip
-  unzip target.zip
-  cd target/
-  mv yatopia-1.16.2-*.jar	..
-  cd ..
-  rm target.zip
-  rm -r target/
-  mv yatopia-1.16.2-*.jar yatopia-1.16.2.jar
-  starterFileYatopia
-}
-
-function starterFileYatopia {
-  cd ${spigotfolder}
-  echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
-  echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
-  / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
-  \__ \ /(__)\  )    (  )(__)(  )___/ )   / )(_)( 
-  (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
-          https://github.com/samupro-dev'
-  echo -e ' '
-  java -Xms128M -Xmx${spigotmem}M -jar yatopia-${YATOPIAVERSIONSEL}.jar nogui" >> starter.sh
-  chmod +x starter.sh
-  successInstallYatopia
-}
-
-function successInstallYatopia {
-  echo -e " "
-  echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
-  echo -e "${LIGHT_GREEN} Your server was successfully installed!\n   ${CYAN}* Version: ${WHITE}Yatopia ${YATOPIAVERSIONSEL}\n   ${CYAN}* Location: ${WHITE}${spigotfolder}\n   ${CYAN}* RAM: ${WHITE}${spigotmem}M\n   ${CYAN}* Port: ${WHITE}${spigotport} ${COLOR_NULL}"
-  echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
-  echo -e "${YELLOW}To start the server use the ${LIGHT_RED}./starter.sh ${YELLOW}command${COLOR_NULL}"
-  exit
-}
-
 ## Tuinity ##
 function tuinity {
   echo -e "\n"
@@ -708,8 +587,8 @@ function glowstoneversion {
 function glowstone1122 {
   echo -e " "
   cd ${glowstonefolder}
-  wget https://repo.glowstone.net/repository/releases/net/glowstone/glowstone/2020.12.0/glowstone-2020.12.0.jar
-  mv glowstone-2020.12.0.jar glowstone-1.12.2.jar
+  wget https://repo.glowstone.net/repository/releases/net/glowstone/glowstone/2021.8.0/glowstone-2021.8.0.jar
+  mv glowstone-2021.8.0.jar glowstone-1.12.2.jar
   starterFileGlowstone
 }
 
@@ -776,105 +655,98 @@ function purpurversion {
 function purpur1171 {
   echo -e " "
   cd ${spigotfolder}
-  wget https://ci.pl3x.net/job/Purpur/lastSuccessfulBuild/artifact/final/*zip*/final.zip
-  unzip final.zip
-  cd final/
-  mv purpurclip-*.jar ..
-  cd ..
-  rm -r final/
-  rm final.zip
-  mv purpurclip-*.jar	purpur-1.17.1.jar
+  curl -o purpur-1.17.1.jar https://api.pl3x.net/v2/purpur/1.17.1/latest/download
   starterFilePurpur
 }
 
 function purpur117 {
   echo -e " "
   cd ${spigotfolder}
-  curl -o purpur-1.17.jar https://purpur.pl3x.net/api/v1/purpur/1.17/1255/download
+  curl -o purpur-1.17.jar https://api.pl3x.net/v2/purpur/1.17/latest/download
   starterFilePurpur
 }
 
 function purpur1165 {
   echo -e " "
   cd ${spigotfolder}
-  curl -o purpur-1.16.5.jar https://purpur.pl3x.net/api/v1/purpur/1.16.5/1171/download
+  curl -o purpur-1.16.5.jar https://api.pl3x.net/v2/purpur/1.16.5/latest/download
   starterFilePurpur
 }
 
 function purpur1164 {
   echo -e " "
   cd ${spigotfolder}
-  curl -o purpur-1.16.4.jar https://purpur.pl3x.net/api/v1/purpur/1.16.4/956/download
+  curl -o purpur-1.16.4.jar https://api.pl3x.net/v2/purpur/1.16.4/latest/download
   starterFilePurpur
 }
 
 function purpur1163 {
   echo -e " "
   cd ${spigotfolder}
-  curl -o purpur-1.16.3.jar https://purpur.pl3x.net/api/v1/purpur/1.16.3/808/download
+  curl -o purpur-1.16.3.jar https://api.pl3x.net/v2/purpur/1.16.3/latest/download
   starterFilePurpur
 }
 
 function purpur1162 {
   echo -e " "
   cd ${spigotfolder}
-  curl -o purpur-1.16.2.jar https://purpur.pl3x.net/api/v1/purpur/1.16.2/750/download
+  curl -o purpur-1.16.2.jar https://api.pl3x.net/v2/purpur/1.16.2/latest/download
   starterFilePurpur
 }
 
 function purpur1161 {
   echo -e " "
   cd ${spigotfolder}
-  curl -o purpur-1.16.1.jar https://purpur.pl3x.net/api/v1/purpur/1.16.1/710/download
+  curl -o purpur-1.16.1.jar https://api.pl3x.net/v2/purpur/1.16.1/latest/download
   starterFilePurpur
 }
 
 function purpur1152 {
   echo -e " "
   cd ${spigotfolder}
-  curl -o purpur-1.15.2.jar https://purpur.pl3x.net/api/v1/purpur/1.15.2/606/download
+  curl -o purpur-1.15.2.jar https://api.pl3x.net/v2/purpur/1.15.2/latest/download
   starterFilePurpur
 }
 
 function purpur1151 {
   echo -e " "
   cd ${spigotfolder}
-  curl -o purpur-1.15.1.jar https://purpur.pl3x.net/api/v1/purpur/1.15.1/397/download
+  curl -o purpur-1.15.1.jar https://api.pl3x.net/v2/purpur/1.15.1/latest/download
   starterFilePurpur
 }
 
 function purpur115 {
   echo -e " "
   cd ${spigotfolder}
-  curl -o purpur-1.15.jar https://purpur.pl3x.net/api/v1/purpur/1.15/346/download
+  curl -o purpur-1.15.jar https://api.pl3x.net/v2/purpur/1.15/latest/download
   starterFilePurpur
 }
 
 function purpur1144 {
   echo -e " "
   cd ${spigotfolder}
-  curl -o purpur-1.14.4.jar https://purpur.pl3x.net/api/v1/purpur/1.14.4/337/download
+  curl -o purpur-1.14.4.jar https://api.pl3x.net/v2/purpur/1.14.4/latest/download
   starterFilePurpur
 }
 
 function purpur1143 {
   echo -e " "
   cd ${spigotfolder}
-  curl -o purpur-1.14.3.jar https://purpur.pl3x.net/api/v1/purpur/1.14.3/202/download
+  curl -o purpur-1.14.3.jar https://api.pl3x.net/v2/purpur/1.14.3/latest/download
   starterFilePurpur
 }
 
 function purpur1142 {
   echo -e " "
   cd ${spigotfolder}
-  curl -o purpur-1.14.2.jar https://purpur.pl3x.net/api/v1/purpur/1.14.2/126/download
+  curl -o purpur-1.14.2.jar https://api.pl3x.net/v2/purpur/1.14.2/latest/download
   starterFilePurpur
 }
 
 function purpur1141 {
   echo -e " "
   cd ${spigotfolder}
-  curl -o purpur-1.14.1.jar https://purpur.pl3x.net/api/v1/purpur/1.14.1/63/download
+  curl -o purpur-1.14.1.jar https://api.pl3x.net/v2/purpur/1.14.1/latest/download
   starterFilePurpur
 }
 
@@ -983,8 +855,8 @@ function flamepaperversion {
 function flamepaper188 {
   echo -e " "
   cd ${spigotfolder}
-  wget https://github.com/2lstudios-mc/FlamePaper/releases/latest/download/abe8d00/FlamePaper.jar
-  mv FlamePaper.jar FlamePaper-1.8.8.jar
+  wget https://github.com/2lstudios-mc/FlamePaper/releases/latest/download/paperspigot-1.8.8-R0.1-SNAPSHOT.jar
+  mv paperspigot-1.8.8-R0.1-SNAPSHOT.jar FlamePaper-1.8.8.jar
   starterFileFlamePaper
 }
 
@@ -1006,6 +878,70 @@ function successInstallFlamePaper {
   echo -e " "
   echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
   echo -e "${LIGHT_GREEN} Your server was successfully installed!\n   ${CYAN}* Version: ${WHITE}FlamePaper ${FLAMEPAPERVERSIONSEL}\n   ${CYAN}* Location: ${WHITE}${spigotfolder}\n   ${CYAN}* RAM: ${WHITE}${spigotmem}M\n   ${CYAN}* Port: ${WHITE}${spigotport} ${COLOR_NULL}"
+  echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
+  echo -e "${YELLOW}To start the server use the ${LIGHT_RED}./starter.sh ${YELLOW}command${COLOR_NULL}"
+  exit
+}
+
+## Airplane ##
+function airplane {
+  echo -e "\n"
+  mkdir ${spigotfolder}
+  cd ${spigotfolder}
+  echo -e "${YELLOW} I am setting up the server port. . . ${COLOR_NULL}"
+  echo "server-port=${spigotport}" > server.properties
+  echo -e "${YELLOW} The eula file has been created. ${COLOR_NULL}"
+  echo "eula=true" > eula.txt
+  airplaneversion
+}
+
+function airplaneversion {
+  AIRPLANEVERSION=("1.17.1" "1.16.5" "Cancel")
+  echo -e "${CYAN} Select the server version. ${COLOR_NULL}"
+  select AIRPLANEVERSIONSEL in "${AIRPLANEVERSION[@]}"; do
+    case "$REPLY" in
+    1) airplane1171 ;;
+    2) airplane1165 ;;
+    3) exit ;;
+    *) echo -e "${ERROR} ${LIGHT_RED}The argument you entered is incorrect! ${COLOR_NULL}";;
+    esac
+  done
+}
+
+function airplane1171 {
+  echo -e " "
+  cd ${spigotfolder}
+  wget https://ci.tivy.ca/job/Airplane-1.17/lastSuccessfulBuild/artifact/launcher-airplane.jar
+  mv launcher-airplane.jar Airplane-1.17.1.jar
+  starterFileAirplane
+}
+
+function airplane1165 {
+  echo -e " "
+  cd ${spigotfolder}
+  wget https://ci.tivy.ca/job/Airplane-1.16/lastSuccessfulBuild/artifact/launcher-airplane.jar
+  mv launcher-airplane.jar Airplane-1.16.5.jar
+  starterFileAirplane
+}
+
+function starterFileAirplane {
+  cd ${spigotfolder}
+  echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
+  echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
+  / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
+  \__ \ /(__)\  )    (  )(__)(  )___/ )   / )(_)( 
+  (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
+          https://github.com/samupro-dev'
+  echo -e ' '
+  java -Xms128M -Xmx${spigotmem}M -jar Airplane-${AIRPLANEVERSIONSEL}.jar nogui" >> starter.sh
+  chmod +x starter.sh
+  successInstallAirplane
+}
+
+function successInstallAirplane {
+  echo -e " "
+  echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
+  echo -e "${LIGHT_GREEN} Your server was successfully installed!\n   ${CYAN}* Version: ${WHITE}Airplane ${AIRPLANEVERSIONSEL}\n   ${CYAN}* Location: ${WHITE}${spigotfolder}\n   ${CYAN}* RAM: ${WHITE}${spigotmem}M\n   ${CYAN}* Port: ${WHITE}${spigotport} ${COLOR_NULL}"
   echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
   echo -e "${YELLOW}To start the server use the ${LIGHT_RED}./starter.sh ${YELLOW}command${COLOR_NULL}"
   exit
