@@ -54,15 +54,23 @@ function magma {
 }
 
 function magmaversion {
-  MAGMAVERSION=("1.12.2" "Cancel")
+  MAGMAVERSION=("1.16.5" "1.12.2" "Cancel")
   echo -e "${CYAN} Select the server version. ${COLOR_NULL}"
   select MAGMAVERSIONSEL in "${MAGMAVERSION[@]}"; do
     case "$REPLY" in
+    1) magma1165 ;;
     1) magma1122 ;;
     2) exit ;;
     *) echo -e "${ERROR} ${LIGHT_RED}The argument you entered is incorrect! ${COLOR_NULL}";;
     esac
   done
+}
+
+function magma1165{
+  echo -e " "
+  cd ${moddedfolder}
+  curl -o magma-1.16.5.jar https://api.magmafoundation.org/api/resources/magma/1.16.5/dev/latest/download
+  starterFileMagma
 }
 
 function magma1122 {
