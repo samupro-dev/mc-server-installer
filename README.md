@@ -29,11 +29,13 @@ If you find any bugs or want to recommend some new features, write them [here](h
 - [ ] A better interface
 
 ## Changelogs
+### v2.1
+- Updated from Java11 to Java16
 ### v2.0
 - Added version 1.16.5 of the Magma fork
 - Removed the Yatopia fork
 - Download links for the Purpur fork updated
-- Updated the download link of the FlamePaper fork
+- Download link for the FlamePaper fork updated
 - Added the Airplane fork
 ### v1.9
 - Vanilla jar updated to 1.17.1
