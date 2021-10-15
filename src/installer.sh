@@ -82,7 +82,7 @@ if ! [ -x "$(command -v java)" ]; then
     read installjava
     case "$installjava" in
       n|N|no|No|NO) break;;
-      y|Y|yes|Yes|YES) apt-get install -y software-properties-common && apt-get install -y apt-transport-https ca-certificates dirmngr gnupg && wget -qO - https://adoptopenjdk.jfrog.io/adoptopenjdk/api/gpg/key/public | apt-key add - && add-apt-repository --yes https://adoptopenjdk.jfrog.io/adoptopenjdk/deb/ && apt-get -y update && apt-get install -y adoptopenjdk-11-hotspot || yum install -y java-11-openjdk
+      y|Y|yes|Yes|YES) apt-get install -y software-properties-common && apt-get install -y apt-transport-https ca-certificates dirmngr gnupg && wget -qO - https://adoptopenjdk.jfrog.io/adoptopenjdk/api/gpg/key/public | apt-key add - && add-apt-repository --yes https://adoptopenjdk.jfrog.io/adoptopenjdk/deb/ && apt-get -y update && apt-get install -y adoptopenjdk-16-hotspot || yum install -y java-16-openjdk
       break;;
       *) echo -e "${ERROR} ${LIGHT_RED}The argument you entered is incorrect! ${COLOR_NULL}";;
     esac
