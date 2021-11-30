@@ -33,7 +33,7 @@ echo -e "\n"
 echo -e " ${YELLOW} Control of administration permissions. . . ${COLOR_NULL}"
 sleep 2
 if [ "$(id -u)" != "0" ] ; then
-	echo " ${ERROR} ${LIGHT_RED}This script requires root permissions. Please run this as root! ${COLOR_NULL}"
+	echo -e " ${ERROR} ${LIGHT_RED}This script requires root permissions. Please run this as root! ${COLOR_NULL}"
 	exit 2
 fi
 echo -e " ${DONE} ${LIGHT_GREEN}Congratulations, this script will be run as root. ${COLOR_NULL}"
