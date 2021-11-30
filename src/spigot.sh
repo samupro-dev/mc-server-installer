@@ -50,10 +50,10 @@ function spigot {
 ## Spigot ##
 function spigott {
   echo -e "\n"
-  mkdir ${spigotfolder}
-  cd ${spigotfolder}
+  mkdir ${spigotfolder:-/root/spigot}
+  cd ${spigotfolder:-/root/spigot}
   echo -e "${YELLOW} I am setting up the server port. . . ${COLOR_NULL}"
-  echo "server-port=${spigotport}" > server.properties
+  echo "server-port=${spigotport:-25565}" > server.properties
   echo -e "${YELLOW} The eula file has been created. ${COLOR_NULL}"
   echo "eula=true" > eula.txt
   spigottversion
@@ -101,7 +101,7 @@ function spigottversion {
 
 function spigot1171 {
   echo -e " "
-  cd ${spigotfolder}
+  cd ${spigotfolder:-/root/spigot}
   wget https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar
   compilerSpigot
   starterFileSpigot
@@ -109,7 +109,7 @@ function spigot1171 {
 
 function spigot117 {
   echo -e " "
-  cd ${spigotfolder}
+  cd ${spigotfolder:-/root/spigot}
   wget https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar
   compilerSpigot
   starterFileSpigot
@@ -117,7 +117,7 @@ function spigot117 {
 
 function spigot1165 {
   echo -e " "
-  cd ${spigotfolder}
+  cd ${spigotfolder:-/root/spigot}
   wget https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar
   compilerSpigot
   starterFileSpigot
@@ -125,7 +125,7 @@ function spigot1165 {
 
 function spigot1164 {
   echo -e " "
-  cd ${spigotfolder}
+  cd ${spigotfolder:-/root/spigot}
   wget https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar
   compilerSpigot
   starterFileSpigot
@@ -133,7 +133,7 @@ function spigot1164 {
 
 function spigot1163 {
   echo -e " "
-  cd ${spigotfolder}
+  cd ${spigotfolder:-/root/spigot}
   wget https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar
   compilerSpigot
   starterFileSpigot
@@ -141,7 +141,7 @@ function spigot1163 {
 
 function spigot1162 {
   echo -e " "
-  cd ${spigotfolder}
+  cd ${spigotfolder:-/root/spigot}
   wget https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar
   compilerSpigot
   starterFileSpigot
@@ -149,7 +149,7 @@ function spigot1162 {
 
 function spigot1161 {
   echo -e " "
-  cd ${spigotfolder}
+  cd ${spigotfolder:-/root/spigot}
   wget https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar
   compilerSpigot
   starterFileSpigot
@@ -157,7 +157,7 @@ function spigot1161 {
 
 function spigot1152 {
   echo -e " "
-  cd ${spigotfolder}
+  cd ${spigotfolder:-/root/spigot}
   wget https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar
   compilerSpigot
   starterFileSpigot
@@ -165,7 +165,7 @@ function spigot1152 {
 
 function spigot1151 {
   echo -e " "
-  cd ${spigotfolder}
+  cd ${spigotfolder:-/root/spigot}
   wget https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar
   compilerSpigot
   starterFileSpigot
@@ -173,7 +173,7 @@ function spigot1151 {
 
 function spigot115 {
   echo -e " "
-  cd ${spigotfolder}
+  cd ${spigotfolder:-/root/spigot}
   wget https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar
   compilerSpigot
   starterFileSpigot
@@ -181,7 +181,7 @@ function spigot115 {
 
 function spigot1444 {
   echo -e " "
-  cd ${spigotfolder}
+  cd ${spigotfolder:-/root/spigot}
   wget https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar
   compilerSpigot
   starterFileSpigot
@@ -189,7 +189,7 @@ function spigot1444 {
 
 function spigot1143 {
   echo -e " "
-  cd ${spigotfolder}
+  cd ${spigotfolder:-/root/spigot}
   wget https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar
   compilerSpigot
   starterFileSpigot
@@ -197,7 +197,7 @@ function spigot1143 {
 
 function spigot1142 {
   echo -e " "
-  cd ${spigotfolder}
+  cd ${spigotfolder:-/root/spigot}
   wget https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar
   compilerSpigot
   starterFileSpigot
@@ -205,7 +205,7 @@ function spigot1142 {
 
 function spigot1141 {
   echo -e " "
-  cd ${spigotfolder}
+  cd ${spigotfolder:-/root/spigot}
   wget https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar
   compilerSpigot
   starterFileSpigot
@@ -213,7 +213,7 @@ function spigot1141 {
 
 function spigot114 {
   echo -e " "
-  cd ${spigotfolder}
+  cd ${spigotfolder:-/root/spigot}
   wget https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar
   compilerSpigot
   starterFileSpigot
@@ -221,7 +221,7 @@ function spigot114 {
 
 function spigot1132 {
   echo -e " "
-  cd ${spigotfolder}
+  cd ${spigotfolder:-/root/spigot}
   wget https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar
   compilerSpigot
   starterFileSpigot
@@ -229,7 +229,7 @@ function spigot1132 {
 
 function spigot1131 {
   echo -e " "
-  cd ${spigotfolder}
+  cd ${spigotfolder:-/root/spigot}
   wget https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar
   compilerSpigot
   starterFileSpigot
@@ -237,7 +237,7 @@ function spigot1131 {
 
 function spigot113 {
   echo -e " "
-  cd ${spigotfolder}
+  cd ${spigotfolder:-/root/spigot}
   wget https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar
   compilerSpigot
   starterFileSpigot
@@ -245,7 +245,7 @@ function spigot113 {
 
 function spigot1122 {
   echo -e " "
-  cd ${spigotfolder}
+  cd ${spigotfolder:-/root/spigot}
   wget https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar
   compilerSpigot
   starterFileSpigot
@@ -253,7 +253,7 @@ function spigot1122 {
 
 function spigot1121 {
   echo -e " "
-  cd ${spigotfolder}
+  cd ${spigotfolder:-/root/spigot}
   wget https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar
   compilerSpigot
   starterFileSpigot
@@ -261,7 +261,7 @@ function spigot1121 {
 
 function spigot112 {
   echo -e " "
-  cd ${spigotfolder}
+  cd ${spigotfolder:-/root/spigot}
   wget https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar
   compilerSpigot
   starterFileSpigot
@@ -269,7 +269,7 @@ function spigot112 {
 
 function spigot111 {
   echo -e " "
-  cd ${spigotfolder}
+  cd ${spigotfolder:-/root/spigot}
   wget https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar
   compilerSpigot
   starterFileSpigot
@@ -277,7 +277,7 @@ function spigot111 {
 
 function spigot1102 {
   echo -e " "
-  cd ${spigotfolder}
+  cd ${spigotfolder:-/root/spigot}
   wget https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar
   compilerSpigot
   starterFileSpigot
@@ -285,7 +285,7 @@ function spigot1102 {
 
 function spigot194 {
   echo -e " "
-  cd ${spigotfolder}
+  cd ${spigotfolder:-/root/spigot}
   wget https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar
   compilerSpigot
   starterFileSpigot
@@ -293,7 +293,7 @@ function spigot194 {
 
 function spigot192 {
   echo -e " "
-  cd ${spigotfolder}
+  cd ${spigotfolder:-/root/spigot}
   wget https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar
   compilerSpigot
   starterFileSpigot
@@ -301,7 +301,7 @@ function spigot192 {
 
 function spigot19 {
   echo -e " "
-  cd ${spigotfolder}
+  cd ${spigotfolder:-/root/spigot}
   wget https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar
   compilerSpigot
   starterFileSpigot
@@ -309,7 +309,7 @@ function spigot19 {
 
 function spigot188 {
   echo -e " "
-  cd ${spigotfolder}
+  cd ${spigotfolder:-/root/spigot}
   wget https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar
   compilerSpigot
   starterFileSpigot
@@ -317,7 +317,7 @@ function spigot188 {
 
 function spigot183 {
   echo -e " "
-  cd ${spigotfolder}
+  cd ${spigotfolder:-/root/spigot}
   wget https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar
   compilerSpigot
   starterFileSpigot
@@ -325,24 +325,24 @@ function spigot183 {
 
 function spigot18 {
   echo -e " "
-  cd ${spigotfolder}
+  cd ${spigotfolder:-/root/spigot}
   wget https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar
   compilerSpigot
   starterFileSpigot
 }
 
 function compilerSpigot {
-  cd ${spigotfolder}
+  cd ${spigotfolder:-/root/spigot}
   echo -e "${YELLOW} The build of the jar is in progress. . . (it will take a while)${COLOR_NULL}"
   curl -O -J -L https://javadl.oracle.com/webapps/download/AutoDL?BundleId=244575_d7fc238d0cbf4b0dac67be84580cfb4b
   mv 'AutoDL\?BundleId\=244575_d7fc238d0cbf4b0dac67be84580cfb4b' jre-8u291-linux.tar.gz
   tar -zxvf jre-8u291-linux.tar.gz 
-  "${spigotfolder}/jre1.8.0_291/bin/java" -jar BuildTools.jar --rev ${SPIGOTVERSIONSEL} > /dev/null
+  "${spigotfolder:-/root/spigot}/jre1.8.0_291/bin/java" -jar BuildTools.jar --rev ${SPIGOTVERSIONSEL} > /dev/null
   rm -r -v !("spigot-${SPIGOTVERSIONSEL}.jar")
 }
 
 function starterFileSpigot {
-  cd ${spigotfolder}
+  cd ${spigotfolder:-/root/spigot}
   echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
   echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
   / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
@@ -350,7 +350,7 @@ function starterFileSpigot {
   (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
           https://github.com/samupro-dev'
   echo -e ' '
-  java -Xms128M -Xmx${spigotmem}M -jar spigot-${SPIGOTVERSIONSEL}.jar nogui" >> starter.sh
+  java -Xms128M -Xmx${spigotmem:-512}M -jar spigot-${SPIGOTVERSIONSEL}.jar nogui" >> starter.sh
   chmod +x starter.sh
   successInstallSpigot
 }
@@ -358,7 +358,7 @@ function starterFileSpigot {
 function successInstallSpigot {
   echo -e " "
   echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
-  echo -e "${LIGHT_GREEN} Your server was successfully installed!\n   ${CYAN}* Version: ${WHITE}Spigot ${SPIGOTVERSIONSEL}\n   ${CYAN}* Location: ${WHITE}${spigotfolder}\n   ${CYAN}* RAM: ${WHITE}${spigotmem}M\n   ${CYAN}* Port: ${WHITE}${spigotport} ${COLOR_NULL}"
+  echo -e "${LIGHT_GREEN} Your server was successfully installed!\n   ${CYAN}* Version: ${WHITE}Spigot ${SPIGOTVERSIONSEL}\n   ${CYAN}* Location: ${WHITE}${spigotfolder:-/root/spigot}\n   ${CYAN}* RAM: ${WHITE}${spigotmem:-512}M\n   ${CYAN}* Port: ${WHITE}${spigotport:-25565} ${COLOR_NULL}"
   echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
   echo -e "${YELLOW}To start the server use the ${LIGHT_RED}./starter.sh ${YELLOW}command${COLOR_NULL}"
   exit
@@ -367,10 +367,10 @@ function successInstallSpigot {
 ## Paper ##
 function paper {
   echo -e "\n"
-  mkdir ${spigotfolder}
-  cd ${spigotfolder}
+  mkdir ${spigotfolder:-/root/spigot}
+  cd ${spigotfolder:-/root/spigot}
   echo -e "${YELLOW} I am setting up the server port. . . ${COLOR_NULL}"
-  echo "server-port=${spigotport}" > server.properties
+  echo "server-port=${spigotport:-25565}" > server.properties
   echo -e "${YELLOW} The eula file has been created. ${COLOR_NULL}"
   echo "eula=true" > eula.txt
   paperversion
@@ -400,83 +400,83 @@ function paperversion {
 
 function paper1171 {
   echo -e " "
-  cd ${spigotfolder}
+  cd ${spigotfolder:-/root/spigot}
   curl -o paper-1.17.1.jar https://papermc.io/api/v1/paper/1.17.1/latest/download
   starterFilePaper
 }
 
 function paper117 {
   echo -e " "
-  cd ${spigotfolder}
+  cd ${spigotfolder:-/root/spigot}
   curl -o paper-1.17.jar https://papermc.io/api/v1/paper/1.17/latest/download
   starterFilePaper
 }
 
 function paper1165 {
   echo -e " "
-  cd ${spigotfolder}
+  cd ${spigotfolder:-/root/spigot}
   curl -o paper-1.16.5.jar https://papermc.io/api/v1/paper/1.16.5/latest/download
   starterFilePaper
 }
 
 function paper1152 {
   echo -e " "
-  cd ${spigotfolder}
+  cd ${spigotfolder:-/root/spigot}
   curl -o paper-1.15.2.jar https://papermc.io/api/v1/paper/1.15.2/latest/download
   starterFilePaper
 }
 
 function paper1144 {
   echo -e " "
-  cd ${spigotfolder}
+  cd ${spigotfolder:-/root/spigot}
   curl -o paper-1.14.4.jar https://papermc.io/api/v1/paper/1.14.4/latest/download
   starterFilePaper
 }
 
 function paper1132 {
   echo -e " "
-  cd ${spigotfolder}
+  cd ${spigotfolder:-/root/spigot}
   curl -o paper-1.13.2.jar https://papermc.io/api/v1/paper/1.13.2/latest/download
   starterFilePaper
 }
 
 function paper1122 {
   echo -e " "
-  cd ${spigotfolder}
+  cd ${spigotfolder:-/root/spigot}
   curl -o paper-1.12.2.jar https://papermc.io/api/v1/paper/1.12.2/latest/download
   starterFilePaper
 }
 
 function paper1112 {
   echo -e " "
-  cd ${spigotfolder}
+  cd ${spigotfolder:-/root/spigot}
   curl -o paper-1.11.2.jar https://papermc.io/api/v1/paper/1.11.2/latest/download
   starterFilePaper
 }
 
 function paper1102 {
   echo -e " "
-  cd ${spigotfolder}
+  cd ${spigotfolder:-/root/spigot}
   curl -o paper-1.10.2.jar https://papermc.io/api/v1/paper/1.10.2/latest/download
   starterFilePaper
 }
 
 function paper194 {
   echo -e " "
-  cd ${spigotfolder}
+  cd ${spigotfolder:-/root/spigot}
   curl -o paper-1.9.4.jar https://papermc.io/api/v1/paper/1.9.4/latest/download
   starterFilePaper
 }
 
 function paper188 {
   echo -e " "
-  cd ${spigotfolder}
+  cd ${spigotfolder:-/root/spigot}
   curl -o paper-1.8.8.jar https://papermc.io/api/v1/paper/1.8.8/latest/download
   starterFilePaper
 }
 
 function starterFilePaper {
-  cd ${spigotfolder}
+  cd ${spigotfolder:-/root/spigot}
   echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
   echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
   / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
@@ -484,7 +484,7 @@ function starterFilePaper {
   (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
           https://github.com/samupro-dev'
   echo -e ' '
-  java -Xms128M -Xmx${spigotmem}M -jar paper-${PAPERVERSIONSEL}.jar nogui" >> starter.sh
+  java -Xms128M -Xmx${spigotmem:-512}M -jar paper-${PAPERVERSIONSEL}.jar nogui" >> starter.sh
   chmod +x starter.sh
   successInstallPaper
 }
@@ -492,7 +492,7 @@ function starterFilePaper {
 function successInstallPaper {
   echo -e " "
   echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
-  echo -e "${LIGHT_GREEN} Your server was successfully installed!\n   ${CYAN}* Version: ${WHITE}Paper ${PAPERVERSIONSEL}\n   ${CYAN}* Location: ${WHITE}${spigotfolder}\n   ${CYAN}* RAM: ${WHITE}${spigotmem}M\n   ${CYAN}* Port: ${WHITE}${spigotport} ${COLOR_NULL}"
+  echo -e "${LIGHT_GREEN} Your server was successfully installed!\n   ${CYAN}* Version: ${WHITE}Paper ${PAPERVERSIONSEL}\n   ${CYAN}* Location: ${WHITE}${spigotfolder:-/root/spigot}\n   ${CYAN}* RAM: ${WHITE}${spigotmem:-512}M\n   ${CYAN}* Port: ${WHITE}${spigotport:-25565} ${COLOR_NULL}"
   echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
   echo -e "${YELLOW}To start the server use the ${LIGHT_RED}./starter.sh ${YELLOW}command${COLOR_NULL}"
   exit
@@ -501,10 +501,10 @@ function successInstallPaper {
 ## Tuinity ##
 function tuinity {
   echo -e "\n"
-  mkdir ${spigotfolder}
-  cd ${spigotfolder}
+  mkdir ${spigotfolder:-/root/spigot}
+  cd ${spigotfolder:-/root/spigot}
   echo -e "${YELLOW} I am setting up the server port. . . ${COLOR_NULL}"
-  echo "server-port=${spigotport}" > server.properties
+  echo "server-port=${spigotport:-25565}" > server.properties
   echo -e "${YELLOW} The eula file has been created. ${COLOR_NULL}"
   echo "eula=true" > eula.txt
   tuinityversion
@@ -525,7 +525,7 @@ function tuinityversion {
 
 function tuinity1171 {
   echo -e " "
-  cd ${spigotfolder}
+  cd ${spigotfolder:-/root/spigot}
   wget https://ci.codemc.io/job/Spottedleaf/job/Tuinity-1.17/lastSuccessfulBuild/artifact/tuinity-paperclip.jar
   mv tuinity-paperclip.jar tuinity-1.17.1.jar
   starterFileTuinity
@@ -533,14 +533,14 @@ function tuinity1171 {
 
 function tuinity1165 {
   echo -e " "
-  cd ${spigotfolder}
+  cd ${spigotfolder:-/root/spigot}
   wget https://ci.codemc.io/job/Spottedleaf/job/Tuinity/lastSuccessfulBuild/artifact/tuinity-paperclip.jar
   mv tuinity-paperclip.jar tuinity-1.16.5.jar
   starterFileTuinity
 }
 
 function starterFileTuinity {
-  cd ${spigotfolder}
+  cd ${spigotfolder:-/root/spigot}
   echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
   echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
   / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
@@ -548,7 +548,7 @@ function starterFileTuinity {
   (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
           https://github.com/samupro-dev'
   echo -e ' '
-  java -Xms128M -Xmx${spigotmem}M -jar tuinity-${YATOPIAVERSIONSEL}.jar nogui" >> starter.sh
+  java -Xms128M -Xmx${spigotmem:-512}M -jar tuinity-${YATOPIAVERSIONSEL}.jar nogui" >> starter.sh
   chmod +x starter.sh
   successInstallTuinity
 }
@@ -556,7 +556,7 @@ function starterFileTuinity {
 function successInstallTuinity {
   echo -e " "
   echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
-  echo -e "${LIGHT_GREEN} Your server was successfully installed!\n   ${CYAN}* Version: ${WHITE}Tuinity ${TUINITYVERSIONSEL}\n   ${CYAN}* Location: ${WHITE}${spigotfolder}\n   ${CYAN}* RAM: ${WHITE}${spigotmem}M\n   ${CYAN}* Port: ${WHITE}${spigotport} ${COLOR_NULL}"
+  echo -e "${LIGHT_GREEN} Your server was successfully installed!\n   ${CYAN}* Version: ${WHITE}Tuinity ${TUINITYVERSIONSEL}\n   ${CYAN}* Location: ${WHITE}${spigotfolder:-/root/spigot}\n   ${CYAN}* RAM: ${WHITE}${spigotmem:-512}M\n   ${CYAN}* Port: ${WHITE}${spigotport:-25565} ${COLOR_NULL}"
   echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
   echo -e "${YELLOW}To start the server use the ${LIGHT_RED}./starter.sh ${YELLOW}command${COLOR_NULL}"
   exit
@@ -566,7 +566,7 @@ function successInstallTuinity {
 function glowstone {
   echo -e "\n"
   echo -e "${YELLOW} I am setting up the server port. . . ${COLOR_NULL}"
-  echo "server-port=${spigotport}" > server.properties
+  echo "server-port=${spigotport:-25565}" > server.properties
   echo -e "${YELLOW} The eula file has been created. ${COLOR_NULL}"
   echo "eula=true" > eula.txt
   glowstoneversion
@@ -593,7 +593,7 @@ function glowstone1122 {
 }
 
 function starterFileGlowstone {
-  cd ${spigotfolder}
+  cd ${spigotfolder:-/root/spigot}
   echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
   echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
   / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
@@ -601,7 +601,7 @@ function starterFileGlowstone {
   (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
           https://github.com/samupro-dev'
   echo -e ' '
-  java -Xms128M -Xmx${spigotmem}M -jar glowstone-${GLOWSTONEVERSIONSEL}.jar nogui" >> starter.sh
+  java -Xms128M -Xmx${spigotmem:-512}M -jar glowstone-${GLOWSTONEVERSIONSEL}.jar nogui" >> starter.sh
   chmod +x starter.sh
   successInstallGlowstone
 }
@@ -609,7 +609,7 @@ function starterFileGlowstone {
 function successInstallGlowstone {
   echo -e " "
   echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
-  echo -e "${LIGHT_GREEN} Your server was successfully installed!\n   ${CYAN}* Version: ${WHITE}Glowstone ${GLOWSTONEVERSIONSEL}\n   ${CYAN}* Location: ${WHITE}${spigotfolder}\n   ${CYAN}* RAM: ${WHITE}${spigotmem}M\n   ${CYAN}* Port: ${WHITE}${spigotport} ${COLOR_NULL}"
+  echo -e "${LIGHT_GREEN} Your server was successfully installed!\n   ${CYAN}* Version: ${WHITE}Glowstone ${GLOWSTONEVERSIONSEL}\n   ${CYAN}* Location: ${WHITE}${spigotfolder:-/root/spigot}\n   ${CYAN}* RAM: ${WHITE}${spigotmem:-512}M\n   ${CYAN}* Port: ${WHITE}${spigotport:-25565} ${COLOR_NULL}"
   echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
   echo -e "${YELLOW}To start the server use the ${LIGHT_RED}./starter.sh ${YELLOW}command${COLOR_NULL}"
   exit
@@ -618,10 +618,10 @@ function successInstallGlowstone {
 ## Purpur ##
 function purpur {
   echo -e "\n"
-  mkdir ${spigotfolder}
-  cd ${spigotfolder}
+  mkdir ${spigotfolder:-/root/spigot}
+  cd ${spigotfolder:-/root/spigot}
   echo -e "${YELLOW} I am setting up the server port. . . ${COLOR_NULL}"
-  echo "server-port=${spigotport}" > server.properties
+  echo "server-port=${spigotport:-25565}" > server.properties
   echo -e "${YELLOW} The eula file has been created. ${COLOR_NULL}"
   echo "eula=true" > eula.txt
   purpurversion
@@ -654,104 +654,104 @@ function purpurversion {
 
 function purpur1171 {
   echo -e " "
-  cd ${spigotfolder}
+  cd ${spigotfolder:-/root/spigot}
   curl -o purpur-1.17.1.jar https://api.pl3x.net/v2/purpur/1.17.1/latest/download
   starterFilePurpur
 }
 
 function purpur117 {
   echo -e " "
-  cd ${spigotfolder}
+  cd ${spigotfolder:-/root/spigot}
   curl -o purpur-1.17.jar https://api.pl3x.net/v2/purpur/1.17/latest/download
   starterFilePurpur
 }
 
 function purpur1165 {
   echo -e " "
-  cd ${spigotfolder}
+  cd ${spigotfolder:-/root/spigot}
   curl -o purpur-1.16.5.jar https://api.pl3x.net/v2/purpur/1.16.5/latest/download
   starterFilePurpur
 }
 
 function purpur1164 {
   echo -e " "
-  cd ${spigotfolder}
+  cd ${spigotfolder:-/root/spigot}
   curl -o purpur-1.16.4.jar https://api.pl3x.net/v2/purpur/1.16.4/latest/download
   starterFilePurpur
 }
 
 function purpur1163 {
   echo -e " "
-  cd ${spigotfolder}
+  cd ${spigotfolder:-/root/spigot}
   curl -o purpur-1.16.3.jar https://api.pl3x.net/v2/purpur/1.16.3/latest/download
   starterFilePurpur
 }
 
 function purpur1162 {
   echo -e " "
-  cd ${spigotfolder}
+  cd ${spigotfolder:-/root/spigot}
   curl -o purpur-1.16.2.jar https://api.pl3x.net/v2/purpur/1.16.2/latest/download
   starterFilePurpur
 }
 
 function purpur1161 {
   echo -e " "
-  cd ${spigotfolder}
+  cd ${spigotfolder:-/root/spigot}
   curl -o purpur-1.16.1.jar https://api.pl3x.net/v2/purpur/1.16.1/latest/download
   starterFilePurpur
 }
 
 function purpur1152 {
   echo -e " "
-  cd ${spigotfolder}
+  cd ${spigotfolder:-/root/spigot}
   curl -o purpur-1.15.2.jar https://api.pl3x.net/v2/purpur/1.15.2/latest/download
   starterFilePurpur
 }
 
 function purpur1151 {
   echo -e " "
-  cd ${spigotfolder}
+  cd ${spigotfolder:-/root/spigot}
   curl -o purpur-1.15.1.jar https://api.pl3x.net/v2/purpur/1.15.1/latest/download
   starterFilePurpur
 }
 
 function purpur115 {
   echo -e " "
-  cd ${spigotfolder}
+  cd ${spigotfolder:-/root/spigot}
   curl -o purpur-1.15.jar https://api.pl3x.net/v2/purpur/1.15/latest/download
   starterFilePurpur
 }
 
 function purpur1144 {
   echo -e " "
-  cd ${spigotfolder}
+  cd ${spigotfolder:-/root/spigot}
   curl -o purpur-1.14.4.jar https://api.pl3x.net/v2/purpur/1.14.4/latest/download
   starterFilePurpur
 }
 
 function purpur1143 {
   echo -e " "
-  cd ${spigotfolder}
+  cd ${spigotfolder:-/root/spigot}
   curl -o purpur-1.14.3.jar https://api.pl3x.net/v2/purpur/1.14.3/latest/download
   starterFilePurpur
 }
 
 function purpur1142 {
   echo -e " "
-  cd ${spigotfolder}
+  cd ${spigotfolder:-/root/spigot}
   curl -o purpur-1.14.2.jar https://api.pl3x.net/v2/purpur/1.14.2/latest/download
   starterFilePurpur
 }
 
 function purpur1141 {
   echo -e " "
-  cd ${spigotfolder}
+  cd ${spigotfolder:-/root/spigot}
   curl -o purpur-1.14.1.jar https://api.pl3x.net/v2/purpur/1.14.1/latest/download
   starterFilePurpur
 }
 
 function starterFilePurpur {
-  cd ${spigotfolder}
+  cd ${spigotfolder:-/root/spigot}
   echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
   echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
   / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
@@ -759,7 +759,7 @@ function starterFilePurpur {
   (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
           https://github.com/samupro-dev'
   echo -e ' '
-  java -Xms128M -Xmx${spigotmem}M -jar purpur-${PURPURVERSIONSEL}.jar nogui" >> starter.sh
+  java -Xms128M -Xmx${spigotmem:-512}M -jar purpur-${PURPURVERSIONSEL}.jar nogui" >> starter.sh
   chmod +x starter.sh
   successInstallPurpur
 }
@@ -767,7 +767,7 @@ function starterFilePurpur {
 function successInstallPurpur {
   echo -e " "
   echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
-  echo -e "${LIGHT_GREEN} Your server was successfully installed!\n   ${CYAN}* Version: ${WHITE}Purpur ${PURPURVERSIONSEL}\n   ${CYAN}* Location: ${WHITE}${spigotfolder}\n   ${CYAN}* RAM: ${WHITE}${spigotmem}M\n   ${CYAN}* Port: ${WHITE}${spigotport} ${COLOR_NULL}"
+  echo -e "${LIGHT_GREEN} Your server was successfully installed!\n   ${CYAN}* Version: ${WHITE}Purpur ${PURPURVERSIONSEL}\n   ${CYAN}* Location: ${WHITE}${spigotfolder:-/root/spigot}\n   ${CYAN}* RAM: ${WHITE}${spigotmem:-512}M\n   ${CYAN}* Port: ${WHITE}${spigotport:-25565} ${COLOR_NULL}"
   echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
   echo -e "${YELLOW}To start the server use the ${LIGHT_RED}./starter.sh ${YELLOW}command${COLOR_NULL}"
   exit
@@ -776,10 +776,10 @@ function successInstallPurpur {
 ## SportPaper ##
 function sportpaper {
   echo -e "\n"
-  mkdir ${spigotfolder}
-  cd ${spigotfolder}
+  mkdir ${spigotfolder:-/root/spigot}
+  cd ${spigotfolder:-/root/spigot}
   echo -e "${YELLOW} I am setting up the server port. . . ${COLOR_NULL}"
-  echo "server-port=${spigotport}" > server.properties
+  echo "server-port=${spigotport:-25565}" > server.properties
   echo -e "${YELLOW} The eula file has been created. ${COLOR_NULL}"
   echo "eula=true" > eula.txt
   sportpaperversion
@@ -799,14 +799,14 @@ function sportpaperversion {
 
 function sportpaper188 {
   echo -e " "
-  cd ${spigotfolder}
+  cd ${spigotfolder:-/root/spigot}
   wget https://github.com/linsaftw/SportPaper/releases/latest/download/sportpaper-1.8.8-R0.1-SNAPSHOT.jar
   mv sportpaper-1.8.8-R0.1-SNAPSHOT.jar sportpaper-1.8.8.jar
   starterFileSportPaper
 }
 
 function starterFileSportPaper {
-  cd ${spigotfolder}
+  cd ${spigotfolder:-/root/spigot}
   echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
   echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
   / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
@@ -814,7 +814,7 @@ function starterFileSportPaper {
   (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
           https://github.com/samupro-dev'
   echo -e ' '
-  java -Xms128M -Xmx${spigotmem}M -jar sportpaper-${SPORTPAPERVERSIONSEL}.jar nogui" >> starter.sh
+  java -Xms128M -Xmx${spigotmem:-512}M -jar sportpaper-${SPORTPAPERVERSIONSEL}.jar nogui" >> starter.sh
   chmod +x starter.sh
   successInstallSportPaper
 }
@@ -822,7 +822,7 @@ function starterFileSportPaper {
 function successInstallSportPaper {
   echo -e " "
   echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
-  echo -e "${LIGHT_GREEN} Your server was successfully installed!\n   ${CYAN}* Version: ${WHITE}SportPaper ${SPORTPAPERVERSIONSEL}\n   ${CYAN}* Location: ${WHITE}${spigotfolder}\n   ${CYAN}* RAM: ${WHITE}${spigotmem}M\n   ${CYAN}* Port: ${WHITE}${spigotport} ${COLOR_NULL}"
+  echo -e "${LIGHT_GREEN} Your server was successfully installed!\n   ${CYAN}* Version: ${WHITE}SportPaper ${SPORTPAPERVERSIONSEL}\n   ${CYAN}* Location: ${WHITE}${spigotfolder:-/root/spigot}\n   ${CYAN}* RAM: ${WHITE}${spigotmem:-512}M\n   ${CYAN}* Port: ${WHITE}${spigotport:-25565} ${COLOR_NULL}"
   echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
   echo -e "${YELLOW}To start the server use the ${LIGHT_RED}./starter.sh ${YELLOW}command${COLOR_NULL}"
   exit
@@ -831,10 +831,10 @@ function successInstallSportPaper {
 ## FlamePaper ##
 function flamepaper {
   echo -e "\n"
-  mkdir ${spigotfolder}
-  cd ${spigotfolder}
+  mkdir ${spigotfolder:-/root/spigot}
+  cd ${spigotfolder:-/root/spigot}
   echo -e "${YELLOW} I am setting up the server port. . . ${COLOR_NULL}"
-  echo "server-port=${spigotport}" > server.properties
+  echo "server-port=${spigotport:-25565}" > server.properties
   echo -e "${YELLOW} The eula file has been created. ${COLOR_NULL}"
   echo "eula=true" > eula.txt
   flamepaperversion
@@ -854,14 +854,14 @@ function flamepaperversion {
 
 function flamepaper188 {
   echo -e " "
-  cd ${spigotfolder}
+  cd ${spigotfolder:-/root/spigot}
   wget https://github.com/2lstudios-mc/FlamePaper/releases/latest/download/paperspigot-1.8.8-R0.1-SNAPSHOT.jar
   mv paperspigot-1.8.8-R0.1-SNAPSHOT.jar FlamePaper-1.8.8.jar
   starterFileFlamePaper
 }
 
 function starterFileFlamePaper {
-  cd ${spigotfolder}
+  cd ${spigotfolder:-/root/spigot}
   echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
   echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
   / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
@@ -869,7 +869,7 @@ function starterFileFlamePaper {
   (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
           https://github.com/samupro-dev'
   echo -e ' '
-  java -Xms128M -Xmx${spigotmem}M -jar FlamePaper-${FLAMEPAPERVERSIONSEL}.jar nogui" >> starter.sh
+  java -Xms128M -Xmx${spigotmem:-512}M -jar FlamePaper-${FLAMEPAPERVERSIONSEL}.jar nogui" >> starter.sh
   chmod +x starter.sh
   successInstallFlamePaper
 }
@@ -877,7 +877,7 @@ function starterFileFlamePaper {
 function successInstallFlamePaper {
   echo -e " "
   echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
-  echo -e "${LIGHT_GREEN} Your server was successfully installed!\n   ${CYAN}* Version: ${WHITE}FlamePaper ${FLAMEPAPERVERSIONSEL}\n   ${CYAN}* Location: ${WHITE}${spigotfolder}\n   ${CYAN}* RAM: ${WHITE}${spigotmem}M\n   ${CYAN}* Port: ${WHITE}${spigotport} ${COLOR_NULL}"
+  echo -e "${LIGHT_GREEN} Your server was successfully installed!\n   ${CYAN}* Version: ${WHITE}FlamePaper ${FLAMEPAPERVERSIONSEL}\n   ${CYAN}* Location: ${WHITE}${spigotfolder:-/root/spigot}\n   ${CYAN}* RAM: ${WHITE}${spigotmem:-512}M\n   ${CYAN}* Port: ${WHITE}${spigotport:-25565} ${COLOR_NULL}"
   echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
   echo -e "${YELLOW}To start the server use the ${LIGHT_RED}./starter.sh ${YELLOW}command${COLOR_NULL}"
   exit
@@ -886,10 +886,10 @@ function successInstallFlamePaper {
 ## Airplane ##
 function airplane {
   echo -e "\n"
-  mkdir ${spigotfolder}
-  cd ${spigotfolder}
+  mkdir ${spigotfolder:-/root/spigot}
+  cd ${spigotfolder:-/root/spigot}
   echo -e "${YELLOW} I am setting up the server port. . . ${COLOR_NULL}"
-  echo "server-port=${spigotport}" > server.properties
+  echo "server-port=${spigotport:-25565}" > server.properties
   echo -e "${YELLOW} The eula file has been created. ${COLOR_NULL}"
   echo "eula=true" > eula.txt
   airplaneversion
@@ -910,7 +910,7 @@ function airplaneversion {
 
 function airplane1171 {
   echo -e " "
-  cd ${spigotfolder}
+  cd ${spigotfolder:-/root/spigot}
   wget https://ci.tivy.ca/job/Airplane-1.17/lastSuccessfulBuild/artifact/launcher-airplane.jar
   mv launcher-airplane.jar Airplane-1.17.1.jar
   starterFileAirplane
@@ -918,14 +918,14 @@ function airplane1171 {
 
 function airplane1165 {
   echo -e " "
-  cd ${spigotfolder}
+  cd ${spigotfolder:-/root/spigot}
   wget https://ci.tivy.ca/job/Airplane-1.16/lastSuccessfulBuild/artifact/launcher-airplane.jar
   mv launcher-airplane.jar Airplane-1.16.5.jar
   starterFileAirplane
 }
 
 function starterFileAirplane {
-  cd ${spigotfolder}
+  cd ${spigotfolder:-/root/spigot}
   echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
   echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
   / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
@@ -933,7 +933,7 @@ function starterFileAirplane {
   (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
           https://github.com/samupro-dev'
   echo -e ' '
-  java -Xms128M -Xmx${spigotmem}M -jar Airplane-${AIRPLANEVERSIONSEL}.jar nogui" >> starter.sh
+  java -Xms128M -Xmx${spigotmem:-512}M -jar Airplane-${AIRPLANEVERSIONSEL}.jar nogui" >> starter.sh
   chmod +x starter.sh
   successInstallAirplane
 }
@@ -941,7 +941,7 @@ function starterFileAirplane {
 function successInstallAirplane {
   echo -e " "
   echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
-  echo -e "${LIGHT_GREEN} Your server was successfully installed!\n   ${CYAN}* Version: ${WHITE}Airplane ${AIRPLANEVERSIONSEL}\n   ${CYAN}* Location: ${WHITE}${spigotfolder}\n   ${CYAN}* RAM: ${WHITE}${spigotmem}M\n   ${CYAN}* Port: ${WHITE}${spigotport} ${COLOR_NULL}"
+  echo -e "${LIGHT_GREEN} Your server was successfully installed!\n   ${CYAN}* Version: ${WHITE}Airplane ${AIRPLANEVERSIONSEL}\n   ${CYAN}* Location: ${WHITE}${spigotfolder:-/root/spigot}\n   ${CYAN}* RAM: ${WHITE}${spigotmem:-512}M\n   ${CYAN}* Port: ${WHITE}${spigotport:-25565} ${COLOR_NULL}"
   echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
   echo -e "${YELLOW}To start the server use the ${LIGHT_RED}./starter.sh ${YELLOW}command${COLOR_NULL}"
   exit
