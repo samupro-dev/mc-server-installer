@@ -43,10 +43,10 @@ function bedrock {
 ## NukkitX ##
 function nukkitx {
   echo -e "\n"
-  mkdir ${bedrockfolder}
-  cd ${bedrockfolder}
+  mkdir ${bedrockfolder:-/root/bedrock}
+  cd ${bedrockfolder:-/root/bedrock}
   echo -e "${YELLOW} I am setting up the server port. . . ${COLOR_NULL}"
-  echo "server-port=${bedrockport}" > server.properties
+  echo "server-port=${bedrockport:-19132}" > server.properties
   nukkitxversion
 }
 
@@ -64,7 +64,7 @@ function nukkitxversion {
 
 function nukkitxlatest {
   echo -e " "
-  cd ${bedrockfolder}
+  cd ${bedrockfolder:-/root/bedrock}
   wget https://ci.opencollab.dev/job/NukkitX/job/Nukkit/job/master/lastSuccessfulBuild/artifact/target/nukkit-1.0-SNAPSHOT.jar
   mv nukkit-1.0-SNAPSHOT.jar NukkitX.jar
   starterFile
@@ -72,7 +72,7 @@ function nukkitxlatest {
 
 ## Starter ##
 function starterFile {
-  cd ${bedrockfolder}
+  cd ${bedrockfolder:-/root/bedrock}
   echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
   echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
   / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
@@ -80,7 +80,7 @@ function starterFile {
   (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
           https://github.com/samupro-dev'
   echo -e ' '
-  java -Xms128M -Xmx${bedrockmem}M -jar ${BEDROCKTYPESEL}.jar nogui" >> starter.sh
+  java -Xms128M -Xmx${bedrockmem:-512}M -jar ${BEDROCKTYPESEL}.jar nogui" >> starter.sh
   chmod +x starter.sh
   successInstall
 }
@@ -89,7 +89,7 @@ function starterFile {
 function successInstall {
   echo -e " "
   echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
-  echo -e "${LIGHT_GREEN} Your server was successfully installed!\n   ${CYAN}* Version: ${WHITE}${BEDROCKTYPESEL}\n   ${CYAN}* Location: ${WHITE}${bedrockfolder}\n   ${CYAN}* RAM: ${WHITE}${bedrockmem}M\n   ${CYAN}* Port: ${WHITE}${bedrockport} ${COLOR_NULL}"
+  echo -e "${LIGHT_GREEN} Your server was successfully installed!\n   ${CYAN}* Version: ${WHITE}${BEDROCKTYPESEL}\n   ${CYAN}* Location: ${WHITE}${bedrockfolder:-/root/bedrock}\n   ${CYAN}* RAM: ${WHITE}${bedrockmem:-512}M\n   ${CYAN}* Port: ${WHITE}${bedrockport:-19132} ${COLOR_NULL}"
   echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
   echo -e "${YELLOW}To start the server use the ${LIGHT_RED}./starter.sh ${YELLOW}command${COLOR_NULL}"
   exit
