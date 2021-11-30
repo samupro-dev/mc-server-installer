@@ -337,7 +337,7 @@ function compilerSpigot {
   curl -O -J -L https://javadl.oracle.com/webapps/download/AutoDL?BundleId=245469_4d5417147a92418ea8b615e228bb6935
   mv 'AutoDL\?BundleId\=245469_4d5417147a92418ea8b615e228bb6935' jre-8u311-linux-x64.tar.gz
   tar -zxvf jre-8u311-linux-x64.tar.gz
-  "${spigotfolder:-/root/spigot}/jre1.8.0_291/bin/java" -jar BuildTools.jar --rev ${SPIGOTVERSIONSEL} > /dev/null
+  "${spigotfolder:-/root/spigot}/jre1.8.0_311/bin/java" -jar BuildTools.jar --rev ${SPIGOTVERSIONSEL} > /dev/null
   find ./ -type d -not -name spigot-${SPIGOTVERSIONSEL}.jar | xargs rm -r
   find ./ -type f -not -name spigot-${SPIGOTVERSIONSEL}.jar | xargs rm
 }
