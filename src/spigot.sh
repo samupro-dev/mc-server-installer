@@ -334,11 +334,12 @@ function spigot18 {
 function compilerSpigot {
   cd ${spigotfolder:-/root/spigot}
   echo -e "${YELLOW} The build of the jar is in progress. . . (it will take a while)${COLOR_NULL}"
-  curl -O -J -L https://javadl.oracle.com/webapps/download/AutoDL?BundleId=244575_d7fc238d0cbf4b0dac67be84580cfb4b
-  mv 'AutoDL\?BundleId\=244575_d7fc238d0cbf4b0dac67be84580cfb4b' jre-8u291-linux.tar.gz
-  tar -zxvf jre-8u291-linux.tar.gz 
+  curl -O -J -L https://javadl.oracle.com/webapps/download/AutoDL?BundleId=245469_4d5417147a92418ea8b615e228bb6935
+  mv 'AutoDL\?BundleId\=245469_4d5417147a92418ea8b615e228bb6935' jre-8u311-linux-x64.tar.gz
+  tar -zxvf jre-8u311-linux-x64.tar.gz
   "${spigotfolder:-/root/spigot}/jre1.8.0_291/bin/java" -jar BuildTools.jar --rev ${SPIGOTVERSIONSEL} > /dev/null
-  rm -r -v !("spigot-${SPIGOTVERSIONSEL}.jar")
+  find ./ -type d -not -name spigot-${SPIGOTVERSIONSEL}.jar | xargs rm -r
+  find ./ -type f -not -name spigot-${SPIGOTVERSIONSEL}.jar | xargs rm
 }
 
 function starterFileSpigot {
