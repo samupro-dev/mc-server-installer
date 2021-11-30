@@ -46,8 +46,8 @@ function bungee {
 ## BungeeCord ##
 function bungeecord {
   echo -e "\n"
-  mkdir ${bungeefolder}
-  cd ${bungeefolder}
+  mkdir ${bungeefolder:-/root/bungee}
+  cd ${bungeefolder:-/root/bungee}
   echo -e "${CYAN} Downloading the jar file. . . ${COLOR_NULL}"
   wget https://ci.md-5.net/job/BungeeCord/lastSuccessfulBuild/artifact/bootstrap/target/BungeeCord.jar
   starterFile
@@ -56,8 +56,8 @@ function bungeecord {
 ## Waterfall ##
 function waterfall {
   echo -e "\n"
-  mkdir ${bungeefolder}
-  cd ${bungeefolder}
+  mkdir ${bungeefolder:-/root/bungee}
+  cd ${bungeefolder:-/root/bungee}
   echo -e "${CYAN} Downloading the jar file. . . ${COLOR_NULL}"
   curl -o Waterfall.jar https://papermc.io/api/v1/waterfall/1.17/latest/download
   starterFile
@@ -66,8 +66,8 @@ function waterfall {
 ## Travertine ##
 function travertine {
   echo -e "\n"
-  mkdir ${bungeefolder}
-  cd ${bungeefolder}
+  mkdir ${bungeefolder:-/root/bungee}
+  cd ${bungeefolder:-/root/bungee}
   echo -e "${CYAN} Downloading the jar file. . . ${COLOR_NULL}"
   curl -o Travertine.jar https://papermc.io/api/v1/travertine/1.16/latest/download
   starterFile
@@ -76,8 +76,8 @@ function travertine {
 ## FlameCord ##
 function flamecord {
   echo -e "\n"
-  mkdir ${bungeefolder}
-  cd ${bungeefolder}
+  mkdir ${bungeefolder:-/root/bungee}
+  cd ${bungeefolder:-/root/bungee}
   echo -e "${CYAN} Downloading the jar file. . . ${COLOR_NULL}"
   wget https://github.com/2lstudios-mc/FlameCord/releases/latest/download/FlameCord.jar
   starterFile
@@ -86,8 +86,8 @@ function flamecord {
 ## Velocity ##
 function velocity {
   echo -e "\n"
-  mkdir ${bungeefolder}
-  cd ${bungeefolder}
+  mkdir ${bungeefolder:-/root/bungee}
+  cd ${bungeefolder:-/root/bungee}
   echo -e "${CYAN} Downloading the jar file. . . ${COLOR_NULL}"
   wget https://versions.velocitypowered.com/download/3.0.x-SNAPSHOT.jar
   mv 3.0.x-SNAPSHOT.jar Velocity.jar
@@ -97,8 +97,8 @@ function velocity {
 ## HexaCord ##
 function hexacord {
   echo -e "\n"
-  mkdir ${bungeefolder}
-  cd ${bungeefolder}
+  mkdir ${bungeefolder:-/root/bungee}
+  cd ${bungeefolder:-/root/bungee}
   echo -e "${CYAN} Downloading the jar file. . . ${COLOR_NULL}"
   wget https://github.com/HexagonMC/BungeeCord/releases/latest/download/BungeeCord.jar
   mv BungeeCord.jar HexaCord.jar
@@ -107,7 +107,7 @@ function hexacord {
 
 ## Starter ##
 function starterFile {
-  cd ${bungeefolder}
+  cd ${bungeefolder:-/root/bungee}
   echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
   echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
   / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
@@ -115,7 +115,7 @@ function starterFile {
   (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
           https://github.com/samupro-dev'
   echo -e ' '
-  java -Xms128M -Xmx${bungeemem}M -jar ${BUNGEETYPESEL}.jar nogui" >> starter.sh
+  java -Xms128M -Xmx${bungeemem:-512}M -jar ${BUNGEETYPESEL}.jar nogui" >> starter.sh
   chmod +x starter.sh
   successInstall
 }
@@ -124,7 +124,7 @@ function starterFile {
 function successInstall {
   echo -e " "
   echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
-  echo -e "${LIGHT_GREEN} Your server was successfully installed!\n   ${CYAN}* Version: ${WHITE}${BUNGEETYPESEL}\n   ${CYAN}* Location: ${WHITE}${bungeefolder}\n   ${CYAN}* RAM: ${WHITE}${bungeemem}M ${COLOR_NULL}"
+  echo -e "${LIGHT_GREEN} Your server was successfully installed!\n   ${CYAN}* Version: ${WHITE}${BUNGEETYPESEL}\n   ${CYAN}* Location: ${WHITE}${bungeefolder:-/root/bungee}\n   ${CYAN}* RAM: ${WHITE}${bungeemem:-512}M ${COLOR_NULL}"
   echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
   echo -e "${YELLOW}To start the server use the ${LIGHT_RED}./starter.sh ${YELLOW}command${COLOR_NULL}"
   exit
