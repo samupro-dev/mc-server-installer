@@ -29,6 +29,9 @@ If you find any bugs or want to recommend some new features, write them [here](h
 - [ ] A better interface
 
 ## Changelogs
+### v2.3
+- Fixed problem with the spigot compiler
+- Updated the JRE of the spigot compiler
 ### v2.2
 - Fixed color issue in the installer
 - Added default options if left blank
