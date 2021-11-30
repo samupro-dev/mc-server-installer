@@ -46,10 +46,10 @@ function modded {
 ## Magma ##
 function magma {
   echo -e "\n"
-  mkdir ${moddedfolder}
-  cd ${moddedfolder}
+  mkdir ${moddedfolder:-/root/modded}
+  cd ${moddedfolder:-/root/modded}
   echo -e "${YELLOW} I am setting up the server port. . . ${COLOR_NULL}"
-  echo "server-port=${moddedport}" > server.properties
+  echo "server-port=${moddedport:-25565}" > server.properties
   magmaversion
 }
 
@@ -68,20 +68,20 @@ function magmaversion {
 
 function magma1165{
   echo -e " "
-  cd ${moddedfolder}
+  cd ${moddedfolder:-/root/modded}
   curl -o magma-1.16.5.jar https://api.magmafoundation.org/api/resources/magma/1.16.5/dev/latest/download
   starterFileMagma
 }
 
 function magma1122 {
   echo -e " "
-  cd ${moddedfolder}
+  cd ${moddedfolder:-/root/modded}
   curl -o magma-1.12.2.jar https://api.magmafoundation.org/api/resources/magma/1.12.2/dev/latest/download
   starterFileMagma
 }
 
 function starterFileMagma {
-  cd ${moddedfolder}
+  cd ${moddedfolder:-/root/modded}
   echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
   echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
   / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
@@ -89,7 +89,7 @@ function starterFileMagma {
   (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
           https://github.com/samupro-dev'
   echo -e ' '
-  java -Xms128M -Xmx${moddedmem}M -jar magma-${MAGMAVERSIONSEL}.jar nogui" >> starter.sh
+  java -Xms128M -Xmx${moddedmem:-512}M -jar magma-${MAGMAVERSIONSEL}.jar nogui" >> starter.sh
   chmod +x starter.sh
   successInstallMagma
 }
@@ -97,7 +97,7 @@ function starterFileMagma {
 function successInstallMagma {
   echo -e " "
   echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
-  echo -e "${LIGHT_GREEN} Your server was successfully installed!\n   ${CYAN}* Version: ${WHITE}${MODDEDTYPESEL} ${MAGMAVERSIONSEL}\n   ${CYAN}* Location: ${WHITE}${moddedfolder}\n   ${CYAN}* RAM: ${WHITE}${moddedmem}M\n   ${CYAN}* Port: ${WHITE}${moddedport} ${COLOR_NULL}"
+  echo -e "${LIGHT_GREEN} Your server was successfully installed!\n   ${CYAN}* Version: ${WHITE}${MODDEDTYPESEL} ${MAGMAVERSIONSEL}\n   ${CYAN}* Location: ${WHITE}${moddedfolder:-/root/modded}\n   ${CYAN}* RAM: ${WHITE}${moddedmem:-512}M\n   ${CYAN}* Port: ${WHITE}${moddedport:-25565} ${COLOR_NULL}"
   echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
   echo -e "${YELLOW}To start the server use the ${LIGHT_RED}./starter.sh ${YELLOW}command${COLOR_NULL}"
   exit
@@ -106,10 +106,10 @@ function successInstallMagma {
 ## Mohist ##
 function mohist {
   echo -e "\n"
-  mkdir ${moddedfolder}
-  cd ${moddedfolder}
+  mkdir ${moddedfolder:-/root/modded}
+  cd ${moddedfolder:-/root/modded}
   echo -e "${YELLOW} I am setting up the server port. . . ${COLOR_NULL}"
-  echo "server-port=${moddedport}" > server.properties
+  echo "server-port=${moddedport:-25565}" > server.properties
   mohistversion
 }
 
@@ -129,27 +129,27 @@ function mohistversion {
 
 function mohist1165 {
   echo -e " "
-  cd ${moddedfolder}
+  cd ${moddedfolder:-/root/modded}
   curl -o mohist-1.16.5.jar https://mohistmc.com/api/1.16.5/latest/download
   starterFileMohist
 }
 
 function mohist1122 {
   echo -e " "
-  cd ${moddedfolder}
+  cd ${moddedfolder:-/root/modded}
   curl -o mohist-1.12.2.jar https://mohistmc.com/api/1.12.2/latest/download
   starterFileMohist
 }
 
 function mohist1710 {
   echo -e " "
-  cd ${moddedfolder}
+  cd ${moddedfolder:-/root/modded}
   curl -o mohist-1.7.10.jar https://mohistmc.com/api/1.7.10/latest/download
   starterFileMohist
 }
 
 function starterFileMohist {
-  cd ${moddedfolder}
+  cd ${moddedfolder:-/root/modded}
   echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
   echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
   / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
@@ -157,7 +157,7 @@ function starterFileMohist {
   (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
           https://github.com/samupro-dev'
   echo -e ' '
-  java -Xms128M -Xmx${moddedmem}M -jar mohist-${MOHISTVERSIONSEL}.jar nogui" >> starter.sh
+  java -Xms128M -Xmx${moddedmem:-512}M -jar mohist-${MOHISTVERSIONSEL}.jar nogui" >> starter.sh
   chmod +x starter.sh
   successInstallMohist
 }
@@ -165,7 +165,7 @@ function starterFileMohist {
 function successInstallMohist {
   echo -e " "
   echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
-  echo -e "${LIGHT_GREEN} Your server was successfully installed!\n   ${CYAN}* Version: ${WHITE}${MODDEDTYPESEL} ${MOHISTVERSIONSEL}\n   ${CYAN}* Location: ${WHITE}${moddedfolder}\n   ${CYAN}* RAM: ${WHITE}${moddedmem}M\n   ${CYAN}* Port: ${WHITE}${moddedport} ${COLOR_NULL}"
+  echo -e "${LIGHT_GREEN} Your server was successfully installed!\n   ${CYAN}* Version: ${WHITE}${MODDEDTYPESEL} ${MOHISTVERSIONSEL}\n   ${CYAN}* Location: ${WHITE}${moddedfolder:-/root/modded}\n   ${CYAN}* RAM: ${WHITE}${moddedmem:-512}M\n   ${CYAN}* Port: ${WHITE}${moddedport:-25565} ${COLOR_NULL}"
   echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
   echo -e "${YELLOW}To start the server use the ${LIGHT_RED}./starter.sh ${YELLOW}command${COLOR_NULL}"
   exit
@@ -174,10 +174,10 @@ function successInstallMohist {
 ## Arclight ##
 function arclight {
   echo -e "\n"
-  mkdir ${moddedfolder}
-  cd ${moddedfolder}
+  mkdir ${moddedfolder:-/root/modded}
+  cd ${moddedfolder:-/root/modded}
   echo -e "${YELLOW} I am setting up the server port. . . ${COLOR_NULL}"
-  echo "server-port=${moddedport}" > server.properties
+  echo "server-port=${moddedport:-25565}" > server.properties
   arclightversion
 }
 
@@ -197,7 +197,7 @@ function arclightversion {
 
 function arclight1165 {
   echo -e " "
-  cd ${moddedfolder}
+  cd ${moddedfolder:-/root/modded}
   curl --silent "https://api.github.com/repos/IzzelAliz/Arclight/releases/latest" |
     grep '"browser_download_url":' |
     sed -E 's/.*"([^"]+)".*/\1/' |
@@ -208,7 +208,7 @@ function arclight1165 {
 
 function arclight1152 {
   echo -e " "
-  cd ${moddedfolder}
+  cd ${moddedfolder:-/root/modded}
   wget https://github.com/IzzelAliz/Arclight/releases/download/1.15%2F1.0.19/arclight-forge-1.15-1.0.19.jar
   mv arclight-forge-1.15-1.0.19.jar arclight-1.15.2.jar
   starterFileArclight
@@ -216,14 +216,14 @@ function arclight1152 {
 
 function arclight1144 {
   echo -e " "
-  cd ${moddedfolder}
+  cd ${moddedfolder:-/root/modded}
   wget https://github.com/IzzelAliz/Arclight/releases/download/1.0.6/arclight-forge-1.14-1.0.6.jar
   mv arclight-forge-1.14-1.0.6.jar arclight-1.14.4.jar
   starterFileArclight
 }
 
 function starterFileArclight {
-  cd ${moddedfolder}
+  cd ${moddedfolder:-/root/modded}
   echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
   echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
   / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
@@ -231,7 +231,7 @@ function starterFileArclight {
   (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
           https://github.com/samupro-dev'
   echo -e ' '
-  java -Xms128M -Xmx${moddedmem}M -jar arclight-${ARCLIGHTVERSIONSEL}.jar nogui" >> starter.sh
+  java -Xms128M -Xmx${moddedmem:-512}M -jar arclight-${ARCLIGHTVERSIONSEL}.jar nogui" >> starter.sh
   chmod +x starter.sh
   successInstallArclight
 }
@@ -239,7 +239,7 @@ function starterFileArclight {
 function successInstallarclight {
   echo -e " "
   echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
-  echo -e "${LIGHT_GREEN} Your server was successfully installed!\n   ${CYAN}* Version: ${WHITE}${MODDEDTYPESEL} ${ARCLIGHTVERSIONSEL}\n   ${CYAN}* Location: ${WHITE}${moddedfolder}\n   ${CYAN}* RAM: ${WHITE}${moddedmem}M\n   ${CYAN}* Port: ${WHITE}${moddedport} ${COLOR_NULL}"
+  echo -e "${LIGHT_GREEN} Your server was successfully installed!\n   ${CYAN}* Version: ${WHITE}${MODDEDTYPESEL} ${ARCLIGHTVERSIONSEL}\n   ${CYAN}* Location: ${WHITE}${moddedfolder:-/root/modded}\n   ${CYAN}* RAM: ${WHITE}${moddedmem:-512}M\n   ${CYAN}* Port: ${WHITE}${moddedport:-25565} ${COLOR_NULL}"
   echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
   echo -e "${YELLOW}To start the server use the ${LIGHT_RED}./starter.sh ${YELLOW}command${COLOR_NULL}"
   exit
@@ -248,10 +248,10 @@ function successInstallarclight {
 ## SpongeForge ##
 function spongeforge {
   echo -e "\n"
-  mkdir ${moddedfolder}
-  cd ${moddedfolder}
+  mkdir ${moddedfolder:-/root/modded}
+  cd ${moddedfolder:-/root/modded}
   echo -e "${YELLOW} I am setting up the server port. . . ${COLOR_NULL}"
-  echo "server-port=${moddedport}" > server.properties
+  echo "server-port=${moddedport:-25565}" > server.properties
   spongeforgeversion
 }
 
@@ -274,7 +274,7 @@ function spongeforgeversion {
 
 function spongeforge1122 {
   echo -e " "
-  cd ${moddedfolder}
+  cd ${moddedfolder:-/root/modded}
   wget https://repo.spongepowered.org/maven/org/spongepowered/spongeforge/1.12.2-2838-7.3.0/spongeforge-1.12.2-2838-7.3.0.jar
   mv spongeforge-1.12.2-2838-7.3.0.jar spongeforge-1.12.2.jar
   starterFileSpongeForge
@@ -282,7 +282,7 @@ function spongeforge1122 {
 
 function spongeforge1121 {
   echo -e " "
-  cd ${moddedfolder}
+  cd ${moddedfolder:-/root/modded}
   wget https://repo.spongepowered.org/maven/org/spongepowered/spongeforge/1.12.1-2480-7.0.0-BETA-2643/spongeforge-1.12.1-2480-7.0.0-BETA-2643.jar
   mv spongeforge-1.12.1-2480-7.0.0-BETA-2643.jar spongeforge-1.12.1.jar
   starterFileSpongeForge
@@ -290,7 +290,7 @@ function spongeforge1121 {
 
 function spongeforge112 {
   echo -e " "
-  cd ${moddedfolder}
+  cd ${moddedfolder:-/root/modded}
   wget https://repo.spongepowered.org/maven/org/spongepowered/spongeforge/1.12-2443-7.0.0-BETA-2498/spongeforge-1.12-2443-7.0.0-BETA-2498.jar
   mv spongeforge-1.12-2443-7.0.0-BETA-2498.jar spongeforge-1.12.jar
   starterFileSpongeForge
@@ -298,7 +298,7 @@ function spongeforge112 {
 
 function spongeforge1112 {
   echo -e " "
-  cd ${moddedfolder}
+  cd ${moddedfolder:-/root/modded}
   wget https://repo.spongepowered.org/maven/org/spongepowered/spongeforge/1.11.2-2476-6.1.0-BETA-2792/spongeforge-1.11.2-2476-6.1.0-BETA-2792.jar
   mv spongeforge-1.11.2-2476-6.1.0-BETA-2792.jar spongeforge-1.11.2.jar
   starterFileSpongeForge
@@ -306,7 +306,7 @@ function spongeforge1112 {
 
 function spongeforge111 {
   echo -e " "
-  cd ${moddedfolder}
+  cd ${moddedfolder:-/root/modded}
   wget https://repo.spongepowered.org/maven/org/spongepowered/spongeforge/1.11-2195-6.0.0-BETA-2004/spongeforge-1.11-2195-6.0.0-BETA-2004.jar
   mv spongeforge-1.11-2195-6.0.0-BETA-2004.jar spongeforge-1.11.jar
   starterFileSpongeForge
@@ -314,14 +314,14 @@ function spongeforge111 {
 
 function spongeforge1102 {
   echo -e " "
-  cd ${moddedfolder}
+  cd ${moddedfolder:-/root/modded}
   wget https://repo.spongepowered.org/maven/org/spongepowered/spongeforge/1.10.2-2477-5.2.0-BETA-2793/spongeforge-1.10.2-2477-5.2.0-BETA-2793.jar
   mv spongeforge-1.10.2-2477-5.2.0-BETA-2793.jar spongeforge-1.10.2.jar
   starterFileSpongeForge
 }
 
 function starterFileSpongeForge {
-  cd ${moddedfolder}
+  cd ${moddedfolder:-/root/modded}
   echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
   echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
   / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
@@ -329,7 +329,7 @@ function starterFileSpongeForge {
   (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
           https://github.com/samupro-dev'
   echo -e ' '
-  java -Xms128M -Xmx${moddedmem}M -jar spongeforge-${spongeforgeVERSIONSEL}.jar nogui" >> starter.sh
+  java -Xms128M -Xmx${moddedmem:-512}M -jar spongeforge-${spongeforgeVERSIONSEL}.jar nogui" >> starter.sh
   chmod +x starter.sh
   successInstallSpongeForge
 }
@@ -337,7 +337,7 @@ function starterFileSpongeForge {
 function successInstallSpongeForge {
   echo -e " "
   echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
-  echo -e "${LIGHT_GREEN} Your server was successfully installed!\n   ${CYAN}* Version: ${WHITE}${MODDEDTYPESEL} ${SPONGEFORGEVERSIONSEL}\n   ${CYAN}* Location: ${WHITE}${moddedfolder}\n   ${CYAN}* RAM: ${WHITE}${moddedmem}M\n   ${CYAN}* Port: ${WHITE}${moddedport} ${COLOR_NULL}"
+  echo -e "${LIGHT_GREEN} Your server was successfully installed!\n   ${CYAN}* Version: ${WHITE}${MODDEDTYPESEL} ${SPONGEFORGEVERSIONSEL}\n   ${CYAN}* Location: ${WHITE}${moddedfolder:-/root/modded}\n   ${CYAN}* RAM: ${WHITE}${moddedmem:-512}M\n   ${CYAN}* Port: ${WHITE}${moddedport:-25565} ${COLOR_NULL}"
   echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
   echo -e "${YELLOW}To start the server use the ${LIGHT_RED}./starter.sh ${YELLOW}command${COLOR_NULL}"
   exit
