@@ -29,6 +29,9 @@ If you find any bugs or want to recommend some new features, write them [here](h
 - [ ] A better interface
 
 ## Changelogs
+### v2.2
+- Fixed color issue in the installer
+- Added default options if left blank
 ### v2.1
 - Updated from Java11 to Java16
 ### v2.0
