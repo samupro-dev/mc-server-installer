@@ -59,7 +59,7 @@ function waterfall {
   mkdir ${bungeefolder:-/root/bungee}
   cd ${bungeefolder:-/root/bungee}
   echo -e "${CYAN} Downloading the jar file. . . ${COLOR_NULL}"
-  curl -o Waterfall.jar https://papermc.io/api/v1/waterfall/1.17/latest/download
+  curl -o Waterfall.jar https://papermc.io/api/v1/waterfall/1.18/latest/download
   starterFile
 }
 
