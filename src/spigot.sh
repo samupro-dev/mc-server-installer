@@ -60,43 +60,52 @@ function spigott {
 }
 
 function spigottversion {
-  SPIGOTVERSION=("1.17.1" "1.17" "1.16.5" "1.16.4" "1.16.3" "1.16.2" "1.16.1" "1.15.2" "1.15.1" "1.15" "1.14.4" "1.14.3" "1.14.2" "1.14.1" "1.14" "1.13.2" "1.13.1" "1.13" "1.12.2" "1.12.1" "1.12" "1.11" "1.10.2" "1.9.4" "1.9.2" "1.9" "1.8.8" "1.8.3" "1.8" "Cancel")
+  SPIGOTVERSION=("1.18" "1.17.1" "1.17" "1.16.5" "1.16.4" "1.16.3" "1.16.2" "1.16.1" "1.15.2" "1.15.1" "1.15" "1.14.4" "1.14.3" "1.14.2" "1.14.1" "1.14" "1.13.2" "1.13.1" "1.13" "1.12.2" "1.12.1" "1.12" "1.11" "1.10.2" "1.9.4" "1.9.2" "1.9" "1.8.8" "1.8.3" "1.8" "Cancel")
   echo -e "${CYAN} Select the server version. ${COLOR_NULL}"
   select SPIGOTVERSIONSEL in "${SPIGOTVERSION[@]}"; do
     case "$REPLY" in
-    1) spigot1171 ;;
-    2) spigot117 ;;
-    3) spigot1165 ;;
-    4) spigot1164 ;;
-    5) spigot1163 ;;
-    6) spigot1162 ;;
-    7) spigot1161 ;;
-    8) spigot1152 ;;
-    9) spigot1151 ;;
-    10) spigot115 ;;
-    11) spigot1444 ;;
-    12) spigot1143 ;;
-    13) spigot1142 ;;
-    14) spigot1141 ;;
-    15) spigot114 ;;
-    16) spigot1132 ;;
-    17) spigot1131 ;;
-    18) spigot113 ;;
-    19) spigot1122 ;;
-    20) spigot1121 ;;
-    21) spigot112 ;;
-    22) spigot111 ;;
-    23) spigot1102 ;;
-    24) spigot194 ;;
-    25) spigot192 ;;
-    26) spigot19 ;;
-    27) spigot188 ;;
-    28) spigot183 ;;
-    29) spigot18 ;;
-    30) exit ;;
+    1) spigot118 ;;
+    2) spigot1171 ;;
+    3) spigot117 ;;
+    4) spigot1165 ;;
+    5) spigot1164 ;;
+    6) spigot1163 ;;
+    7) spigot1162 ;;
+    8) spigot1161 ;;
+    9) spigot1152 ;;
+    10) spigot1151 ;;
+    11) spigot115 ;;
+    12) spigot1444 ;;
+    13) spigot1143 ;;
+    14) spigot1142 ;;
+    15) spigot1141 ;;
+    16) spigot114 ;;
+    17) spigot1132 ;;
+    18) spigot1131 ;;
+    19) spigot113 ;;
+    20) spigot1122 ;;
+    21) spigot1121 ;;
+    22) spigot112 ;;
+    23) spigot111 ;;
+    24) spigot1102 ;;
+    25) spigot194 ;;
+    26) spigot192 ;;
+    27) spigot19 ;;
+    28) spigot188 ;;
+    29) spigot183 ;;
+    30) spigot18 ;;
+    31) exit ;;
     *) echo -e "${ERROR} ${LIGHT_RED}The argument you entered is incorrect! ${COLOR_NULL}";;
     esac
   done
+}
+
+function spigot118 {
+  echo -e " "
+  cd ${spigotfolder:-/root/spigot}
+  wget https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar
+  compilerSpigot
+  starterFileSpigot
 }
 
 function spigot1171 {
@@ -378,25 +387,33 @@ function paper {
 }
 
 function paperversion {
-  PAPERVERSION=("1.17.1" "1.17" "1.16.5" "1.15.2" "1.14.4" "1.13.2" "1.12.2" "1.11.2" "1.10.2" "1.9.4" "1.8.8" "Cancel")
+  PAPERVERSION=("1.18" "1.17.1" "1.17" "1.16.5" "1.15.2" "1.14.4" "1.13.2" "1.12.2" "1.11.2" "1.10.2" "1.9.4" "1.8.8" "Cancel")
   echo -e "${CYAN} Select the server version. ${COLOR_NULL}"
   select PAPERVERSIONSEL in "${PAPERVERSION[@]}"; do
     case "$REPLY" in
-    1) paper1171 ;;
-    2) paper117 ;;
-    3) paper1165 ;;
-    4) paper1152 ;;
-    5) paper1144 ;;
-    6) paper1132 ;;
-    7) paper1122 ;;
-    8) paper1112 ;;
-    9) paper1102 ;;
-    10) paper194 ;;
-    11) paper188 ;;
-    12) exit ;;
+    1) paper118 ;;
+    2) paper1171 ;;
+    3) paper117 ;;
+    4) paper1165 ;;
+    5) paper1152 ;;
+    6) paper1144 ;;
+    7) paper1132 ;;
+    8) paper1122 ;;
+    9) paper1112 ;;
+    10) paper1102 ;;
+    11) paper194 ;;
+    12) paper188 ;;
+    13) exit ;;
     *) echo -e "${ERROR} ${LIGHT_RED}The argument you entered is incorrect! ${COLOR_NULL}";;
     esac
   done
+}
+
+function paper118 {
+  echo -e " "
+  cd ${spigotfolder:-/root/spigot}
+  curl -o paper-1.18.jar https://papermc.io/api/v1/paper/1.18/latest/download
+  starterFilePaper
 }
 
 function paper1171 {
