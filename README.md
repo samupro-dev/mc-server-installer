@@ -29,6 +29,13 @@ If you find any bugs or want to recommend some new features, write them [here](h
 - [ ] A better interface
 
 ## Changelogs
+### v2.4
+- Vanilla jar updated to 1.18
+- Paper fork updated to 1.18
+- Spigot fork updated to 1.18
+- Waterfall fork updated to 1.18
+- Arclight fork updated to 1.18
+- Added version 1.17.1 of the Arclight fork
 ### v2.3
 - Fixed problem with the spigot compiler
 - Updated the JRE of the spigot compiler
