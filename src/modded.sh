@@ -182,17 +182,38 @@ function arclight {
 }
 
 function arclightversion {
-  ARCLIGHTVERSION=("1.16.5" "1.15.2" "1.14.4" "Cancel")
+  ARCLIGHTVERSION=("1.18" "1.17.1" "1.16.5" "1.15.2" "1.14.4" "Cancel")
   echo -e "${CYAN} Select the server version. ${COLOR_NULL}"
   select ARCLIGHTVERSIONSEL in "${ARCLIGHTVERSION[@]}"; do
     case "$REPLY" in
-    1) arclight1165 ;;
-    2) arclight1152 ;;
-    3) arclight1144 ;;
-    4) exit ;;
+    1) arclight118 ;;
+    2) arclight1171 ;;
+    3) arclight1165 ;;
+    4) arclight1152 ;;
+    5) arclight1144 ;;
+    6) exit ;;
     *) echo -e "${ERROR} ${LIGHT_RED}The argument you entered is incorrect! ${COLOR_NULL}";;
     esac
   done
+}
+
+function arclight118 {
+  echo -e " "
+  cd ${moddedfolder:-/root/modded}
+  curl --silent "https://api.github.com/repos/IzzelAliz/Arclight/releases/latest" |
+    grep '"browser_download_url":' |
+    sed -E 's/.*"([^"]+)".*/\1/' |
+    xargs wget
+    mv arclight-forge-1.16-*.jar arclight-1.16.5.jar
+  starterFileArclight
+}
+
+function arclight1171 {
+  echo -e " "
+  cd ${moddedfolder:-/root/modded}
+  wget https://github.com/IzzelAliz/Arclight/releases/download/1.17%2F1.0.1/arclight-forge-1.17.1-1.0.1.jar
+  mv arclight-forge-1.17.1-1.0.1.jar arclight-1.17.1.jar
+  starterFileArclight
 }
 
 function arclight1165 {
