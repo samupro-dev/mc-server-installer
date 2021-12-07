@@ -376,6 +376,21 @@ function successInstallSpigot {
 
 ## Paper ##
 function paper {
+  if ! [ -x "$(command -v ruby)" ]; then
+    echo -e "${ERROR} ${LIGHT_RED} ruby is required in order for this installation to work. ${COLOR_NULL}"
+    while true
+    do
+      echo -e -n "${YELLOW} Do you want to install ruby (Y/n)? ${COLOR_NULL}"
+      read installruby
+      case "$installruby" in
+        n|N|no|No|NO) exit;;
+        y|Y|yes|Yes|YES) apt-get -y install ruby || yum install -y ruby
+        break;;
+        *) echo -e "${ERROR} ${LIGHT_RED}The argument you entered is incorrect! ${COLOR_NULL}";;
+      esac
+    done
+  fi
+  echo -e " ${YELLOW} ruby is installed, the installation will work fine! ${COLOR_NULL}"
   echo -e "\n"
   mkdir ${spigotfolder:-/root/spigot}
   cd ${spigotfolder:-/root/spigot}
@@ -412,84 +427,104 @@ function paperversion {
 function paper118 {
   echo -e " "
   cd ${spigotfolder:-/root/spigot}
-  curl -o paper-1.18.jar https://papermc.io/api/v1/paper/1.18/latest/download
+  curl -s "https://papermc.io/api/v2/projects/paper/versions/1.18" | ruby -rjson -e 'data = JSON.parse(STDIN.read); puts data["builds"]' >> builds-temp-1.18.txt
+  grep -Eo '[0-9]+' builds-temp-1.18.txt | sort -rn >> builds-1.18.txt
+  read build118 <<< $(awk 'NR==1 {print; exit}' builds-1.18.txt)
+  wget https://papermc.io/api/v2/projects/paper/versions/1.18/builds/${build118}/downloads/paper-1.18-${build118}.jar
+  mv paper-*.jar paper-${PAPERVERSIONSEL}.jar
+  rm *.txt
   starterFilePaper
 }
 
 function paper1171 {
   echo -e " "
   cd ${spigotfolder:-/root/spigot}
-  curl -o paper-1.17.1.jar https://papermc.io/api/v1/paper/1.17.1/latest/download
+  curl -s "https://papermc.io/api/v2/projects/paper/versions/1.17.1" | ruby -rjson -e 'data = JSON.parse(STDIN.read); puts data["builds"]' >> builds-temp-1.17.1.txt
+  grep -Eo '[0-9]+' builds-temp-1.17.1.txt | sort -rn >> builds-1.17.1.txt
+  read build1171 <<< $(awk 'NR==1 {print; exit}' builds-1.17.1.txt)
+  wget https://papermc.io/api/v2/projects/paper/versions/1.17.1/builds/${build1171}/downloads/paper-1.17.1-${build1171}.jar
+  mv paper-*.jar paper-${PAPERVERSIONSEL}.jar
+  rm *.txt
   starterFilePaper
 }
 
 function paper117 {
   echo -e " "
   cd ${spigotfolder:-/root/spigot}
-  curl -o paper-1.17.jar https://papermc.io/api/v1/paper/1.17/latest/download
+  wget https://papermc.io/api/v2/projects/paper/versions/1.17/builds/79/downloads/paper-1.17-79.jar
+  mv paper-*.jar paper-${PAPERVERSIONSEL}.jar
   starterFilePaper
 }
 
 function paper1165 {
   echo -e " "
   cd ${spigotfolder:-/root/spigot}
-  curl -o paper-1.16.5.jar https://papermc.io/api/v1/paper/1.16.5/latest/download
+  wget https://papermc.io/api/v2/projects/paper/versions/1.16.5/builds/790/downloads/paper-1.16.5-790.jar
+  mv paper-*.jar paper-${PAPERVERSIONSEL}.jar
   starterFilePaper
 }
 
 function paper1152 {
   echo -e " "
   cd ${spigotfolder:-/root/spigot}
-  curl -o paper-1.15.2.jar https://papermc.io/api/v1/paper/1.15.2/latest/download
+  wget https://papermc.io/api/v2/projects/paper/versions/1.15.2/builds/391/downloads/paper-1.15.2-391.jar
+  mv paper-*.jar paper-${PAPERVERSIONSEL}.jar
   starterFilePaper
 }
 
 function paper1144 {
   echo -e " "
   cd ${spigotfolder:-/root/spigot}
-  curl -o paper-1.14.4.jar https://papermc.io/api/v1/paper/1.14.4/latest/download
+  wget https://papermc.io/api/v2/projects/paper/versions/1.14.4/builds/243/downloads/paper-1.14.4-243.jar
+  mv paper-*.jar paper-${PAPERVERSIONSEL}.jar
   starterFilePaper
 }
 
 function paper1132 {
   echo -e " "
   cd ${spigotfolder:-/root/spigot}
-  curl -o paper-1.13.2.jar https://papermc.io/api/v1/paper/1.13.2/latest/download
+  wget https://papermc.io/api/v2/projects/paper/versions/1.13.2/builds/655/downloads/paper-1.13.2-655.jar
+  mv paper-*.jar paper-${PAPERVERSIONSEL}.jar
   starterFilePaper
 }
 
 function paper1122 {
   echo -e " "
   cd ${spigotfolder:-/root/spigot}
-  curl -o paper-1.12.2.jar https://papermc.io/api/v1/paper/1.12.2/latest/download
+  wget https://papermc.io/api/v2/projects/paper/versions/1.12.2/builds/1618/downloads/paper-1.12.2-1618.jar
+  mv paper-*.jar paper-${PAPERVERSIONSEL}.jar
   starterFilePaper
 }
 
 function paper1112 {
   echo -e " "
   cd ${spigotfolder:-/root/spigot}
-  curl -o paper-1.11.2.jar https://papermc.io/api/v1/paper/1.11.2/latest/download
+  wget https://papermc.io/api/v2/projects/paper/versions/1.11.2/builds/1104/downloads/paper-1.11.2-1104.jar
+  mv paper-*.jar paper-${PAPERVERSIONSEL}.jar
   starterFilePaper
 }
 
 function paper1102 {
   echo -e " "
   cd ${spigotfolder:-/root/spigot}
-  curl -o paper-1.10.2.jar https://papermc.io/api/v1/paper/1.10.2/latest/download
+  wget https://papermc.io/api/v2/projects/paper/versions/1.10.2/builds/916/downloads/paper-1.10.2-916.jar
+  mv paper-*.jar paper-${PAPERVERSIONSEL}.jar
   starterFilePaper
 }
 
 function paper194 {
   echo -e " "
   cd ${spigotfolder:-/root/spigot}
-  curl -o paper-1.9.4.jar https://papermc.io/api/v1/paper/1.9.4/latest/download
+  wget https://papermc.io/api/v2/projects/paper/versions/1.9.4/builds/773/downloads/paper-1.9.4-773.jar
+  mv paper-*.jar paper-${PAPERVERSIONSEL}.jar
   starterFilePaper
 }
 
 function paper188 {
   echo -e " "
   cd ${spigotfolder:-/root/spigot}
-  curl -o paper-1.8.8.jar https://papermc.io/api/v1/paper/1.8.8/latest/download
+  wget https://papermc.io/api/v2/projects/paper/versions/1.8.8/builds/443/downloads/paper-1.8.8-443.jar
+  mv paper-*.jar paper-${PAPERVERSIONSEL}.jar
   starterFilePaper
 }
 
@@ -646,125 +681,148 @@ function purpur {
 }
 
 function purpurversion {
-  PURPURVERSION=("1.17.1" "1.17" "1.16.5" "1.16.4" "1.16.3" "1.16.2" "1.16.1" "1.15.2" "1.15.1" "1.15" "1.14.4" "1.14.3" "1.14.2" "1.14.1" "Cancel")
+  PURPURVERSION=("1.18" "1.17.1" "1.17" "1.16.5" "1.16.4" "1.16.3" "1.16.2" "1.16.1" "1.15.2" "1.15.1" "1.15" "1.14.4" "1.14.3" "1.14.2" "1.14.1" "Cancel")
   echo -e "${CYAN} Select the server version. ${COLOR_NULL}"
   select PURPURVERSIONSEL in "${PURPURVERSION[@]}"; do
     case "$REPLY" in
-    1) purpur1171 ;;
-    2) purpur117 ;;
-    3) purpur1165 ;;
-    4) purpur1164 ;;
-    5) purpur1163 ;;
-    6) purpur1162 ;;
-    7) purpur1161 ;;
-    8) purpur1152 ;;
-    9) purpur1151 ;;
-    10) purpur115 ;;
-    11) purpur1144 ;;
-    12) purpur1143 ;;
-    13) purpur1142 ;;
-    14) purpur1141 ;;
-    15) exit ;;
+    1) purpur118 ;;
+    2) purpur1171 ;;
+    3) purpur117 ;;
+    4) purpur1165 ;;
+    5) purpur1164 ;;
+    6) purpur1163 ;;
+    7) purpur1162 ;;
+    8) purpur1161 ;;
+    9) purpur1152 ;;
+    10) purpur1151 ;;
+    11) purpur115 ;;
+    12) purpur1144 ;;
+    13) purpur1143 ;;
+    14) purpur1142 ;;
+    15) purpur1141 ;;
+    16) exit ;;
     *) echo -e "${ERROR} ${LIGHT_RED}The argument you entered is incorrect! ${COLOR_NULL}";;
     esac
   done
 }
 
+function purpur118 {
+  echo -e " "
+  cd ${spigotfolder:-/root/spigot}
+  curl -O -J -L https://api.pl3x.net/v2/purpur/1.17.1/latest/download
+  mv purpur-*.jar purpur-${PURPURVERSIONSEL}.jar
+  starterFilePurpur
+}
+
 function purpur1171 {
   echo -e " "
   cd ${spigotfolder:-/root/spigot}
-  curl -o purpur-1.17.1.jar https://api.pl3x.net/v2/purpur/1.17.1/latest/download
+  curl -O -J -L https://api.pl3x.net/v2/purpur/1.17.1/latest/download
+  mv purpur-*.jar purpur-${PURPURVERSIONSEL}.jar
   starterFilePurpur
 }
 
 function purpur117 {
   echo -e " "
   cd ${spigotfolder:-/root/spigot}
-  curl -o purpur-1.17.jar https://api.pl3x.net/v2/purpur/1.17/latest/download
+  curl -O -J -L https://api.pl3x.net/v2/purpur/1.17/latest/download
+  mv purpur-*.jar purpur-${PURPURVERSIONSEL}.jar
   starterFilePurpur
 }
 
 function purpur1165 {
   echo -e " "
   cd ${spigotfolder:-/root/spigot}
-  curl -o purpur-1.16.5.jar https://api.pl3x.net/v2/purpur/1.16.5/latest/download
+  curl -O -J -L https://api.pl3x.net/v2/purpur/1.16.5/latest/download
+  mv purpur-*.jar purpur-${PURPURVERSIONSEL}.jar
   starterFilePurpur
 }
 
 function purpur1164 {
   echo -e " "
   cd ${spigotfolder:-/root/spigot}
-  curl -o purpur-1.16.4.jar https://api.pl3x.net/v2/purpur/1.16.4/latest/download
+  curl -O -J -L https://api.pl3x.net/v2/purpur/1.16.4/latest/download
+  mv purpur-*.jar purpur-${PURPURVERSIONSEL}.jar
   starterFilePurpur
 }
 
 function purpur1163 {
   echo -e " "
   cd ${spigotfolder:-/root/spigot}
-  curl -o purpur-1.16.3.jar https://api.pl3x.net/v2/purpur/1.16.3/latest/download
+  curl -O -J -L https://api.pl3x.net/v2/purpur/1.16.3/latest/download
+  mv purpur-*.jar purpur-${PURPURVERSIONSEL}.jar
   starterFilePurpur
 }
 
 function purpur1162 {
   echo -e " "
   cd ${spigotfolder:-/root/spigot}
-  curl -o purpur-1.16.2.jar https://api.pl3x.net/v2/purpur/1.16.2/latest/download
+  curl -O -J -L https://api.pl3x.net/v2/purpur/1.16.2/latest/download
+  mv purpur-*.jar purpur-${PURPURVERSIONSEL}.jar
   starterFilePurpur
 }
 
 function purpur1161 {
   echo -e " "
   cd ${spigotfolder:-/root/spigot}
-  curl -o purpur-1.16.1.jar https://api.pl3x.net/v2/purpur/1.16.1/latest/download
+  curl -O -J -L https://api.pl3x.net/v2/purpur/1.16.1/latest/download
+  mv purpur-*.jar purpur-${PURPURVERSIONSEL}.jar
   starterFilePurpur
 }
 
 function purpur1152 {
   echo -e " "
   cd ${spigotfolder:-/root/spigot}
-  curl -o purpur-1.15.2.jar https://api.pl3x.net/v2/purpur/1.15.2/latest/download
+  curl -O -J -L https://api.pl3x.net/v2/purpur/1.15.2/latest/download
+  mv purpur-*.jar purpur-${PURPURVERSIONSEL}.jar
   starterFilePurpur
 }
 
 function purpur1151 {
   echo -e " "
   cd ${spigotfolder:-/root/spigot}
-  curl -o purpur-1.15.1.jar https://api.pl3x.net/v2/purpur/1.15.1/latest/download
+  curl -O -J -L https://api.pl3x.net/v2/purpur/1.15.1/latest/download
+  mv purpur-*.jar purpur-${PURPURVERSIONSEL}.jar
   starterFilePurpur
 }
 
 function purpur115 {
   echo -e " "
   cd ${spigotfolder:-/root/spigot}
-  curl -o purpur-1.15.jar https://api.pl3x.net/v2/purpur/1.15/latest/download
+  curl -O -J -L https://api.pl3x.net/v2/purpur/1.15/latest/download
+  mv purpur-*.jar purpur-${PURPURVERSIONSEL}.jar
   starterFilePurpur
 }
 
 function purpur1144 {
   echo -e " "
   cd ${spigotfolder:-/root/spigot}
-  curl -o purpur-1.14.4.jar https://api.pl3x.net/v2/purpur/1.14.4/latest/download
+  curl -O -J -L https://api.pl3x.net/v2/purpur/1.14.4/latest/download
+  mv purpur-*.jar purpur-${PURPURVERSIONSEL}.jar
   starterFilePurpur
 }
 
 function purpur1143 {
   echo -e " "
   cd ${spigotfolder:-/root/spigot}
-  curl -o purpur-1.14.3.jar https://api.pl3x.net/v2/purpur/1.14.3/latest/download
+  curl -O -J -L https://api.pl3x.net/v2/purpur/1.14.3/latest/download
+  mv purpur-*.jar purpur-${PURPURVERSIONSEL}.jar
   starterFilePurpur
 }
 
 function purpur1142 {
   echo -e " "
   cd ${spigotfolder:-/root/spigot}
-  curl -o purpur-1.14.2.jar https://api.pl3x.net/v2/purpur/1.14.2/latest/download
+  curl -O -J -L https://api.pl3x.net/v2/purpur/1.14.2/latest/download
+  mv purpur-*.jar purpur-${PURPURVERSIONSEL}.jar
   starterFilePurpur
 }
 
 function purpur1141 {
   echo -e " "
   cd ${spigotfolder:-/root/spigot}
-  curl -o purpur-1.14.1.jar https://api.pl3x.net/v2/purpur/1.14.1/latest/download
+  curl -O -J -L https://api.pl3x.net/v2/purpur/1.14.1/latest/download
+  mv purpur-*.jar purpur-${PURPURVERSIONSEL}.jar
   starterFilePurpur
 }
 
