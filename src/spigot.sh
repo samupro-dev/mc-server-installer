@@ -709,7 +709,7 @@ function purpurversion {
 function purpur118 {
   echo -e " "
   cd ${spigotfolder:-/root/spigot}
-  curl -O -J -L https://api.pl3x.net/v2/purpur/1.17.1/latest/download
+  curl -O -J -L https://api.pl3x.net/v2/purpur/1.18/latest/download
   mv purpur-*.jar purpur-${PURPURVERSIONSEL}.jar
   starterFilePurpur
 }
