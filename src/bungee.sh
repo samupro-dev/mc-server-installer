@@ -55,11 +55,31 @@ function bungeecord {
 
 ## Waterfall ##
 function waterfall {
+  if ! [ -x "$(command -v ruby)" ]; then
+    echo -e "${ERROR} ${LIGHT_RED} ruby is required in order for this installation to work. ${COLOR_NULL}"
+    while true
+    do
+      echo -e -n "${YELLOW} Do you want to install ruby (Y/n)? ${COLOR_NULL}"
+      read installruby
+      case "$installruby" in
+        n|N|no|No|NO) exit;;
+        y|Y|yes|Yes|YES) apt-get -y install ruby || yum install -y ruby
+        break;;
+        *) echo -e "${ERROR} ${LIGHT_RED}The argument you entered is incorrect! ${COLOR_NULL}";;
+      esac
+    done
+  fi
+  echo -e " ${YELLOW} ruby is installed, the installation will work fine! ${COLOR_NULL}"
   echo -e "\n"
   mkdir ${bungeefolder:-/root/bungee}
   cd ${bungeefolder:-/root/bungee}
   echo -e "${CYAN} Downloading the jar file. . . ${COLOR_NULL}"
-  curl -o Waterfall.jar https://papermc.io/api/v1/waterfall/1.18/latest/download
+  curl -s "https://papermc.io/api/v2/projects/waterfall/versions/1.18" | ruby -rjson -e 'data = JSON.parse(STDIN.read); puts data["builds"]' >> builds-temp-waterfall.txt
+  grep -Eo '[0-9]+' builds-temp-waterfall.txt | sort -rn >> builds-waterfall.txt
+  read buildwaterfall <<< $(awk 'NR==1 {print; exit}' builds-waterfall.txt)
+  wget https://papermc.io/api/v2/projects/waterfall/versions/1.18/builds/${buildwaterfall}/downloads/waterfall-1.18-${buildwaterfall}.jar
+  mv waterfall-*.jar Waterfall.jar
+  rm *.txt
   starterFile
 }
 
@@ -69,7 +89,8 @@ function travertine {
   mkdir ${bungeefolder:-/root/bungee}
   cd ${bungeefolder:-/root/bungee}
   echo -e "${CYAN} Downloading the jar file. . . ${COLOR_NULL}"
-  curl -o Travertine.jar https://papermc.io/api/v1/travertine/1.16/latest/download
+  wget https://papermc.io/api/v2/projects/travertine/versions/1.16/builds/191/downloads/travertine-1.16-191.jar
+  mv travertine-*.jar Travertine.jar
   starterFile
 }
 
