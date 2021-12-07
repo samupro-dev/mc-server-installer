@@ -69,14 +69,16 @@ function magmaversion {
 function magma1165{
   echo -e " "
   cd ${moddedfolder:-/root/modded}
-  curl -o magma-1.16.5.jar https://api.magmafoundation.org/api/resources/magma/1.16.5/dev/latest/download
+  curl -O -J -L https://api.magmafoundation.org/api/resources/magma/1.16.5/dev/latest/download
+  mv Magma-*.jar magma-${MAGMAVERSIONSEL}.jar
   starterFileMagma
 }
 
 function magma1122 {
   echo -e " "
   cd ${moddedfolder:-/root/modded}
-  curl -o magma-1.12.2.jar https://api.magmafoundation.org/api/resources/magma/1.12.2/dev/latest/download
+  curl -O -J -L https://api.magmafoundation.org/api/resources/magma/1.12.2/dev/latest/download
+  mv Magma-*.jar magma-${MAGMAVERSIONSEL}.jar
   starterFileMagma
 }
 
