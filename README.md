@@ -29,6 +29,13 @@ If you find any bugs or want to recommend some new features, write them [here](h
 - [ ] A better interface
 
 ## Changelogs
+### v2.5
+- Purpur fork updated to 1.18
+- Fixed the download links of the Purpur fork
+- Fixed the download links of the Magma fork
+- Fixed the download links of the Paper fork
+- Fixed the download links of the Travertine fork
+- Fixed the download links of the Waterfall fork
 ### v2.4
 - Vanilla jar updated to 1.18
 - Paper fork updated to 1.18
