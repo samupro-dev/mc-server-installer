@@ -29,6 +29,9 @@ If you find any bugs or want to recommend some new features, write them [here](h
 - [ ] A better interface
 
 ## Changelogs
+### v2.6
+- Updated from Java16 to Java17
+- Improved Java installation option
 ### v2.5
 - Purpur fork updated to 1.18
 - Fixed the download links of the Purpur fork
