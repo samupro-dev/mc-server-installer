@@ -29,6 +29,14 @@ If you find any bugs or want to recommend some new features, write them [here](h
 - [ ] A better interface
 
 ## Changelogs
+### v2.8
+- Removed 1.16.5 from the Airplane fork
+- Purpur fork updated to 1.18.1
+- Removed the Tuinity fork
+- Paper fork updated to 1.18.1
+- Spigot fork updated to 1.18.1
+- Vanilla jar updated to 1.18.1
+- Download links for the Arclight 1.17.1 fork updated
 ### v2.7
 - Fixed the download links of the FlamePaper fork
 ### v2.6
