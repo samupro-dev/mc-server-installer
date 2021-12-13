@@ -213,8 +213,8 @@ function arclight118 {
 function arclight1171 {
   echo -e " "
   cd ${moddedfolder:-/root/modded}
-  wget https://github.com/IzzelAliz/Arclight/releases/download/1.17%2F1.0.1/arclight-forge-1.17.1-1.0.1.jar
-  mv arclight-forge-1.17.1-1.0.1.jar arclight-1.17.1.jar
+  wget https://github.com/IzzelAliz/Arclight/releases/download/1.17%2F1.0.2/arclight-forge-1.17.1-1.0.2.jar
+  mv arclight-forge-1.17.1-1.0.2.jar arclight-1.17.1.jar
   starterFileArclight
 }
 
