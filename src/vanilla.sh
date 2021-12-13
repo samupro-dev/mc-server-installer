@@ -44,58 +44,67 @@ function vanillaa {
 }
 
 function vanillaversion {
-  VANILLAVERSION=("1.18" "1.17.1" "1.17" "1.16.5" "1.16.4" "1.16.3" "1.16.2" "1.16.1" "1.16" "1.15.2" "1.15.1" "1.15" "1.14.4" "1.14.3" "1.14.2" "1.14.1" "1.14" "1.13.2" "1.13.1" "1.13" "1.12.2" "1.12.1" "1.12" "1.11.2" "1.11.1" "1.11" "1.10.2" "1.9.4" "1.9.3" "1.9.2" "1.9.1" "1.9" "1.8.8" "1.8.7" "1.8.6" "1.8.5" "1.8.4" "1.8.3" "1.8.2" "1.8.1" "1.8" "1.7.10" "Cancel")
+  VANILLAVERSION=("1.18.1" "1.18" "1.17.1" "1.17" "1.16.5" "1.16.4" "1.16.3" "1.16.2" "1.16.1" "1.16" "1.15.2" "1.15.1" "1.15" "1.14.4" "1.14.3" "1.14.2" "1.14.1" "1.14" "1.13.2" "1.13.1" "1.13" "1.12.2" "1.12.1" "1.12" "1.11.2" "1.11.1" "1.11" "1.10.2" "1.9.4" "1.9.3" "1.9.2" "1.9.1" "1.9" "1.8.8" "1.8.7" "1.8.6" "1.8.5" "1.8.4" "1.8.3" "1.8.2" "1.8.1" "1.8" "1.7.10" "Cancel")
   echo -e "${CYAN} Select the server version. ${COLOR_NULL}"
   select VANILLAVERSIONSEL in "${VANILLAVERSION[@]}"; do
     case "$REPLY" in
-    1) vanilla118 ;;
-    2) vanilla1171 ;;
-    3) vanilla117 ;;
-    4) vanilla1165 ;;
-    5) vanilla1164 ;;
-    6) vanilla1163 ;;
-    7) vanilla1162 ;;
-    8) vanilla1161 ;;
-    9) vanilla116 ;;
-    10) vanilla1152 ;;
-    11) vanilla1151 ;;
-    12) vanilla115 ;;
-    13) vanilla1144 ;;
-    14) vanilla1143 ;;
-    15) vanilla1142 ;;
-    16) vanilla1141 ;;
-    17) vanilla114 ;;
-    18) vanilla1132 ;;
-    19) vanilla1131 ;;
-    20) vanilla113 ;;
-    21) vanilla1122 ;;
-    22) vanilla1121 ;;
-    23) vanilla112 ;;
-    24) vanilla1122 ;;
-    25) vanilla1121 ;;
-    26) vanilla112 ;;
-    27) vanilla1112 ;;
-    28) vanilla1111 ;;
-    29) vanilla111 ;;
-    30) vanilla1102 ;;
-    31) vanilla194 ;;
-    32) vanilla193 ;;
-    33) vanilla192 ;;
-    34) vanilla191 ;;
-    35) vanilla19 ;;
-    36) vanilla188 ;;
-    37) vanilla187 ;;
-    38) vanilla186 ;;
-    39) vanilla185 ;;
-    40) vanilla184 ;;
-    41) vanilla183 ;;
-    42) vanilla182 ;;
-    43) vanilla181 ;;
-    44) vanilla1710 ;;
-    45) exit ;;
+    1) vanilla1181 ;;
+    2) vanilla118 ;;
+    3) vanilla1171 ;;
+    4) vanilla117 ;;
+    5) vanilla1165 ;;
+    6) vanilla1164 ;;
+    7) vanilla1163 ;;
+    8) vanilla1162 ;;
+    9) vanilla1161 ;;
+    10) vanilla116 ;;
+    11) vanilla1152 ;;
+    12) vanilla1151 ;;
+    13) vanilla115 ;;
+    14) vanilla1144 ;;
+    15) vanilla1143 ;;
+    16) vanilla1142 ;;
+    17) vanilla1141 ;;
+    18) vanilla114 ;;
+    19) vanilla1132 ;;
+    20) vanilla1131 ;;
+    21) vanilla113 ;;
+    22) vanilla1122 ;;
+    23) vanilla1121 ;;
+    24) vanilla112 ;;
+    25) vanilla1122 ;;
+    26) vanilla1121 ;;
+    27) vanilla112 ;;
+    28) vanilla1112 ;;
+    29) vanilla1111 ;;
+    30) vanilla111 ;;
+    31) vanilla1102 ;;
+    32) vanilla194 ;;
+    33) vanilla193 ;;
+    34) vanilla192 ;;
+    35) vanilla191 ;;
+    36) vanilla19 ;;
+    37) vanilla188 ;;
+    38) vanilla187 ;;
+    39) vanilla186 ;;
+    40) vanilla185 ;;
+    41) vanilla184 ;;
+    42) vanilla183 ;;
+    43) vanilla182 ;;
+    44) vanilla181 ;;
+    45) vanilla1710 ;;
+    46) exit ;;
     *) echo -e "${ERROR} ${LIGHT_RED}The argument you entered is incorrect! ${COLOR_NULL}";;
     esac
   done
+}
+
+function vanilla1181 {
+  echo -e " "
+  cd ${vanillafolder:-/root/vanilla}
+  wget https://launcher.mojang.com/v1/objects/125e5adf40c659fd3bce3e66e67a16bb49ecc1b9/server.jar
+  mv server.jar vanilla-1.18.1.jar
+  starterFile
 }
 
 function vanilla118 {
