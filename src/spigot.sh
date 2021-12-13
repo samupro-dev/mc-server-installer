@@ -29,19 +29,18 @@ function spigot {
   echo -e -n "${YELLOW} Enter the port of the server. (ex. 25565): ${COLOR_NULL}"
   read spigotport
   echo -e "${CYAN} Server type selected: ${YELLOW}Spigot ${COLOR_NULL}"
-  SPIGOTTYPE=("Spigot" "Paper" "Tuinity" "Purpur" "Glowstone" "SportPaper" "FlamePaper" "Airplane" "Cancel")
+  SPIGOTTYPE=("Spigot" "Paper" "Purpur" "Glowstone" "SportPaper" "FlamePaper" "Airplane" "Cancel")
   echo -e "${CYAN} Select the type of fork that suits you best! ${COLOR_NULL}"
   select OPTION in "${SPIGOTTYPE[@]}"; do
     case "$REPLY" in
     1) spigott ;;
     2) paper ;;
-    3) tuinity ;;
-    4) purpur ;;
-    5) glowstone ;;
-    6) sportpaper ;;
-    7) flamepaper;;
-    8) airplane;;
-    9) exit ;;
+    3) purpur ;;
+    4) glowstone ;;
+    5) sportpaper ;;
+    6) flamepaper;;
+    7) airplane;;
+    8) exit ;;
     *) echo -e "${ERROR} ${LIGHT_RED}The argument you entered is incorrect! ${COLOR_NULL}";;
     esac
   done
@@ -60,44 +59,53 @@ function spigott {
 }
 
 function spigottversion {
-  SPIGOTVERSION=("1.18" "1.17.1" "1.17" "1.16.5" "1.16.4" "1.16.3" "1.16.2" "1.16.1" "1.15.2" "1.15.1" "1.15" "1.14.4" "1.14.3" "1.14.2" "1.14.1" "1.14" "1.13.2" "1.13.1" "1.13" "1.12.2" "1.12.1" "1.12" "1.11" "1.10.2" "1.9.4" "1.9.2" "1.9" "1.8.8" "1.8.3" "1.8" "Cancel")
+  SPIGOTVERSION=("1.18.1" "1.18" "1.17.1" "1.17" "1.16.5" "1.16.4" "1.16.3" "1.16.2" "1.16.1" "1.15.2" "1.15.1" "1.15" "1.14.4" "1.14.3" "1.14.2" "1.14.1" "1.14" "1.13.2" "1.13.1" "1.13" "1.12.2" "1.12.1" "1.12" "1.11" "1.10.2" "1.9.4" "1.9.2" "1.9" "1.8.8" "1.8.3" "1.8" "Cancel")
   echo -e "${CYAN} Select the server version. ${COLOR_NULL}"
   select SPIGOTVERSIONSEL in "${SPIGOTVERSION[@]}"; do
     case "$REPLY" in
-    1) spigot118 ;;
-    2) spigot1171 ;;
-    3) spigot117 ;;
-    4) spigot1165 ;;
-    5) spigot1164 ;;
-    6) spigot1163 ;;
-    7) spigot1162 ;;
-    8) spigot1161 ;;
-    9) spigot1152 ;;
-    10) spigot1151 ;;
-    11) spigot115 ;;
-    12) spigot1444 ;;
-    13) spigot1143 ;;
-    14) spigot1142 ;;
-    15) spigot1141 ;;
-    16) spigot114 ;;
-    17) spigot1132 ;;
-    18) spigot1131 ;;
-    19) spigot113 ;;
-    20) spigot1122 ;;
-    21) spigot1121 ;;
-    22) spigot112 ;;
-    23) spigot111 ;;
-    24) spigot1102 ;;
-    25) spigot194 ;;
-    26) spigot192 ;;
-    27) spigot19 ;;
-    28) spigot188 ;;
-    29) spigot183 ;;
-    30) spigot18 ;;
-    31) exit ;;
+    1) spigot1181 ;;
+    2) spigot118 ;;
+    3) spigot1171 ;;
+    4) spigot117 ;;
+    5) spigot1165 ;;
+    6) spigot1164 ;;
+    7) spigot1163 ;;
+    8) spigot1162 ;;
+    9) spigot1161 ;;
+    10) spigot1152 ;;
+    11) spigot1151 ;;
+    12) spigot115 ;;
+    13) spigot1444 ;;
+    14) spigot1143 ;;
+    15) spigot1142 ;;
+    16) spigot1141 ;;
+    17) spigot114 ;;
+    18) spigot1132 ;;
+    19) spigot1131 ;;
+    20) spigot113 ;;
+    21) spigot1122 ;;
+    22) spigot1121 ;;
+    23) spigot112 ;;
+    24) spigot111 ;;
+    25) spigot1102 ;;
+    26) spigot194 ;;
+    27) spigot192 ;;
+    28) spigot19 ;;
+    29) spigot188 ;;
+    30) spigot183 ;;
+    31) spigot18 ;;
+    32) exit ;;
     *) echo -e "${ERROR} ${LIGHT_RED}The argument you entered is incorrect! ${COLOR_NULL}";;
     esac
   done
+}
+
+function spigot1181 {
+  echo -e " "
+  cd ${spigotfolder:-/root/spigot}
+  wget https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar
+  compilerSpigot
+  starterFileSpigot
 }
 
 function spigot118 {
@@ -402,37 +410,46 @@ function paper {
 }
 
 function paperversion {
-  PAPERVERSION=("1.18" "1.17.1" "1.17" "1.16.5" "1.15.2" "1.14.4" "1.13.2" "1.12.2" "1.11.2" "1.10.2" "1.9.4" "1.8.8" "Cancel")
+  PAPERVERSION=("1.18.1" "1.18" "1.17.1" "1.17" "1.16.5" "1.15.2" "1.14.4" "1.13.2" "1.12.2" "1.11.2" "1.10.2" "1.9.4" "1.8.8" "Cancel")
   echo -e "${CYAN} Select the server version. ${COLOR_NULL}"
   select PAPERVERSIONSEL in "${PAPERVERSION[@]}"; do
     case "$REPLY" in
-    1) paper118 ;;
-    2) paper1171 ;;
-    3) paper117 ;;
-    4) paper1165 ;;
-    5) paper1152 ;;
-    6) paper1144 ;;
-    7) paper1132 ;;
-    8) paper1122 ;;
-    9) paper1112 ;;
-    10) paper1102 ;;
-    11) paper194 ;;
-    12) paper188 ;;
-    13) exit ;;
+    1) paper1181 ;;
+    2) paper118 ;;
+    3) paper1171 ;;
+    4) paper117 ;;
+    5) paper1165 ;;
+    6) paper1152 ;;
+    7) paper1144 ;;
+    8) paper1132 ;;
+    9) paper1122 ;;
+    10) paper1112 ;;
+    11) paper1102 ;;
+    12) paper194 ;;
+    13) paper188 ;;
+    14) exit ;;
     *) echo -e "${ERROR} ${LIGHT_RED}The argument you entered is incorrect! ${COLOR_NULL}";;
     esac
   done
 }
 
+function paper1181 {
+  echo -e " "
+  cd ${spigotfolder:-/root/spigot}
+  curl -s "https://papermc.io/api/v2/projects/paper/versions/1.18.1" | ruby -rjson -e 'data = JSON.parse(STDIN.read); puts data["builds"]' >> builds-temp-1.18.1.txt
+  grep -Eo '[0-9]+' builds-temp-1.18.1.txt | sort -rn >> builds-1.18.1.txt
+  read build1181 <<< $(awk 'NR==1 {print; exit}' builds-1.18.1.txt)
+  wget https://papermc.io/api/v2/projects/paper/versions/1.18.1/builds/${build1181}/downloads/paper-1.18.1-${build1181}.jar
+  mv paper-*.jar paper-${PAPERVERSIONSEL}.jar
+  rm *.txt
+  starterFilePaper
+}
+
 function paper118 {
   echo -e " "
   cd ${spigotfolder:-/root/spigot}
-  curl -s "https://papermc.io/api/v2/projects/paper/versions/1.18" | ruby -rjson -e 'data = JSON.parse(STDIN.read); puts data["builds"]' >> builds-temp-1.18.txt
-  grep -Eo '[0-9]+' builds-temp-1.18.txt | sort -rn >> builds-1.18.txt
-  read build118 <<< $(awk 'NR==1 {print; exit}' builds-1.18.txt)
-  wget https://papermc.io/api/v2/projects/paper/versions/1.18/builds/${build118}/downloads/paper-1.18-${build118}.jar
+  wget https://papermc.io/api/v2/projects/paper/versions/1.18/builds/66/downloads/paper-1.18-66.jar
   mv paper-*.jar paper-${PAPERVERSIONSEL}.jar
-  rm *.txt
   starterFilePaper
 }
 
@@ -551,70 +568,6 @@ function successInstallPaper {
   exit
 }
 
-## Tuinity ##
-function tuinity {
-  echo -e "\n"
-  mkdir ${spigotfolder:-/root/spigot}
-  cd ${spigotfolder:-/root/spigot}
-  echo -e "${YELLOW} I am setting up the server port. . . ${COLOR_NULL}"
-  echo "server-port=${spigotport:-25565}" > server.properties
-  echo -e "${YELLOW} The eula file has been created. ${COLOR_NULL}"
-  echo "eula=true" > eula.txt
-  tuinityversion
-}
-
-function tuinityversion {
-  TUINITYVERSION=("1.17.1" "1.16.5" "Cancel")
-  echo -e "${CYAN} Select the server version. ${COLOR_NULL}"
-  select TUINITYVERSIONSEL in "${TUINITYVERSION[@]}"; do
-    case "$REPLY" in
-    1) tuinity1171 ;;
-    2) tuinity1165 ;;
-    3) exit ;;
-    *) echo -e "${ERROR} ${LIGHT_RED}The argument you entered is incorrect! ${COLOR_NULL}";;
-    esac
-  done
-}
-
-function tuinity1171 {
-  echo -e " "
-  cd ${spigotfolder:-/root/spigot}
-  wget https://ci.codemc.io/job/Spottedleaf/job/Tuinity-1.17/lastSuccessfulBuild/artifact/tuinity-paperclip.jar
-  mv tuinity-paperclip.jar tuinity-1.17.1.jar
-  starterFileTuinity
-}
-
-function tuinity1165 {
-  echo -e " "
-  cd ${spigotfolder:-/root/spigot}
-  wget https://ci.codemc.io/job/Spottedleaf/job/Tuinity/lastSuccessfulBuild/artifact/tuinity-paperclip.jar
-  mv tuinity-paperclip.jar tuinity-1.16.5.jar
-  starterFileTuinity
-}
-
-function starterFileTuinity {
-  cd ${spigotfolder:-/root/spigot}
-  echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
-  echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
-  / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
-  \__ \ /(__)\  )    (  )(__)(  )___/ )   / )(_)( 
-  (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
-          https://github.com/samupro-dev'
-  echo -e ' '
-  java -Xms128M -Xmx${spigotmem:-512}M -jar tuinity-${YATOPIAVERSIONSEL}.jar nogui" >> starter.sh
-  chmod +x starter.sh
-  successInstallTuinity
-}
-
-function successInstallTuinity {
-  echo -e " "
-  echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
-  echo -e "${LIGHT_GREEN} Your server was successfully installed!\n   ${CYAN}* Version: ${WHITE}Tuinity ${TUINITYVERSIONSEL}\n   ${CYAN}* Location: ${WHITE}${spigotfolder:-/root/spigot}\n   ${CYAN}* RAM: ${WHITE}${spigotmem:-512}M\n   ${CYAN}* Port: ${WHITE}${spigotport:-25565} ${COLOR_NULL}"
-  echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
-  echo -e "${YELLOW}To start the server use the ${LIGHT_RED}./starter.sh ${YELLOW}command${COLOR_NULL}"
-  exit
-}
-
 ## Glowstone ##
 function glowstone {
   echo -e "\n"
@@ -681,30 +634,40 @@ function purpur {
 }
 
 function purpurversion {
-  PURPURVERSION=("1.18" "1.17.1" "1.17" "1.16.5" "1.16.4" "1.16.3" "1.16.2" "1.16.1" "1.15.2" "1.15.1" "1.15" "1.14.4" "1.14.3" "1.14.2" "1.14.1" "Cancel")
+  PURPURVERSION=("1.18.1" "1.18" "1.17.1" "1.17" "1.16.5" "1.16.4" "1.16.3" "1.16.2" "1.16.1" "1.15.2" "1.15.1" "1.15" "1.14.4" "1.14.3" "1.14.2" "1.14.1" "Cancel")
   echo -e "${CYAN} Select the server version. ${COLOR_NULL}"
   select PURPURVERSIONSEL in "${PURPURVERSION[@]}"; do
     case "$REPLY" in
-    1) purpur118 ;;
-    2) purpur1171 ;;
-    3) purpur117 ;;
-    4) purpur1165 ;;
-    5) purpur1164 ;;
-    6) purpur1163 ;;
-    7) purpur1162 ;;
-    8) purpur1161 ;;
-    9) purpur1152 ;;
-    10) purpur1151 ;;
-    11) purpur115 ;;
-    12) purpur1144 ;;
-    13) purpur1143 ;;
-    14) purpur1142 ;;
-    15) purpur1141 ;;
-    16) exit ;;
+    1) purpur1181 ;;
+    2) purpur118 ;;
+    3) purpur1171 ;;
+    4) purpur117 ;;
+    5) purpur1165 ;;
+    6) purpur1164 ;;
+    7) purpur1163 ;;
+    8) purpur1162 ;;
+    9) purpur1161 ;;
+    10) purpur1152 ;;
+    11) purpur1151 ;;
+    12) purpur115 ;;
+    13) purpur1144 ;;
+    14) purpur1143 ;;
+    15) purpur1142 ;;
+    16) purpur1141 ;;
+    17) exit ;;
     *) echo -e "${ERROR} ${LIGHT_RED}The argument you entered is incorrect! ${COLOR_NULL}";;
     esac
   done
 }
+
+function purpur1181 {
+  echo -e " "
+  cd ${spigotfolder:-/root/spigot}
+  curl -O -J -L https://api.pl3x.net/v2/purpur/1.18.1/latest/download
+  mv purpur-*.jar purpur-${PURPURVERSIONSEL}.jar
+  starterFilePurpur
+}
+
 
 function purpur118 {
   echo -e " "
@@ -972,7 +935,7 @@ function airplane {
 }
 
 function airplaneversion {
-  AIRPLANEVERSION=("1.17.1" "1.16.5" "Cancel")
+  AIRPLANEVERSION=("1.17.1" "Cancel")
   echo -e "${CYAN} Select the server version. ${COLOR_NULL}"
   select AIRPLANEVERSIONSEL in "${AIRPLANEVERSION[@]}"; do
     case "$REPLY" in
@@ -989,14 +952,6 @@ function airplane1171 {
   cd ${spigotfolder:-/root/spigot}
   wget https://ci.tivy.ca/job/Airplane-1.17/lastSuccessfulBuild/artifact/launcher-airplane.jar
   mv launcher-airplane.jar Airplane-1.17.1.jar
-  starterFileAirplane
-}
-
-function airplane1165 {
-  echo -e " "
-  cd ${spigotfolder:-/root/spigot}
-  wget https://ci.tivy.ca/job/Airplane-1.16/lastSuccessfulBuild/artifact/launcher-airplane.jar
-  mv launcher-airplane.jar Airplane-1.16.5.jar
   starterFileAirplane
 }
 
