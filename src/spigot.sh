@@ -663,7 +663,7 @@ function purpurversion {
 function purpur1181 {
   echo -e " "
   cd ${spigotfolder:-/root/spigot}
-  curl -O -J -L https://api.pl3x.net/v2/purpur/1.18.1/latest/download
+  curl -O -J -L https://api.purpurmc.org/v2/purpur/1.18.1/latest/download
   mv purpur-*.jar purpur-${PURPURVERSIONSEL}.jar
   starterFilePurpur
 }
@@ -672,7 +672,7 @@ function purpur1181 {
 function purpur118 {
   echo -e " "
   cd ${spigotfolder:-/root/spigot}
-  curl -O -J -L https://api.pl3x.net/v2/purpur/1.18/latest/download
+  curl -O -J -L https://api.purpurmc.org/v2/purpur/1.18/latest/download
   mv purpur-*.jar purpur-${PURPURVERSIONSEL}.jar
   starterFilePurpur
 }
@@ -680,7 +680,7 @@ function purpur118 {
 function purpur1171 {
   echo -e " "
   cd ${spigotfolder:-/root/spigot}
-  curl -O -J -L https://api.pl3x.net/v2/purpur/1.17.1/latest/download
+  wget https://api.purpurmc.org/hotfixes/1.17.1/purpur-1.17.1-hotfix2.jar
   mv purpur-*.jar purpur-${PURPURVERSIONSEL}.jar
   starterFilePurpur
 }
@@ -688,7 +688,7 @@ function purpur1171 {
 function purpur117 {
   echo -e " "
   cd ${spigotfolder:-/root/spigot}
-  curl -O -J -L https://api.pl3x.net/v2/purpur/1.17/latest/download
+  curl -O -J -L https://api.purpurmc.org/v2/purpur/1.17/latest/download
   mv purpur-*.jar purpur-${PURPURVERSIONSEL}.jar
   starterFilePurpur
 }
@@ -696,7 +696,7 @@ function purpur117 {
 function purpur1165 {
   echo -e " "
   cd ${spigotfolder:-/root/spigot}
-  curl -O -J -L https://api.pl3x.net/v2/purpur/1.16.5/latest/download
+  curl -O -J -L https://api.purpurmc.org/v2/purpur/1.16.5/latest/download
   mv purpur-*.jar purpur-${PURPURVERSIONSEL}.jar
   starterFilePurpur
 }
@@ -704,7 +704,7 @@ function purpur1165 {
 function purpur1164 {
   echo -e " "
   cd ${spigotfolder:-/root/spigot}
-  curl -O -J -L https://api.pl3x.net/v2/purpur/1.16.4/latest/download
+  curl -O -J -L https://api.purpurmc.org/v2/purpur/1.16.4/latest/download
   mv purpur-*.jar purpur-${PURPURVERSIONSEL}.jar
   starterFilePurpur
 }
@@ -712,7 +712,7 @@ function purpur1164 {
 function purpur1163 {
   echo -e " "
   cd ${spigotfolder:-/root/spigot}
-  curl -O -J -L https://api.pl3x.net/v2/purpur/1.16.3/latest/download
+  curl -O -J -L https://api.purpurmc.org/v2/purpur/1.16.3/latest/download
   mv purpur-*.jar purpur-${PURPURVERSIONSEL}.jar
   starterFilePurpur
 }
@@ -720,7 +720,7 @@ function purpur1163 {
 function purpur1162 {
   echo -e " "
   cd ${spigotfolder:-/root/spigot}
-  curl -O -J -L https://api.pl3x.net/v2/purpur/1.16.2/latest/download
+  curl -O -J -L https://api.purpurmc.org/v2/purpur/1.16.2/latest/download
   mv purpur-*.jar purpur-${PURPURVERSIONSEL}.jar
   starterFilePurpur
 }
@@ -728,7 +728,7 @@ function purpur1162 {
 function purpur1161 {
   echo -e " "
   cd ${spigotfolder:-/root/spigot}
-  curl -O -J -L https://api.pl3x.net/v2/purpur/1.16.1/latest/download
+  curl -O -J -L https://api.purpurmc.org/v2/purpur/1.16.1/latest/download
   mv purpur-*.jar purpur-${PURPURVERSIONSEL}.jar
   starterFilePurpur
 }
@@ -736,7 +736,7 @@ function purpur1161 {
 function purpur1152 {
   echo -e " "
   cd ${spigotfolder:-/root/spigot}
-  curl -O -J -L https://api.pl3x.net/v2/purpur/1.15.2/latest/download
+  curl -O -J -L https://api.purpurmc.org/v2/purpur/1.15.2/latest/download
   mv purpur-*.jar purpur-${PURPURVERSIONSEL}.jar
   starterFilePurpur
 }
@@ -744,7 +744,7 @@ function purpur1152 {
 function purpur1151 {
   echo -e " "
   cd ${spigotfolder:-/root/spigot}
-  curl -O -J -L https://api.pl3x.net/v2/purpur/1.15.1/latest/download
+  curl -O -J -L https://api.purpurmc.org/v2/purpur/1.15.1/latest/download
   mv purpur-*.jar purpur-${PURPURVERSIONSEL}.jar
   starterFilePurpur
 }
@@ -752,7 +752,7 @@ function purpur1151 {
 function purpur115 {
   echo -e " "
   cd ${spigotfolder:-/root/spigot}
-  curl -O -J -L https://api.pl3x.net/v2/purpur/1.15/latest/download
+  curl -O -J -L https://api.purpurmc.org/v2/purpur/1.15/latest/download
   mv purpur-*.jar purpur-${PURPURVERSIONSEL}.jar
   starterFilePurpur
 }
@@ -760,7 +760,7 @@ function purpur115 {
 function purpur1144 {
   echo -e " "
   cd ${spigotfolder:-/root/spigot}
-  curl -O -J -L https://api.pl3x.net/v2/purpur/1.14.4/latest/download
+  curl -O -J -L https://api.purpurmc.org/v2/purpur/1.14.4/latest/download
   mv purpur-*.jar purpur-${PURPURVERSIONSEL}.jar
   starterFilePurpur
 }
@@ -768,7 +768,7 @@ function purpur1144 {
 function purpur1143 {
   echo -e " "
   cd ${spigotfolder:-/root/spigot}
-  curl -O -J -L https://api.pl3x.net/v2/purpur/1.14.3/latest/download
+  curl -O -J -L https://api.purpurmc.org/v2/purpur/1.14.3/latest/download
   mv purpur-*.jar purpur-${PURPURVERSIONSEL}.jar
   starterFilePurpur
 }
@@ -776,7 +776,7 @@ function purpur1143 {
 function purpur1142 {
   echo -e " "
   cd ${spigotfolder:-/root/spigot}
-  curl -O -J -L https://api.pl3x.net/v2/purpur/1.14.2/latest/download
+  curl -O -J -L https://api.purpurmc.org/v2/purpur/1.14.2/latest/download
   mv purpur-*.jar purpur-${PURPURVERSIONSEL}.jar
   starterFilePurpur
 }
@@ -784,7 +784,7 @@ function purpur1142 {
 function purpur1141 {
   echo -e " "
   cd ${spigotfolder:-/root/spigot}
-  curl -O -J -L https://api.pl3x.net/v2/purpur/1.14.1/latest/download
+  curl -O -J -L https://api.purpurmc.org/v2/purpur/1.14.1/latest/download
   mv purpur-*.jar purpur-${PURPURVERSIONSEL}.jar
   starterFilePurpur
 }
