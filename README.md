@@ -29,6 +29,8 @@ If you find any bugs or want to recommend some new features, write them [here](h
 - [ ] A better interface
 
 ## Changelogs
+### v2.9
+- Fixed the download links of the Purpur fork
 ### v2.8
 - Removed 1.16.5 from the Airplane fork
 - Purpur fork updated to 1.18.1
