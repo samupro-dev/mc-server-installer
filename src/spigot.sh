@@ -680,7 +680,7 @@ function purpur118 {
 function purpur1171 {
   echo -e " "
   cd ${spigotfolder:-/root/spigot}
-  wget https://api.purpurmc.org/hotfixes/1.17.1/purpur-1.17.1-hotfix2.jar
+  wget https://api.purpurmc.org/hotfixes/1.17.1/purpur-1.17.1-hotfix3.jar
   mv purpur-*.jar purpur-${PURPURVERSIONSEL}.jar
   starterFilePurpur
 }
