@@ -29,6 +29,8 @@ If you find any bugs or want to recommend some new features, write them [here](h
 - [ ] A better interface
 
 ## Changelogs
+### v3.0
+- Updated the 1.17.1 jar of the Purpur fork from hotfix2 to hotfix3
 ### v2.9
 - Fixed the download links of the Purpur fork
 ### v2.8
