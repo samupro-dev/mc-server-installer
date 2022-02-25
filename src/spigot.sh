@@ -950,8 +950,8 @@ function airplaneversion {
 function airplane1171 {
   echo -e " "
   cd ${spigotfolder:-/root/spigot}
-  wget https://ci.tivy.ca/job/Airplane-1.17/lastSuccessfulBuild/artifact/launcher-airplane.jar
-  mv launcher-airplane.jar Airplane-1.17.1.jar
+  wget https://airplane.gg/dl/launcher-airplane1.17.1.jar
+  mv launcher-airplane1.17.1.jar Airplane-1.17.1.jar
   starterFileAirplane
 }
 
