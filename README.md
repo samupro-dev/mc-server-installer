@@ -29,6 +29,15 @@ If you find any bugs or want to recommend some new features, write them [here](h
 - [ ] A better interface
 
 ## Changelogs
+### v3.2
+- Purpur fork updated to 1.18.2
+- Paper fork updated to 1.18.2
+- Spigot fork updated to 1.18.2
+- Vanilla jar updated to 1.18.2
+- Download link for the Velocity fork updated
+- Added version 1.18.1 of the Mohist fork
+- Fixed the download links of the Purpur 1.17.1 fork
+- Updated the JRE of the spigot compiler
 ### v3.1
 - Fixed the download links of the Airplane fork
 ### v3.0
