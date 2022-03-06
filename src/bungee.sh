@@ -106,12 +106,31 @@ function flamecord {
 
 ## Velocity ##
 function velocity {
+  if ! [ -x "$(command -v ruby)" ]; then
+    echo -e "${ERROR} ${LIGHT_RED} ruby is required in order for this installation to work. ${COLOR_NULL}"
+    while true
+    do
+      echo -e -n "${YELLOW} Do you want to install ruby (Y/n)? ${COLOR_NULL}"
+      read installruby
+      case "$installruby" in
+        n|N|no|No|NO) exit;;
+        y|Y|yes|Yes|YES) apt-get -y install ruby || yum install -y ruby
+        break;;
+        *) echo -e "${ERROR} ${LIGHT_RED}The argument you entered is incorrect! ${COLOR_NULL}";;
+      esac
+    done
+  fi
+  echo -e " ${YELLOW} ruby is installed, the installation will work fine! ${COLOR_NULL}"
   echo -e "\n"
   mkdir ${bungeefolder:-/root/bungee}
   cd ${bungeefolder:-/root/bungee}
   echo -e "${CYAN} Downloading the jar file. . . ${COLOR_NULL}"
-  wget https://versions.velocitypowered.com/download/3.0.x-SNAPSHOT.jar
-  mv 3.0.x-SNAPSHOT.jar Velocity.jar
+  curl -s "https://papermc.io/api/v2/projects/velocity/versions/3.1.2-SNAPSHOT" | ruby -rjson -e 'data = JSON.parse(STDIN.read); puts data["builds"]' >> builds-temp-velocity.txt
+  grep -Eo '[0-9]+' builds-temp-velocity.txt | sort -rn >> builds-velocity.txt
+  read buildvelocity <<< $(awk 'NR==1 {print; exit}' builds-velocity.txt)
+  wget https://papermc.io/api/v2/projects/velocity/versions/3.1.2-SNAPSHOT/builds/${buildvelocity}/downloads/velocity-3.1.2-SNAPSHOT-${buildvelocity}.jar
+  mv velocity-*.jar Velocity.jar
+  rm *.txt
   starterFile
 }
 
