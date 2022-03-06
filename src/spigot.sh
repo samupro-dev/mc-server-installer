@@ -59,45 +59,54 @@ function spigott {
 }
 
 function spigottversion {
-  SPIGOTVERSION=("1.18.1" "1.18" "1.17.1" "1.17" "1.16.5" "1.16.4" "1.16.3" "1.16.2" "1.16.1" "1.15.2" "1.15.1" "1.15" "1.14.4" "1.14.3" "1.14.2" "1.14.1" "1.14" "1.13.2" "1.13.1" "1.13" "1.12.2" "1.12.1" "1.12" "1.11" "1.10.2" "1.9.4" "1.9.2" "1.9" "1.8.8" "1.8.3" "1.8" "Cancel")
+  SPIGOTVERSION=("1.18.2" "1.18.1" "1.18" "1.17.1" "1.17" "1.16.5" "1.16.4" "1.16.3" "1.16.2" "1.16.1" "1.15.2" "1.15.1" "1.15" "1.14.4" "1.14.3" "1.14.2" "1.14.1" "1.14" "1.13.2" "1.13.1" "1.13" "1.12.2" "1.12.1" "1.12" "1.11" "1.10.2" "1.9.4" "1.9.2" "1.9" "1.8.8" "1.8.3" "1.8" "Cancel")
   echo -e "${CYAN} Select the server version. ${COLOR_NULL}"
   select SPIGOTVERSIONSEL in "${SPIGOTVERSION[@]}"; do
     case "$REPLY" in
-    1) spigot1181 ;;
-    2) spigot118 ;;
-    3) spigot1171 ;;
-    4) spigot117 ;;
-    5) spigot1165 ;;
-    6) spigot1164 ;;
-    7) spigot1163 ;;
-    8) spigot1162 ;;
-    9) spigot1161 ;;
-    10) spigot1152 ;;
-    11) spigot1151 ;;
-    12) spigot115 ;;
-    13) spigot1444 ;;
-    14) spigot1143 ;;
-    15) spigot1142 ;;
-    16) spigot1141 ;;
-    17) spigot114 ;;
-    18) spigot1132 ;;
-    19) spigot1131 ;;
-    20) spigot113 ;;
-    21) spigot1122 ;;
-    22) spigot1121 ;;
-    23) spigot112 ;;
-    24) spigot111 ;;
-    25) spigot1102 ;;
-    26) spigot194 ;;
-    27) spigot192 ;;
-    28) spigot19 ;;
-    29) spigot188 ;;
-    30) spigot183 ;;
-    31) spigot18 ;;
-    32) exit ;;
+    1) spigot1182 ;;
+    2) spigot1181 ;;
+    3) spigot118 ;;
+    4) spigot1171 ;;
+    5) spigot117 ;;
+    6) spigot1165 ;;
+    7) spigot1164 ;;
+    8) spigot1163 ;;
+    9) spigot1162 ;;
+    10) spigot1161 ;;
+    11) spigot1152 ;;
+    12) spigot1151 ;;
+    13) spigot115 ;;
+    14) spigot1444 ;;
+    15) spigot1143 ;;
+    16) spigot1142 ;;
+    17) spigot1141 ;;
+    18) spigot114 ;;
+    19) spigot1132 ;;
+    20) spigot1131 ;;
+    21) spigot113 ;;
+    22) spigot1122 ;;
+    23) spigot1121 ;;
+    24) spigot112 ;;
+    25) spigot111 ;;
+    26) spigot1102 ;;
+    27) spigot194 ;;
+    28) spigot192 ;;
+    29) spigot19 ;;
+    30) spigot188 ;;
+    31) spigot183 ;;
+    32) spigot18 ;;
+    33) exit ;;
     *) echo -e "${ERROR} ${LIGHT_RED}The argument you entered is incorrect! ${COLOR_NULL}";;
     esac
   done
+}
+
+function spigot1182 {
+  echo -e " "
+  cd ${spigotfolder:-/root/spigot}
+  wget https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar
+  compilerSpigot
+  starterFileSpigot
 }
 
 function spigot1181 {
@@ -351,10 +360,10 @@ function spigot18 {
 function compilerSpigot {
   cd ${spigotfolder:-/root/spigot}
   echo -e "${YELLOW} The build of the jar is in progress. . . (it will take a while)${COLOR_NULL}"
-  curl -O -J -L https://javadl.oracle.com/webapps/download/AutoDL?BundleId=245469_4d5417147a92418ea8b615e228bb6935
-  mv 'AutoDL\?BundleId\=245469_4d5417147a92418ea8b615e228bb6935' jre-8u311-linux-x64.tar.gz
-  tar -zxvf jre-8u311-linux-x64.tar.gz
-  "${spigotfolder:-/root/spigot}/jre1.8.0_311/bin/java" -jar BuildTools.jar --rev ${SPIGOTVERSIONSEL} > /dev/null
+  curl -O -J -L https://javadl.oracle.com/webapps/download/AutoDL?BundleId=245797_df5ad55fdd604472a86a45a217032c7d
+  mv 'AutoDL\?BundleId\=245797_df5ad55fdd604472a86a45a217032c7d' jre-8u321-linux-x64.tar.gz
+  tar -zxvf jre-8u321-linux-x64.tar.gz
+  "${spigotfolder:-/root/spigot}/jre1.8.0_321/bin/java" -jar BuildTools.jar --rev ${SPIGOTVERSIONSEL} > /dev/null
   find ./ -type d -not -name spigot-${SPIGOTVERSIONSEL}.jar | xargs rm -r
   find ./ -type f -not -name spigot-${SPIGOTVERSIONSEL}.jar | xargs rm
 }
@@ -410,38 +419,47 @@ function paper {
 }
 
 function paperversion {
-  PAPERVERSION=("1.18.1" "1.18" "1.17.1" "1.17" "1.16.5" "1.15.2" "1.14.4" "1.13.2" "1.12.2" "1.11.2" "1.10.2" "1.9.4" "1.8.8" "Cancel")
+  PAPERVERSION=("1.18.2" "1.18.1" "1.18" "1.17.1" "1.17" "1.16.5" "1.15.2" "1.14.4" "1.13.2" "1.12.2" "1.11.2" "1.10.2" "1.9.4" "1.8.8" "Cancel")
   echo -e "${CYAN} Select the server version. ${COLOR_NULL}"
   select PAPERVERSIONSEL in "${PAPERVERSION[@]}"; do
     case "$REPLY" in
-    1) paper1181 ;;
-    2) paper118 ;;
-    3) paper1171 ;;
-    4) paper117 ;;
-    5) paper1165 ;;
-    6) paper1152 ;;
-    7) paper1144 ;;
-    8) paper1132 ;;
-    9) paper1122 ;;
-    10) paper1112 ;;
-    11) paper1102 ;;
-    12) paper194 ;;
-    13) paper188 ;;
-    14) exit ;;
+    1) paper1182 ;;
+    2) paper1181 ;;
+    3) paper118 ;;
+    4) paper1171 ;;
+    5) paper117 ;;
+    6) paper1165 ;;
+    7) paper1152 ;;
+    8) paper1144 ;;
+    9) paper1132 ;;
+    10) paper1122 ;;
+    11) paper1112 ;;
+    12) paper1102 ;;
+    13) paper194 ;;
+    14) paper188 ;;
+    15) exit ;;
     *) echo -e "${ERROR} ${LIGHT_RED}The argument you entered is incorrect! ${COLOR_NULL}";;
     esac
   done
 }
 
+function paper1182 {
+  echo -e " "
+  cd ${spigotfolder:-/root/spigot}
+  curl -s "https://papermc.io/api/v2/projects/paper/versions/1.18.2" | ruby -rjson -e 'data = JSON.parse(STDIN.read); puts data["builds"]' >> builds-temp-1.18.2.txt
+  grep -Eo '[0-9]+' builds-temp-1.18.2.txt | sort -rn >> builds-1.18.2.txt
+  read build1182 <<< $(awk 'NR==1 {print; exit}' builds-1.18.2.txt)
+  wget https://papermc.io/api/v2/projects/paper/versions/1.18.2/builds/${build1182}/downloads/paper-1.18.2-${build1182}.jar
+  mv paper-*.jar paper-${PAPERVERSIONSEL}.jar
+  rm *.txt
+  starterFilePaper
+}
+
 function paper1181 {
   echo -e " "
   cd ${spigotfolder:-/root/spigot}
-  curl -s "https://papermc.io/api/v2/projects/paper/versions/1.18.1" | ruby -rjson -e 'data = JSON.parse(STDIN.read); puts data["builds"]' >> builds-temp-1.18.1.txt
-  grep -Eo '[0-9]+' builds-temp-1.18.1.txt | sort -rn >> builds-1.18.1.txt
-  read build1181 <<< $(awk 'NR==1 {print; exit}' builds-1.18.1.txt)
-  wget https://papermc.io/api/v2/projects/paper/versions/1.18.1/builds/${build1181}/downloads/paper-1.18.1-${build1181}.jar
+  wget https://papermc.io/api/v2/projects/paper/versions/1.18.1/builds/216/downloads/paper-1.18.1-216.jar
   mv paper-*.jar paper-${PAPERVERSIONSEL}.jar
-  rm *.txt
   starterFilePaper
 }
 
@@ -634,30 +652,39 @@ function purpur {
 }
 
 function purpurversion {
-  PURPURVERSION=("1.18.1" "1.18" "1.17.1" "1.17" "1.16.5" "1.16.4" "1.16.3" "1.16.2" "1.16.1" "1.15.2" "1.15.1" "1.15" "1.14.4" "1.14.3" "1.14.2" "1.14.1" "Cancel")
+  PURPURVERSION=("1.18.2" "1.18.1" "1.18" "1.17.1" "1.17" "1.16.5" "1.16.4" "1.16.3" "1.16.2" "1.16.1" "1.15.2" "1.15.1" "1.15" "1.14.4" "1.14.3" "1.14.2" "1.14.1" "Cancel")
   echo -e "${CYAN} Select the server version. ${COLOR_NULL}"
   select PURPURVERSIONSEL in "${PURPURVERSION[@]}"; do
     case "$REPLY" in
-    1) purpur1181 ;;
-    2) purpur118 ;;
-    3) purpur1171 ;;
-    4) purpur117 ;;
-    5) purpur1165 ;;
-    6) purpur1164 ;;
-    7) purpur1163 ;;
-    8) purpur1162 ;;
-    9) purpur1161 ;;
-    10) purpur1152 ;;
-    11) purpur1151 ;;
-    12) purpur115 ;;
-    13) purpur1144 ;;
-    14) purpur1143 ;;
-    15) purpur1142 ;;
-    16) purpur1141 ;;
-    17) exit ;;
+    1) purpur1182 ;;
+    2) purpur1181 ;;
+    3) purpur118 ;;
+    4) purpur1171 ;;
+    5) purpur117 ;;
+    6) purpur1165 ;;
+    7) purpur1164 ;;
+    8) purpur1163 ;;
+    9) purpur1162 ;;
+    10) purpur1161 ;;
+    11) purpur1152 ;;
+    12) purpur1151 ;;
+    13) purpur115 ;;
+    14) purpur1144 ;;
+    15) purpur1143 ;;
+    16) purpur1142 ;;
+    17) purpur1141 ;;
+    18) exit ;;
     *) echo -e "${ERROR} ${LIGHT_RED}The argument you entered is incorrect! ${COLOR_NULL}";;
     esac
   done
+}
+
+function purpur1182 {
+  echo -e " "
+  cd ${spigotfolder:-/root/spigot}
+  curl -O -J -L https://api.purpurmc.org/v2/purpur/1.18.2/latest/download
+  mv purpur-*.jar purpur-${PURPURVERSIONSEL}.jar
+  starterFilePurpur
 }
 
 function purpur1181 {
@@ -667,7 +694,6 @@ function purpur1181 {
   mv purpur-*.jar purpur-${PURPURVERSIONSEL}.jar
   starterFilePurpur
 }
-
 
 function purpur118 {
   echo -e " "
@@ -680,7 +706,7 @@ function purpur118 {
 function purpur1171 {
   echo -e " "
   cd ${spigotfolder:-/root/spigot}
-  wget https://api.purpurmc.org/hotfixes/1.17.1/purpur-1.17.1-hotfix3.jar
+  curl -O -J -L https://api.purpurmc.org/v2/purpur/1.17.1/latest/download
   mv purpur-*.jar purpur-${PURPURVERSIONSEL}.jar
   starterFilePurpur
 }
