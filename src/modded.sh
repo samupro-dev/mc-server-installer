@@ -116,17 +116,25 @@ function mohist {
 }
 
 function mohistversion {
-  MOHISTVERSION=("1.16.5" "1.12.2" "1.7.10" "Cancel")
+  MOHISTVERSION=("1.18.1" "1.16.5" "1.12.2" "1.7.10" "Cancel")
   echo -e "${CYAN} Select the server version. ${COLOR_NULL}"
   select MOHISTVERSIONSEL in "${MOHISTVERSION[@]}"; do
     case "$REPLY" in
-    1) mohist1165 ;;
-    2) mohist1122 ;;
-    3) mohist1710 ;;
-    4) exit ;;
+    1) mohist1181 ;;
+    2) mohist1165 ;;
+    3) mohist1122 ;;
+    4) mohist1710 ;;
+    5) exit ;;
     *) echo -e "${ERROR} ${LIGHT_RED}The argument you entered is incorrect! ${COLOR_NULL}";;
     esac
   done
+}
+
+function mohist1181 {
+  echo -e " "
+  cd ${moddedfolder:-/root/modded}
+  curl -o mohist-1.18.1.jar https://mohistmc.com/api/1.18-testing/latest/download
+  starterFileMohist
 }
 
 function mohist1165 {
