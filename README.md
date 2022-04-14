@@ -29,6 +29,10 @@ If you find any bugs or want to recommend some new features, write them [here](h
 - [ ] A better interface
 
 ## Changelogs
+### v3.3
+- Added Bedrock jar with official Mojang links
+- Download link for the FlameCord fork updated
+- Download link for the FlamePaper fork updated
 ### v3.2
 - Purpur fork updated to 1.18.2
 - Paper fork updated to 1.18.2
