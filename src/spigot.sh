@@ -920,7 +920,7 @@ function flamepaperversion {
 function flamepaper188 {
   echo -e " "
   cd ${spigotfolder:-/root/spigot}
-  wget https://github.com/2lstudios-mc/FlamePaper/releases/latest/download/FlamePaper.jar
+  wget https://ci.2lstudios.dev/job/FlamePaper/lastSuccessfulBuild/artifact/FlamePaper-Server/target/FlamePaper.jar
   mv FlamePaper.jar FlamePaper-1.8.8.jar
   starterFileFlamePaper
 }
