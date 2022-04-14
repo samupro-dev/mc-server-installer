@@ -29,15 +29,64 @@ function bedrock {
   echo -e -n "${YELLOW} Enter the port of the server. (ex. 19132): ${COLOR_NULL}"
   read bedrockport
   echo -e "${CYAN} Server type selected: ${YELLOW}Bedrock ${COLOR_NULL}"
-  BEDROCKTYPE=("NukkitX" "Cancel")
+  BEDROCKTYPE=("Bedrock" "NukkitX" "Cancel")
   echo -e "${CYAN} Select the type of fork that suits you best! ${COLOR_NULL}"
   select BEDROCKTYPESEL in "${BEDROCKTYPE[@]}"; do
     case "$REPLY" in
-    1) nukkitx ;;
-    2) exit ;;
+    1) bedrockk ;;
+    2) nukkitx ;;
+    3) exit ;;
     *) echo -e "${ERROR} ${LIGHT_RED}The argument you entered is incorrect! ${COLOR_NULL}";;
     esac
   done
+}
+
+## Bedrock ##
+function bedrockk {
+  echo -e "\n"
+  mkdir ${bedrockfolder:-/root/bedrock}
+  cd ${bedrockfolder:-/root/bedrock}
+  echo -e "${YELLOW} I am setting up the server port. . . ${COLOR_NULL}"
+  echo "server-port=${bedrockport:-19132}" > server.properties
+  bedrockkversion
+}
+
+function bedrockkversion {
+  BEDROCKKVERSION=("Latest" "Cancel")
+  echo -e "${CYAN} Select the server version. ${COLOR_NULL}"
+  select BEDROCKKVERSIONSEL in "${BEDROCKKVERSION[@]}"; do
+    case "$REPLY" in
+    1) bedrockklatest ;;
+    4) exit ;;
+    *) echo -e "${ERROR} ${LIGHT_RED}The argument you entered is incorrect! ${COLOR_NULL}";;
+    esac
+  done
+}
+
+function bedrockklatest {
+  echo -e " "
+  cd ${bedrockfolder:-/root/bedrock}
+  curl -L -A "Mozilla/5.0 (X11; Linux x86_64; rv:99.0) Gecko/20100101 Firefox/99.0" -H "Accept-Language: en" -H "Accept-Encoding: gzip, deflate" -o versions.html.gz https://www.minecraft.net/en-us/download/server/bedrock
+  read bedrockver <<< $(zgrep -o 'https://minecraft.azureedge.net/bin-linux/[^"]*' versions.html.gz)
+  wget ${bedrockver}
+  rm versions.html.gz
+  unzip bedrock-server*.zip > /dev/null
+  rm bedrock-server*.zip
+  starterFileBedrockk
+}
+
+function starterFileBedrockk {
+  cd ${bedrockfolder:-/root/bedrock}
+  echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
+  echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
+  / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
+  \__ \ /(__)\  )    (  )(__)(  )___/ )   / )(_)( 
+  (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
+          https://github.com/samupro-dev'
+  echo -e ' '
+  ./bedrock_server" >> starter.sh
+  chmod +x starter.sh
+  successInstall
 }
 
 ## NukkitX ##
