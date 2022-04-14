@@ -100,7 +100,7 @@ function flamecord {
   mkdir ${bungeefolder:-/root/bungee}
   cd ${bungeefolder:-/root/bungee}
   echo -e "${CYAN} Downloading the jar file. . . ${COLOR_NULL}"
-  wget https://github.com/2lstudios-mc/FlameCord/releases/latest/download/FlameCord.jar
+  wget https://ci.2lstudios.dev/job/FlameCord/lastSuccessfulBuild/artifact/FlameCord-Proxy/bootstrap/target/FlameCord.jar
   starterFile
 }
 
