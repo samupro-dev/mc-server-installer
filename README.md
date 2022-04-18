@@ -29,6 +29,9 @@ If you find any bugs or want to recommend some new features, write them [here](h
 - [ ] A better interface
 
 ## Changelogs
+### v3.4
+- Fixed problem with choice of options
+- Removed unused variables
 ### v3.3
 - Added Bedrock jar with official Mojang links
 - Download link for the FlameCord fork updated
