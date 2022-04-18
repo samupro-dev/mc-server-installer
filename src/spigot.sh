@@ -5,7 +5,6 @@ YELLOW="\e[1;33m"
 LIGHT_RED="\e[1;31m"
 LIGHT_GREEN="\e[1;32m"
 COLOR_NULL="\e[0m"
-LIGHT_BLUE="\e[1;34m"
 PURPLE="\e[0;35m"
 CYAN="\e[0;36m"
 WHITE="\e[1;37m"
@@ -401,7 +400,7 @@ function paper {
       read installruby
       case "$installruby" in
         n|N|no|No|NO) exit;;
-        y|Y|yes|Yes|YES) apt-get -y install ruby || yum install -y ruby
+        y|Y|yes|Yes|yEs|yeS|YEs|YeS|yES|YES) apt-get -y install ruby || yum install -y ruby
         break;;
         *) echo -e "${ERROR} ${LIGHT_RED}The argument you entered is incorrect! ${COLOR_NULL}";;
       esac
