@@ -8,8 +8,6 @@ COLOR_NULL="\e[0m"
 LIGHT_BLUE="\e[1;34m"
 PURPLE="\e[0;35m"
 CYAN="\e[0;36m"
-WHITE="\e[1;37m"
-LIGHT_PURPLE="\e[1;35m"
 VERSION=$(curl -L https://raw.githubusercontent.com/samupro-dev/mc-server-installer/main/src/version.sh)
 
 clear
@@ -48,7 +46,7 @@ if ! [ -x "$(command -v wget)" ]; then
     read installwget
     case "$installwget" in
       n|N|no|No|NO) exit;;
-      y|Y|yes|Yes|YES) apt-get -y install wget || yum install -y wget
+      y|Y|yes|Yes|yEs|yeS|YEs|YeS|yES|YES) apt-get -y install wget || yum install -y wget
       break;;
       *) echo -e "${ERROR} ${LIGHT_RED}The argument you entered is incorrect! ${COLOR_NULL}";;
     esac
@@ -65,7 +63,7 @@ if ! [ -x "$(command -v curl)" ]; then
     read installcurl
     case "$installcurl" in
       n|N|no|No|NO) exit;;
-      y|Y|yes|Yes|YES) apt-get -y install curl || yum install -y curl
+      y|Y|yes|Yes|yEs|yeS|YEs|YeS|yES|YES) apt-get -y install curl || yum install -y curl
       break;;
       *) echo -e "${ERROR} ${LIGHT_RED}The argument you entered is incorrect! ${COLOR_NULL}";;
     esac
@@ -82,7 +80,7 @@ if ! [ -x "$(command -v java)" ]; then
     read installjava
     case "$installjava" in
       n|N|no|No|NO) break;;
-      y|Y|yes|Yes|YES) apt-get install -y openjdk-17-jdk || yum install -y java-17-openjdk-devel
+      y|Y|yes|Yes|yEs|yeS|YEs|YeS|yES|YES) apt-get install -y openjdk-17-jdk || yum install -y java-17-openjdk-devel
       break;;
       *) echo -e "${ERROR} ${LIGHT_RED}The argument you entered is incorrect! ${COLOR_NULL}";;
     esac
