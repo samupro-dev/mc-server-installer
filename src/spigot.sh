@@ -359,10 +359,10 @@ function spigot18 {
 function compilerSpigot {
   cd ${spigotfolder:-/root/spigot}
   echo -e "${YELLOW} The build of the jar is in progress. . . (it will take a while)${COLOR_NULL}"
-  curl -O -J -L https://javadl.oracle.com/webapps/download/AutoDL?BundleId=245797_df5ad55fdd604472a86a45a217032c7d
-  mv 'AutoDL\?BundleId\=245797_df5ad55fdd604472a86a45a217032c7d' jre-8u321-linux-x64.tar.gz
-  tar -zxvf jre-8u321-linux-x64.tar.gz
-  "${spigotfolder:-/root/spigot}/jre1.8.0_321/bin/java" -jar BuildTools.jar --rev ${SPIGOTVERSIONSEL} > /dev/null
+  curl -O -J -L https://javadl.oracle.com/webapps/download/AutoDL?BundleId=246464_2dee051a5d0647d5be72a7c0abff270e
+  mv 'AutoDL\?BundleId\=246464_2dee051a5d0647d5be72a7c0abff270e' jre-8u333-linux-x64.tar.gz
+  tar -zxvf jre-8u333-linux-x64.tar.gz
+  "${spigotfolder:-/root/spigot}/jre1.8.0_333/bin/java" -jar BuildTools.jar --rev ${SPIGOTVERSIONSEL} > /dev/null
   find ./ -type d -not -name spigot-${SPIGOTVERSIONSEL}.jar | xargs rm -r
   find ./ -type f -not -name spigot-${SPIGOTVERSIONSEL}.jar | xargs rm
 }
