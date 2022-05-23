@@ -29,6 +29,12 @@ If you find any bugs or want to recommend some new features, write them [here](h
 - [ ] A better interface
 
 ## Changelogs
+### v3.6
+- Added the CatServer fork
+- Download link for the Magma fork updated
+- Mohist fork updated to 1.18.2
+- Removed 1.18.1 from the Mohist fork
+- Fixed problem with Arclight fork
 ### v3.5
 - Updated the JRE of the spigot compiler
 ### v3.4
