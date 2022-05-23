@@ -28,7 +28,7 @@ function modded {
   echo -e -n "${YELLOW} Enter the port of the server. (ex. 25565): ${COLOR_NULL}"
   read moddedport
   echo -e "${CYAN} Server type selected: ${YELLOW}Modded ${COLOR_NULL}"
-  MODDEDTYPE=("Magma" "Mohist" "Arclight" "SpongeForge" "Cancel")
+  MODDEDTYPE=("Magma" "Mohist" "Arclight" "SpongeForge" "CatServer" "Cancel")
   echo -e "${CYAN} Select the type of fork that suits you best! ${COLOR_NULL}"
   select MODDEDTYPESEL in "${MODDEDTYPE[@]}"; do
     case "$REPLY" in
@@ -36,7 +36,8 @@ function modded {
     2) mohist ;;
     3) arclight ;;
     4) spongeforge;;
-    5) exit ;;
+    5) catserver;;
+    6) exit ;;
     *) echo -e "${ERROR} ${LIGHT_RED}The argument you entered is incorrect! ${COLOR_NULL}";;
     esac
   done
@@ -68,7 +69,7 @@ function magmaversion {
 function magma1165{
   echo -e " "
   cd ${moddedfolder:-/root/modded}
-  curl -O -J -L https://api.magmafoundation.org/api/resources/magma/1.16.5/dev/latest/download
+  curl -O -J -L https://api.magmafoundation.org/api/v2/1.16.5/latest/download
   mv Magma-*.jar magma-${MAGMAVERSIONSEL}.jar
   starterFileMagma
 }
@@ -76,7 +77,7 @@ function magma1165{
 function magma1122 {
   echo -e " "
   cd ${moddedfolder:-/root/modded}
-  curl -O -J -L https://api.magmafoundation.org/api/resources/magma/1.12.2/dev/latest/download
+  curl -O -J -L https://api.magmafoundation.org/api/v2/1.12.2/latest/download
   mv Magma-*.jar magma-${MAGMAVERSIONSEL}.jar
   starterFileMagma
 }
@@ -115,11 +116,11 @@ function mohist {
 }
 
 function mohistversion {
-  MOHISTVERSION=("1.18.1" "1.16.5" "1.12.2" "1.7.10" "Cancel")
+  MOHISTVERSION=("1.18.2" "1.16.5" "1.12.2" "1.7.10" "Cancel")
   echo -e "${CYAN} Select the server version. ${COLOR_NULL}"
   select MOHISTVERSIONSEL in "${MOHISTVERSION[@]}"; do
     case "$REPLY" in
-    1) mohist1181 ;;
+    1) mohist1182 ;;
     2) mohist1165 ;;
     3) mohist1122 ;;
     4) mohist1710 ;;
@@ -129,10 +130,10 @@ function mohistversion {
   done
 }
 
-function mohist1181 {
+function mohist1182 {
   echo -e " "
   cd ${moddedfolder:-/root/modded}
-  curl -o mohist-1.18.1.jar https://mohistmc.com/api/1.18-testing/latest/download
+  curl -o mohist-1.18.2.jar https://mohistmc.com/api/1.18.2-testing/latest/download
   starterFileMohist
 }
 
@@ -191,11 +192,11 @@ function arclight {
 }
 
 function arclightversion {
-  ARCLIGHTVERSION=("1.18" "1.17.1" "1.16.5" "1.15.2" "1.14.4" "Cancel")
+  ARCLIGHTVERSION=("1.18.2" "1.17.1" "1.16.5" "1.15.2" "1.14.4" "Cancel")
   echo -e "${CYAN} Select the server version. ${COLOR_NULL}"
   select ARCLIGHTVERSIONSEL in "${ARCLIGHTVERSION[@]}"; do
     case "$REPLY" in
-    1) arclight118 ;;
+    1) arclight1182 ;;
     2) arclight1171 ;;
     3) arclight1165 ;;
     4) arclight1152 ;;
@@ -206,14 +207,14 @@ function arclightversion {
   done
 }
 
-function arclight118 {
+function arclight1182 {
   echo -e " "
   cd ${moddedfolder:-/root/modded}
   curl --silent "https://api.github.com/repos/IzzelAliz/Arclight/releases/latest" |
     grep '"browser_download_url":' |
     sed -E 's/.*"([^"]+)".*/\1/' |
     xargs wget
-    mv arclight-forge-1.16-*.jar arclight-1.16.5.jar
+    mv arclight-forge-1.18.2-*.jar arclight-1.18.2.jar
   starterFileArclight
 }
 
@@ -368,6 +369,89 @@ function successInstallSpongeForge {
   echo -e " "
   echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
   echo -e "${LIGHT_GREEN} Your server was successfully installed!\n   ${CYAN}* Version: ${WHITE}${MODDEDTYPESEL} ${SPONGEFORGEVERSIONSEL}\n   ${CYAN}* Location: ${WHITE}${moddedfolder:-/root/modded}\n   ${CYAN}* RAM: ${WHITE}${moddedmem:-512}M\n   ${CYAN}* Port: ${WHITE}${moddedport:-25565} ${COLOR_NULL}"
+  echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
+  echo -e "${YELLOW}To start the server use the ${LIGHT_RED}./starter.sh ${YELLOW}command${COLOR_NULL}"
+  exit
+}
+
+## CatServer ##
+function catserver {
+  echo -e "\n"
+  mkdir ${moddedfolder:-/root/modded}
+  cd ${moddedfolder:-/root/modded}
+  echo -e "${YELLOW} I am setting up the server port. . . ${COLOR_NULL}"
+  echo "server-port=${moddedport:-25565}" > server.properties
+  catserverversion
+}
+
+function catserverversion {
+  CATSERVERVERSION=("1.18.2" "1.16.5" "1.12.2" "Cancel")
+  echo -e "${CYAN} Select the server version. ${COLOR_NULL}"
+  select CATSERVERVERSIONSEL in "${CATSERVERVERSION[@]}"; do
+    case "$REPLY" in
+    1) catserver1182 ;;
+    2) catserver1165 ;;
+    3) catserver1122 ;;
+    4) exit ;;
+    *) echo -e "${ERROR} ${LIGHT_RED}The argument you entered is incorrect! ${COLOR_NULL}";;
+    esac
+  done
+}
+
+function catserver1182 {
+  echo -e " "
+  cd ${moddedfolder:-/root/modded}
+  wget https://jenkins.rbqcloud.cn:30011/job/CatServer-1.18.2/lastSuccessfulBuild/artifact/projects/forge/build/libs/*zip*/libs.zip
+  unzip libs.zip
+  cd libs/
+  mv CatServer-*.jar ..
+  rm libs.zip
+  mv CatServer-*.jar catserver-${CATSERVERVERSIONSEL}.jar
+  starterFileCatServer
+}
+
+function catserver1165 {
+  echo -e " "
+  cd ${moddedfolder:-/root/modded}
+  wget https://jenkins.rbqcloud.cn:30011/job/CatServer-1.16.5/lastSuccessfulBuild/artifact/projects/forge/build/libs/*zip*/libs.zip
+  unzip libs.zip
+  cd libs/
+  mv CatServer-*.jar ..
+  rm libs.zip
+  mv CatServer-*.jar catserver-${CATSERVERVERSIONSEL}.jar
+  starterFileCatServer
+}
+
+function catserver1122 {
+  echo -e " "
+  cd ${moddedfolder:-/root/modded}
+  wget https://jenkins.rbqcloud.cn:30011/job/CatServer-1.12.2/lastSuccessfulBuild/artifact/build/distributions/*zip*/distributions.zip
+  unzip distributions.zip
+  cd distributions/
+  mv CatServer-*.jar ..
+  rm distributions.zip
+  mv CatServer-*.jar catserver-${CATSERVERVERSIONSEL}.jar
+  starterFileCatServer
+}
+
+function starterFileCatServer {
+  cd ${moddedfolder:-/root/modded}
+  echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
+  echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
+  / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
+  \__ \ /(__)\  )    (  )(__)(  )___/ )   / )(_)( 
+  (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
+          https://github.com/samupro-dev'
+  echo -e ' '
+  java -Xms128M -Xmx${moddedmem:-512}M -jar catserver-${CATSERVERVERSIONSEL}.jar nogui" >> starter.sh
+  chmod +x starter.sh
+  successInstallCatServer
+}
+
+function successInstallCatServer {
+  echo -e " "
+  echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
+  echo -e "${LIGHT_GREEN} Your server was successfully installed!\n   ${CYAN}* Version: ${WHITE}${MODDEDTYPESEL} ${CATSERVERVERSIONSEL}\n   ${CYAN}* Location: ${WHITE}${moddedfolder:-/root/modded}\n   ${CYAN}* RAM: ${WHITE}${moddedmem:-512}M\n   ${CYAN}* Port: ${WHITE}${moddedport:-25565} ${COLOR_NULL}"
   echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
   echo -e "${YELLOW}To start the server use the ${LIGHT_RED}./starter.sh ${YELLOW}command${COLOR_NULL}"
   exit
