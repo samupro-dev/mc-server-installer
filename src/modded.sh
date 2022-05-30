@@ -59,8 +59,8 @@ function magmaversion {
   select MAGMAVERSIONSEL in "${MAGMAVERSION[@]}"; do
     case "$REPLY" in
     1) magma1165 ;;
-    1) magma1122 ;;
-    2) exit ;;
+    2) magma1122 ;;
+    3) exit ;;
     *) echo -e "${ERROR} ${LIGHT_RED}The argument you entered is incorrect! ${COLOR_NULL}";;
     esac
   done
