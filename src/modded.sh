@@ -66,7 +66,7 @@ function magmaversion {
   done
 }
 
-function magma1165{
+function magma1165 {
   echo -e " "
   cd ${moddedfolder:-/root/modded}
   curl -O -J -L https://api.magmafoundation.org/api/v2/1.16.5/latest/download
