@@ -360,7 +360,7 @@ function starterFileSpongeForge {
   (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
           https://github.com/samupro-dev'
   echo -e ' '
-  java -Xms128M -Xmx${moddedmem:-512}M -jar spongeforge-${spongeforgeVERSIONSEL}.jar nogui" >> starter.sh
+  java -Xms128M -Xmx${moddedmem:-512}M -jar spongeforge-${SPONGEFORGEVERSIONSEL}.jar nogui" >> starter.sh
   chmod +x starter.sh
   successInstallSpongeForge
 }
