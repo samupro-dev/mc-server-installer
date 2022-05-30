@@ -29,6 +29,8 @@ If you find any bugs or want to recommend some new features, write them [here](h
 - [ ] A better interface
 
 ## Changelogs
+### v3.7
+- Fixed issue with modded script
 ### v3.6
 - Added the CatServer fork
 - Download link for the Magma fork updated
