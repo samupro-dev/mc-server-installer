@@ -29,6 +29,12 @@ If you find any bugs or want to recommend some new features, write them [here](h
 - [ ] A better interface
 
 ## Changelogs
+### v3.8
+- Added comment to java installation
+- Spigot fork updated to 1.19
+- Purpur fork updated to 1.19
+- Fixed problem with Airplane fork
+- Vanilla jar updated to 1.19
 ### v3.7
 - Fixed issue with modded script
 ### v3.6
