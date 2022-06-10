@@ -76,7 +76,7 @@ if ! [ -x "$(command -v java)" ]; then
   echo -e "${ERROR} ${LIGHT_RED} java is not installed. ${COLOR_NULL}"
   while true
   do
-    echo -e -n "${YELLOW} Do you want to install java (Y/n)? (optional) ${COLOR_NULL}"
+    echo -e -n "${YELLOW} Do you want to install java 17 (Y/n)? (optional) ${COLOR_NULL}"
     read installjava
     case "$installjava" in
       n|N|no|No|NO) break;;
