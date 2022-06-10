@@ -58,46 +58,55 @@ function spigott {
 }
 
 function spigottversion {
-  SPIGOTVERSION=("1.18.2" "1.18.1" "1.18" "1.17.1" "1.17" "1.16.5" "1.16.4" "1.16.3" "1.16.2" "1.16.1" "1.15.2" "1.15.1" "1.15" "1.14.4" "1.14.3" "1.14.2" "1.14.1" "1.14" "1.13.2" "1.13.1" "1.13" "1.12.2" "1.12.1" "1.12" "1.11" "1.10.2" "1.9.4" "1.9.2" "1.9" "1.8.8" "1.8.3" "1.8" "Cancel")
+  SPIGOTVERSION=("1.19" "1.18.2" "1.18.1" "1.18" "1.17.1" "1.17" "1.16.5" "1.16.4" "1.16.3" "1.16.2" "1.16.1" "1.15.2" "1.15.1" "1.15" "1.14.4" "1.14.3" "1.14.2" "1.14.1" "1.14" "1.13.2" "1.13.1" "1.13" "1.12.2" "1.12.1" "1.12" "1.11" "1.10.2" "1.9.4" "1.9.2" "1.9" "1.8.8" "1.8.3" "1.8" "Cancel")
   echo -e "${CYAN} Select the server version. ${COLOR_NULL}"
   select SPIGOTVERSIONSEL in "${SPIGOTVERSION[@]}"; do
     case "$REPLY" in
-    1) spigot1182 ;;
-    2) spigot1181 ;;
-    3) spigot118 ;;
-    4) spigot1171 ;;
-    5) spigot117 ;;
-    6) spigot1165 ;;
-    7) spigot1164 ;;
-    8) spigot1163 ;;
-    9) spigot1162 ;;
-    10) spigot1161 ;;
-    11) spigot1152 ;;
-    12) spigot1151 ;;
-    13) spigot115 ;;
-    14) spigot1444 ;;
-    15) spigot1143 ;;
-    16) spigot1142 ;;
-    17) spigot1141 ;;
-    18) spigot114 ;;
-    19) spigot1132 ;;
-    20) spigot1131 ;;
-    21) spigot113 ;;
-    22) spigot1122 ;;
-    23) spigot1121 ;;
-    24) spigot112 ;;
-    25) spigot111 ;;
-    26) spigot1102 ;;
-    27) spigot194 ;;
-    28) spigot192 ;;
-    29) spigot19 ;;
-    30) spigot188 ;;
-    31) spigot183 ;;
-    32) spigot18 ;;
-    33) exit ;;
+    1) spigot119 ;;
+    2) spigot1182 ;;
+    3) spigot1181 ;;
+    4) spigot118 ;;
+    5) spigot1171 ;;
+    6) spigot117 ;;
+    7) spigot1165 ;;
+    8) spigot1164 ;;
+    9) spigot1163 ;;
+    10) spigot1162 ;;
+    11) spigot1161 ;;
+    12) spigot1152 ;;
+    13) spigot1151 ;;
+    14) spigot115 ;;
+    15) spigot1444 ;;
+    16) spigot1143 ;;
+    17) spigot1142 ;;
+    18) spigot1141 ;;
+    19) spigot114 ;;
+    20) spigot1132 ;;
+    21) spigot1131 ;;
+    22) spigot113 ;;
+    23) spigot1122 ;;
+    24) spigot1121 ;;
+    25) spigot112 ;;
+    26) spigot111 ;;
+    27) spigot1102 ;;
+    28) spigot194 ;;
+    29) spigot192 ;;
+    30) spigot19 ;;
+    31) spigot188 ;;
+    32) spigot183 ;;
+    33) spigot18 ;;
+    34) exit ;;
     *) echo -e "${ERROR} ${LIGHT_RED}The argument you entered is incorrect! ${COLOR_NULL}";;
     esac
   done
+}
+
+function spigot119 {
+  echo -e " "
+  cd ${spigotfolder:-/root/spigot}
+  wget https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar
+  compilerSpigot
+  starterFileSpigot
 }
 
 function spigot1182 {
@@ -651,31 +660,40 @@ function purpur {
 }
 
 function purpurversion {
-  PURPURVERSION=("1.18.2" "1.18.1" "1.18" "1.17.1" "1.17" "1.16.5" "1.16.4" "1.16.3" "1.16.2" "1.16.1" "1.15.2" "1.15.1" "1.15" "1.14.4" "1.14.3" "1.14.2" "1.14.1" "Cancel")
+  PURPURVERSION=("1.19"  "1.18.2" "1.18.1" "1.18" "1.17.1" "1.17" "1.16.5" "1.16.4" "1.16.3" "1.16.2" "1.16.1" "1.15.2" "1.15.1" "1.15" "1.14.4" "1.14.3" "1.14.2" "1.14.1" "Cancel")
   echo -e "${CYAN} Select the server version. ${COLOR_NULL}"
   select PURPURVERSIONSEL in "${PURPURVERSION[@]}"; do
     case "$REPLY" in
-    1) purpur1182 ;;
-    2) purpur1181 ;;
-    3) purpur118 ;;
-    4) purpur1171 ;;
-    5) purpur117 ;;
-    6) purpur1165 ;;
-    7) purpur1164 ;;
-    8) purpur1163 ;;
-    9) purpur1162 ;;
-    10) purpur1161 ;;
-    11) purpur1152 ;;
-    12) purpur1151 ;;
-    13) purpur115 ;;
-    14) purpur1144 ;;
-    15) purpur1143 ;;
-    16) purpur1142 ;;
-    17) purpur1141 ;;
-    18) exit ;;
+    1) purpur119 ;;
+    2) purpur1182 ;;
+    3) purpur1181 ;;
+    4) purpur118 ;;
+    5) purpur1171 ;;
+    6) purpur117 ;;
+    7) purpur1165 ;;
+    8) purpur1164 ;;
+    9) purpur1163 ;;
+    10) purpur1162 ;;
+    11) purpur1161 ;;
+    12) purpur1152 ;;
+    13) purpur1151 ;;
+    14) purpur115 ;;
+    15) purpur1144 ;;
+    16) purpur1143 ;;
+    17) purpur1142 ;;
+    18) purpur1141 ;;
+    19) exit ;;
     *) echo -e "${ERROR} ${LIGHT_RED}The argument you entered is incorrect! ${COLOR_NULL}";;
     esac
   done
+}
+
+function purpur119 {
+  echo -e " "
+  cd ${spigotfolder:-/root/spigot}
+  curl -O -J -L https://api.purpurmc.org/v2/purpur/1.19/latest/download
+  mv purpur-*.jar purpur-${PURPURVERSIONSEL}.jar
+  starterFilePurpur
 }
 
 function purpur1182 {
@@ -965,8 +983,7 @@ function airplaneversion {
   select AIRPLANEVERSIONSEL in "${AIRPLANEVERSION[@]}"; do
     case "$REPLY" in
     1) airplane1171 ;;
-    2) airplane1165 ;;
-    3) exit ;;
+    2) exit ;;
     *) echo -e "${ERROR} ${LIGHT_RED}The argument you entered is incorrect! ${COLOR_NULL}";;
     esac
   done
