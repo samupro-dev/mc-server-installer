@@ -29,6 +29,9 @@ If you find any bugs or want to recommend some new features, write them [here](h
 - [ ] A better interface
 
 ## Changelogs
+### v3.9
+- Paper fork updated to 1.19
+- Waterfall fork updated to 1.19
 ### v3.8
 - Added comment to java installation
 - Spigot fork updated to 1.19
