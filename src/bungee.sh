@@ -73,10 +73,10 @@ function waterfall {
   mkdir ${bungeefolder:-/root/bungee}
   cd ${bungeefolder:-/root/bungee}
   echo -e "${CYAN} Downloading the jar file. . . ${COLOR_NULL}"
-  curl -s "https://papermc.io/api/v2/projects/waterfall/versions/1.18" | ruby -rjson -e 'data = JSON.parse(STDIN.read); puts data["builds"]' >> builds-temp-waterfall.txt
+  curl -s "https://papermc.io/api/v2/projects/waterfall/versions/1.19" | ruby -rjson -e 'data = JSON.parse(STDIN.read); puts data["builds"]' >> builds-temp-waterfall.txt
   grep -Eo '[0-9]+' builds-temp-waterfall.txt | sort -rn >> builds-waterfall.txt
   read buildwaterfall <<< $(awk 'NR==1 {print; exit}' builds-waterfall.txt)
-  wget https://papermc.io/api/v2/projects/waterfall/versions/1.18/builds/${buildwaterfall}/downloads/waterfall-1.18-${buildwaterfall}.jar
+  wget https://papermc.io/api/v2/projects/waterfall/versions/1.19/builds/${buildwaterfall}/downloads/waterfall-1.19-${buildwaterfall}.jar
   mv waterfall-*.jar Waterfall.jar
   rm *.txt
   starterFile
