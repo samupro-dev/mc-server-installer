@@ -427,28 +427,41 @@ function paper {
 }
 
 function paperversion {
-  PAPERVERSION=("1.18.2" "1.18.1" "1.18" "1.17.1" "1.17" "1.16.5" "1.15.2" "1.14.4" "1.13.2" "1.12.2" "1.11.2" "1.10.2" "1.9.4" "1.8.8" "Cancel")
+  PAPERVERSION=("1.19" "1.18.2" "1.18.1" "1.18" "1.17.1" "1.17" "1.16.5" "1.15.2" "1.14.4" "1.13.2" "1.12.2" "1.11.2" "1.10.2" "1.9.4" "1.8.8" "Cancel")
   echo -e "${CYAN} Select the server version. ${COLOR_NULL}"
   select PAPERVERSIONSEL in "${PAPERVERSION[@]}"; do
     case "$REPLY" in
-    1) paper1182 ;;
-    2) paper1181 ;;
-    3) paper118 ;;
-    4) paper1171 ;;
-    5) paper117 ;;
-    6) paper1165 ;;
-    7) paper1152 ;;
-    8) paper1144 ;;
-    9) paper1132 ;;
-    10) paper1122 ;;
-    11) paper1112 ;;
-    12) paper1102 ;;
-    13) paper194 ;;
-    14) paper188 ;;
-    15) exit ;;
+    1) paper119 ;;
+    2) paper1182 ;;
+    3) paper1181 ;;
+    4) paper118 ;;
+    5) paper1171 ;;
+    6) paper117 ;;
+    7) paper1165 ;;
+    8) paper1152 ;;
+    9) paper1144 ;;
+    10) paper1132 ;;
+    11) paper1122 ;;
+    12) paper1112 ;;
+    13) paper1102 ;;
+    14) paper194 ;;
+    15) paper188 ;;
+    16) exit ;;
     *) echo -e "${ERROR} ${LIGHT_RED}The argument you entered is incorrect! ${COLOR_NULL}";;
     esac
   done
+}
+
+function paper119 {
+  echo -e " "
+  cd ${spigotfolder:-/root/spigot}
+  curl -s "https://papermc.io/api/v2/projects/paper/versions/1.19" | ruby -rjson -e 'data = JSON.parse(STDIN.read); puts data["builds"]' >> builds-temp-1.19.txt
+  grep -Eo '[0-9]+' builds-temp-1.19.txt | sort -rn >> builds-1.19.txt
+  read build119 <<< $(awk 'NR==1 {print; exit}' builds-1.19.txt)
+  wget https://papermc.io/api/v2/projects/paper/versions/1.19/builds/${build119}/downloads/paper-1.19-${build119}.jar
+  mv paper-*.jar paper-${PAPERVERSIONSEL}.jar
+  rm *.txt
+  starterFilePaper
 }
 
 function paper1182 {
