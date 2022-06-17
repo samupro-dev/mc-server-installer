@@ -28,7 +28,7 @@ function modded {
   echo -e -n "${YELLOW} Enter the port of the server. (ex. 25565): ${COLOR_NULL}"
   read moddedport
   echo -e "${CYAN} Server type selected: ${YELLOW}Modded ${COLOR_NULL}"
-  MODDEDTYPE=("Magma" "Mohist" "Arclight" "SpongeForge" "CatServer" "Cancel")
+  MODDEDTYPE=("Magma" "Mohist" "Arclight" "SpongeForge" "CatServer" "Crucible" "Cancel")
   echo -e "${CYAN} Select the type of fork that suits you best! ${COLOR_NULL}"
   select MODDEDTYPESEL in "${MODDEDTYPE[@]}"; do
     case "$REPLY" in
@@ -37,7 +37,8 @@ function modded {
     3) arclight ;;
     4) spongeforge;;
     5) catserver;;
-    6) exit ;;
+    6) crucible;;
+    7) exit ;;
     *) echo -e "${ERROR} ${LIGHT_RED}The argument you entered is incorrect! ${COLOR_NULL}";;
     esac
   done
@@ -58,26 +59,17 @@ function magmaversion {
   echo -e "${CYAN} Select the server version. ${COLOR_NULL}"
   select MAGMAVERSIONSEL in "${MAGMAVERSION[@]}"; do
     case "$REPLY" in
-    1) magma1165 ;;
-    2) magma1122 ;;
+    1|2) stepsMagma ;;
     3) exit ;;
     *) echo -e "${ERROR} ${LIGHT_RED}The argument you entered is incorrect! ${COLOR_NULL}";;
     esac
   done
 }
 
-function magma1165 {
+function stepsMagma {
   echo -e " "
   cd ${moddedfolder:-/root/modded}
-  curl -O -J -L https://api.magmafoundation.org/api/v2/1.16.5/latest/download
-  mv Magma-*.jar magma-${MAGMAVERSIONSEL}.jar
-  starterFileMagma
-}
-
-function magma1122 {
-  echo -e " "
-  cd ${moddedfolder:-/root/modded}
-  curl -O -J -L https://api.magmafoundation.org/api/v2/1.12.2/latest/download
+  curl -O -J -L https://api.magmafoundation.org/api/v2/${MAGMAVERSIONSEL}/latest/download
   mv Magma-*.jar magma-${MAGMAVERSIONSEL}.jar
   starterFileMagma
 }
@@ -121,9 +113,7 @@ function mohistversion {
   select MOHISTVERSIONSEL in "${MOHISTVERSION[@]}"; do
     case "$REPLY" in
     1) mohist1182 ;;
-    2) mohist1165 ;;
-    3) mohist1122 ;;
-    4) mohist1710 ;;
+    2|3|4) stepsMohist ;;
     5) exit ;;
     *) echo -e "${ERROR} ${LIGHT_RED}The argument you entered is incorrect! ${COLOR_NULL}";;
     esac
@@ -137,24 +127,10 @@ function mohist1182 {
   starterFileMohist
 }
 
-function mohist1165 {
+function stepsMohist {
   echo -e " "
   cd ${moddedfolder:-/root/modded}
-  curl -o mohist-1.16.5.jar https://mohistmc.com/api/1.16.5/latest/download
-  starterFileMohist
-}
-
-function mohist1122 {
-  echo -e " "
-  cd ${moddedfolder:-/root/modded}
-  curl -o mohist-1.12.2.jar https://mohistmc.com/api/1.12.2/latest/download
-  starterFileMohist
-}
-
-function mohist1710 {
-  echo -e " "
-  cd ${moddedfolder:-/root/modded}
-  curl -o mohist-1.7.10.jar https://mohistmc.com/api/1.7.10/latest/download
+  curl -o mohist-${MOHISTVERSIONSEL}.jar https://mohistmc.com/api/${MOHISTVERSIONSEL}/latest/download
   starterFileMohist
 }
 
@@ -267,7 +243,7 @@ function starterFileArclight {
   successInstallArclight
 }
 
-function successInstallarclight {
+function successInstallArclight {
   echo -e " "
   echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
   echo -e "${LIGHT_GREEN} Your server was successfully installed!\n   ${CYAN}* Version: ${WHITE}${MODDEDTYPESEL} ${ARCLIGHTVERSIONSEL}\n   ${CYAN}* Location: ${WHITE}${moddedfolder:-/root/modded}\n   ${CYAN}* RAM: ${WHITE}${moddedmem:-512}M\n   ${CYAN}* Port: ${WHITE}${moddedport:-25565} ${COLOR_NULL}"
@@ -405,6 +381,7 @@ function catserver1182 {
   unzip libs.zip
   cd libs/
   mv CatServer-*.jar ..
+  cd ..
   rm libs.zip
   mv CatServer-*.jar catserver-${CATSERVERVERSIONSEL}.jar
   starterFileCatServer
@@ -417,6 +394,7 @@ function catserver1165 {
   unzip libs.zip
   cd libs/
   mv CatServer-*.jar ..
+  cd ..
   rm libs.zip
   mv CatServer-*.jar catserver-${CATSERVERVERSIONSEL}.jar
   starterFileCatServer
@@ -429,6 +407,7 @@ function catserver1122 {
   unzip distributions.zip
   cd distributions/
   mv CatServer-*.jar ..
+  cd ..
   rm distributions.zip
   mv CatServer-*.jar catserver-${CATSERVERVERSIONSEL}.jar
   starterFileCatServer
@@ -452,6 +431,63 @@ function successInstallCatServer {
   echo -e " "
   echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
   echo -e "${LIGHT_GREEN} Your server was successfully installed!\n   ${CYAN}* Version: ${WHITE}${MODDEDTYPESEL} ${CATSERVERVERSIONSEL}\n   ${CYAN}* Location: ${WHITE}${moddedfolder:-/root/modded}\n   ${CYAN}* RAM: ${WHITE}${moddedmem:-512}M\n   ${CYAN}* Port: ${WHITE}${moddedport:-25565} ${COLOR_NULL}"
+  echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
+  echo -e "${YELLOW}To start the server use the ${LIGHT_RED}./starter.sh ${YELLOW}command${COLOR_NULL}"
+  exit
+}
+
+## Crucible ##
+function crucible {
+  echo -e "\n"
+  mkdir ${moddedfolder:-/root/modded}
+  cd ${moddedfolder:-/root/modded}
+  echo -e "${YELLOW} I am setting up the server port. . . ${COLOR_NULL}"
+  echo "server-port=${moddedport:-25565}" > server.properties
+  crucibleversion
+}
+
+function crucibleversion {
+  CRUCIBLEVERSION=("1.7.10" "Cancel")
+  echo -e "${CYAN} Select the server version. ${COLOR_NULL}"
+  select CRUCIBLEVERSIONSEL in "${CRUCIBLEVERSION[@]}"; do
+    case "$REPLY" in
+    1) crucible1710 ;;
+    2) exit ;;
+    *) echo -e "${ERROR} ${LIGHT_RED}The argument you entered is incorrect! ${COLOR_NULL}";;
+    esac
+  done
+}
+
+function crucible1710 {
+  echo -e " "
+  cd ${moddedfolder:-/root/modded}
+  curl --silent "https://api.github.com/repos/CrucibleMC/Crucible/releases/latest" |
+    grep '"browser_download_url":' |
+    sed -E 's/.*"([^"]+)".*/\1/' |
+    xargs wget
+    mv Crucible-*.jar crucible-1.7.10.jar
+    rm libraries.zip
+  starterFileCrucible
+}
+
+function starterFileCrucible {
+  cd ${moddedfolder:-/root/modded}
+  echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
+  echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
+  / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
+  \__ \ /(__)\  )    (  )(__)(  )___/ )   / )(_)( 
+  (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
+          https://github.com/samupro-dev'
+  echo -e ' '
+  java -Xms128M -Xmx${moddedmem:-512}M -jar crucible-${CRUCIBLEVERSIONSEL}.jar nogui" >> starter.sh
+  chmod +x starter.sh
+  successInstallCrucible
+}
+
+function successInstallCrucible {
+  echo -e " "
+  echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
+  echo -e "${LIGHT_GREEN} Your server was successfully installed!\n   ${CYAN}* Version: ${WHITE}${MODDEDTYPESEL} ${CRUCIBLEVERSIONSEL}\n   ${CYAN}* Location: ${WHITE}${moddedfolder:-/root/modded}\n   ${CYAN}* RAM: ${WHITE}${moddedmem:-512}M\n   ${CYAN}* Port: ${WHITE}${moddedport:-25565} ${COLOR_NULL}"
   echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
   echo -e "${YELLOW}To start the server use the ${LIGHT_RED}./starter.sh ${YELLOW}command${COLOR_NULL}"
   exit
