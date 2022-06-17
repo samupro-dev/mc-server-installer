@@ -29,6 +29,18 @@ If you find any bugs or want to recommend some new features, write them [here](h
 - [ ] A better interface
 
 ## Changelogs
+### v4.0
+- Updated the JRE of the spigot compiler
+- Improved the Spigot installation
+- Improved the Paper installation
+- Improved the Purpur installation
+- Improved the Magma installation
+- Improved the Mohist installation
+- Added the Pufferfish fork
+- Fixed issue with CatServer fork
+- Optimized the scripts a bit
+- Added the Crucible fork
+- Fixed issue with Arclight fork
 ### v3.9
 - Paper fork updated to 1.19
 - Waterfall fork updated to 1.19
@@ -36,7 +48,7 @@ If you find any bugs or want to recommend some new features, write them [here](h
 - Added comment to java installation
 - Spigot fork updated to 1.19
 - Purpur fork updated to 1.19
-- Fixed problem with Airplane fork
+- Fixed issue with Airplane fork
 - Vanilla jar updated to 1.19
 ### v3.7
 - Fixed issue with modded script
@@ -45,11 +57,11 @@ If you find any bugs or want to recommend some new features, write them [here](h
 - Download link for the Magma fork updated
 - Mohist fork updated to 1.18.2
 - Removed 1.18.1 from the Mohist fork
-- Fixed problem with Arclight fork
+- Fixed issue with Arclight fork
 ### v3.5
 - Updated the JRE of the spigot compiler
 ### v3.4
-- Fixed problem with choice of options
+- Fixed issue with choice of options
 - Removed unused variables
 ### v3.3
 - Added Bedrock jar with official Mojang links
@@ -98,7 +110,7 @@ If you find any bugs or want to recommend some new features, write them [here](h
 - Arclight fork updated to 1.18
 - Added version 1.17.1 of the Arclight fork
 ### v2.3
-- Fixed problem with the spigot compiler
+- Fixed issue with the spigot compiler
 - Updated the JRE of the spigot compiler
 ### v2.2
 - Fixed color issue in the installer
@@ -114,13 +126,13 @@ If you find any bugs or want to recommend some new features, write them [here](h
 ### v1.9
 - Vanilla jar updated to 1.17.1
 - Purpur fork updated to 1.17.1
-- Fixed link problem with Velocity fork
+- Fixed link issue with Velocity fork
 - Tuinity fork updated to 1.17.1
 - Removed 1.17 from the Tuinity fork
 - Paper fork updated to 1.17.1
 - Spigot fork updated to 1.17.1
 #### v1.8
-- Fixed problem with Arclight fork
+- Fixed issue with Arclight fork
 - Added the SpongeForge fork
 #### v1.7
 - Fixed a word in the spigot installer
@@ -133,17 +145,17 @@ If you find any bugs or want to recommend some new features, write them [here](h
 - Paper fork updated to 1.17
 #### v1.4
 - Vanilla jar updated to 1.17
-- Fixed problem with Vanilla jars
+- Fixed issue with Vanilla jars
 - The installer of the Spigot fork has been improved
 - Spigot fork updated to 1.17
 - Improved the installer.sh
 #### v1.3
 - Added the Arclight fork
-- Fixed problem with modded installer
+- Fixed issue with modded installer
 #### v1.2
 - Added the FlamePaper fork
 #### v1.1
-- Fixed problem with FlameCord fork
+- Fixed issue with FlameCord fork
 #### v1.0
 - Update the download link of the FlameCord fork
 - Added the SportPaper fork
@@ -156,11 +168,11 @@ If you find any bugs or want to recommend some new features, write them [here](h
 - Startup file renamed
 - Added small text on using the startup file
 #### v0.6
-- Fixed problem with java installation
+- Fixed issue with java installation
 #### v0.5
 - Optimized all scripts
 - Recoded the scripts
-- Fixed problem with Yatopia fork
+- Fixed issue with Yatopia fork
 #### v0.4
 - Now if the java installation refuses it does not exit the script
 - Added Purpur fork
