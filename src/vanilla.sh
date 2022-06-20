@@ -28,9 +28,9 @@ function vanilla {
   echo -e -n "${YELLOW} Enter the port of the server. (ex. 25565): ${COLOR_NULL}"
   read vanillaport
   echo -e "${CYAN} Server type selected: ${YELLOW}Vanilla ${COLOR_NULL}"
-  SPIGOTTYPE=("Spigot" "Paper" "Purpur" "Glowstone" "SportPaper" "FlamePaper" "Airplane" "Pufferfish" "Cancel")
+  VANILLATYPE=("Vanilla" "Snapshot" "Cancel")
   echo -e "${CYAN} Select the one fork that suits you best! ${COLOR_NULL}"
-  select OPTION in "${SPIGOTTYPE[@]}"; do
+  select OPTION in "${VANILLATYPE[@]}"; do
     case "$REPLY" in
     1) vanillaa ;;
     2) snapshot ;;
