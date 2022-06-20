@@ -29,7 +29,7 @@ function vanilla {
   read vanillaport
   echo -e "${CYAN} Server type selected: ${YELLOW}Vanilla ${COLOR_NULL}"
   VANILLATYPE=("Vanilla" "Snapshot" "Cancel")
-  echo -e "${CYAN} Select the one fork that suits you best! ${COLOR_NULL}"
+  echo -e "${CYAN} Select the one that suits you best! ${COLOR_NULL}"
   select OPTION in "${VANILLATYPE[@]}"; do
     case "$REPLY" in
     1) vanillaa ;;
