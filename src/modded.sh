@@ -55,12 +55,12 @@ function magma {
 }
 
 function magmaversion {
-  MAGMAVERSION=("1.16.5" "1.12.2" "Cancel")
+  MAGMAVERSION=("1.18.2" "1.16.5" "1.12.2" "Cancel")
   echo -e "${CYAN} Select the server version. ${COLOR_NULL}"
   select MAGMAVERSIONSEL in "${MAGMAVERSION[@]}"; do
     case "$REPLY" in
-    1|2) stepsMagma ;;
-    3) exit ;;
+    1|2|3) stepsMagma ;;
+    4) exit ;;
     *) echo -e "${ERROR} ${LIGHT_RED}The argument you entered is incorrect! ${COLOR_NULL}";;
     esac
   done
