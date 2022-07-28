@@ -29,6 +29,13 @@ If you find any bugs or want to recommend some new features, write them [here](h
 - [ ] A better interface
 
 ## Changelogs
+### v4.2
+- Paper fork updated to 1.19.1
+- Spigot fork updated to 1.19.1
+- Purpur fork updated to 1.19.1
+- Updated the JRE of the spigot compiler
+- Magma fork updated to 1.18.2
+- Vanilla jar updated to 1.19.1
 ### v4.1
 - Improved the Vanilla installation
 - Added the ability to download the latest snapshot in the vanilla installer
