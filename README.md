@@ -29,6 +29,24 @@ If you find any bugs or want to recommend some new features, write them [here](h
 - [ ] A better interface
 
 ## Changelogs
+### v4.3
+- Paper fork updated to 1.19.2
+- Updated the JRE of the spigot compiler
+- Spigot fork updated to 1.19.2
+- Fixed issue with Glowstone fork
+- Added version 1.19 of the Glowstone fork
+- Purpur fork updated to 1.19.2
+- Pufferfish fork updated to 1.19.2
+- Vanilla jar updated to 1.19.2
+- Mohist fork updated to 1.19.2
+- SpongeForge fork updated to 1.16.5
+- SpongeForge fork updated to 1.9.4
+- SpongeForge fork updated to 1.8.9
+- Fixed the download links of the SpongeForge fork
+- Removed 1.11 from the SpongeForge fork
+- Removed 1.12 from the SpongeForge fork
+- Removed 1.18.2 from the Mohist fork
+- Removed the SportPaper fork
 ### v4.2
 - Paper fork updated to 1.19.1
 - Spigot fork updated to 1.19.1
