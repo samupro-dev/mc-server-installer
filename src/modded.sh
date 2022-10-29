@@ -108,23 +108,15 @@ function mohist {
 }
 
 function mohistversion {
-  MOHISTVERSION=("1.18.2" "1.16.5" "1.12.2" "1.7.10" "Cancel")
+  MOHISTVERSION=("1.19.2" "1.16.5" "1.12.2" "1.7.10" "Cancel")
   echo -e "${CYAN} Select the server version. ${COLOR_NULL}"
   select MOHISTVERSIONSEL in "${MOHISTVERSION[@]}"; do
     case "$REPLY" in
-    1) mohist1182 ;;
-    2|3|4) stepsMohist ;;
+    1|2|3|4) stepsMohist ;;
     5) exit ;;
     *) echo -e "${ERROR} ${LIGHT_RED}The argument you entered is incorrect! ${COLOR_NULL}";;
     esac
   done
-}
-
-function mohist1182 {
-  echo -e " "
-  cd ${moddedfolder:-/root/modded}
-  curl -o mohist-1.18.2.jar https://mohistmc.com/api/1.18.2-testing/latest/download
-  starterFileMohist
 }
 
 function stepsMohist {
@@ -168,29 +160,37 @@ function arclight {
 }
 
 function arclightversion {
-  ARCLIGHTVERSION=("1.18.2" "1.17.1" "1.16.5" "1.15.2" "1.14.4" "Cancel")
+  ARCLIGHTVERSION=("1.19.2" "1.18.2" "1.17.1" "1.16.5" "1.15.2" "1.14.4" "Cancel")
   echo -e "${CYAN} Select the server version. ${COLOR_NULL}"
   select ARCLIGHTVERSIONSEL in "${ARCLIGHTVERSION[@]}"; do
     case "$REPLY" in
-    1) arclight1182 ;;
-    2) arclight1171 ;;
-    3) arclight1165 ;;
-    4) arclight1152 ;;
-    5) arclight1144 ;;
-    6) exit ;;
+    1) arclight1192 ;;
+    2) arclight1182 ;;
+    3) arclight1171 ;;
+    4) arclight1165 ;;
+    5) arclight1152 ;;
+    6) arclight1144 ;;
+    7) exit ;;
     *) echo -e "${ERROR} ${LIGHT_RED}The argument you entered is incorrect! ${COLOR_NULL}";;
     esac
   done
 }
 
+function arclight1192 {
+  echo -e " "
+  cd ${moddedfolder:-/root/modded}
+  wget https://nightly.link/IzzelAliz/Arclight/workflows/gradle/1.19/Arclight.zip
+  rm Arclight.zip arclight-common-*.jar forge-installer-*.jar i18n-config-*.jar
+  mv arclight-forge-*.jar arclight-${ARCLIGHTVERSIONSEL}.jar
+  starterFileArclight
+}
+
 function arclight1182 {
   echo -e " "
   cd ${moddedfolder:-/root/modded}
-  curl --silent "https://api.github.com/repos/IzzelAliz/Arclight/releases/latest" |
-    grep '"browser_download_url":' |
-    sed -E 's/.*"([^"]+)".*/\1/' |
-    xargs wget
-    mv arclight-forge-1.18.2-*.jar arclight-1.18.2.jar
+  wget https://nightly.link/IzzelAliz/Arclight/workflows/gradle/1.18/Arclight.zip
+  rm Arclight.zip arclight-common-*.jar forge-installer-*.jar i18n-config-*.jar
+  mv arclight-forge-*.jar arclight-${ARCLIGHTVERSIONSEL}.jar
   starterFileArclight
 }
 
@@ -198,18 +198,16 @@ function arclight1171 {
   echo -e " "
   cd ${moddedfolder:-/root/modded}
   wget https://github.com/IzzelAliz/Arclight/releases/download/1.17%2F1.0.2/arclight-forge-1.17.1-1.0.2.jar
-  mv arclight-forge-1.17.1-1.0.2.jar arclight-1.17.1.jar
+  mv arclight-forge-1.17.1-1.0.2.jar arclight-${ARCLIGHTVERSIONSEL}.jar
   starterFileArclight
 }
 
 function arclight1165 {
   echo -e " "
   cd ${moddedfolder:-/root/modded}
-  curl --silent "https://api.github.com/repos/IzzelAliz/Arclight/releases/latest" |
-    grep '"browser_download_url":' |
-    sed -E 's/.*"([^"]+)".*/\1/' |
-    xargs wget
-    mv arclight-forge-1.16-*.jar arclight-1.16.5.jar
+  wget https://nightly.link/IzzelAliz/Arclight/workflows/gradle/1.16/Arclight.zip
+  rm Arclight.zip arclight-common-*.jar forge-installer-*.jar i18n-config-*.jar
+  mv arclight-forge-*.jar arclight-${ARCLIGHTVERSIONSEL}.jar
   starterFileArclight
 }
 
@@ -217,7 +215,7 @@ function arclight1152 {
   echo -e " "
   cd ${moddedfolder:-/root/modded}
   wget https://github.com/IzzelAliz/Arclight/releases/download/1.15%2F1.0.19/arclight-forge-1.15-1.0.19.jar
-  mv arclight-forge-1.15-1.0.19.jar arclight-1.15.2.jar
+  mv arclight-forge-1.15-1.0.19.jar arclight-${ARCLIGHTVERSIONSEL}.jar
   starterFileArclight
 }
 
@@ -225,7 +223,7 @@ function arclight1144 {
   echo -e " "
   cd ${moddedfolder:-/root/modded}
   wget https://github.com/IzzelAliz/Arclight/releases/download/1.0.6/arclight-forge-1.14-1.0.6.jar
-  mv arclight-forge-1.14-1.0.6.jar arclight-1.14.4.jar
+  mv arclight-forge-1.14-1.0.6.jar arclight-${ARCLIGHTVERSIONSEL}.jar
   starterFileArclight
 }
 
@@ -263,67 +261,76 @@ function spongeforge {
 }
 
 function spongeforgeversion {
-  SPONGEFORGEVERSION=("1.12.2" "1.12.1" "1.12" "1.11.2" "1.11" "1.10.2" "Cancel")
+  SPONGEFORGEVERSION=("1.16.5" "1.12.2" "1.12.1" "1.11.2" "1.10.2" "1.9.4" "1.8.9" "Cancel")
   echo -e "${CYAN} Select the server version. ${COLOR_NULL}"
   select SPONGEFORGEVERSIONSEL in "${SPONGEFORGEVERSION[@]}"; do
     case "$REPLY" in
-    1) spongeforge1122 ;;
-    2) spongeforge1121 ;;
-    3) spongeforge112 ;;
+    1) spongeforge1165 ;;
+    2) spongeforge1122 ;;
+    3) spongeforge1121 ;;
     4) spongeforge1112 ;;
-    5) spongeforge111 ;;
-    6) spongeforge1102 ;;
-    7) exit ;;
+    5) spongeforge1102 ;;
+    6) spongeforge194 ;;
+    7) spongeforge189 ;;
+    8) exit ;;
     *) echo -e "${ERROR} ${LIGHT_RED}The argument you entered is incorrect! ${COLOR_NULL}";;
     esac
   done
 }
 
+function spongeforge1165 {
+  echo -e " "
+  cd ${moddedfolder:-/root/modded}
+  wget https://repo.spongepowered.org/repository/maven-releases/org/spongepowered/spongeforge/1.16.5-36.2.5-8.1.0-RC1228/spongeforge-1.16.5-36.2.5-8.1.0-RC1228-universal.jar
+  mv spongeforge-*.jar spongeforge-${SPONGEFORGEVERSIONSEL}.jar
+  starterFileSpongeForge
+}
+
 function spongeforge1122 {
   echo -e " "
   cd ${moddedfolder:-/root/modded}
-  wget https://repo.spongepowered.org/maven/org/spongepowered/spongeforge/1.12.2-2838-7.3.0/spongeforge-1.12.2-2838-7.3.0.jar
-  mv spongeforge-1.12.2-2838-7.3.0.jar spongeforge-1.12.2.jar
+  wget https://repo.spongepowered.org/repository/maven-releases/org/spongepowered/spongeforge/1.12.2-2838-7.4.8-RC4142/spongeforge-1.12.2-2838-7.4.8-RC4142.jar
+  mv spongeforge-*.jar spongeforge-${SPONGEFORGEVERSIONSEL}.jar
   starterFileSpongeForge
 }
 
 function spongeforge1121 {
   echo -e " "
   cd ${moddedfolder:-/root/modded}
-  wget https://repo.spongepowered.org/maven/org/spongepowered/spongeforge/1.12.1-2480-7.0.0-BETA-2643/spongeforge-1.12.1-2480-7.0.0-BETA-2643.jar
-  mv spongeforge-1.12.1-2480-7.0.0-BETA-2643.jar spongeforge-1.12.1.jar
-  starterFileSpongeForge
-}
-
-function spongeforge112 {
-  echo -e " "
-  cd ${moddedfolder:-/root/modded}
-  wget https://repo.spongepowered.org/maven/org/spongepowered/spongeforge/1.12-2443-7.0.0-BETA-2498/spongeforge-1.12-2443-7.0.0-BETA-2498.jar
-  mv spongeforge-1.12-2443-7.0.0-BETA-2498.jar spongeforge-1.12.jar
+  wget https://repo.spongepowered.org/repository/legacy-transfer/org/spongepowered/spongeforge/1.12.1-2480-7.0.0-BETA-2643/spongeforge-1.12.1-2480-7.0.0-BETA-2643.jar
+  mv spongeforge-*.jar spongeforge-${SPONGEFORGEVERSIONSEL}.jar
   starterFileSpongeForge
 }
 
 function spongeforge1112 {
   echo -e " "
   cd ${moddedfolder:-/root/modded}
-  wget https://repo.spongepowered.org/maven/org/spongepowered/spongeforge/1.11.2-2476-6.1.0-BETA-2792/spongeforge-1.11.2-2476-6.1.0-BETA-2792.jar
-  mv spongeforge-1.11.2-2476-6.1.0-BETA-2792.jar spongeforge-1.11.2.jar
-  starterFileSpongeForge
-}
-
-function spongeforge111 {
-  echo -e " "
-  cd ${moddedfolder:-/root/modded}
-  wget https://repo.spongepowered.org/maven/org/spongepowered/spongeforge/1.11-2195-6.0.0-BETA-2004/spongeforge-1.11-2195-6.0.0-BETA-2004.jar
-  mv spongeforge-1.11-2195-6.0.0-BETA-2004.jar spongeforge-1.11.jar
+  wget https://repo.spongepowered.org/repository/legacy-transfer/org/spongepowered/spongeforge/1.11.2-2476-6.1.0-BETA-2792/spongeforge-1.11.2-2476-6.1.0-BETA-2792.jar
+  mv spongeforge-*.jar spongeforge-${SPONGEFORGEVERSIONSEL}.jar
   starterFileSpongeForge
 }
 
 function spongeforge1102 {
   echo -e " "
   cd ${moddedfolder:-/root/modded}
-  wget https://repo.spongepowered.org/maven/org/spongepowered/spongeforge/1.10.2-2477-5.2.0-BETA-2793/spongeforge-1.10.2-2477-5.2.0-BETA-2793.jar
-  mv spongeforge-1.10.2-2477-5.2.0-BETA-2793.jar spongeforge-1.10.2.jar
+  wget https://repo.spongepowered.org/repository/legacy-transfer/org/spongepowered/spongeforge/1.10.2-2477-5.2.0-BETA-2793/spongeforge-1.10.2-2477-5.2.0-BETA-2793.jar
+  mv spongeforge-*.jar spongeforge-${SPONGEFORGEVERSIONSEL}.jar
+  starterFileSpongeForge
+}
+
+function spongeforge194 {
+  echo -e " "
+  cd ${moddedfolder:-/root/modded}
+  wget https://repo.spongepowered.org/repository/legacy-transfer/org/spongepowered/spongeforge/1.9.4-1968-5.0.0-BETA-1504/spongeforge-1.9.4-1968-5.0.0-BETA-1504.jar
+  mv spongeforge-*.jar spongeforge-${SPONGEFORGEVERSIONSEL}.jar
+  starterFileSpongeForge
+}
+
+function spongeforge189 {
+  echo -e " "
+  cd ${moddedfolder:-/root/modded}
+  wget https://repo.spongepowered.org/repository/legacy-transfer/org/spongepowered/spongeforge/1.8.9-1890-4.2.0-BETA-1762/spongeforge-1.8.9-1890-4.2.0-BETA-1762.jar
+  mv spongeforge-*.jar spongeforge-${SPONGEFORGEVERSIONSEL}.jar
   starterFileSpongeForge
 }
 

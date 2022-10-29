@@ -59,12 +59,12 @@ function spigott {
 }
 
 function spigotversion {
-  SPIGOTVERSION=("1.19.1" "1.19" "1.18.2" "1.18.1" "1.18" "1.17.1" "1.17" "1.16.5" "1.16.4" "1.16.3" "1.16.2" "1.16.1" "1.15.2" "1.15.1" "1.15" "1.14.4" "1.14.3" "1.14.2" "1.14.1" "1.14" "1.13.2" "1.13.1" "1.13" "1.12.2" "1.12.1" "1.12" "1.11" "1.10.2" "1.9.4" "1.9.2" "1.9" "1.8.8" "1.8.3" "1.8" "Cancel")
+  SPIGOTVERSION=("1.19.2" "1.19.1" "1.19" "1.18.2" "1.18.1" "1.18" "1.17.1" "1.17" "1.16.5" "1.16.4" "1.16.3" "1.16.2" "1.16.1" "1.15.2" "1.15.1" "1.15" "1.14.4" "1.14.3" "1.14.2" "1.14.1" "1.14" "1.13.2" "1.13.1" "1.13" "1.12.2" "1.12.1" "1.12" "1.11" "1.10.2" "1.9.4" "1.9.2" "1.9" "1.8.8" "1.8.3" "1.8" "Cancel")
   echo -e "${CYAN} Select the server version. ${COLOR_NULL}"
   select SPIGOTVERSIONSEL in "${SPIGOTVERSION[@]}"; do
     case "$REPLY" in
-    1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25|26|27|28|29|30|31|32|33|34) stepsSpigot ;;
-    35) exit ;;
+    1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25|26|27|28|29|30|31|32|33|34|35) stepsSpigot ;;
+    36) exit ;;
     *) echo -e "${ERROR} ${LIGHT_RED}The argument you entered is incorrect! ${COLOR_NULL}";;
     esac
   done
@@ -81,10 +81,10 @@ function stepsSpigot {
 function compilerSpigot {
   cd ${spigotfolder:-/root/spigot}
   echo -e "${YELLOW} The build of the jar is in progress. . . (it will take a while)${COLOR_NULL}"
-  curl -O -J -L https://javadl.oracle.com/webapps/download/AutoDL?BundleId=246799_424b9da4b48848379167015dcc250d8d
-  mv 'AutoDL\?BundleId\=246799_424b9da4b48848379167015dcc250d8d' jre-8u341-linux-x64.tar.gz
-  tar -zxvf jre-8u341-linux-x64.tar.gz
-  "${spigotfolder:-/root/spigot}/jre1.8.0_341/bin/java" -jar BuildTools.jar --rev ${SPIGOTVERSIONSEL} > /dev/null
+  curl -O -J -L https://javadl.oracle.com/webapps/download/AutoDL?BundleId=247127_10e8cce67c7843478f41411b7003171c
+  mv 'AutoDL\?BundleId\=247127_10e8cce67c7843478f41411b7003171c' jre-8u351-linux-x64.tar.gz
+  tar -zxvf jre-8u351-linux-x64.tar.gz
+  "${spigotfolder:-/root/spigot}/jre1.8.0_351/bin/java" -jar BuildTools.jar --rev ${SPIGOTVERSIONSEL} > /dev/null
   find ./ -type d -not -name spigot-${SPIGOTVERSIONSEL}.jar | xargs rm -r
   find ./ -type f -not -name spigot-${SPIGOTVERSIONSEL}.jar | xargs rm
 }
@@ -140,12 +140,12 @@ function paper {
 }
 
 function paperversion {
-  PAPERVERSION=("1.19.1" "1.19" "1.18.2" "1.18.1" "1.18" "1.17.1" "1.17" "1.16.5" "1.15.2" "1.14.4" "1.13.2" "1.12.2" "1.11.2" "1.10.2" "1.9.4" "1.8.8" "Cancel")
+  PAPERVERSION=("1.19.2" "1.19.1" "1.19" "1.18.2" "1.18.1" "1.18" "1.17.1" "1.17" "1.16.5" "1.15.2" "1.14.4" "1.13.2" "1.12.2" "1.11.2" "1.10.2" "1.9.4" "1.8.8" "Cancel")
   echo -e "${CYAN} Select the server version. ${COLOR_NULL}"
   select PAPERVERSIONSEL in "${PAPERVERSION[@]}"; do
     case "$REPLY" in
-    1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16) stepsPaper ;;
-    17) exit ;;
+    1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17) stepsPaper ;;
+    18) exit ;;
     *) echo -e "${ERROR} ${LIGHT_RED}The argument you entered is incorrect! ${COLOR_NULL}";;
     esac
   done
@@ -197,15 +197,24 @@ function glowstone {
 }
 
 function glowstoneversion {
-  GLOWSTONEVERSION=("1.12.2" "Cancel")
+  GLOWSTONEVERSION=("1.19" "1.12.2" "Cancel")
   echo -e "${CYAN} Select the server version. ${COLOR_NULL}"
   select GLOWSTONEVERSIONSEL in "${GLOWSTONEVERSION[@]}"; do
     case "$REPLY" in
-    1) glowstone1122 ;;
-    4) exit ;;
+    1) glowstone119 ;;
+    2) glowstone1122 ;;
+    3) exit ;;
     *) echo -e "${ERROR} ${LIGHT_RED}The argument you entered is incorrect! ${COLOR_NULL}";;
     esac
   done
+}
+
+function glowstone119 {
+  echo -e " "
+  cd ${glowstonefolder}
+  wget https://repo.glowstone.net/repository/snapshots/net/glowstone/glowstone/2022.6.1-SNAPSHOT/glowstone-2022.6.1-20220704.134955-17.jar
+  mv glowstone-2022.6.1-20220704.134955-17.jar glowstone-1.19.jar
+  starterFileGlowstone
 }
 
 function glowstone1122 {
@@ -252,12 +261,12 @@ function purpur {
 }
 
 function purpurversion {
-  PURPURVERSION=("1.19.1" "1.19" "1.18.2" "1.18.1" "1.18" "1.17.1" "1.17" "1.16.5" "1.16.4" "1.16.3" "1.16.2" "1.16.1" "1.15.2" "1.15.1" "1.15" "1.14.4" "1.14.3" "1.14.2" "1.14.1" "Cancel")
+  PURPURVERSION=("1.19.2" "1.19.1" "1.19" "1.18.2" "1.18.1" "1.18" "1.17.1" "1.17" "1.16.5" "1.16.4" "1.16.3" "1.16.2" "1.16.1" "1.15.2" "1.15.1" "1.15" "1.14.4" "1.14.3" "1.14.2" "1.14.1" "Cancel")
   echo -e "${CYAN} Select the server version. ${COLOR_NULL}"
   select PURPURVERSIONSEL in "${PURPURVERSION[@]}"; do
     case "$REPLY" in
-    1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19) stepsPurpur ;;
-    20) exit ;;
+    1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20) stepsPurpur ;;
+    21) exit ;;
     *) echo -e "${ERROR} ${LIGHT_RED}The argument you entered is incorrect! ${COLOR_NULL}";;
     esac
   done
@@ -289,61 +298,6 @@ function successInstallPurpur {
   echo -e " "
   echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
   echo -e "${LIGHT_GREEN} Your server was successfully installed!\n   ${CYAN}* Version: ${WHITE}Purpur ${PURPURVERSIONSEL}\n   ${CYAN}* Location: ${WHITE}${spigotfolder:-/root/spigot}\n   ${CYAN}* RAM: ${WHITE}${spigotmem:-512}M\n   ${CYAN}* Port: ${WHITE}${spigotport:-25565} ${COLOR_NULL}"
-  echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
-  echo -e "${YELLOW}To start the server use the ${LIGHT_RED}./starter.sh ${YELLOW}command${COLOR_NULL}"
-  exit
-}
-
-## SportPaper ##
-function sportpaper {
-  echo -e "\n"
-  mkdir ${spigotfolder:-/root/spigot}
-  cd ${spigotfolder:-/root/spigot}
-  echo -e "${YELLOW} I am setting up the server port. . . ${COLOR_NULL}"
-  echo "server-port=${spigotport:-25565}" > server.properties
-  echo -e "${YELLOW} The eula file has been created. ${COLOR_NULL}"
-  echo "eula=true" > eula.txt
-  sportpaperversion
-}
-
-function sportpaperversion {
-  SPORTPAPERVERSION=("1.8.8" "Cancel")
-  echo -e "${CYAN} Select the server version. ${COLOR_NULL}"
-  select SPORTPAPERVERSIONSEL in "${SPORTPAPERVERSION[@]}"; do
-    case "$REPLY" in
-    1) sportpaper188 ;;
-    2) exit ;;
-    *) echo -e "${ERROR} ${LIGHT_RED}The argument you entered is incorrect! ${COLOR_NULL}";;
-    esac
-  done
-}
-
-function sportpaper188 {
-  echo -e " "
-  cd ${spigotfolder:-/root/spigot}
-  wget https://github.com/linsaftw/SportPaper/releases/latest/download/sportpaper-1.8.8-R0.1-SNAPSHOT.jar
-  mv sportpaper-1.8.8-R0.1-SNAPSHOT.jar sportpaper-1.8.8.jar
-  starterFileSportPaper
-}
-
-function starterFileSportPaper {
-  cd ${spigotfolder:-/root/spigot}
-  echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
-  echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
-  / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
-  \__ \ /(__)\  )    (  )(__)(  )___/ )   / )(_)( 
-  (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
-          https://github.com/samupro-dev'
-  echo -e ' '
-  java -Xms128M -Xmx${spigotmem:-512}M -jar sportpaper-${SPORTPAPERVERSIONSEL}.jar nogui" >> starter.sh
-  chmod +x starter.sh
-  successInstallSportPaper
-}
-
-function successInstallSportPaper {
-  echo -e " "
-  echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
-  echo -e "${LIGHT_GREEN} Your server was successfully installed!\n   ${CYAN}* Version: ${WHITE}SportPaper ${SPORTPAPERVERSIONSEL}\n   ${CYAN}* Location: ${WHITE}${spigotfolder:-/root/spigot}\n   ${CYAN}* RAM: ${WHITE}${spigotmem:-512}M\n   ${CYAN}* Port: ${WHITE}${spigotport:-25565} ${COLOR_NULL}"
   echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
   echo -e "${YELLOW}To start the server use the ${LIGHT_RED}./starter.sh ${YELLOW}command${COLOR_NULL}"
   exit
@@ -472,11 +426,11 @@ function pufferfish {
 }
 
 function pufferfishversion {
-  PUFFERFISHVERSION=("1.19" "1.18.2" "1.17.1" "Cancel")
+  PUFFERFISHVERSION=("1.19.2" "1.18.2" "1.17.1" "Cancel")
   echo -e "${CYAN} Select the server version. ${COLOR_NULL}"
   select PUFFERFISHVERSIONSEL in "${PUFFERFISHVERSION[@]}"; do
     case "$REPLY" in
-    1) pufferfish119 ;;
+    1) pufferfish1192 ;;
     2) pufferfish1182 ;;
     3) pufferfish1171 ;;
     4) exit ;;
@@ -485,7 +439,7 @@ function pufferfishversion {
   done
 }
 
-function pufferfish119 {
+function pufferfish1192 {
   echo -e " "
   cd ${spigotfolder:-/root/spigot}
   wget https://ci.pufferfish.host/job/Pufferfish-1.19/lastSuccessfulBuild/artifact/build/libs/*zip*/libs.zip
