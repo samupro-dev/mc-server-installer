@@ -22,7 +22,7 @@ download the **updated-server-installer.sh** file and use the `chmod +x updated-
 If you find any bugs or want to recommend some new features, write them [here](https://github.com/samupro-dev/mc-server-installer/issues/new/choose)
 
 ## To do
-- [ ] Italian translation
+- [ ] ~~Italian translation~~
 - [x] Script optimization
 - [x] More forks
 - [x] Java installation if it is not installed
