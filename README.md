@@ -47,6 +47,8 @@ If you find any bugs or want to recommend some new features, write them [here](h
 - Removed 1.12 from the SpongeForge fork
 - Removed 1.18.2 from the Mohist fork
 - Removed the SportPaper fork
+- Arclight fork updated to 1.19.2
+- Fixed the download links of the Arclight fork
 ### v4.2
 - Paper fork updated to 1.19.1
 - Spigot fork updated to 1.19.1
