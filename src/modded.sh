@@ -160,20 +160,30 @@ function arclight {
 }
 
 function arclightversion {
-  ARCLIGHTVERSION=("1.19.2" "1.18.2" "1.17.1" "1.16.5" "1.15.2" "1.14.4" "Cancel")
+  ARCLIGHTVERSION=("1.19.3" "1.19.2" "1.18.2" "1.17.1" "1.16.5" "1.15.2" "1.14.4" "Cancel")
   echo -e "${CYAN} Select the server version. ${COLOR_NULL}"
   select ARCLIGHTVERSIONSEL in "${ARCLIGHTVERSION[@]}"; do
     case "$REPLY" in
-    1) arclight1192 ;;
-    2) arclight1182 ;;
-    3) arclight1171 ;;
-    4) arclight1165 ;;
-    5) arclight1152 ;;
-    6) arclight1144 ;;
-    7) exit ;;
+    1) arclight1193 ;;
+    2) arclight1192 ;;
+    3) arclight1182 ;;
+    4) arclight1171 ;;
+    5) arclight1165 ;;
+    6) arclight1152 ;;
+    7) arclight1144 ;;
+    8) exit ;;
     *) echo -e "${ERROR} ${LIGHT_RED}The argument you entered is incorrect! ${COLOR_NULL}";;
     esac
   done
+}
+
+function arclight1193 {
+  echo -e " "
+  cd ${moddedfolder:-/root/modded}
+  wget https://nightly.link/IzzelAliz/Arclight/workflows/gradle/GreatHorn/Arclight.zip
+  rm Arclight.zip arclight-common-*.jar forge-installer-*.jar i18n-config-*.jar
+  mv arclight-forge-*.jar arclight-${ARCLIGHTVERSIONSEL}.jar
+  starterFileArclight
 }
 
 function arclight1192 {
@@ -281,7 +291,7 @@ function spongeforgeversion {
 function spongeforge1165 {
   echo -e " "
   cd ${moddedfolder:-/root/modded}
-  wget https://repo.spongepowered.org/repository/maven-releases/org/spongepowered/spongeforge/1.16.5-36.2.5-8.1.0-RC1228/spongeforge-1.16.5-36.2.5-8.1.0-RC1228-universal.jar
+  wget https://repo.spongepowered.org/repository/maven-releases/org/spongepowered/spongeforge/1.16.5-36.2.5-8.1.0-RC1235/spongeforge-1.16.5-36.2.5-8.1.0-RC1235-universal.jar
   mv spongeforge-*.jar spongeforge-${SPONGEFORGEVERSIONSEL}.jar
   starterFileSpongeForge
 }
