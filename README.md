@@ -29,6 +29,11 @@ If you find any bugs or want to recommend some new features, write them [here](h
 - [ ] A better interface
 
 ## Changelogs
+### v4.4
+- Arclight fork updated to 1.19.3
+- Spigot fork updated to 1.19.3
+- Paper fork updated to 1.19.3
+- Pufferfish fork updated to 1.19.3
 ### v4.3
 - Paper fork updated to 1.19.2
 - Updated the JRE of the spigot compiler
