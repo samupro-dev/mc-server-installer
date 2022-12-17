@@ -439,7 +439,7 @@ function pufferfishversion {
   done
 }
 
-function pufferfish1192 {
+function pufferfish1193 {
   echo -e " "
   cd ${spigotfolder:-/root/spigot}
   wget https://ci.pufferfish.host/job/Pufferfish-1.19/lastSuccessfulBuild/artifact/build/libs/*zip*/libs.zip
