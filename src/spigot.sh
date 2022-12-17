@@ -59,12 +59,12 @@ function spigott {
 }
 
 function spigotversion {
-  SPIGOTVERSION=("1.19.2" "1.19.1" "1.19" "1.18.2" "1.18.1" "1.18" "1.17.1" "1.17" "1.16.5" "1.16.4" "1.16.3" "1.16.2" "1.16.1" "1.15.2" "1.15.1" "1.15" "1.14.4" "1.14.3" "1.14.2" "1.14.1" "1.14" "1.13.2" "1.13.1" "1.13" "1.12.2" "1.12.1" "1.12" "1.11" "1.10.2" "1.9.4" "1.9.2" "1.9" "1.8.8" "1.8.3" "1.8" "Cancel")
+  SPIGOTVERSION=("1.19.3" "1.19.2" "1.19.1" "1.19" "1.18.2" "1.18.1" "1.18" "1.17.1" "1.17" "1.16.5" "1.16.4" "1.16.3" "1.16.2" "1.16.1" "1.15.2" "1.15.1" "1.15" "1.14.4" "1.14.3" "1.14.2" "1.14.1" "1.14" "1.13.2" "1.13.1" "1.13" "1.12.2" "1.12.1" "1.12" "1.11" "1.10.2" "1.9.4" "1.9.2" "1.9" "1.8.8" "1.8.3" "1.8" "Cancel")
   echo -e "${CYAN} Select the server version. ${COLOR_NULL}"
   select SPIGOTVERSIONSEL in "${SPIGOTVERSION[@]}"; do
     case "$REPLY" in
-    1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25|26|27|28|29|30|31|32|33|34|35) stepsSpigot ;;
-    36) exit ;;
+    1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25|26|27|28|29|30|31|32|33|34|35|36) stepsSpigot ;;
+    37) exit ;;
     *) echo -e "${ERROR} ${LIGHT_RED}The argument you entered is incorrect! ${COLOR_NULL}";;
     esac
   done
@@ -140,12 +140,12 @@ function paper {
 }
 
 function paperversion {
-  PAPERVERSION=("1.19.2" "1.19.1" "1.19" "1.18.2" "1.18.1" "1.18" "1.17.1" "1.17" "1.16.5" "1.15.2" "1.14.4" "1.13.2" "1.12.2" "1.11.2" "1.10.2" "1.9.4" "1.8.8" "Cancel")
+  PAPERVERSION=("1.19.3" "1.19.2" "1.19.1" "1.19" "1.18.2" "1.18.1" "1.18" "1.17.1" "1.17" "1.16.5" "1.15.2" "1.14.4" "1.13.2" "1.12.2" "1.11.2" "1.10.2" "1.9.4" "1.8.8" "Cancel")
   echo -e "${CYAN} Select the server version. ${COLOR_NULL}"
   select PAPERVERSIONSEL in "${PAPERVERSION[@]}"; do
     case "$REPLY" in
-    1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17) stepsPaper ;;
-    18) exit ;;
+    1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18) stepsPaper ;;
+    19) exit ;;
     *) echo -e "${ERROR} ${LIGHT_RED}The argument you entered is incorrect! ${COLOR_NULL}";;
     esac
   done
@@ -261,12 +261,12 @@ function purpur {
 }
 
 function purpurversion {
-  PURPURVERSION=("1.19.2" "1.19.1" "1.19" "1.18.2" "1.18.1" "1.18" "1.17.1" "1.17" "1.16.5" "1.16.4" "1.16.3" "1.16.2" "1.16.1" "1.15.2" "1.15.1" "1.15" "1.14.4" "1.14.3" "1.14.2" "1.14.1" "Cancel")
+  PURPURVERSION=("1.19.3" "1.19.2" "1.19.1" "1.19" "1.18.2" "1.18.1" "1.18" "1.17.1" "1.17" "1.16.5" "1.16.4" "1.16.3" "1.16.2" "1.16.1" "1.15.2" "1.15.1" "1.15" "1.14.4" "1.14.3" "1.14.2" "1.14.1" "Cancel")
   echo -e "${CYAN} Select the server version. ${COLOR_NULL}"
   select PURPURVERSIONSEL in "${PURPURVERSION[@]}"; do
     case "$REPLY" in
-    1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20) stepsPurpur ;;
-    21) exit ;;
+    1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21) stepsPurpur ;;
+    22) exit ;;
     *) echo -e "${ERROR} ${LIGHT_RED}The argument you entered is incorrect! ${COLOR_NULL}";;
     esac
   done
@@ -426,11 +426,11 @@ function pufferfish {
 }
 
 function pufferfishversion {
-  PUFFERFISHVERSION=("1.19.2" "1.18.2" "1.17.1" "Cancel")
+  PUFFERFISHVERSION=("1.19.3" "1.18.2" "1.17.1" "Cancel")
   echo -e "${CYAN} Select the server version. ${COLOR_NULL}"
   select PUFFERFISHVERSIONSEL in "${PUFFERFISHVERSION[@]}"; do
     case "$REPLY" in
-    1) pufferfish1192 ;;
+    1) pufferfish1193 ;;
     2) pufferfish1182 ;;
     3) pufferfish1171 ;;
     4) exit ;;
