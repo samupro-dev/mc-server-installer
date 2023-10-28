@@ -13,10 +13,10 @@ A multifunctional script to install a minecraft server in just a few steps.
 To use the installation scripts, simply run this command as root. This script will ask you what you want to install with a few simple steps
 
 ```bash
-bash <(wget -O - 'https://raw.githubusercontent.com/samupro-dev/mc-server-installer/main/updated-server-installer.sh')
+bash <(wget -O - 'https://raw.githubusercontent.com/samupro-dev/mc-server-installer/main/server-installer.sh')
 ```
 #### OR
-download the **updated-server-installer.sh** file and use the `chmod +x updated-server-installer.sh` command and start the installer with _./updated-server-installer.sh_
+download the **server-installer.sh** file and use the `chmod +x server-installer.sh` command and start the installer with _./server-installer.sh_
 
 ## Problems with the script?
 If you find any bugs or want to recommend some new features, write them [here](https://github.com/samupro-dev/mc-server-installer/issues/new/choose)
@@ -26,9 +26,39 @@ If you find any bugs or want to recommend some new features, write them [here](h
 - [x] Script optimization
 - [x] More forks
 - [x] Java installation if it is not installed
-- [ ] A better interface
+- [ ] A better interface?
 
 ## Changelogs
+### v4.5
+- Optimized all scripts
+- Checks improved
+- Code cleanup
+- Removed yum commands
+- From now on the Vanilla, Paper, Purpur, Waterfall, Velocity, Magma, SpongeForge and Mohist jars will automatically update to the latest version available
+- Spigot fork updated to 1.19.4, 1.20.1 and 1.20.2
+- Updated the JRE of the spigot compiler
+- Updated Paper api url
+- Updated Vanilla api url
+- Removed the FlamePaper fork
+- Removed the Airplane fork
+- Pufferfish fork updated to 1.19.4 and 1.20.2
+- Removed the Travertine fork
+- Removed the FlameCord fork
+- Removed the HexaCord fork
+- Default -Xmx value changed to 2048M
+- Added the Folia fork
+- Updated Waterfall api url
+- Updated Velocity api url
+- Added the Forge fork
+- Mohist fork updated to 1.19.4
+- Arclight fork updated to 1.19.4, 1.20.1 and 1.20.2
+- Added the PowerNukkitX fork
+- Added the Krypton fork
+- Added the Fabric fork
+- Updated SpongeForge api url
+- Updated Mohist api url
+- Mohist fork updated to 1.18.2, 1.19.2, 1.20, 1.20.1 and 1.20.2
+- Added the Banner fork
 ### v4.4
 - Arclight fork updated to 1.19.3
 - Spigot fork updated to 1.19.3

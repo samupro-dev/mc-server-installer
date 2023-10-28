@@ -1,4 +1,2 @@
-###################
-## Update Script ##
-###################
+## updated script ##
 bash <(wget -O - 'https://raw.githubusercontent.com/samupro-dev/mc-server-installer/main/src/installer.sh')

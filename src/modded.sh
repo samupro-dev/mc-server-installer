@@ -11,410 +11,239 @@ WHITE="\e[1;37m"
 LIGHT_PURPLE="\e[1;35m"
 
 clear
-echo -e "\n"
-echo -e "${LIGHT_PURPLE}      ╔╦╗╔═╗  ╔═╗╔═╗╦═╗╦  ╦╔═╗╦═╗  ╦╔╗╔╔═╗╔╦╗╔═╗╦  ╦  ╔═╗╦═╗
+echo -e "\n${LIGHT_PURPLE}      ╔╦╗╔═╗  ╔═╗╔═╗╦═╗╦  ╦╔═╗╦═╗  ╦╔╗╔╔═╗╔╦╗╔═╗╦  ╦  ╔═╗╦═╗
       ║║║║    ╚═╗║╣ ╠╦╝╚╗╔╝║╣ ╠╦╝  ║║║║╚═╗ ║ ╠═╣║  ║  ║╣ ╠╦╝
       ╩ ╩╚═╝  ╚═╝╚═╝╩╚═ ╚╝ ╚═╝╩╚═  ╩╝╚╝╚═╝ ╩ ╩ ╩╩═╝╩═╝╚═╝╩╚═
-             ${PURPLE}You are using the auto updated script${COLOR_NULL}"
-echo -e "\n"
+             ${PURPLE}You are using the auto updated script${COLOR_NULL}\n"
 sleep 1
 
-function modded {
+function modded_conf {
   echo -e "\n"
-  echo -e -n "${CYAN} Enter the RAM to be assigned in MB (ex. 512): ${COLOR_NULL}"
+  echo -e -n "${CYAN} Enter the RAM to be assigned in MB (default: 2048): ${COLOR_NULL}"
   read moddedmem
-  echo -e -n "${CYAN} Enter the location of the server folder. (ex. /root/modded): ${COLOR_NULL}"
+  echo -e -n "${CYAN} Enter the location of the server folder. (default: /root/modded): ${COLOR_NULL}"
   read moddedfolder
-  echo -e -n "${YELLOW} Enter the port of the server. (ex. 25565): ${COLOR_NULL}"
+  echo -e -n "${YELLOW} Enter the port of the server. (default: 25565): ${COLOR_NULL}"
   read moddedport
   echo -e "${CYAN} Server type selected: ${YELLOW}Modded ${COLOR_NULL}"
-  MODDEDTYPE=("Magma" "Mohist" "Arclight" "SpongeForge" "CatServer" "Crucible" "Cancel")
+  moddedtype=("Forge" "Magma" "Mohist" "Arclight" "SpongeForge" "CatServer" "Crucible" "Krypton" "Banner" "Cancel")
   echo -e "${CYAN} Select the type of fork that suits you best! ${COLOR_NULL}"
-  select MODDEDTYPESEL in "${MODDEDTYPE[@]}"; do
+  select moddedtype_sel in "${moddedtype[@]}"; do
     case "$REPLY" in
-    1) magma ;;
-    2) mohist ;;
-    3) arclight ;;
-    4) spongeforge;;
-    5) catserver;;
-    6) crucible;;
-    7) exit ;;
+    1) forge ;;
+    2) magma ;;
+    3) mohist ;;
+    4) arclight ;;
+    5) spongeforge ;;
+    6) catserver ;;
+    7) crucible ;;
+    8) krypton ;;
+    9) banner ;;
+    10) exit 0 ;;
     *) echo -e "${ERROR} ${LIGHT_RED}The argument you entered is incorrect! ${COLOR_NULL}";;
     esac
   done
 }
 
-## Magma ##
-function magma {
+function modded_setup {
   echo -e "\n"
   mkdir ${moddedfolder:-/root/modded}
   cd ${moddedfolder:-/root/modded}
   echo -e "${YELLOW} I am setting up the server port. . . ${COLOR_NULL}"
   echo "server-port=${moddedport:-25565}" > server.properties
-  magmaversion
 }
 
-function magmaversion {
-  MAGMAVERSION=("1.18.2" "1.16.5" "1.12.2" "Cancel")
+## forge ##
+function forge {
+  modded_setup
+  forgever_list=$(curl -s -sSL https://files.minecraftforge.net/maven/net/minecraftforge/forge/promotions_slim.json | jq -r '.promos | to_entries[] | select(.key | endswith("-latest")) | .key | rtrimstr("-latest")' | grep -v '_' | tac)
+  forgever=($forgever_list "Cancel")
   echo -e "${CYAN} Select the server version. ${COLOR_NULL}"
-  select MAGMAVERSIONSEL in "${MAGMAVERSION[@]}"; do
-    case "$REPLY" in
-    1|2|3) stepsMagma ;;
-    4) exit ;;
-    *) echo -e "${ERROR} ${LIGHT_RED}The argument you entered is incorrect! ${COLOR_NULL}";;
-    esac
+  select forgever_sel in "${forgever[@]}"; do
+    if [[ $REPLY -ge 1 && $REPLY -lt ${#forgever[@]} ]]; then
+      stepsForge
+    elif [[ $REPLY -eq ${#forgever[@]} ]]; then
+      exit 0
+    else
+      echo -e "${ERROR} ${LIGHT_RED}The argument you entered is incorrect! ${COLOR_NULL}"
+    fi
+  done
+}
+
+function stepsForge {
+  echo -e " "
+  cd ${moddedfolder:-/root/modded}
+  forge_build=$(curl -s -sSL https://files.minecraftforge.net/maven/net/minecraftforge/forge/promotions_slim.json | jq -r ".promos.\"$forgever_sel-latest\"")
+  wget https://maven.minecraftforge.net/net/minecraftforge/forge/${forgever_sel}-${forge_build}/forge-${forgever_sel}-${forge_build}-installer.jar
+  java -jar forge-${forgever_sel}-${forge_build}-installer.jar --installServer
+  rm *-installer*
+  starterFile
+}
+
+## magma ##
+function magma {
+  modded_setup
+  magmaver_list=$(curl -s -X 'GET' 'https://api.magmafoundation.org/api/v2/allVersions' -H 'accept: application/json' | jq -r '.[]')
+  magmaver=($magmaver_list "Cancel")
+  echo -e "${CYAN} Select the server version. ${COLOR_NULL}"
+  select magmaver_sel in "${magmaver[@]}"; do
+    if [[ $REPLY -ge 1 && $REPLY -lt ${#magmaver[@]} ]]; then
+      stepsMagma
+    elif [[ $REPLY -eq ${#magmaver[@]} ]]; then
+      exit 0
+    else
+      echo -e "${ERROR} ${LIGHT_RED}The argument you entered is incorrect! ${COLOR_NULL}"
+    fi
   done
 }
 
 function stepsMagma {
   echo -e " "
   cd ${moddedfolder:-/root/modded}
-  curl -O -J -L https://api.magmafoundation.org/api/v2/${MAGMAVERSIONSEL}/latest/download
-  mv Magma-*.jar magma-${MAGMAVERSIONSEL}.jar
-  starterFileMagma
+  wget --content-disposition https://api.magmafoundation.org/api/v2/${magmaver_sel}/latest/download
+  mv Magma-*.jar magma-${magmaver_sel}.jar
+  starterFile
 }
 
-function starterFileMagma {
-  cd ${moddedfolder:-/root/modded}
-  echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
-  echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
-  / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
-  \__ \ /(__)\  )    (  )(__)(  )___/ )   / )(_)( 
-  (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
-          https://github.com/samupro-dev'
-  echo -e ' '
-  java -Xms128M -Xmx${moddedmem:-512}M -jar magma-${MAGMAVERSIONSEL}.jar nogui" >> starter.sh
-  chmod +x starter.sh
-  successInstallMagma
-}
-
-function successInstallMagma {
-  echo -e " "
-  echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
-  echo -e "${LIGHT_GREEN} Your server was successfully installed!\n   ${CYAN}* Version: ${WHITE}${MODDEDTYPESEL} ${MAGMAVERSIONSEL}\n   ${CYAN}* Location: ${WHITE}${moddedfolder:-/root/modded}\n   ${CYAN}* RAM: ${WHITE}${moddedmem:-512}M\n   ${CYAN}* Port: ${WHITE}${moddedport:-25565} ${COLOR_NULL}"
-  echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
-  echo -e "${YELLOW}To start the server use the ${LIGHT_RED}./starter.sh ${YELLOW}command${COLOR_NULL}"
-  exit
-}
-
-## Mohist ##
+## mohist ##
 function mohist {
-  echo -e "\n"
-  mkdir ${moddedfolder:-/root/modded}
-  cd ${moddedfolder:-/root/modded}
-  echo -e "${YELLOW} I am setting up the server port. . . ${COLOR_NULL}"
-  echo "server-port=${moddedport:-25565}" > server.properties
-  mohistversion
-}
-
-function mohistversion {
-  MOHISTVERSION=("1.19.2" "1.16.5" "1.12.2" "1.7.10" "Cancel")
+  modded_setup
+  mohistver_list=$(curl -s -X 'GET' 'https://mohistmc.com/api/v2/projects/mohist' -H 'accept: application/json' | jq -r '.versions[]' | tac)
+  mohistver=($mohistver_list "Cancel")
   echo -e "${CYAN} Select the server version. ${COLOR_NULL}"
-  select MOHISTVERSIONSEL in "${MOHISTVERSION[@]}"; do
-    case "$REPLY" in
-    1|2|3|4) stepsMohist ;;
-    5) exit ;;
-    *) echo -e "${ERROR} ${LIGHT_RED}The argument you entered is incorrect! ${COLOR_NULL}";;
-    esac
+  select mohistver_sel in "${mohistver[@]}"; do
+    if [[ $REPLY -ge 1 && $REPLY -lt ${#mohistver[@]} ]]; then
+      stepsMohist
+    elif [[ $REPLY -eq ${#mohistver[@]} ]]; then
+      exit 0
+    else
+      echo -e "${ERROR} ${LIGHT_RED}The argument you entered is incorrect! ${COLOR_NULL}"
+    fi
   done
 }
 
 function stepsMohist {
   echo -e " "
   cd ${moddedfolder:-/root/modded}
-  curl -o mohist-${MOHISTVERSIONSEL}.jar https://mohistmc.com/api/${MOHISTVERSIONSEL}/latest/download
-  starterFileMohist
+  wget --content-disposition https://mohistmc.com/api/v2/projects/mohist/${mohistver_sel}/builds/latest/download
+  mv mohist-*.jar mohist-${mohistver_sel}.jar
+  starterFile
 }
 
-function starterFileMohist {
-  cd ${moddedfolder:-/root/modded}
-  echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
-  echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
-  / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
-  \__ \ /(__)\  )    (  )(__)(  )___/ )   / )(_)( 
-  (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
-          https://github.com/samupro-dev'
-  echo -e ' '
-  java -Xms128M -Xmx${moddedmem:-512}M -jar mohist-${MOHISTVERSIONSEL}.jar nogui" >> starter.sh
-  chmod +x starter.sh
-  successInstallMohist
-}
-
-function successInstallMohist {
-  echo -e " "
-  echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
-  echo -e "${LIGHT_GREEN} Your server was successfully installed!\n   ${CYAN}* Version: ${WHITE}${MODDEDTYPESEL} ${MOHISTVERSIONSEL}\n   ${CYAN}* Location: ${WHITE}${moddedfolder:-/root/modded}\n   ${CYAN}* RAM: ${WHITE}${moddedmem:-512}M\n   ${CYAN}* Port: ${WHITE}${moddedport:-25565} ${COLOR_NULL}"
-  echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
-  echo -e "${YELLOW}To start the server use the ${LIGHT_RED}./starter.sh ${YELLOW}command${COLOR_NULL}"
-  exit
-}
-
-## Arclight ##
+## arclight ##
 function arclight {
-  echo -e "\n"
-  mkdir ${moddedfolder:-/root/modded}
-  cd ${moddedfolder:-/root/modded}
-  echo -e "${YELLOW} I am setting up the server port. . . ${COLOR_NULL}"
-  echo "server-port=${moddedport:-25565}" > server.properties
-  arclightversion
-}
-
-function arclightversion {
-  ARCLIGHTVERSION=("1.19.3" "1.19.2" "1.18.2" "1.17.1" "1.16.5" "1.15.2" "1.14.4" "Cancel")
+  modded_setup
+  arclightver=("1.20.2" "1.20.1" "1.19.4" "1.19.3" "1.19.2" "1.18.2" "1.17.1" "1.16.5" "1.15.2" "1.14.4" "Cancel")
   echo -e "${CYAN} Select the server version. ${COLOR_NULL}"
-  select ARCLIGHTVERSIONSEL in "${ARCLIGHTVERSION[@]}"; do
+  select arclightver_sel in "${arclightver[@]}"; do
     case "$REPLY" in
-    1) arclight1193 ;;
-    2) arclight1192 ;;
-    3) arclight1182 ;;
-    4) arclight1171 ;;
-    5) arclight1165 ;;
-    6) arclight1152 ;;
-    7) arclight1144 ;;
-    8) exit ;;
+    1|2) stepsArclight ;;
+    3|4|6|7|8|9) stepsArclightLeg ;;
+    5) arclight1192 ;;
+    10) arclight1144 ;;
+    11) exit 0 ;;
     *) echo -e "${ERROR} ${LIGHT_RED}The argument you entered is incorrect! ${COLOR_NULL}";;
     esac
   done
 }
 
-function arclight1193 {
+function stepsArclight {
   echo -e " "
   cd ${moddedfolder:-/root/modded}
-  wget https://nightly.link/IzzelAliz/Arclight/workflows/gradle/GreatHorn/Arclight.zip
-  rm Arclight.zip arclight-common-*.jar forge-installer-*.jar i18n-config-*.jar
-  mv arclight-forge-*.jar arclight-${ARCLIGHTVERSIONSEL}.jar
-  starterFileArclight
+  if [ "$arclightver_sel" = "1.20.2" ]; then
+    arclight_version="Net"
+  elif [ "$arclightver_sel" = "1.20.1" ]; then
+    arclight_version="Trials"
+  fi
+  wget https://nightly.link/IzzelAliz/Arclight/workflows/gradle/${arclight_version}/Arclight.zip
+  unzip Arclight.zip
+  mv arclight-*.jar arclight-${arclightver_sel}.jar
+  rm Arclight.zip
+  starterFile
+}
+
+function stepsArclightLeg {
+  echo -e " "
+  cd ${moddedfolder:-/root/modded}
+  if [ "$arclightver_sel" = "1.19.4" ]; then
+    arclight_version="Executions"
+  elif [ "$arclightver_sel" = "1.19.3" ]; then
+    arclight_version="GreatHorn"
+  else
+    arclight_version=$(echo ${arclightver_sel} | awk -F. '{print $1"."$2}')
+  fi
+  arclight_build=$(curl -s https://api.github.com/repos/IzzelAliz/Arclight/releases | jq -r "map(select(.target_commitish == "\"$arclight_version\"")) | .[0].assets[0].browser_download_url")
+  wget ${arclight_build}
+  mv arclight-*.jar arclight-${arclightver_sel}.jar
+  starterFile
 }
 
 function arclight1192 {
   echo -e " "
   cd ${moddedfolder:-/root/modded}
-  wget https://nightly.link/IzzelAliz/Arclight/workflows/gradle/1.19/Arclight.zip
-  rm Arclight.zip arclight-common-*.jar forge-installer-*.jar i18n-config-*.jar
-  mv arclight-forge-*.jar arclight-${ARCLIGHTVERSIONSEL}.jar
-  starterFileArclight
-}
-
-function arclight1182 {
-  echo -e " "
-  cd ${moddedfolder:-/root/modded}
-  wget https://nightly.link/IzzelAliz/Arclight/workflows/gradle/1.18/Arclight.zip
-  rm Arclight.zip arclight-common-*.jar forge-installer-*.jar i18n-config-*.jar
-  mv arclight-forge-*.jar arclight-${ARCLIGHTVERSIONSEL}.jar
-  starterFileArclight
-}
-
-function arclight1171 {
-  echo -e " "
-  cd ${moddedfolder:-/root/modded}
-  wget https://github.com/IzzelAliz/Arclight/releases/download/1.17%2F1.0.2/arclight-forge-1.17.1-1.0.2.jar
-  mv arclight-forge-1.17.1-1.0.2.jar arclight-${ARCLIGHTVERSIONSEL}.jar
-  starterFileArclight
-}
-
-function arclight1165 {
-  echo -e " "
-  cd ${moddedfolder:-/root/modded}
-  wget https://nightly.link/IzzelAliz/Arclight/workflows/gradle/1.16/Arclight.zip
-  rm Arclight.zip arclight-common-*.jar forge-installer-*.jar i18n-config-*.jar
-  mv arclight-forge-*.jar arclight-${ARCLIGHTVERSIONSEL}.jar
-  starterFileArclight
-}
-
-function arclight1152 {
-  echo -e " "
-  cd ${moddedfolder:-/root/modded}
-  wget https://github.com/IzzelAliz/Arclight/releases/download/1.15%2F1.0.19/arclight-forge-1.15-1.0.19.jar
-  mv arclight-forge-1.15-1.0.19.jar arclight-${ARCLIGHTVERSIONSEL}.jar
-  starterFileArclight
+  wget https://github.com/IzzelAliz/Arclight/releases/download/horn%2F1.0.2/arclight-forge-1.19.2-1.0.2.jar
+  mv arclight-*.jar arclight-${arclightver_sel}.jar
+  starterFile
 }
 
 function arclight1144 {
   echo -e " "
   cd ${moddedfolder:-/root/modded}
   wget https://github.com/IzzelAliz/Arclight/releases/download/1.0.6/arclight-forge-1.14-1.0.6.jar
-  mv arclight-forge-1.14-1.0.6.jar arclight-${ARCLIGHTVERSIONSEL}.jar
-  starterFileArclight
+  mv arclight-*.jar arclight-${arclightver_sel}.jar
+  starterFile
 }
 
-function starterFileArclight {
-  cd ${moddedfolder:-/root/modded}
-  echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
-  echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
-  / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
-  \__ \ /(__)\  )    (  )(__)(  )___/ )   / )(_)( 
-  (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
-          https://github.com/samupro-dev'
-  echo -e ' '
-  java -Xms128M -Xmx${moddedmem:-512}M -jar arclight-${ARCLIGHTVERSIONSEL}.jar nogui" >> starter.sh
-  chmod +x starter.sh
-  successInstallArclight
-}
-
-function successInstallArclight {
-  echo -e " "
-  echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
-  echo -e "${LIGHT_GREEN} Your server was successfully installed!\n   ${CYAN}* Version: ${WHITE}${MODDEDTYPESEL} ${ARCLIGHTVERSIONSEL}\n   ${CYAN}* Location: ${WHITE}${moddedfolder:-/root/modded}\n   ${CYAN}* RAM: ${WHITE}${moddedmem:-512}M\n   ${CYAN}* Port: ${WHITE}${moddedport:-25565} ${COLOR_NULL}"
-  echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
-  echo -e "${YELLOW}To start the server use the ${LIGHT_RED}./starter.sh ${YELLOW}command${COLOR_NULL}"
-  exit
-}
-
-## SpongeForge ##
+## spongeforge ##
 function spongeforge {
-  echo -e "\n"
-  mkdir ${moddedfolder:-/root/modded}
-  cd ${moddedfolder:-/root/modded}
-  echo -e "${YELLOW} I am setting up the server port. . . ${COLOR_NULL}"
-  echo "server-port=${moddedport:-25565}" > server.properties
-  spongeforgeversion
-}
-
-function spongeforgeversion {
-  SPONGEFORGEVERSION=("1.16.5" "1.12.2" "1.12.1" "1.11.2" "1.10.2" "1.9.4" "1.8.9" "Cancel")
+  modded_setup
+  spongeforgever_list=$(curl -s -X 'GET' 'https://dl-api.spongepowered.org/v2/groups/org.spongepowered/artifacts/spongeforge' -H 'accept: application/json' | jq -r '.tags.minecraft[]')
+  spongeforgever=($spongeforgever_list "Cancel")
   echo -e "${CYAN} Select the server version. ${COLOR_NULL}"
-  select SPONGEFORGEVERSIONSEL in "${SPONGEFORGEVERSION[@]}"; do
-    case "$REPLY" in
-    1) spongeforge1165 ;;
-    2) spongeforge1122 ;;
-    3) spongeforge1121 ;;
-    4) spongeforge1112 ;;
-    5) spongeforge1102 ;;
-    6) spongeforge194 ;;
-    7) spongeforge189 ;;
-    8) exit ;;
-    *) echo -e "${ERROR} ${LIGHT_RED}The argument you entered is incorrect! ${COLOR_NULL}";;
-    esac
+  select spongeforgever_sel in "${spongeforgever[@]}"; do
+    if [[ $REPLY -ge 1 && $REPLY -lt ${#spongeforgever[@]} ]]; then
+      stepsSpongeForge
+    elif [[ $REPLY -eq ${#spongeforgever[@]} ]]; then
+      exit 0
+    else
+      echo -e "${ERROR} ${LIGHT_RED}The argument you entered is incorrect! ${COLOR_NULL}"
+    fi
   done
 }
 
-function spongeforge1165 {
+function stepsSpongeForge {
   echo -e " "
   cd ${moddedfolder:-/root/modded}
-  wget https://repo.spongepowered.org/repository/maven-releases/org/spongepowered/spongeforge/1.16.5-36.2.5-8.1.0-RC1235/spongeforge-1.16.5-36.2.5-8.1.0-RC1235-universal.jar
-  mv spongeforge-*.jar spongeforge-${SPONGEFORGEVERSIONSEL}.jar
-  starterFileSpongeForge
+  spongeforge_temp=$(curl -s -X 'GET' "https://dl-api.spongepowered.org/v2/groups/org.spongepowered/artifacts/spongeforge/versions?tags=minecraft%3A${spongeforgever_sel}" -H 'accept: application/json' | jq -r '.artifacts | keys_unsorted[0]')
+  spongeforge_build=$(curl -s -X 'GET' "https://dl-api.spongepowered.org/v2/groups/org.spongepowered/artifacts/spongeforge/versions/${spongeforge_temp}" -H 'accept: application/json' | jq -r '.assets[1].downloadUrl')
+  wget ${spongeforge_build}
+  mv spongeforge-*.jar spongeforge-${spongeforgever_sel}.jar
+  starterFile
 }
 
-function spongeforge1122 {
-  echo -e " "
-  cd ${moddedfolder:-/root/modded}
-  wget https://repo.spongepowered.org/repository/maven-releases/org/spongepowered/spongeforge/1.12.2-2838-7.4.8-RC4142/spongeforge-1.12.2-2838-7.4.8-RC4142.jar
-  mv spongeforge-*.jar spongeforge-${SPONGEFORGEVERSIONSEL}.jar
-  starterFileSpongeForge
-}
-
-function spongeforge1121 {
-  echo -e " "
-  cd ${moddedfolder:-/root/modded}
-  wget https://repo.spongepowered.org/repository/legacy-transfer/org/spongepowered/spongeforge/1.12.1-2480-7.0.0-BETA-2643/spongeforge-1.12.1-2480-7.0.0-BETA-2643.jar
-  mv spongeforge-*.jar spongeforge-${SPONGEFORGEVERSIONSEL}.jar
-  starterFileSpongeForge
-}
-
-function spongeforge1112 {
-  echo -e " "
-  cd ${moddedfolder:-/root/modded}
-  wget https://repo.spongepowered.org/repository/legacy-transfer/org/spongepowered/spongeforge/1.11.2-2476-6.1.0-BETA-2792/spongeforge-1.11.2-2476-6.1.0-BETA-2792.jar
-  mv spongeforge-*.jar spongeforge-${SPONGEFORGEVERSIONSEL}.jar
-  starterFileSpongeForge
-}
-
-function spongeforge1102 {
-  echo -e " "
-  cd ${moddedfolder:-/root/modded}
-  wget https://repo.spongepowered.org/repository/legacy-transfer/org/spongepowered/spongeforge/1.10.2-2477-5.2.0-BETA-2793/spongeforge-1.10.2-2477-5.2.0-BETA-2793.jar
-  mv spongeforge-*.jar spongeforge-${SPONGEFORGEVERSIONSEL}.jar
-  starterFileSpongeForge
-}
-
-function spongeforge194 {
-  echo -e " "
-  cd ${moddedfolder:-/root/modded}
-  wget https://repo.spongepowered.org/repository/legacy-transfer/org/spongepowered/spongeforge/1.9.4-1968-5.0.0-BETA-1504/spongeforge-1.9.4-1968-5.0.0-BETA-1504.jar
-  mv spongeforge-*.jar spongeforge-${SPONGEFORGEVERSIONSEL}.jar
-  starterFileSpongeForge
-}
-
-function spongeforge189 {
-  echo -e " "
-  cd ${moddedfolder:-/root/modded}
-  wget https://repo.spongepowered.org/repository/legacy-transfer/org/spongepowered/spongeforge/1.8.9-1890-4.2.0-BETA-1762/spongeforge-1.8.9-1890-4.2.0-BETA-1762.jar
-  mv spongeforge-*.jar spongeforge-${SPONGEFORGEVERSIONSEL}.jar
-  starterFileSpongeForge
-}
-
-function starterFileSpongeForge {
-  cd ${moddedfolder:-/root/modded}
-  echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
-  echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
-  / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
-  \__ \ /(__)\  )    (  )(__)(  )___/ )   / )(_)( 
-  (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
-          https://github.com/samupro-dev'
-  echo -e ' '
-  java -Xms128M -Xmx${moddedmem:-512}M -jar spongeforge-${SPONGEFORGEVERSIONSEL}.jar nogui" >> starter.sh
-  chmod +x starter.sh
-  successInstallSpongeForge
-}
-
-function successInstallSpongeForge {
-  echo -e " "
-  echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
-  echo -e "${LIGHT_GREEN} Your server was successfully installed!\n   ${CYAN}* Version: ${WHITE}${MODDEDTYPESEL} ${SPONGEFORGEVERSIONSEL}\n   ${CYAN}* Location: ${WHITE}${moddedfolder:-/root/modded}\n   ${CYAN}* RAM: ${WHITE}${moddedmem:-512}M\n   ${CYAN}* Port: ${WHITE}${moddedport:-25565} ${COLOR_NULL}"
-  echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
-  echo -e "${YELLOW}To start the server use the ${LIGHT_RED}./starter.sh ${YELLOW}command${COLOR_NULL}"
-  exit
-}
-
-## CatServer ##
+## catserver ##
 function catserver {
-  echo -e "\n"
-  mkdir ${moddedfolder:-/root/modded}
-  cd ${moddedfolder:-/root/modded}
-  echo -e "${YELLOW} I am setting up the server port. . . ${COLOR_NULL}"
-  echo "server-port=${moddedport:-25565}" > server.properties
-  catserverversion
-}
-
-function catserverversion {
-  CATSERVERVERSION=("1.18.2" "1.16.5" "1.12.2" "Cancel")
+  modded_setup
+  catserverver=("1.18.2" "1.16.5" "1.12.2" "Cancel")
   echo -e "${CYAN} Select the server version. ${COLOR_NULL}"
-  select CATSERVERVERSIONSEL in "${CATSERVERVERSION[@]}"; do
+  select catserverver_sel in "${catserverver[@]}"; do
     case "$REPLY" in
-    1) catserver1182 ;;
-    2) catserver1165 ;;
+    1|2) stepsCatServer ;;
     3) catserver1122 ;;
-    4) exit ;;
+    4) exit 0 ;;
     *) echo -e "${ERROR} ${LIGHT_RED}The argument you entered is incorrect! ${COLOR_NULL}";;
     esac
   done
 }
 
-function catserver1182 {
+function stepsCatServer {
   echo -e " "
   cd ${moddedfolder:-/root/modded}
-  wget https://jenkins.rbqcloud.cn:30011/job/CatServer-1.18.2/lastSuccessfulBuild/artifact/projects/forge/build/libs/*zip*/libs.zip
+  wget https://jenkins.rbqcloud.cn:30011/job/CatServer-${catserverver_sel}/lastSuccessfulBuild/artifact/projects/forge/build/libs/*zip*/libs.zip
   unzip libs.zip
-  cd libs/
-  mv CatServer-*.jar ..
-  cd ..
-  rm libs.zip
-  mv CatServer-*.jar catserver-${CATSERVERVERSIONSEL}.jar
-  starterFileCatServer
-}
-
-function catserver1165 {
-  echo -e " "
-  cd ${moddedfolder:-/root/modded}
-  wget https://jenkins.rbqcloud.cn:30011/job/CatServer-1.16.5/lastSuccessfulBuild/artifact/projects/forge/build/libs/*zip*/libs.zip
-  unzip libs.zip
-  cd libs/
-  mv CatServer-*.jar ..
-  cd ..
-  rm libs.zip
-  mv CatServer-*.jar catserver-${CATSERVERVERSIONSEL}.jar
-  starterFileCatServer
+  mv libs/CatServer-*.jar catserver-${catserverver_sel}.jar
+  rm -r libs/ libs.zip
+  starterFile
 }
 
 function catserver1122 {
@@ -422,73 +251,121 @@ function catserver1122 {
   cd ${moddedfolder:-/root/modded}
   wget https://jenkins.rbqcloud.cn:30011/job/CatServer-1.12.2/lastSuccessfulBuild/artifact/build/distributions/*zip*/distributions.zip
   unzip distributions.zip
-  cd distributions/
-  mv CatServer-*.jar ..
-  cd ..
-  rm distributions.zip
-  mv CatServer-*.jar catserver-${CATSERVERVERSIONSEL}.jar
-  starterFileCatServer
+  mv distributions/CatServer-*.jar catserver-${catserverver_sel}.jar
+  rm -r distributions/ distributions.zip
+  starterFile
 }
 
-function starterFileCatServer {
-  cd ${moddedfolder:-/root/modded}
-  echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
-  echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
-  / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
-  \__ \ /(__)\  )    (  )(__)(  )___/ )   / )(_)( 
-  (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
-          https://github.com/samupro-dev'
-  echo -e ' '
-  java -Xms128M -Xmx${moddedmem:-512}M -jar catserver-${CATSERVERVERSIONSEL}.jar nogui" >> starter.sh
-  chmod +x starter.sh
-  successInstallCatServer
-}
-
-function successInstallCatServer {
-  echo -e " "
-  echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
-  echo -e "${LIGHT_GREEN} Your server was successfully installed!\n   ${CYAN}* Version: ${WHITE}${MODDEDTYPESEL} ${CATSERVERVERSIONSEL}\n   ${CYAN}* Location: ${WHITE}${moddedfolder:-/root/modded}\n   ${CYAN}* RAM: ${WHITE}${moddedmem:-512}M\n   ${CYAN}* Port: ${WHITE}${moddedport:-25565} ${COLOR_NULL}"
-  echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
-  echo -e "${YELLOW}To start the server use the ${LIGHT_RED}./starter.sh ${YELLOW}command${COLOR_NULL}"
-  exit
-}
-
-## Crucible ##
+## crucible ##
 function crucible {
-  echo -e "\n"
-  mkdir ${moddedfolder:-/root/modded}
-  cd ${moddedfolder:-/root/modded}
-  echo -e "${YELLOW} I am setting up the server port. . . ${COLOR_NULL}"
-  echo "server-port=${moddedport:-25565}" > server.properties
-  crucibleversion
-}
-
-function crucibleversion {
-  CRUCIBLEVERSION=("1.7.10" "Cancel")
+  modded_setup
+  cruciblever=("1.7.10" "Cancel")
   echo -e "${CYAN} Select the server version. ${COLOR_NULL}"
-  select CRUCIBLEVERSIONSEL in "${CRUCIBLEVERSION[@]}"; do
+  select cruciblever_sel in "${cruciblever[@]}"; do
     case "$REPLY" in
-    1) crucible1710 ;;
-    2) exit ;;
+    1) stepsCrucible ;;
+    2) exit 0 ;;
     *) echo -e "${ERROR} ${LIGHT_RED}The argument you entered is incorrect! ${COLOR_NULL}";;
     esac
   done
 }
 
-function crucible1710 {
+function stepsCrucible {
   echo -e " "
   cd ${moddedfolder:-/root/modded}
-  curl --silent "https://api.github.com/repos/CrucibleMC/Crucible/releases/latest" |
-    grep '"browser_download_url":' |
-    sed -E 's/.*"([^"]+)".*/\1/' |
-    xargs wget
-    mv Crucible-*.jar crucible-1.7.10.jar
-    rm libraries.zip
-  starterFileCrucible
+  crucible_build=$(curl -s https://api.github.com/repos/CrucibleMC/Crucible/releases | jq -r '.[0].assets[] | select(.content_type == "application/java-archive") | .browser_download_url')
+  wget ${crucible_build}
+  mv Crucible-*.jar crucible-${cruciblever_sel}.jar
+  starterFile
 }
 
-function starterFileCrucible {
+## krypton ##
+function krypton {
+  modded_setup
+  kryptonver=("Latest" "Cancel")
+  echo -e "${CYAN} Select the server version. ${COLOR_NULL}"
+  select kryptonver_sel in "${kryptonver[@]}"; do
+    case "$REPLY" in
+    1) stepsKrypton ;;
+    2) exit 0 ;;
+    *) echo -e "${ERROR} ${LIGHT_RED}The argument you entered is incorrect! ${COLOR_NULL}";;
+    esac
+  done
+}
+
+function stepsKrypton {
+  echo -e " "
   cd ${moddedfolder:-/root/modded}
+  wget --content-disposition https://api.kryptonmc.org/downloads/v1/krypton/latest/download
+  mv krypton-*.jar krypton-latest.jar
+  starterFile
+}
+
+## fabric ##
+function fabric {
+  modded_setup
+  fabricver_list=$(curl -s https://meta.fabricmc.net/v2/versions | jq -r '.game[] | select(.stable == true) | .version')
+  fabricver=($fabricver_list "Cancel")
+  echo -e "${CYAN} Select the server version. ${COLOR_NULL}"
+  select fabricver_sel in "${fabricver[@]}"; do
+    if [[ $REPLY -ge 1 && $REPLY -lt ${#fabricver[@]} ]]; then
+      stepsFabric
+    elif [[ $REPLY -eq ${#fabricver[@]} ]]; then
+      exit 0
+    else
+      echo -e "${ERROR} ${LIGHT_RED}The argument you entered is incorrect! ${COLOR_NULL}"
+    fi
+  done
+}
+
+function stepsFabric {
+  echo -e " "
+  cd ${moddedfolder:-/root/modded}
+  fabric_temp=$(curl -s https://meta.fabricmc.net/v2/versions/installer | jq -r '.[0].version')
+  fabric_build=$(curl -s "https://meta.fabricmc.net/v2/versions/loader/${fabricver_sel}" | jq -r '.[0].loader.version')
+  wget --content-disposition https://meta.fabricmc.net/v2/versions/loader/${fabricver_sel}/${fabric_build}/${fabric_temp}/server/jar
+  mv fabric-*.jar fabric-${fabricver_sel}.jar
+  starterFile
+}
+
+## banner ##
+function banner {
+  modded_setup
+  bannerver_list=$(curl -s -X 'GET' 'https://mohistmc.com/api/v2/projects/banner' -H 'accept: application/json' | jq -r '.versions[]' | tac)
+  bannerver=($bannerver_list "Cancel")
+  echo -e "${CYAN} Select the server version. ${COLOR_NULL}"
+  select bannerver_sel in "${bannerver[@]}"; do
+    if [[ $REPLY -ge 1 && $REPLY -lt ${#bannerver[@]} ]]; then
+      stepsBanner
+    elif [[ $REPLY -eq ${#bannerver[@]} ]]; then
+      exit 0
+    else
+      echo -e "${ERROR} ${LIGHT_RED}The argument you entered is incorrect! ${COLOR_NULL}"
+    fi
+  done
+}
+
+function stepsBanner {
+  echo -e " "
+  cd ${moddedfolder:-/root/modded}
+  wget --content-disposition https://mohistmc.com/api/v2/projects/banner/${bannerver_sel}/builds/latest/download
+  mv banner-*.jar banner-${bannerver_sel}.jar
+  starterFile
+}
+
+## end ##
+function starterFile {
+  modded_name=$(echo "${moddedtype_sel}" | tr '[:upper:]' '[:lower:]')
+  final_name="${modded_name}ver_sel"
+  server_version="${!final_name}"
+  cd ${moddedfolder:-/root/modded}
+  if [ "$moddedtype_sel" = "forge" ]; then
+    java_args="./run.sh"
+  elif [ "$moddedtype_sel" = "krypton" ]; then
+    java_args="java -Xms128M -Xmx${moddedmem:-2048}M -jar ${modded_name}-latest.jar nogui"
+  else
+    java_args="java -Xms128M -Xmx${moddedmem:-2048}M -jar ${modded_name}-${server_version}.jar nogui"
+  fi
   echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
   echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
   / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
@@ -496,18 +373,18 @@ function starterFileCrucible {
   (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
           https://github.com/samupro-dev'
   echo -e ' '
-  java -Xms128M -Xmx${moddedmem:-512}M -jar crucible-${CRUCIBLEVERSIONSEL}.jar nogui" >> starter.sh
+  ${java_args}" >> starter.sh
   chmod +x starter.sh
-  successInstallCrucible
+  successInstall
 }
 
-function successInstallCrucible {
+function successInstall {
   echo -e " "
   echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
-  echo -e "${LIGHT_GREEN} Your server was successfully installed!\n   ${CYAN}* Version: ${WHITE}${MODDEDTYPESEL} ${CRUCIBLEVERSIONSEL}\n   ${CYAN}* Location: ${WHITE}${moddedfolder:-/root/modded}\n   ${CYAN}* RAM: ${WHITE}${moddedmem:-512}M\n   ${CYAN}* Port: ${WHITE}${moddedport:-25565} ${COLOR_NULL}"
+  echo -e "${LIGHT_GREEN} Your server was successfully installed!\n   ${CYAN}* Version: ${WHITE}${moddedtype_sel} ${server_version}\n   ${CYAN}* Location: ${WHITE}${moddedfolder:-/root/modded}\n   ${CYAN}* RAM: ${WHITE}${moddedmem:-2048}M\n   ${CYAN}* Port: ${WHITE}${moddedport:-19132} ${COLOR_NULL}"
   echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
   echo -e "${YELLOW}To start the server use the ${LIGHT_RED}./starter.sh ${YELLOW}command${COLOR_NULL}"
-  exit
+  exit 0
 }
 
-modded
+modded_conf

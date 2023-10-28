@@ -11,141 +11,73 @@ WHITE="\e[1;37m"
 LIGHT_PURPLE="\e[1;35m"
 
 clear
-echo -e "\n"
-echo -e "${LIGHT_PURPLE}      ╔╦╗╔═╗  ╔═╗╔═╗╦═╗╦  ╦╔═╗╦═╗  ╦╔╗╔╔═╗╔╦╗╔═╗╦  ╦  ╔═╗╦═╗
+echo -e "\n${LIGHT_PURPLE}      ╔╦╗╔═╗  ╔═╗╔═╗╦═╗╦  ╦╔═╗╦═╗  ╦╔╗╔╔═╗╔╦╗╔═╗╦  ╦  ╔═╗╦═╗
       ║║║║    ╚═╗║╣ ╠╦╝╚╗╔╝║╣ ╠╦╝  ║║║║╚═╗ ║ ╠═╣║  ║  ║╣ ╠╦╝
       ╩ ╩╚═╝  ╚═╝╚═╝╩╚═ ╚╝ ╚═╝╩╚═  ╩╝╚╝╚═╝ ╩ ╩ ╩╩═╝╩═╝╚═╝╩╚═
-             ${PURPLE}You are using the auto updated script${COLOR_NULL}"
-echo -e "\n"
+             ${PURPLE}You are using the auto updated script${COLOR_NULL}\n"
 sleep 1
 
-function bungee {
+function bungee_conf {
   echo -e "\n"
-  echo -e -n "${CYAN} Enter the RAM to be assigned in MB (ex. 512): ${COLOR_NULL}"
+  echo -e -n "${CYAN} Enter the RAM to be assigned in MB (default: 2048): ${COLOR_NULL}"
   read bungeemem
-  echo -e -n "${CYAN} Enter the location of the server folder. (ex. /root/bungee): ${COLOR_NULL}"
+  echo -e -n "${CYAN} Enter the location of the server folder. (default: /root/bungee): ${COLOR_NULL}"
   read bungeefolder
   echo -e "${CYAN} Server type selected: ${YELLOW}Proxy ${COLOR_NULL}"
-  BUNGEETYPE=("BungeeCord" "Waterfall" "Travertine" "FlameCord" "Velocity" "HexaCord" "Cancel")
+  bungeetype=("BungeeCord" "Waterfall" "Velocity" "Cancel")
   echo -e "${CYAN} Select the type of fork that suits you best! ${COLOR_NULL}"
-  select BUNGEETYPESEL in "${BUNGEETYPE[@]}"; do
+  select bungeetype_sel in "${bungeetype[@]}"; do
     case "$REPLY" in
     1) bungeecord ;;
     2) waterfall ;;
-    3) travertine ;;
-    4) flamecord ;;
-    5) velocity ;;
-    6) hexacord ;;
-    7) exit ;;
+    3) velocity ;;
+    4) exit 0 ;;
     *) echo -e "${ERROR} ${LIGHT_RED}The argument you entered is incorrect! ${COLOR_NULL}";;
     esac
   done
-} 
+}
 
-## BungeeCord ##
-function bungeecord {
+function bungee_setup {
   echo -e "\n"
   mkdir ${bungeefolder:-/root/bungee}
+}
+
+## bungeecord ##
+function bungeecord {
+  bungee_setup
   cd ${bungeefolder:-/root/bungee}
   echo -e "${CYAN} Downloading the jar file. . . ${COLOR_NULL}"
   wget https://ci.md-5.net/job/BungeeCord/lastSuccessfulBuild/artifact/bootstrap/target/BungeeCord.jar
   starterFile
 }
 
-## Waterfall ##
+## waterfall ##
 function waterfall {
-  if ! [ -x "$(command -v ruby)" ]; then
-    echo -e "${ERROR} ${LIGHT_RED} ruby is required in order for this installation to work. ${COLOR_NULL}"
-    while true
-    do
-      echo -e -n "${YELLOW} Do you want to install ruby (Y/n)? ${COLOR_NULL}"
-      read installruby
-      case "$installruby" in
-        n|N|no|No|NO) exit;;
-        y|Y|yes|Yes|yEs|yeS|YEs|YeS|yES|YES) apt-get -y install ruby || yum install -y ruby
-        break;;
-        *) echo -e "${ERROR} ${LIGHT_RED}The argument you entered is incorrect! ${COLOR_NULL}";;
-      esac
-    done
-  fi
-  echo -e " ${YELLOW} ruby is installed, the installation will work fine! ${COLOR_NULL}"
-  echo -e "\n"
-  mkdir ${bungeefolder:-/root/bungee}
+  bungee_setup
   cd ${bungeefolder:-/root/bungee}
   echo -e "${CYAN} Downloading the jar file. . . ${COLOR_NULL}"
-  curl -s "https://papermc.io/api/v2/projects/waterfall/versions/1.19" | ruby -rjson -e 'data = JSON.parse(STDIN.read); puts data["builds"]' >> builds-temp-waterfall.txt
-  grep -Eo '[0-9]+' builds-temp-waterfall.txt | sort -rn >> builds-waterfall.txt
-  read buildwaterfall <<< $(awk 'NR==1 {print; exit}' builds-waterfall.txt)
-  wget https://papermc.io/api/v2/projects/waterfall/versions/1.19/builds/${buildwaterfall}/downloads/waterfall-1.19-${buildwaterfall}.jar
-  mv waterfall-*.jar Waterfall.jar
-  rm *.txt
+  waterfall_ver=$(curl -s -X 'GET' 'https://api.papermc.io/v2/projects/waterfall' -H 'accept: application/json' | jq -r '.versions | last')
+  waterfall_build=$(curl -s -X 'GET' "https://api.papermc.io/v2/projects/waterfall/versions/${waterfall_ver}" -H 'accept: application/json' | jq -r '.builds | last')
+  wget https://api.papermc.io/v2/projects/waterfall/versions/${waterfall_ver}/builds/${waterfall_build}/downloads/waterfall-${waterfall_ver}-${waterfall_build}.jar
+  mv waterfall-*.jar waterfall.jar
   starterFile
 }
 
-## Travertine ##
-function travertine {
-  echo -e "\n"
-  mkdir ${bungeefolder:-/root/bungee}
-  cd ${bungeefolder:-/root/bungee}
-  echo -e "${CYAN} Downloading the jar file. . . ${COLOR_NULL}"
-  wget https://papermc.io/api/v2/projects/travertine/versions/1.16/builds/191/downloads/travertine-1.16-191.jar
-  mv travertine-*.jar Travertine.jar
-  starterFile
-}
-
-## FlameCord ##
-function flamecord {
-  echo -e "\n"
-  mkdir ${bungeefolder:-/root/bungee}
-  cd ${bungeefolder:-/root/bungee}
-  echo -e "${CYAN} Downloading the jar file. . . ${COLOR_NULL}"
-  wget https://ci.2lstudios.dev/job/FlameCord/lastSuccessfulBuild/artifact/FlameCord-Proxy/bootstrap/target/FlameCord.jar
-  starterFile
-}
-
-## Velocity ##
+## velocity ##
 function velocity {
-  if ! [ -x "$(command -v ruby)" ]; then
-    echo -e "${ERROR} ${LIGHT_RED} ruby is required in order for this installation to work. ${COLOR_NULL}"
-    while true
-    do
-      echo -e -n "${YELLOW} Do you want to install ruby (Y/n)? ${COLOR_NULL}"
-      read installruby
-      case "$installruby" in
-        n|N|no|No|NO) exit;;
-        y|Y|yes|Yes|yEs|yeS|YEs|YeS|yES|YES) apt-get -y install ruby || yum install -y ruby
-        break;;
-        *) echo -e "${ERROR} ${LIGHT_RED}The argument you entered is incorrect! ${COLOR_NULL}";;
-      esac
-    done
-  fi
-  echo -e " ${YELLOW} ruby is installed, the installation will work fine! ${COLOR_NULL}"
-  echo -e "\n"
-  mkdir ${bungeefolder:-/root/bungee}
+  bungee_setup
   cd ${bungeefolder:-/root/bungee}
   echo -e "${CYAN} Downloading the jar file. . . ${COLOR_NULL}"
-  curl -s "https://papermc.io/api/v2/projects/velocity/versions/3.1.2-SNAPSHOT" | ruby -rjson -e 'data = JSON.parse(STDIN.read); puts data["builds"]' >> builds-temp-velocity.txt
-  grep -Eo '[0-9]+' builds-temp-velocity.txt | sort -rn >> builds-velocity.txt
-  read buildvelocity <<< $(awk 'NR==1 {print; exit}' builds-velocity.txt)
-  wget https://papermc.io/api/v2/projects/velocity/versions/3.1.2-SNAPSHOT/builds/${buildvelocity}/downloads/velocity-3.1.2-SNAPSHOT-${buildvelocity}.jar
-  mv velocity-*.jar Velocity.jar
-  rm *.txt
+  velocity_ver=$(curl -s -X 'GET' 'https://api.papermc.io/v2/projects/velocity' -H 'accept: application/json' | jq -r '.versions | last')
+  velocity_build=$(curl -s -X 'GET' "https://api.papermc.io/v2/projects/velocity/versions/${velocity_ver}" -H 'accept: application/json' | jq -r '.builds | last')
+  wget https://api.papermc.io/v2/projects/velocity/versions/${velocity_ver}/builds/${velocity_build}/downloads/velocity-${velocity_ver}-${velocity_build}.jar
+  mv velocity-*.jar velocity.jar
   starterFile
 }
 
-## HexaCord ##
-function hexacord {
-  echo -e "\n"
-  mkdir ${bungeefolder:-/root/bungee}
-  cd ${bungeefolder:-/root/bungee}
-  echo -e "${CYAN} Downloading the jar file. . . ${COLOR_NULL}"
-  wget https://github.com/HexagonMC/BungeeCord/releases/latest/download/BungeeCord.jar
-  mv BungeeCord.jar HexaCord.jar
-  starterFile
-}
-
-## Starter ##
+## end ##
 function starterFile {
+  bungee_name=$(echo "${bungeetype_sel}" | tr '[:upper:]' '[:lower:]')
   cd ${bungeefolder:-/root/bungee}
   echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
   echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
@@ -154,19 +86,18 @@ function starterFile {
   (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
           https://github.com/samupro-dev'
   echo -e ' '
-  java -Xms128M -Xmx${bungeemem:-512}M -jar ${BUNGEETYPESEL}.jar nogui" >> starter.sh
+  java -Xms128M -Xmx${bungeemem:-2048}M -jar ${bungee_name}.jar nogui" >> starter.sh
   chmod +x starter.sh
   successInstall
 }
 
-## Success ##
 function successInstall {
   echo -e " "
   echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
-  echo -e "${LIGHT_GREEN} Your server was successfully installed!\n   ${CYAN}* Version: ${WHITE}${BUNGEETYPESEL}\n   ${CYAN}* Location: ${WHITE}${bungeefolder:-/root/bungee}\n   ${CYAN}* RAM: ${WHITE}${bungeemem:-512}M ${COLOR_NULL}"
+  echo -e "${LIGHT_GREEN} Your server was successfully installed!\n   ${CYAN}* Version: ${WHITE}${bungeetype_sel}\n   ${CYAN}* Location: ${WHITE}${bungeefolder:-/root/bungee}\n   ${CYAN}* RAM: ${WHITE}${bungeemem:-2048}M ${COLOR_NULL}"
   echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
   echo -e "${YELLOW}To start the server use the ${LIGHT_RED}./starter.sh ${YELLOW}command${COLOR_NULL}"
-  exit
+  exit 0
 }
 
-bungee
+bungee_conf
