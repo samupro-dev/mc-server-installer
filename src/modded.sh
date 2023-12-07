@@ -137,9 +137,8 @@ function arclight {
   echo -e "${CYAN} Select the server version. ${COLOR_NULL}"
   select arclightver_sel in "${arclightver[@]}"; do
     case "$REPLY" in
-    1|2) stepsArclight ;;
+    1|2|5) stepsArclight ;;
     3|4|6|7|8|9) stepsArclightLeg ;;
-    5) arclight1192 ;;
     10) arclight1144 ;;
     11) exit 0 ;;
     *) echo -e "${ERROR} ${LIGHT_RED}The argument you entered is incorrect! ${COLOR_NULL}";;
@@ -154,11 +153,13 @@ function stepsArclight {
     arclight_version="Net"
   elif [ "$arclightver_sel" = "1.20.1" ]; then
     arclight_version="Trials"
+  elif [ "$arclightver_sel" = "1.19.2" ]; then
+    arclight_version="1.19"
   fi
   wget https://nightly.link/IzzelAliz/Arclight/workflows/gradle/${arclight_version}/Arclight.zip
   unzip Arclight.zip
-  mv arclight-*.jar arclight-${arclightver_sel}.jar
-  rm Arclight.zip
+  mv arclight-forge-*.jar arclight-${arclightver_sel}.jar
+  find . ! -name arclight-${arclightver_sel}.jar | xargs rm -r
   starterFile
 }
 
@@ -174,14 +175,6 @@ function stepsArclightLeg {
   fi
   arclight_build=$(curl -s https://api.github.com/repos/IzzelAliz/Arclight/releases | jq -r "map(select(.target_commitish == "\"$arclight_version\"")) | .[0].assets[0].browser_download_url")
   wget ${arclight_build}
-  mv arclight-*.jar arclight-${arclightver_sel}.jar
-  starterFile
-}
-
-function arclight1192 {
-  echo -e " "
-  cd ${moddedfolder:-/root/modded}
-  wget https://github.com/IzzelAliz/Arclight/releases/download/horn%2F1.0.2/arclight-forge-1.19.2-1.0.2.jar
   mv arclight-*.jar arclight-${arclightver_sel}.jar
   starterFile
 }

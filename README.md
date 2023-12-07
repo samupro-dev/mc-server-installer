@@ -29,6 +29,15 @@ If you find any bugs or want to recommend some new features, write them [here](h
 - [ ] A better interface?
 
 ## Changelogs
+### v4.6
+- Fixed issue where script could not be used
+- Switched from java Oracle to java Azul Zulu for spigot compiler jre
+- From now on the spigot compiler jre will automatically download the latest version
+- Added -Xms argument to BuildTools
+- Fixed issue where the java check showed as not installed even if installed
+- Spigot fork updated to 1.20.3
+- Fixed jre issue for various spigot versions
+- Improved Arclight script
 ### v4.5
 - Optimized all scripts
 - Checks improved

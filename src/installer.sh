@@ -38,7 +38,8 @@ echo -e " ${DONE} ${LIGHT_GREEN}Congratulations, this script will be run as root
 function check_package {
     local package="$1"
     local name="$2"
-    if ! command -v "$package" &>/dev/null; then
+    local cmd="$3"
+    if ! command -v "$cmd" &>/dev/null; then
         echo -e "${ERROR} ${LIGHT_RED} $name is required in order for this script to work. ${COLOR_NULL}"
         while true
         do
@@ -52,21 +53,21 @@ function check_package {
             esac
         done
     fi
-    echo -e " ${YELLOW} $name is installed, the script will work fine! ${COLOR_NULL}"
+    echo -e " ${YELLOW} $cmd is installed, the script will work fine! ${COLOR_NULL}"
     echo -e " "
 }
 
-check_package "wget" "wget"
-check_package "curl" "curl"
-check_package "openjdk-17-jdk" "java 17 [optional]"
-check_package "jq" "jq"
+check_package "wget" "wget" "wget"
+check_package "curl" "curl" "curl"
+check_package "openjdk-17-jdk" "java 17 [optional]" "java"
+check_package "jq" "jq" "jq"
 
 echo -e "\n"
 
 ## servers types ##
 function install_server {
     local script_url="$1"
-    wget -O - "$script_url" | bash
+    bash <(wget -O - "$script_url")
     exit 0
 }
 

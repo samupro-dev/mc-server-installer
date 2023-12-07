@@ -55,12 +55,12 @@ function spigot_setup {
 ## spigot ##
 function spigot {
   spigot_setup
-  spigotver=("1.20.2" "1.20.1" "1.19.4" "1.19.3" "1.19.2" "1.19.1" "1.19" "1.18.2" "1.18.1" "1.18" "1.17.1" "1.17" "1.16.5" "1.16.4" "1.16.3" "1.16.2" "1.16.1" "1.15.2" "1.15.1" "1.15" "1.14.4" "1.14.3" "1.14.2" "1.14.1" "1.14" "1.13.2" "1.13.1" "1.13" "1.12.2" "1.12.1" "1.12" "1.11" "1.10.2" "1.9.4" "1.9.2" "1.9" "1.8.8" "1.8.3" "1.8" "Cancel")
+  spigotver=("1.20.3" "1.20.2" "1.20.1" "1.19.4" "1.19.3" "1.19.2" "1.19.1" "1.19" "1.18.2" "1.18.1" "1.18" "1.17.1" "1.17" "1.16.5" "1.16.4" "1.16.3" "1.16.2" "1.16.1" "1.15.2" "1.15.1" "1.15" "1.14.4" "1.14.3" "1.14.2" "1.14.1" "1.14" "1.13.2" "1.13.1" "1.13" "1.12.2" "1.12.1" "1.12" "1.11" "1.10.2" "1.9.4" "1.9.2" "1.9" "1.8.8" "1.8.3" "1.8" "Cancel")
   echo -e "${CYAN} Select the server version. ${COLOR_NULL}"
   select spigotver_sel in "${spigotver[@]}"; do
     case "$REPLY" in
-    1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25|26|27|28|29|30|31|32|33|34|35|36|37|38|39) stepsSpigot ;;
-    40) exit 0 ;;
+    1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25|26|27|28|29|30|31|32|33|34|35|36|37|38|39|40) stepsSpigot ;;
+    41) exit 0 ;;
     *) echo -e "${ERROR} ${LIGHT_RED}The argument you entered is incorrect! ${COLOR_NULL}";;
     esac
   done
@@ -71,12 +71,20 @@ function stepsSpigot {
   cd ${spigotfolder:-/root/spigot}
   wget https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar
   echo -e "${YELLOW} The build of the jar is in progress. . . (it will take a while)${COLOR_NULL}"
-  curl -O -J -L https://javadl.oracle.com/webapps/download/AutoDL?BundleId=249192_b291ca3e0c8548b5a51d5a5f50063037
-  mv AutoDL\?BundleId\=249192_b291ca3e0c8548b5a51d5a5f50063037 jre-8u391-linux-x64.tar.gz
-  tar -zxvf jre-8u391-linux-x64.tar.gz
-  "${spigotfolder:-/root/spigot}/jre1.8.0_391/bin/java" -jar BuildTools.jar --rev ${spigotver_sel} > /dev/null
-  find ./ -type d -not -name spigot-${spigotver_sel}.jar | xargs rm -r
-  find ./ -type f -not -name spigot-${spigotver_sel}.jar | xargs rm
+  if [[ $spigotver_sel =~ ^1.20.* || $spigotver_sel =~ ^1.19.* || $spigotver_sel =~ ^1.18.* || $spigotver_sel == "1.17.1" ]]; then
+    java_version="17"
+  elif [ "$spigotver_sel" = "1.17" ]; then
+    java_version="16"
+  else
+    java_version="8"
+  fi
+  java_jre=$(curl -s -X GET "https://api.azul.com/metadata/v1/zulu/packages/?java_version=${java_version}&os=linux&arch=x64&archive_type=tar.gz&java_package_type=jre&latest=true&release_status=ga&availability_types=CA&page=1&page_size=100" -H "accept: application/json" | jq -r 'map(select(.download_url | test("zulu.*-ca-jre.*-linux_x64.tar.gz")) | .download_url) | .[0]')
+  wget ${java_jre}
+  java_tar=$(find . -type f -name "*.tar.gz" | sed 's/^\.\///')
+  tar -zxvf ${java_tar}
+  java_folder=$(basename "$java_tar" .tar.gz)
+  "${spigotfolder:-/root/spigot}/${java_folder}/bin/java" -Xms1024M -jar BuildTools.jar --rev ${spigotver_sel}
+  find . ! -name spigot-${spigotver_sel}.jar | xargs rm -r
   starterFile
 }
 
