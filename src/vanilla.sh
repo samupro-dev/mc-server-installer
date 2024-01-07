@@ -51,7 +51,7 @@ function vanilla_setup {
 ## vanilla ##
 function vanilla {
   vanilla_setup
-  vanillaver_list=$(curl -s https://piston-meta.mojang.com/mc/game/version_manifest.json | jq '.versions[] | select(.type == "release") | .id')
+  vanillaver_list=$(curl -s https://piston-meta.mojang.com/mc/game/version_manifest.json | jq -r '.versions[] | select(.type == "release") | .id')
   vanillaver=($vanillaver_list "Cancel")
   echo -e "${CYAN} Select the server version. ${COLOR_NULL}"
   select vanillaver_sel in "${vanillaver[@]}"; do

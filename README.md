@@ -16,10 +16,10 @@ To use the installation scripts, simply run this command as root. This script wi
 bash <(wget -O - 'https://raw.githubusercontent.com/samupro-dev/mc-server-installer/main/server-installer.sh')
 ```
 #### OR
-download the **server-installer.sh** file and use the `chmod +x server-installer.sh` command and start the installer with _./server-installer.sh_
+download the **server-installer.sh** file and use the `bash server-installer.sh` command to start the installer
 
-## Problems with the script?
-If you find any bugs or want to recommend some new features, write them [here](https://github.com/samupro-dev/mc-server-installer/issues/new/choose)
+## Issues with the script?
+If you find any bugs or want to recommend some new features, write them [here](https://github.com/samupro-dev/mc-server-installer/issues)
 
 ## To do
 - [ ] ~~Italian translation~~
@@ -29,6 +29,10 @@ If you find any bugs or want to recommend some new features, write them [here](h
 - [ ] A better interface?
 
 ## Changelogs
+### v4.7
+- Replaced version 1.20.3 with 1.20.4 in the Spigot fork
+- Arclight fork updated to 1.20.4
+- Fixed a minor bug in the vanilla script
 ### v4.6
 - Fixed issue where script could not be used
 - Switched from java Oracle to java Azul Zulu for spigot compiler jre
