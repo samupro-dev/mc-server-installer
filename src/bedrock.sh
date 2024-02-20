@@ -64,7 +64,8 @@ function bedrock {
 function stepsBedrock {
   echo -e " "
   cd ${bedrockfolder:-/root/bedrock}
-  curl -L -A "Mozilla/5.0 (X11; Linux x86_64; rv:99.0) Gecko/20100101 Firefox/99.0" -H "Accept-Language: en" -H "Accept-Encoding: gzip, deflate" -o versions.html.gz https://www.minecraft.net/en-us/download/server/bedrock
+  useragent=$(curl -s https://jnrbsn.github.io/user-agents/user-agents.json | jq -r '.[] | select(. | contains("Linux x86_64")) | select(. | contains("Chrome"))')
+  curl -L -A "${useragent}" -H "Accept-Language: en" -H "Accept-Encoding: gzip, deflate" -o versions.html.gz https://www.minecraft.net/en-us/download/server/bedrock
   read bedrockver <<< $(zgrep -o 'https://minecraft.azureedge.net/bin-linux/[^"]*' versions.html.gz)
   wget ${bedrockver}
   rm versions.html.gz

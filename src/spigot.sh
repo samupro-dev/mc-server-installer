@@ -55,14 +55,31 @@ function spigot_setup {
 ## spigot ##
 function spigot {
   spigot_setup
-  spigotver=("1.20.4" "1.20.2" "1.20.1" "1.19.4" "1.19.3" "1.19.2" "1.19.1" "1.19" "1.18.2" "1.18.1" "1.18" "1.17.1" "1.17" "1.16.5" "1.16.4" "1.16.3" "1.16.2" "1.16.1" "1.15.2" "1.15.1" "1.15" "1.14.4" "1.14.3" "1.14.2" "1.14.1" "1.14" "1.13.2" "1.13.1" "1.13" "1.12.2" "1.12.1" "1.12" "1.11" "1.10.2" "1.9.4" "1.9.2" "1.9" "1.8.8" "1.8.3" "1.8" "Cancel")
+  spigot_temp=$(curl -s https://hub.spigotmc.org/nexus/content/repositories/snapshots/org/spigotmc/spigot-api/maven-metadata.xml | grep -oP '<version>\K\d+(\.\d+)+(?=-R0)' | tr '\n' ' ' | sed 's/ \{1,\}/\n/g')
+  echo '{ "versions": [' > versions.json
+  first=true
+  for spigot_tempver in $spigot_temp; do
+    build_number=$(curl -s https://hub.spigotmc.org/versions/$spigot_tempver.json | jq -r '.name')
+    if [ "$first" = false ]; then
+      echo ',' >> versions.json
+    else
+      first=false
+    fi
+    echo '  {"version": "'"$spigot_tempver"'", "build_number": "'"$build_number"'"}' >> versions.json
+  done
+  echo '  ] }' >> versions.json
+  spigotver_list=$(cat versions.json | jq -r 'reduce .versions[] as $v ({}; .[$v.build_number] = $v.version) | .[]' | tac)
+  rm versions.json
+  spigotver=($spigotver_list "Cancel")
   echo -e "${CYAN} Select the server version. ${COLOR_NULL}"
   select spigotver_sel in "${spigotver[@]}"; do
-    case "$REPLY" in
-    1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25|26|27|28|29|30|31|32|33|34|35|36|37|38|39|40) stepsSpigot ;;
-    41) exit 0 ;;
-    *) echo -e "${ERROR} ${LIGHT_RED}The argument you entered is incorrect! ${COLOR_NULL}";;
-    esac
+    if [[ $REPLY -ge 1 && $REPLY -lt ${#spigotver[@]} ]]; then
+      stepsSpigot
+    elif [[ $REPLY -eq ${#spigotver[@]} ]]; then
+      exit 0
+    else
+      echo -e "${ERROR} ${LIGHT_RED}The argument you entered is incorrect! ${COLOR_NULL}"
+    fi
   done
 }
 
@@ -70,7 +87,7 @@ function stepsSpigot {
   echo -e " "
   cd ${spigotfolder:-/root/spigot}
   wget https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar
-  echo -e "${YELLOW} The build of the jar is in progress. . . (it will take a while)${COLOR_NULL}"
+  echo -e "${YELLOW} The building of the jar is in progress. . . (it will take a while)${COLOR_NULL}"
   if [[ $spigotver_sel =~ ^1.20.* || $spigotver_sel =~ ^1.19.* || $spigotver_sel =~ ^1.18.* || $spigotver_sel == "1.17.1" ]]; then
     java_version="17"
   elif [ "$spigotver_sel" = "1.17" ]; then
@@ -174,11 +191,11 @@ function stepsPurpur {
 ## pufferfish ##
 function pufferfish {
   spigot_setup
-  pufferfishver=("1.20.2" "1.19.4" "1.18.2" "1.17.1" "Cancel")
+  pufferfishver=("1.20.4" "1.19.4" "1.18.2" "1.17.1" "Cancel")
   echo -e "${CYAN} Select the server version. ${COLOR_NULL}"
   select pufferfishver_sel in "${pufferfishver[@]}"; do
     case "$REPLY" in
-    1) pufferfish1202 ;;
+    1) pufferfish1204 ;;
     2) pufferfish1194 ;;
     3) pufferfish1182 ;;
     4) pufferfish1171 ;;
@@ -188,7 +205,7 @@ function pufferfish {
   done
 }
 
-function pufferfish1202 {
+function pufferfish1204 {
   echo -e " "
   cd ${spigotfolder:-/root/spigot}
   wget https://ci.pufferfish.host/job/Pufferfish-1.20/lastSuccessfulBuild/artifact/build/libs/*zip*/libs.zip

@@ -29,6 +29,10 @@ If you find any bugs or want to recommend some new features, write them [here](h
 - [ ] A better interface?
 
 ## Changelogs
+### v4.8
+- From now on the Spigot jars will automatically update to the latest version available
+- Replaced version 1.20.2 with 1.20.4 in the Pufferfish fork
+- The user agent used in Bedrock will update automatically
 ### v4.7
 - Replaced version 1.20.3 with 1.20.4 in the Spigot fork
 - Arclight fork updated to 1.20.4
