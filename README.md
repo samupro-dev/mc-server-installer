@@ -29,6 +29,10 @@ If you find any bugs or want to recommend some new features, write them [here](h
 - [ ] A better interface?
 
 ## Changelogs
+### v4.9
+- Improved Bedrock jar download script
+- Added the Bedrock Preview fork
+- Added java 21 for Spigot 1.20.5 fork
 ### v4.8
 - From now on the Spigot jars will automatically update to the latest version available
 - Replaced version 1.20.2 with 1.20.4 in the Pufferfish fork

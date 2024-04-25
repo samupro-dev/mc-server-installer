@@ -66,9 +66,9 @@ function vanilla {
 }
 
 function stepsVanilla {
-  read manifestver <<< $(curl -s 'https://piston-meta.mojang.com/mc/game/version_manifest.json' | jq -r '.versions[] | select(.id=="'"${vanillaver_sel}"'") | .url')
-  read manifestserver <<< $(curl -s ${manifestver} | jq -r '.downloads.server.url')
-  curl -so vanilla-${vanillaver_sel}.jar ${manifestserver}
+  vanilla_temp=$(curl -s 'https://piston-meta.mojang.com/mc/game/version_manifest.json' | jq -r '.versions[] | select(.id=="'"${vanillaver_sel}"'") | .url')
+  vanilla_jar=$(curl -s ${vanilla_temp} | jq -r '.downloads.server.url')
+  curl -so vanilla-${vanillaver_sel}.jar ${vanilla_jar}
   starterFile
 }
 
@@ -87,10 +87,10 @@ function snapshot {
 }
 
 function stepsSnapshot {
-  read snapshotver <<< $(curl -s 'https://piston-meta.mojang.com/mc/game/version_manifest.json' | jq -r '.latest.snapshot')
-  read manifestver <<< $(curl -s 'https://piston-meta.mojang.com/mc/game/version_manifest.json' | jq -r '.versions[] | select(.id=="'"${snapshotver}"'") | .url')
-  read manifestserver <<< $(curl -s ${manifestver} | jq -r '.downloads.server.url')
-  curl -so snapshot-${snapshotver_sel}.jar ${manifestserver}
+  snapshot_tempver=$(curl -s 'https://piston-meta.mojang.com/mc/game/version_manifest.json' | jq -r '.latest.snapshot')
+  snapshot_temp=$(curl -s 'https://piston-meta.mojang.com/mc/game/version_manifest.json' | jq -r '.versions[] | select(.id=="'"${snapshot_tempver}"'") | .url')
+  snapshot_jar=$(curl -s ${snapshot_temp} | jq -r '.downloads.server.url')
+  curl -so snapshot-${snapshotver_sel}.jar ${snapshot_jar}
   starterFile
 }
 

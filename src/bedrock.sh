@@ -50,12 +50,13 @@ function bedrock_setup {
 ## bedrock ##
 function bedrock {
   bedrock_setup
-  bedrockver=("Latest" "Cancel")
+  bedrockver=("Latest" "Preview" "Cancel")
   echo -e "${CYAN} Select the server version. ${COLOR_NULL}"
   select bedrockver_sel in "${bedrockver[@]}"; do
     case "$REPLY" in
     1) stepsBedrock ;;
-    2) exit 0 ;;
+    2) stepsBedrockPrev ;;
+    3) exit 0 ;;
     *) echo -e "${ERROR} ${LIGHT_RED}The argument you entered is incorrect! ${COLOR_NULL}";;
     esac
   done
@@ -65,10 +66,19 @@ function stepsBedrock {
   echo -e " "
   cd ${bedrockfolder:-/root/bedrock}
   useragent=$(curl -s https://jnrbsn.github.io/user-agents/user-agents.json | jq -r '.[] | select(. | contains("Linux x86_64")) | select(. | contains("Chrome"))')
-  curl -L -A "${useragent}" -H "Accept-Language: en" -H "Accept-Encoding: gzip, deflate" -o versions.html.gz https://www.minecraft.net/en-us/download/server/bedrock
-  read bedrockver <<< $(zgrep -o 'https://minecraft.azureedge.net/bin-linux/[^"]*' versions.html.gz)
+  bedrockver=$(curl -sL -A "${useragent}" -H "Accept-Language: en" -H "Accept-Encoding: gzip, deflate" https://www.minecraft.net/en-us/download/server/bedrock | zgrep -o 'https://minecraft.azureedge.net/bin-linux/[^"]*')
   wget ${bedrockver}
-  rm versions.html.gz
+  unzip bedrock-server*.zip
+  rm bedrock-server*.zip
+  starterFile
+}
+
+function stepsBedrockPrev {
+  echo -e " "
+  cd ${bedrockfolder:-/root/bedrock}
+  useragent=$(curl -s https://jnrbsn.github.io/user-agents/user-agents.json | jq -r '.[] | select(. | contains("Linux x86_64")) | select(. | contains("Chrome"))')
+  bedrockver=$(curl -sL -A "${useragent}" -H "Accept-Language: en" -H "Accept-Encoding: gzip, deflate" https://www.minecraft.net/en-us/download/server/bedrock | zgrep -o 'https://minecraft.azureedge.net/bin-linux-preview/[^"]*')
+  wget ${bedrockver}
   unzip bedrock-server*.zip
   rm bedrock-server*.zip
   starterFile
