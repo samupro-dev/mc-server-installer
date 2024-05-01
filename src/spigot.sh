@@ -88,7 +88,7 @@ function stepsSpigot {
   cd ${spigotfolder:-/root/spigot}
   wget https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar
   echo -e "${YELLOW} The building of the jar is in progress. . . (it will take a while)${COLOR_NULL}"
-  if [ "$spigotver_sel" = "1.20.5" ]; then
+  if [ "$spigotver_sel" = "1.20.6" ]; then
     java_version="21"
   elif [[ $spigotver_sel =~ ^1.20.* || $spigotver_sel =~ ^1.19.* || $spigotver_sel =~ ^1.18.* || $spigotver_sel == "1.17.1" ]]; then
     java_version="17"
