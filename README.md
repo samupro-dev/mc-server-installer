@@ -29,6 +29,8 @@ If you find any bugs or want to recommend some new features, write them [here](h
 - [ ] A better interface?
 
 ## Changelogs
+### v5.0
+- Added java 21 check for Spigot 1.21 and up
 ### v4.9
 - Improved Bedrock jar download script
 - Added the Bedrock Preview fork
