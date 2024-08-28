@@ -133,14 +133,14 @@ function stepsMohist {
 ## arclight ##
 function arclight {
   modded_setup
-  arclightver=("1.20.4" "1.20.2" "1.20.1" "1.19.4" "1.19.3" "1.19.2" "1.18.2" "1.17.1" "1.16.5" "1.15.2" "1.14.4" "Cancel")
+  arclightver=("1.21.1" "1.20.4" "1.20.2" "1.20.1" "1.19.4" "1.19.3" "1.19.2" "1.18.2" "1.17.1" "1.16.5" "1.15.2" "1.14.4" "Cancel")
   echo -e "${CYAN} Select the server version. ${COLOR_NULL}"
   select arclightver_sel in "${arclightver[@]}"; do
     case "$REPLY" in
-    1|3|6) stepsArclight ;;
-    2|4|5|7|8|9|10) stepsArclightLeg ;;
-    11) arclight1144 ;;
-    12) exit 0 ;;
+    1|2|4) stepsArclight ;;
+    3|5|6|7|8|9|10|11) stepsArclightLeg ;;
+    12) arclight1144 ;;
+    13) exit 0 ;;
     *) echo -e "${ERROR} ${LIGHT_RED}The argument you entered is incorrect! ${COLOR_NULL}";;
     esac
   done
@@ -149,12 +149,12 @@ function arclight {
 function stepsArclight {
   echo -e " "
   cd ${moddedfolder:-/root/modded}
-  if [ "$arclightver_sel" = "1.20.4" ]; then
+  if [ "$arclightver_sel" = "1.21.1" ]; then
+    arclight_version="FeudalKings"
+  elif [ "$arclightver_sel" = "1.20.4" ]; then
     arclight_version="Whisper"
   elif [ "$arclightver_sel" = "1.20.1" ]; then
     arclight_version="Trials"
-  elif [ "$arclightver_sel" = "1.19.2" ]; then
-    arclight_version="1.19"
   fi
   wget https://nightly.link/IzzelAliz/Arclight/workflows/gradle/${arclight_version}/Arclight.zip
   unzip Arclight.zip
@@ -172,6 +172,8 @@ function stepsArclightLeg {
     arclight_version="Executions"
   elif [ "$arclightver_sel" = "1.19.3" ]; then
     arclight_version="GreatHorn"
+  elif [ "$arclightver_sel" = "1.19.2" ]; then
+    arclight_version="1.19"
   else
     arclight_version=$(echo ${arclightver_sel} | awk -F. '{print $1"."$2}')
   fi

@@ -46,7 +46,7 @@ function check_package {
             echo -e -n "${YELLOW} Do you want to install $name (Y/n)? ${COLOR_NULL}"
             read install_package
             case "$install_package" in
-                n|N|no|No|nO|NO) if [[ "$package" == "openjdk-17-jdk" ]]; then break; else exit 1; fi;;
+                n|N|no|No|nO|NO) if [[ "$package" == "openjdk-17-jdk" || "$package" == "git" ]]; then break; else exit 1; fi;;
                 y|Y|yes|Yes|yEs|yeS|YEs|YeS|yES|YES) apt-get -y install "$package" || echo -e "$package could not be installed, please try to install it manually.${COLOR_NULL}"
                 break;;
                 *) echo -e "${ERROR} ${LIGHT_RED}The argument you entered is incorrect!${COLOR_NULL}";;
@@ -61,6 +61,8 @@ check_package "wget" "wget" "wget"
 check_package "curl" "curl" "curl"
 check_package "openjdk-17-jdk" "java 17 [optional]" "java"
 check_package "jq" "jq" "jq"
+check_package "unzip" "unzip" "unzip"
+check_package "git" "git [for Spigot jar only, not Paper etc.]" "git"
 
 echo -e "\n"
 

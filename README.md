@@ -29,6 +29,10 @@ If you find any bugs or want to recommend some new features, write them [here](h
 - [ ] A better interface?
 
 ## Changelogs
+### v5.1
+- Arclight fork updated to 1.21.1
+- From now on the Pufferfish jars will automatically update to the latest version available
+- Added some checks in the installer
 ### v5.0
 - Added java 21 check for Spigot 1.21 and up
 ### v4.9

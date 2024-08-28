@@ -193,56 +193,35 @@ function stepsPurpur {
 ## pufferfish ##
 function pufferfish {
   spigot_setup
-  pufferfishver=("1.20.4" "1.19.4" "1.18.2" "1.17.1" "Cancel")
+  pufferfish_templist=""
+  pufferfish_api=$(curl -s https://ci.pufferfish.host/api/json | jq -r '.jobs[] | select(.name | test("^Pufferfish-[0-9]+")) | .name')
+  for pufferfish_temp in $pufferfish_api; do
+    pufferfish_temp=$(curl -s "https://ci.pufferfish.host/job/${pufferfish_temp}/lastSuccessfulBuild/api/json" | jq -r '.artifacts[].fileName | capture("(?<version>[0-9]+(?:\\.[0-9]+){1,2})") | .version')
+    if [ ! -z "$pufferfish_temp" ]; then
+      pufferfish_templist+="$pufferfish_temp"$'\n'
+    fi
+  done
+  pufferfishver_list=$(echo -e "$pufferfish_templist" | tac)
+  pufferfishver=($pufferfishver_list "Cancel")
   echo -e "${CYAN} Select the server version. ${COLOR_NULL}"
   select pufferfishver_sel in "${pufferfishver[@]}"; do
-    case "$REPLY" in
-    1) pufferfish1204 ;;
-    2) pufferfish1194 ;;
-    3) pufferfish1182 ;;
-    4) pufferfish1171 ;;
-    5) exit 0 ;;
-    *) echo -e "${ERROR} ${LIGHT_RED}The argument you entered is incorrect! ${COLOR_NULL}";;
-    esac
+    if [[ $REPLY -ge 1 && $REPLY -lt ${#pufferfishver[@]} ]]; then
+      stepsPufferfish
+    elif [[ $REPLY -eq ${#pufferfishver[@]} ]]; then
+      exit 0
+    else
+      echo -e "${ERROR} ${LIGHT_RED}The argument you entered is incorrect! ${COLOR_NULL}"
+    fi
   done
 }
 
-function pufferfish1204 {
+function stepsPufferfish {
   echo -e " "
   cd ${spigotfolder:-/root/spigot}
-  wget https://ci.pufferfish.host/job/Pufferfish-1.20/lastSuccessfulBuild/artifact/build/libs/*zip*/libs.zip
+  pufferfish_tempver=$(echo "${pufferfishver_sel}" | cut -d '.' -f 1,2)
+  wget https://ci.pufferfish.host/job/Pufferfish-${pufferfish_tempver}/lastSuccessfulBuild/artifact/build/libs/*zip*/libs.zip
   unzip libs.zip
-  mv libs/Pufferfish-*.jar pufferfish-${pufferfishver_sel}.jar
-  rm -r libs/ libs.zip
-  starterFile
-}
-
-function pufferfish1194 {
-  echo -e " "
-  cd ${spigotfolder:-/root/spigot}
-  wget https://ci.pufferfish.host/job/Pufferfish-1.19/lastSuccessfulBuild/artifact/build/libs/*zip*/libs.zip
-  unzip libs.zip
-  mv libs/Pufferfish-*.jar pufferfish-${pufferfishver_sel}.jar
-  rm -r libs/ libs.zip
-  starterFile
-}
-
-function pufferfish1182 {
-  echo -e " "
-  cd ${spigotfolder:-/root/spigot}
-  wget https://ci.pufferfish.host/job/Pufferfish-1.18/lastSuccessfulBuild/artifact/build/libs/*zip*/libs.zip
-  unzip libs.zip
-  mv libs/Pufferfish-*.jar pufferfish-${pufferfishver_sel}.jar
-  rm -r libs/ libs.zip
-  starterFile
-}
-
-function pufferfish1171 {
-  echo -e " "
-  cd ${spigotfolder:-/root/spigot}
-  wget https://ci.pufferfish.host/job/Pufferfish-1.17/lastSuccessfulBuild/artifact/build/libs/*zip*/libs.zip
-  unzip libs.zip
-  mv libs/Pufferfish-*.jar pufferfish-${pufferfishver_sel}.jar
+  mv libs/*ufferfish-*.jar pufferfish-${pufferfishver_sel}.jar
   rm -r libs/ libs.zip
   starterFile
 }
