@@ -18,16 +18,22 @@ echo -e "\n${LIGHT_PURPLE}      ╔╦╗╔═╗  ╔═╗╔═╗╦═╗�
 sleep 1
 
 function spigot_conf {
-  echo -e "\n"
-  echo -e -n "${CYAN} Enter the RAM to be assigned in MB (default: 2048): ${COLOR_NULL}"
+  echo -e "\n${YELLOW}[[[--- Welcome to the setup for configuring your server! ---]]]${COLOR_NULL}\n"
+  echo -e -n "${CYAN} ( * ) Enter the amount of RAM to allocate in megabytes (default: 2048): ${COLOR_NULL}"
   read spigotmem
-  echo -e -n "${CYAN} Enter the location of the server folder. (default: /root/spigot): ${COLOR_NULL}"
+  echo -e -n "${CYAN} ( * ) Enter the directory where the server will be installed (default: /root/spigot): ${COLOR_NULL}"
   read spigotfolder
-  echo -e -n "${YELLOW} Enter the port of the server. (default: 25565): ${COLOR_NULL}"
+  echo -e -n "${CYAN} ( * ) Enter the port where to host the server (default: 25565): ${COLOR_NULL}"
   read spigotport
-  echo -e "${CYAN} Server type selected: ${YELLOW}Spigot ${COLOR_NULL}"
+  echo -e -n "${CYAN} ( * ) Do you want to grant server access only to premium users? (default: false): ${COLOR_NULL}"
+  read spigotomode
+  echo -e -n "${CYAN} ( * ) How many maximum players should the server have? (default: 20): ${COLOR_NULL}"
+  read spigotmplayers
+  echo -e -n "${CYAN} ( * ) Do you want to accept the EULA for minecraft? (default: true): ${COLOR_NULL}"
+  read spigoteula
+  echo -e "\n${LIGHT_RED} !! ${CYAN}Server type selected: ${YELLOW}SPIGOT ${COLOR_NULL}"
   spigottype=("Spigot" "Paper" "Purpur" "Glowstone" "Pufferfish" "Folia" "Cancel")
-  echo -e "${CYAN} Select the type of fork that suits you best! ${COLOR_NULL}"
+  echo -e "${CYAN} ( * ) Select the type of fork that suits you best! ${COLOR_NULL}"
   select spigottype_sel in "${spigottype[@]}"; do
     case "$REPLY" in
     1) spigot ;;
@@ -40,16 +46,17 @@ function spigot_conf {
     *) echo -e "${ERROR} ${LIGHT_RED}The argument you entered is incorrect! ${COLOR_NULL}";;
     esac
   done
-} 
+}
 
 function spigot_setup {
   echo -e "\n"
   mkdir ${spigotfolder:-/root/spigot}
   cd ${spigotfolder:-/root/spigot}
-  echo -e "${YELLOW} I am setting up the server port. . . ${COLOR_NULL}"
-  echo "server-port=${spigotport:-25565}" > server.properties
-  echo -e "${YELLOW} The eula file has been created. ${COLOR_NULL}"
-  echo "eula=true" > eula.txt
+  echo -e "${YELLOW} Setting up the server settings. . . ${COLOR_NULL}"
+  echo -e "server-port=${spigotport:-25565}\nonline-mode=${spigotomode:-false}\nmax-players=${spigotmplayers:-20}" > server.properties
+  echo -e "${YELLOW} Setting up the EULA file. . . ${COLOR_NULL}"
+  echo -e "# The minecraft EULA file has been set to ' ${spigoteula:-true} ' by the user who ran the script.\n# https://github.com/samupro-dev/mc-server-installer\neula=${spigoteula:-true}" > eula.txt
+  echo -e "${YELLOW} Fetching the versions. . . (it might take a while)\n ${COLOR_NULL}"
 }
 
 ## spigot ##
@@ -71,7 +78,7 @@ function spigot {
   spigotver_list=$(cat versions.json | jq -r 'reduce .versions[] as $v ({}; .[$v.build_number] = $v.version) | .[]' | tac)
   rm versions.json
   spigotver=($spigotver_list "Cancel")
-  echo -e "${CYAN} Select the server version. ${COLOR_NULL}"
+  echo -e "${CYAN} ( * ) Select the server version: ${COLOR_NULL}"
   select spigotver_sel in "${spigotver[@]}"; do
     if [[ $REPLY -ge 1 && $REPLY -lt ${#spigotver[@]} ]]; then
       stepsSpigot
@@ -103,7 +110,7 @@ function stepsSpigot {
   tar -zxvf ${java_tar}
   java_folder=$(basename "$java_tar" .tar.gz)
   "${spigotfolder:-/root/spigot}/${java_folder}/bin/java" -Xms1024M -jar BuildTools.jar --rev ${spigotver_sel}
-  find . ! -name spigot-${spigotver_sel}.jar | xargs rm -r > /dev/null
+  find . ! -name spigot-${spigotver_sel}.jar 2>/dev/null | xargs rm -r > /dev/null 2>&1
   starterFile
 }
 
@@ -112,7 +119,7 @@ function paper {
   spigot_setup
   paperver_list=$(curl -s -X 'GET' 'https://api.papermc.io/v2/projects/paper' -H 'accept: application/json' | jq -r '.versions[]' | grep -v '-' | tac)
   paperver=($paperver_list "Cancel")
-  echo -e "${CYAN} Select the server version. ${COLOR_NULL}"
+  echo -e "${CYAN} ( * ) Select the server version: ${COLOR_NULL}"
   select paperver_sel in "${paperver[@]}"; do
     if [[ $REPLY -ge 1 && $REPLY -lt ${#paperver[@]} ]]; then
       stepsPaper
@@ -138,7 +145,7 @@ function stepsPaper {
 function glowstone {
   spigot_setup
   glowstonever=("1.19" "1.12.2" "Cancel")
-  echo -e "${CYAN} Select the server version. ${COLOR_NULL}"
+  echo -e "${CYAN} ( * ) Select the server version: ${COLOR_NULL}"
   select glowstonever_sel in "${glowstonever[@]}"; do
     case "$REPLY" in
     1) glowstone119 ;;
@@ -170,7 +177,7 @@ function purpur {
   spigot_setup
   purpurver_list=$(curl -s -X 'GET' 'https://api.purpurmc.org/v2/purpur' H 'accept: */*' | jq -r '.versions[]' | tac)
   purpurver=($purpurver_list "Cancel")
-  echo -e "${CYAN} Select the server version. ${COLOR_NULL}"
+  echo -e "${CYAN} ( * ) Select the server version: ${COLOR_NULL}"
   select purpurver_sel in "${purpurver[@]}"; do
     if [[ $REPLY -ge 1 && $REPLY -lt ${#purpurver[@]} ]]; then
       stepsPurpur
@@ -203,7 +210,7 @@ function pufferfish {
   done
   pufferfishver_list=$(echo -e "$pufferfish_templist" | tac)
   pufferfishver=($pufferfishver_list "Cancel")
-  echo -e "${CYAN} Select the server version. ${COLOR_NULL}"
+  echo -e "${CYAN} ( * ) Select the server version: ${COLOR_NULL}"
   select pufferfishver_sel in "${pufferfishver[@]}"; do
     if [[ $REPLY -ge 1 && $REPLY -lt ${#pufferfishver[@]} ]]; then
       stepsPufferfish
@@ -231,7 +238,7 @@ function folia {
   spigot_setup
   foliaver_list=$(curl -s -X 'GET' 'https://api.papermc.io/v2/projects/folia' -H 'accept: application/json' | jq -r '.versions[]' | tac)
   foliaver=($foliaver_list "Cancel")
-  echo -e "${CYAN} Select the server version. ${COLOR_NULL}"
+  echo -e "${CYAN} ( * ) Select the server version: ${COLOR_NULL}"
   select foliaver_sel in "${foliaver[@]}"; do
     if [[ $REPLY -ge 1 && $REPLY -lt ${#foliaver[@]} ]]; then
       stepsFolia

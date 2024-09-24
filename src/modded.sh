@@ -18,16 +18,22 @@ echo -e "\n${LIGHT_PURPLE}      ╔╦╗╔═╗  ╔═╗╔═╗╦═╗�
 sleep 1
 
 function modded_conf {
-  echo -e "\n"
-  echo -e -n "${CYAN} Enter the RAM to be assigned in MB (default: 2048): ${COLOR_NULL}"
+  echo -e "\n${YELLOW}[[[--- Welcome to the setup for configuring your server! ---]]]${COLOR_NULL}\n"
+  echo -e -n "${CYAN} ( * ) Enter the amount of RAM to allocate in megabytes (default: 2048): ${COLOR_NULL}"
   read moddedmem
-  echo -e -n "${CYAN} Enter the location of the server folder. (default: /root/modded): ${COLOR_NULL}"
+  echo -e -n "${CYAN} ( * ) Enter the directory where the server will be installed (default: /root/modded): ${COLOR_NULL}"
   read moddedfolder
-  echo -e -n "${YELLOW} Enter the port of the server. (default: 25565): ${COLOR_NULL}"
+  echo -e -n "${CYAN} ( * ) Enter the port where to host the server (default: 25565): ${COLOR_NULL}"
   read moddedport
-  echo -e "${CYAN} Server type selected: ${YELLOW}Modded ${COLOR_NULL}"
-  moddedtype=("Forge" "Magma" "Mohist" "Arclight" "SpongeForge" "CatServer" "Crucible" "Krypton" "Banner" "Cancel")
-  echo -e "${CYAN} Select the type of fork that suits you best! ${COLOR_NULL}"
+  echo -e -n "${CYAN} ( * ) Do you want to grant server access only to premium users? (default: false): ${COLOR_NULL}"
+  read moddedomode
+  echo -e -n "${CYAN} ( * ) How many maximum players should the server have? (default: 20): ${COLOR_NULL}"
+  read moddedmplayers
+  echo -e -n "${CYAN} ( * ) Do you want to accept the EULA for minecraft? (default: true): ${COLOR_NULL}"
+  read moddedeula
+  echo -e "\n${LIGHT_RED} !! ${CYAN}Server type selected: ${YELLOW}MODDED ${COLOR_NULL}"
+  moddedtype=("Forge" "Magma" "Mohist" "Arclight" "SpongeForge" "CatServer" "Crucible" "Krypton" "Banner" "Fabric" "Cancel")
+  echo -e "${CYAN} ( * ) Select the type of fork that suits you best! ${COLOR_NULL}"
   select moddedtype_sel in "${moddedtype[@]}"; do
     case "$REPLY" in
     1) forge ;;
@@ -39,7 +45,8 @@ function modded_conf {
     7) crucible ;;
     8) krypton ;;
     9) banner ;;
-    10) exit 0 ;;
+    10) fabric ;;
+    11) exit 0 ;;
     *) echo -e "${ERROR} ${LIGHT_RED}The argument you entered is incorrect! ${COLOR_NULL}";;
     esac
   done
@@ -49,8 +56,11 @@ function modded_setup {
   echo -e "\n"
   mkdir ${moddedfolder:-/root/modded}
   cd ${moddedfolder:-/root/modded}
-  echo -e "${YELLOW} I am setting up the server port. . . ${COLOR_NULL}"
-  echo "server-port=${moddedport:-25565}" > server.properties
+  echo -e "${YELLOW} Setting up the server settings. . . ${COLOR_NULL}"
+  echo -e "server-port=${moddedport:-25565}\nonline-mode=${moddedomode:-false}\nmax-players=${moddedmplayers:-20}" > server.properties
+  echo -e "${YELLOW} Setting up the EULA file. . . ${COLOR_NULL}"
+  echo -e "# The minecraft EULA file has been set to ' ${moddedeula:-true} ' by the user who ran the script.\n# https://github.com/samupro-dev/mc-server-installer\neula=${moddedeula:-true}" > eula.txt
+  echo -e "${YELLOW} Fetching the versions. . . (it might take a while)\n ${COLOR_NULL}"
 }
 
 ## forge ##
@@ -58,7 +68,7 @@ function forge {
   modded_setup
   forgever_list=$(curl -s -sSL https://files.minecraftforge.net/maven/net/minecraftforge/forge/promotions_slim.json | jq -r '.promos | to_entries[] | select(.key | endswith("-latest")) | .key | rtrimstr("-latest")' | grep -v '_' | tac)
   forgever=($forgever_list "Cancel")
-  echo -e "${CYAN} Select the server version. ${COLOR_NULL}"
+  echo -e "${CYAN} ( * ) Select the server version: ${COLOR_NULL}"
   select forgever_sel in "${forgever[@]}"; do
     if [[ $REPLY -ge 1 && $REPLY -lt ${#forgever[@]} ]]; then
       stepsForge
@@ -85,7 +95,7 @@ function magma {
   modded_setup
   magmaver_list=$(curl -s -X 'GET' 'https://api.magmafoundation.org/api/v2/allVersions' -H 'accept: application/json' | jq -r '.[]')
   magmaver=($magmaver_list "Cancel")
-  echo -e "${CYAN} Select the server version. ${COLOR_NULL}"
+  echo -e "${CYAN} ( * ) Select the server version: ${COLOR_NULL}"
   select magmaver_sel in "${magmaver[@]}"; do
     if [[ $REPLY -ge 1 && $REPLY -lt ${#magmaver[@]} ]]; then
       stepsMagma
@@ -110,7 +120,7 @@ function mohist {
   modded_setup
   mohistver_list=$(curl -s -X 'GET' 'https://mohistmc.com/api/v2/projects/mohist' -H 'accept: application/json' | jq -r '.versions[]' | tac)
   mohistver=($mohistver_list "Cancel")
-  echo -e "${CYAN} Select the server version. ${COLOR_NULL}"
+  echo -e "${CYAN} ( * ) Select the server version: ${COLOR_NULL}"
   select mohistver_sel in "${mohistver[@]}"; do
     if [[ $REPLY -ge 1 && $REPLY -lt ${#mohistver[@]} ]]; then
       stepsMohist
@@ -134,7 +144,7 @@ function stepsMohist {
 function arclight {
   modded_setup
   arclightver=("1.21.1" "1.20.4" "1.20.2" "1.20.1" "1.19.4" "1.19.3" "1.19.2" "1.18.2" "1.17.1" "1.16.5" "1.15.2" "1.14.4" "Cancel")
-  echo -e "${CYAN} Select the server version. ${COLOR_NULL}"
+  echo -e "${CYAN} ( * ) Select the server version: ${COLOR_NULL}"
   select arclightver_sel in "${arclightver[@]}"; do
     case "$REPLY" in
     1|2|4) stepsArclight ;;
@@ -159,7 +169,7 @@ function stepsArclight {
   wget https://nightly.link/IzzelAliz/Arclight/workflows/gradle/${arclight_version}/Arclight.zip
   unzip Arclight.zip
   mv arclight-forge-*.jar arclight-${arclightver_sel}.jar
-  find . ! -name arclight-${arclightver_sel}.jar | xargs rm -r > /dev/null
+  find . ! -name arclight-${arclightver_sel}.jar 2>/dev/null | xargs rm -r > /dev/null 2>&1
   starterFile
 }
 
@@ -196,7 +206,7 @@ function spongeforge {
   modded_setup
   spongeforgever_list=$(curl -s -X 'GET' 'https://dl-api.spongepowered.org/v2/groups/org.spongepowered/artifacts/spongeforge' -H 'accept: application/json' | jq -r '.tags.minecraft[]')
   spongeforgever=($spongeforgever_list "Cancel")
-  echo -e "${CYAN} Select the server version. ${COLOR_NULL}"
+  echo -e "${CYAN} ( * ) Select the server version: ${COLOR_NULL}"
   select spongeforgever_sel in "${spongeforgever[@]}"; do
     if [[ $REPLY -ge 1 && $REPLY -lt ${#spongeforgever[@]} ]]; then
       stepsSpongeForge
@@ -212,7 +222,7 @@ function stepsSpongeForge {
   echo -e " "
   cd ${moddedfolder:-/root/modded}
   spongeforge_temp=$(curl -s -X 'GET' "https://dl-api.spongepowered.org/v2/groups/org.spongepowered/artifacts/spongeforge/versions?tags=minecraft%3A${spongeforgever_sel}" -H 'accept: application/json' | jq -r '.artifacts | keys_unsorted[0]')
-  spongeforge_build=$(curl -s -X 'GET' "https://dl-api.spongepowered.org/v2/groups/org.spongepowered/artifacts/spongeforge/versions/${spongeforge_temp}" -H 'accept: application/json' | jq -r '.assets[1].downloadUrl')
+  spongeforge_build=$(curl -s -X 'GET' "https://dl-api.spongepowered.org/v2/groups/org.spongepowered/artifacts/spongeforge/versions/${spongeforge_temp}" -H 'accept: application/json' | jq -r '.assets[] | select(.extension == "jar" and .classifier == "") | .downloadUrl' | head -n 1)
   wget ${spongeforge_build}
   mv spongeforge-*.jar spongeforge-${spongeforgever_sel}.jar
   starterFile
@@ -222,7 +232,7 @@ function stepsSpongeForge {
 function catserver {
   modded_setup
   catserverver=("1.18.2" "1.16.5" "1.12.2" "Cancel")
-  echo -e "${CYAN} Select the server version. ${COLOR_NULL}"
+  echo -e "${CYAN} ( * ) Select the server version: ${COLOR_NULL}"
   select catserverver_sel in "${catserverver[@]}"; do
     case "$REPLY" in
     1|2) stepsCatServer ;;
@@ -257,7 +267,7 @@ function catserver1122 {
 function crucible {
   modded_setup
   cruciblever=("1.7.10" "Cancel")
-  echo -e "${CYAN} Select the server version. ${COLOR_NULL}"
+  echo -e "${CYAN} ( * ) Select the server version: ${COLOR_NULL}"
   select cruciblever_sel in "${cruciblever[@]}"; do
     case "$REPLY" in
     1) stepsCrucible ;;
@@ -280,7 +290,7 @@ function stepsCrucible {
 function krypton {
   modded_setup
   kryptonver=("Latest" "Cancel")
-  echo -e "${CYAN} Select the server version. ${COLOR_NULL}"
+  echo -e "${CYAN} ( * ) Select the server version: ${COLOR_NULL}"
   select kryptonver_sel in "${kryptonver[@]}"; do
     case "$REPLY" in
     1) stepsKrypton ;;
@@ -303,7 +313,7 @@ function fabric {
   modded_setup
   fabricver_list=$(curl -s https://meta.fabricmc.net/v2/versions | jq -r '.game[] | select(.stable == true) | .version')
   fabricver=($fabricver_list "Cancel")
-  echo -e "${CYAN} Select the server version. ${COLOR_NULL}"
+  echo -e "${CYAN} ( * ) Select the server version: ${COLOR_NULL}"
   select fabricver_sel in "${fabricver[@]}"; do
     if [[ $REPLY -ge 1 && $REPLY -lt ${#fabricver[@]} ]]; then
       stepsFabric
@@ -330,7 +340,7 @@ function banner {
   modded_setup
   bannerver_list=$(curl -s -X 'GET' 'https://mohistmc.com/api/v2/projects/banner' -H 'accept: application/json' | jq -r '.versions[]' | tac)
   bannerver=($bannerver_list "Cancel")
-  echo -e "${CYAN} Select the server version. ${COLOR_NULL}"
+  echo -e "${CYAN} ( * ) Select the server version: ${COLOR_NULL}"
   select bannerver_sel in "${bannerver[@]}"; do
     if [[ $REPLY -ge 1 && $REPLY -lt ${#bannerver[@]} ]]; then
       stepsBanner
@@ -356,9 +366,9 @@ function starterFile {
   final_name="${modded_name}ver_sel"
   server_version="${!final_name}"
   cd ${moddedfolder:-/root/modded}
-  if [ "$moddedtype_sel" = "forge" ]; then
+  if [ "$moddedtype_sel" = "Forge" ]; then
     java_args="./run.sh"
-  elif [ "$moddedtype_sel" = "krypton" ]; then
+  elif [ "$moddedtype_sel" = "Krypton" ]; then
     java_args="java -Xms128M -Xmx${moddedmem:-2048}M -jar ${modded_name}-latest.jar nogui"
   else
     java_args="java -Xms128M -Xmx${moddedmem:-2048}M -jar ${modded_name}-${server_version}.jar nogui"

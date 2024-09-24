@@ -18,16 +18,22 @@ echo -e "\n${LIGHT_PURPLE}      ╔╦╗╔═╗  ╔═╗╔═╗╦═╗�
 sleep 1
 
 function bedrock_conf {
-  echo -e "\n"
-  echo -e -n "${CYAN} Enter the RAM to be assigned in MB (default: 2048): ${COLOR_NULL}"
+  echo -e "\n${YELLOW}[[[--- Welcome to the setup for configuring your server! ---]]]${COLOR_NULL}\n"
+  echo -e -n "${CYAN} ( * ) Enter the amount of RAM to allocate in megabytes (default: 2048): ${COLOR_NULL}"
   read bedrockmem
-  echo -e -n "${CYAN} Enter the location of the server folder. (default: /root/bedrock): ${COLOR_NULL}"
+  echo -e -n "${CYAN} ( * ) Enter the directory where the server will be installed (default: /root/bedrock): ${COLOR_NULL}"
   read bedrockfolder
-  echo -e -n "${YELLOW} Enter the port of the server. (default: 19132): ${COLOR_NULL}"
+  echo -e -n "${CYAN} ( * ) Enter the port where to host the server (default: 25565): ${COLOR_NULL}"
   read bedrockport
-  echo -e "${CYAN} Server type selected: ${YELLOW}Bedrock ${COLOR_NULL}"
+  echo -e -n "${CYAN} ( * ) Do you want to grant server access only to premium users? (default: false): ${COLOR_NULL}"
+  read bedrockomode
+  echo -e -n "${CYAN} ( * ) How many maximum players should the server have? (default: 20): ${COLOR_NULL}"
+  read bedrockmplayers
+  echo -e -n "${CYAN} ( * ) Do you want to accept the EULA for minecraft? (default: true): ${COLOR_NULL}"
+  read bedrockeula
+  echo -e "\n${LIGHT_RED} !! ${CYAN}Server type selected: ${YELLOW}BEDROCK ${COLOR_NULL}"
   bedrocktype=("Bedrock" "NukkitX" "PowerNukkitX" "Cancel")
-  echo -e "${CYAN} Select the type of fork that suits you best! ${COLOR_NULL}"
+  echo -e "${CYAN} ( * ) Select the type of fork that suits you best! ${COLOR_NULL}"
   select bedrocktype_sel in "${bedrocktype[@]}"; do
     case "$REPLY" in
     1) bedrock ;;
@@ -43,15 +49,18 @@ function bedrock_setup {
   echo -e "\n"
   mkdir ${bedrockfolder:-/root/bedrock}
   cd ${bedrockfolder:-/root/bedrock}
-  echo -e "${YELLOW} I am setting up the server port. . . ${COLOR_NULL}"
-  echo "server-port=${bedrockport:-19132}" > server.properties
+  echo -e "${YELLOW} Setting up the server settings. . . ${COLOR_NULL}"
+  echo -e "server-port=${bedrockport:-25565}\nonline-mode=${bedrockomode:-false}\nmax-players=${bedrockmplayers:-20}" > server.properties
+  echo -e "${YELLOW} Setting up the EULA file. . . ${COLOR_NULL}"
+  echo -e "# The minecraft EULA file has been set to ' ${bedrockeula:-true} ' by the user who ran the script.\n# https://github.com/samupro-dev/mc-server-installer\neula=${bedrockeula:-true}" > eula.txt
+  echo -e "${YELLOW} Fetching the versions. . . (it might take a while)\n ${COLOR_NULL}"
 }
 
 ## bedrock ##
 function bedrock {
   bedrock_setup
   bedrockver=("Latest" "Preview" "Cancel")
-  echo -e "${CYAN} Select the server version. ${COLOR_NULL}"
+  echo -e "${CYAN} ( * ) Select the server version: ${COLOR_NULL}"
   select bedrockver_sel in "${bedrockver[@]}"; do
     case "$REPLY" in
     1) stepsBedrock ;;
@@ -88,7 +97,7 @@ function stepsBedrockPrev {
 function nukkitx {
   bedrock_setup
   nukkitxver=("Latest" "Cancel")
-  echo -e "${CYAN} Select the server version. ${COLOR_NULL}"
+  echo -e "${CYAN} ( * ) Select the server version: ${COLOR_NULL}"
   select nukkitxver_sel in "${nukkitxver[@]}"; do
     case "$REPLY" in
     1) stepsNukkitX ;;
@@ -110,7 +119,7 @@ function stepsNukkitX {
 function powernukkitx {
   bedrock_setup
   powernukkitxver=("Latest" "Cancel")
-  echo -e "${CYAN} Select the server version. ${COLOR_NULL}"
+  echo -e "${CYAN} ( * ) Select the server version: ${COLOR_NULL}"
   select powernukkitxver_sel in "${powernukkitxver[@]}"; do
     case "$REPLY" in
     1) stepsPowerNukkitX ;;

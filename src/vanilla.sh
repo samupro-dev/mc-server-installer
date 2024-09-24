@@ -18,16 +18,22 @@ echo -e "\n${LIGHT_PURPLE}      ╔╦╗╔═╗  ╔═╗╔═╗╦═╗�
 sleep 1
 
 function vanilla_conf {
-  echo -e "\n"
-  echo -e -n "${CYAN} Enter the RAM to be assigned in MB (default: 2048): ${COLOR_NULL}"
+  echo -e "\n${YELLOW}[[[--- Welcome to the setup for configuring your server! ---]]]${COLOR_NULL}\n"
+  echo -e -n "${CYAN} ( * ) Enter the amount of RAM to allocate in megabytes (default: 2048): ${COLOR_NULL}"
   read vanillamem
-  echo -e -n "${CYAN} Enter the location of the server folder. (default: /root/vanilla): ${COLOR_NULL}"
+  echo -e -n "${CYAN} ( * ) Enter the directory where the server will be installed (default: /root/vanilla): ${COLOR_NULL}"
   read vanillafolder
-  echo -e -n "${YELLOW} Enter the port of the server. (default: 25565): ${COLOR_NULL}"
+  echo -e -n "${CYAN} ( * ) Enter the port where to host the server (default: 25565): ${COLOR_NULL}"
   read vanillaport
-  echo -e "${CYAN} Server type selected: ${YELLOW}Vanilla ${COLOR_NULL}"
+  echo -e -n "${CYAN} ( * ) Do you want to grant server access only to premium users? (default: false): ${COLOR_NULL}"
+  read vanillaomode
+  echo -e -n "${CYAN} ( * ) How many maximum players should the server have? (default: 20): ${COLOR_NULL}"
+  read vanillamplayers
+  echo -e -n "${CYAN} ( * ) Do you want to accept the EULA for minecraft? (default: true): ${COLOR_NULL}"
+  read vanillaeula
+  echo -e "\n${LIGHT_RED} !! ${CYAN}Server type selected: ${YELLOW}VANILLA ${COLOR_NULL}"
   vanillatype=("Vanilla" "Snapshot" "Cancel")
-  echo -e "${CYAN} Select the one that suits you best! ${COLOR_NULL}"
+  echo -e "${CYAN} ( * ) Select the one that suits you best! ${COLOR_NULL}"
   select vanillatype_sel in "${vanillatype[@]}"; do
     case "$REPLY" in
     1) vanilla ;;
@@ -42,10 +48,11 @@ function vanilla_setup {
   echo -e "\n"
   mkdir -p ${vanillafolder:-/root/vanilla}
   cd ${vanillafolder:-/root/vanilla}
-  echo -e "${YELLOW} I am setting up the server port. . . ${COLOR_NULL}"
-  echo "server-port=${vanillaport:-25565}" > server.properties
-  echo -e "${YELLOW} The eula file has been created. ${COLOR_NULL}"
-  echo "eula=true" > eula.txt
+  echo -e "${YELLOW} Setting up the server settings. . . ${COLOR_NULL}"
+  echo -e "server-port=${vanillaport:-25565}\nonline-mode=${vanillaomode:-false}\nmax-players=${vanillamplayers:-20}" > server.properties
+  echo -e "${YELLOW} Setting up the EULA file. . . ${COLOR_NULL}"
+  echo -e "# The minecraft EULA file has been set to ' ${vanillaeula:-true} ' by the user who ran the script.\n# https://github.com/samupro-dev/mc-server-installer\neula=${vanillaeula:-true}" > eula.txt
+  echo -e "${YELLOW} Fetching the versions. . . (it might take a while)\n ${COLOR_NULL}"
 }
 
 ## vanilla ##
@@ -53,7 +60,7 @@ function vanilla {
   vanilla_setup
   vanillaver_list=$(curl -s https://piston-meta.mojang.com/mc/game/version_manifest.json | jq -r '.versions[] | select(.type == "release") | .id')
   vanillaver=($vanillaver_list "Cancel")
-  echo -e "${CYAN} Select the server version. ${COLOR_NULL}"
+  echo -e "${CYAN} ( * ) Select the server version: ${COLOR_NULL}"
   select vanillaver_sel in "${vanillaver[@]}"; do
     if [[ $REPLY -ge 1 && $REPLY -lt ${#vanillaver[@]} ]]; then
       stepsVanilla
@@ -76,7 +83,7 @@ function stepsVanilla {
 function snapshot {
   vanilla_setup
   snapshotver=("Latest" "Cancel")
-  echo -e "${CYAN} Select the server version. ${COLOR_NULL}"
+  echo -e "${CYAN} ( * ) Select the server version: ${COLOR_NULL}"
   select snapshotver_sel in "${snapshotver[@]}"; do
     case "$REPLY" in
     1) stepsSnapshot ;;

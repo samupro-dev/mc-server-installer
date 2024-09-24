@@ -18,14 +18,18 @@ echo -e "\n${LIGHT_PURPLE}      ╔╦╗╔═╗  ╔═╗╔═╗╦═╗�
 sleep 1
 
 function bungee_conf {
-  echo -e "\n"
-  echo -e -n "${CYAN} Enter the RAM to be assigned in MB (default: 2048): ${COLOR_NULL}"
+  echo -e "\n${YELLOW}[[[--- Welcome to the setup for configuring your server! ---]]]${COLOR_NULL}\n"
+  echo -e -n "${CYAN} ( * ) Enter the amount of RAM to allocate in megabytes (default: 2048): ${COLOR_NULL}"
   read bungeemem
-  echo -e -n "${CYAN} Enter the location of the server folder. (default: /root/bungee): ${COLOR_NULL}"
+  echo -e -n "${CYAN} ( * ) Enter the directory where the server will be installed (default: /root/bungee): ${COLOR_NULL}"
   read bungeefolder
-  echo -e "${CYAN} Server type selected: ${YELLOW}Proxy ${COLOR_NULL}"
+  echo -e -n "${CYAN} ( * ) Do you want to grant server access only to premium users? (default: false): ${COLOR_NULL}"
+  read bungeeomode
+  echo -e -n "${CYAN} ( * ) How many maximum players should the server have? (default: 20): ${COLOR_NULL}"
+  read bungeemplayers
+  echo -e "\n${LIGHT_RED} !! ${CYAN}Server type selected: ${YELLOW}BUNGEE ${COLOR_NULL}"
   bungeetype=("BungeeCord" "Waterfall" "Velocity" "Cancel")
-  echo -e "${CYAN} Select the type of fork that suits you best! ${COLOR_NULL}"
+  echo -e "${CYAN} ( * ) Select the type of fork that suits you best! ${COLOR_NULL}"
   select bungeetype_sel in "${bungeetype[@]}"; do
     case "$REPLY" in
     1) bungeecord ;;
@@ -40,13 +44,17 @@ function bungee_conf {
 function bungee_setup {
   echo -e "\n"
   mkdir ${bungeefolder:-/root/bungee}
+  cd ${bungeefolder:-/root/bungee}
+  echo -e "${YELLOW} Setting up the server settings. . . ${COLOR_NULL}"
+  echo -e "online_mode=${bungeeomode:-false}\nplayer_limit=${bungeemplayers:-20}" > config.yml
+  echo -e "${YELLOW} Fetching the versions. . . (it might take a while)\n ${COLOR_NULL}"
 }
 
 ## bungeecord ##
 function bungeecord {
   bungee_setup
   cd ${bungeefolder:-/root/bungee}
-  echo -e "${CYAN} Downloading the jar file. . . ${COLOR_NULL}"
+  echo -e "${YELLOW} Downloading the jar file. . . ${COLOR_NULL}"
   wget https://ci.md-5.net/job/BungeeCord/lastSuccessfulBuild/artifact/bootstrap/target/BungeeCord.jar
   starterFile
 }
@@ -55,7 +63,7 @@ function bungeecord {
 function waterfall {
   bungee_setup
   cd ${bungeefolder:-/root/bungee}
-  echo -e "${CYAN} Downloading the jar file. . . ${COLOR_NULL}"
+  echo -e "${YELLOW} Downloading the jar file. . . ${COLOR_NULL}"
   waterfall_ver=$(curl -s -X 'GET' 'https://api.papermc.io/v2/projects/waterfall' -H 'accept: application/json' | jq -r '.versions | last')
   waterfall_build=$(curl -s -X 'GET' "https://api.papermc.io/v2/projects/waterfall/versions/${waterfall_ver}" -H 'accept: application/json' | jq -r '.builds | last')
   wget https://api.papermc.io/v2/projects/waterfall/versions/${waterfall_ver}/builds/${waterfall_build}/downloads/waterfall-${waterfall_ver}-${waterfall_build}.jar
@@ -67,7 +75,7 @@ function waterfall {
 function velocity {
   bungee_setup
   cd ${bungeefolder:-/root/bungee}
-  echo -e "${CYAN} Downloading the jar file. . . ${COLOR_NULL}"
+  echo -e "${YELLOW} Downloading the jar file. . . ${COLOR_NULL}"
   velocity_ver=$(curl -s -X 'GET' 'https://api.papermc.io/v2/projects/velocity' -H 'accept: application/json' | jq -r '.versions | last')
   velocity_build=$(curl -s -X 'GET' "https://api.papermc.io/v2/projects/velocity/versions/${velocity_ver}" -H 'accept: application/json' | jq -r '.builds | last')
   wget https://api.papermc.io/v2/projects/velocity/versions/${velocity_ver}/builds/${velocity_build}/downloads/velocity-${velocity_ver}-${velocity_build}.jar

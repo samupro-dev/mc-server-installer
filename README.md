@@ -1,27 +1,29 @@
-# mc-server-installer
+# mc-server-installer: An all-in-one script to setup minecraft servers
+The **mc-server-installer** is a powerful and versatile script designed for effortless installation of minecraft servers. Whether you want to run a Spigot, Vanilla, Modded, Bungee or Bedrock server, this script simplifies the process into just a few steps, making it easy for both beginners and experienced users.
 
-A multifunctional script to install a minecraft server in just a few steps.
+Additionally, it downloads everything from their OFFICIAL SOURCES, ensuring you have the latest and most secure versions. There are also various forks available for each server type, providing flexibility and support for different preferences.
 
 ## Features
+- **Versatile server support:** install any type of minecraft server whether Spigot, Vanilla, Modded, Bungee or Bedrock quickly and efficiently
+- **Latest stable versions:** always get the most recent and stable versions of your favorite minecraft server software
+- **Automatic java installation:** you don't even have to worry about Java as the script will take care of that and install it for you
+- **Self-updating script:** enjoy new features and improvements without having to manually update the script, as it updates automatically
 
-* Spigot, Vanilla, Modded, Bungee, Bedrock server installer
-* Download the latest stable versions
-* Install Java automatically
-* Self-updated script
-
-## Usage
-To use the installation scripts, simply run this command as root. This script will ask you what you want to install with a few simple steps
-
+## How To Use
+It's super easy! Just type in the following command as root in order to commence with the installation. After that the script will help you through the entire process of installing the server of your choice:
 ```bash
 bash <(wget -O - 'https://raw.githubusercontent.com/samupro-dev/mc-server-installer/main/server-installer.sh')
 ```
 #### OR
-download the **server-installer.sh** file and use the `bash server-installer.sh` command to start the installer
+Alternatively, you can download the `server-installer.sh` file and execute it with the following command:
+```bash
+bash server-installer.sh
+```
 
-## Issues with the script?
-If you find any bugs or want to recommend some new features, write them [here](https://github.com/samupro-dev/mc-server-installer/issues)
+## Encountering Issues?
+If you come across any bugs or have suggestions for new features, please don't hesitate to report them [here](https://github.com/samupro-dev/mc-server-installer/issues)
 
-## To do
+## To Do
 - [ ] ~~Italian translation~~
 - [x] Script optimization
 - [x] More forks
@@ -29,6 +31,13 @@ If you find any bugs or want to recommend some new features, write them [here](h
 - [ ] A better interface?
 
 ## Changelogs
+### v5.2
+- Fixed issue with SpongeForge API links
+- Fixed issue with startup script for modded
+- Added new configuration options
+- Improved the text of the scripts a bit
+- Improved README
+- Fixed issue where Fabric fork was not shown in modded script
 ### v5.1
 - Arclight fork updated to 1.21.1
 - From now on the Pufferfish jars will automatically update to the latest version available
