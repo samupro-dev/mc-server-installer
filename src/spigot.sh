@@ -104,8 +104,8 @@ function stepsSpigot {
   else
     java_version="8"
   fi
-  java_jre=$(curl -s -X GET "https://api.azul.com/metadata/v1/zulu/packages/?java_version=${java_version}&os=linux&arch=x64&archive_type=tar.gz&java_package_type=jre&latest=true&release_status=ga&availability_types=CA&page=1&page_size=100" -H "accept: application/json" | jq -r 'map(select(.download_url | test("zulu.*-ca-jre.*-linux_x64.tar.gz")) | .download_url) | .[0]')
-  wget ${java_jre}
+  java_jdk=$(curl -s -X GET "https://api.azul.com/metadata/v1/zulu/packages/?java_version=${java_version}&os=linux&arch=x64&archive_type=tar.gz&java_package_type=jdk&latest=true&release_status=ga&availability_types=CA&page=1&page_size=100" -H "accept: application/json" | jq -r 'map(select(.download_url | test("zulu.*-ca-jdk.*-linux_x64.tar.gz")) | .download_url) | .[0]')
+  wget ${java_jdk}
   java_tar=$(find . -type f -name "*.tar.gz" | sed 's/^\.\///')
   tar -zxvf ${java_tar}
   java_folder=$(basename "$java_tar" .tar.gz)

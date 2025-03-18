@@ -31,6 +31,11 @@ If you come across any bugs or have suggestions for new features, please don't h
 - [ ] A better interface?
 
 ## Changelogs
+### v5.3
+- Fixed issue with Bedrock script
+- Removed custom options that conflict with Bungee
+- Fixed small issue with starter.sh in Vanilla script
+- Fixed issue with Spigot jar compilation
 ### v5.2
 - Fixed issue with SpongeForge API links
 - Fixed issue with startup script for modded

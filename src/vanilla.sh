@@ -114,7 +114,7 @@ function starterFile {
   (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
           https://github.com/samupro-dev'
   echo -e ' '
-  java -Xms128M -Xmx${vanillamem:-2048}M -jar ${vanillatype_sel}-${server_version}.jar nogui" >> starter.sh
+  java -Xms128M -Xmx${vanillamem:-2048}M -jar ${vanilla_name}-${server_version}.jar nogui" >> starter.sh
   chmod +x starter.sh
   successInstall
 }

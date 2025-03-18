@@ -23,10 +23,6 @@ function bungee_conf {
   read bungeemem
   echo -e -n "${CYAN} ( * ) Enter the directory where the server will be installed (default: /root/bungee): ${COLOR_NULL}"
   read bungeefolder
-  echo -e -n "${CYAN} ( * ) Do you want to grant server access only to premium users? (default: false): ${COLOR_NULL}"
-  read bungeeomode
-  echo -e -n "${CYAN} ( * ) How many maximum players should the server have? (default: 20): ${COLOR_NULL}"
-  read bungeemplayers
   echo -e "\n${LIGHT_RED} !! ${CYAN}Server type selected: ${YELLOW}BUNGEE ${COLOR_NULL}"
   bungeetype=("BungeeCord" "Waterfall" "Velocity" "Cancel")
   echo -e "${CYAN} ( * ) Select the type of fork that suits you best! ${COLOR_NULL}"
@@ -45,8 +41,6 @@ function bungee_setup {
   echo -e "\n"
   mkdir ${bungeefolder:-/root/bungee}
   cd ${bungeefolder:-/root/bungee}
-  echo -e "${YELLOW} Setting up the server settings. . . ${COLOR_NULL}"
-  echo -e "online_mode=${bungeeomode:-false}\nplayer_limit=${bungeemplayers:-20}" > config.yml
   echo -e "${YELLOW} Fetching the versions. . . (it might take a while)\n ${COLOR_NULL}"
 }
 

@@ -74,7 +74,7 @@ function bedrock {
 function stepsBedrock {
   echo -e " "
   cd ${bedrockfolder:-/root/bedrock}
-  useragent=$(curl -s https://jnrbsn.github.io/user-agents/user-agents.json | jq -r '.[] | select(. | contains("Linux x86_64")) | select(. | contains("Chrome"))')
+  useragent=$(curl -s https://jnrbsn.github.io/user-agents/user-agents.json | jq -r '[.[] | select(. | contains("Linux x86_64")) | select(. | contains("Chrome"))][1]')
   bedrockver=$(curl -sL -A "${useragent}" -H "Accept-Language: en" -H "Accept-Encoding: gzip, deflate" https://www.minecraft.net/en-us/download/server/bedrock | zgrep -o 'https://minecraft.azureedge.net/bin-linux/[^"]*')
   wget ${bedrockver}
   unzip bedrock-server*.zip
@@ -85,7 +85,7 @@ function stepsBedrock {
 function stepsBedrockPrev {
   echo -e " "
   cd ${bedrockfolder:-/root/bedrock}
-  useragent=$(curl -s https://jnrbsn.github.io/user-agents/user-agents.json | jq -r '.[] | select(. | contains("Linux x86_64")) | select(. | contains("Chrome"))')
+  useragent=$(curl -s https://jnrbsn.github.io/user-agents/user-agents.json | jq -r '[.[] | select(. | contains("Linux x86_64")) | select(. | contains("Chrome"))][1]')
   bedrockver=$(curl -sL -A "${useragent}" -H "Accept-Language: en" -H "Accept-Encoding: gzip, deflate" https://www.minecraft.net/en-us/download/server/bedrock | zgrep -o 'https://minecraft.azureedge.net/bin-linux-preview/[^"]*')
   wget ${bedrockver}
   unzip bedrock-server*.zip
