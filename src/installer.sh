@@ -28,9 +28,11 @@ sleep 1
 echo -e "${YELLOW} Checking for administrative permissions. . . ${COLOR_NULL}\n"
 sleep 2
 
-if ! sudo true 2>/dev/null; then
-    echo -e "${ERROR} ${LIGHT_RED}This script requires sudo permissions. Please run this as root or sudo user! ${COLOR_NULL}"
-    exit 1
+if [ "$EUID" -ne 0 ]; then
+    if ! sudo -v; then
+        echo -e "${ERROR} ${LIGHT_RED}This script requires sudo permissions. Please run this as root or sudo user! ${COLOR_NULL}"
+        exit 1
+    fi
 fi
 echo -e " ${DONE} ${LIGHT_GREEN}Congratulations, this script will be run as root. ${COLOR_NULL}\n"
 
