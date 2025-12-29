@@ -31,6 +31,12 @@ If you come across any bugs or have suggestions for new features, please don't h
 - [ ] A better interface?
 
 ## Changelogs
+### v5.4
+- Changed the Paper API links
+- Now it checks if you have sudo access instead of being the root user
+- Removed the option to install Java
+- Changed the Arclight API links
+- Removed version 1.15.2 and 1.14.4 of the Arclight fork
 ### v5.3
 - Fixed issue with Bedrock script
 - Removed custom options that conflict with Bungee

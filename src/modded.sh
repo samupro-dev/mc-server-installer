@@ -143,60 +143,24 @@ function stepsMohist {
 ## arclight ##
 function arclight {
   modded_setup
-  arclightver=("1.21.1" "1.20.4" "1.20.2" "1.20.1" "1.19.4" "1.19.3" "1.19.2" "1.18.2" "1.17.1" "1.16.5" "1.15.2" "1.14.4" "Cancel")
+  arclightver_list=$(curl -s https://files.hypoglycemia.icu/v1/files/arclight/minecraft | jq -r '.files | sort_by(.["last-modified"]) | reverse | .[].name')
+  arclightver=($arclightver_list "Cancel")
   echo -e "${CYAN} ( * ) Select the server version: ${COLOR_NULL}"
   select arclightver_sel in "${arclightver[@]}"; do
-    case "$REPLY" in
-    1|2|4) stepsArclight ;;
-    3|5|6|7|8|9|10|11) stepsArclightLeg ;;
-    12) arclight1144 ;;
-    13) exit 0 ;;
-    *) echo -e "${ERROR} ${LIGHT_RED}The argument you entered is incorrect! ${COLOR_NULL}";;
-    esac
+    if [[ $REPLY -ge 1 && $REPLY -lt ${#arclightver[@]} ]]; then
+      stepsArclight
+    elif [[ $REPLY -eq ${#arclightver[@]} ]]; then
+      exit 0
+    else
+      echo -e "${ERROR} ${LIGHT_RED}The argument you entered is incorrect! ${COLOR_NULL}"
+    fi
   done
 }
 
 function stepsArclight {
   echo -e " "
   cd ${moddedfolder:-/root/modded}
-  if [ "$arclightver_sel" = "1.21.1" ]; then
-    arclight_version="FeudalKings"
-  elif [ "$arclightver_sel" = "1.20.4" ]; then
-    arclight_version="Whisper"
-  elif [ "$arclightver_sel" = "1.20.1" ]; then
-    arclight_version="Trials"
-  fi
-  wget https://nightly.link/IzzelAliz/Arclight/workflows/gradle/${arclight_version}/Arclight.zip
-  unzip Arclight.zip
-  mv arclight-forge-*.jar arclight-${arclightver_sel}.jar
-  find . ! -name arclight-${arclightver_sel}.jar 2>/dev/null | xargs rm -r > /dev/null 2>&1
-  starterFile
-}
-
-function stepsArclightLeg {
-  echo -e " "
-  cd ${moddedfolder:-/root/modded}
-  if [ "$arclightver_sel" = "1.20.2" ]; then
-    arclight_version="Net"
-  elif [ "$arclightver_sel" = "1.19.4" ]; then
-    arclight_version="Executions"
-  elif [ "$arclightver_sel" = "1.19.3" ]; then
-    arclight_version="GreatHorn"
-  elif [ "$arclightver_sel" = "1.19.2" ]; then
-    arclight_version="1.19"
-  else
-    arclight_version=$(echo ${arclightver_sel} | awk -F. '{print $1"."$2}')
-  fi
-  arclight_build=$(curl -s https://api.github.com/repos/IzzelAliz/Arclight/releases | jq -r "map(select(.target_commitish == "\"$arclight_version\"")) | .[0].assets[0].browser_download_url")
-  wget ${arclight_build}
-  mv arclight-*.jar arclight-${arclightver_sel}.jar
-  starterFile
-}
-
-function arclight1144 {
-  echo -e " "
-  cd ${moddedfolder:-/root/modded}
-  wget https://github.com/IzzelAliz/Arclight/releases/download/1.0.6/arclight-forge-1.14-1.0.6.jar
+  wget --content-disposition https://files.hypoglycemia.icu/v1/files/arclight/minecraft/${arclightver_sel}/latest-snapshot/forge
   mv arclight-*.jar arclight-${arclightver_sel}.jar
   starterFile
 }

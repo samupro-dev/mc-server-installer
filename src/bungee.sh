@@ -58,9 +58,9 @@ function waterfall {
   bungee_setup
   cd ${bungeefolder:-/root/bungee}
   echo -e "${YELLOW} Downloading the jar file. . . ${COLOR_NULL}"
-  waterfall_ver=$(curl -s -X 'GET' 'https://api.papermc.io/v2/projects/waterfall' -H 'accept: application/json' | jq -r '.versions | last')
-  waterfall_build=$(curl -s -X 'GET' "https://api.papermc.io/v2/projects/waterfall/versions/${waterfall_ver}" -H 'accept: application/json' | jq -r '.builds | last')
-  wget https://api.papermc.io/v2/projects/waterfall/versions/${waterfall_ver}/builds/${waterfall_build}/downloads/waterfall-${waterfall_ver}-${waterfall_build}.jar
+  waterfall_ver=$(curl -s -X 'GET' 'https://fill.papermc.io/v3/projects/waterfall/versions' -H 'accept: application/json' | jq -r '.versions[0].version.id')
+  waterfall_build=$(curl -s -X 'GET' "https://fill.papermc.io/v3/projects/waterfall/versions/${waterfall_ver}/builds/latest" -H 'accept: application/json' | jq -r '.downloads["server:default"].url')
+  wget ${waterfall_build}
   mv waterfall-*.jar waterfall.jar
   starterFile
 }
@@ -70,9 +70,9 @@ function velocity {
   bungee_setup
   cd ${bungeefolder:-/root/bungee}
   echo -e "${YELLOW} Downloading the jar file. . . ${COLOR_NULL}"
-  velocity_ver=$(curl -s -X 'GET' 'https://api.papermc.io/v2/projects/velocity' -H 'accept: application/json' | jq -r '.versions | last')
-  velocity_build=$(curl -s -X 'GET' "https://api.papermc.io/v2/projects/velocity/versions/${velocity_ver}" -H 'accept: application/json' | jq -r '.builds | last')
-  wget https://api.papermc.io/v2/projects/velocity/versions/${velocity_ver}/builds/${velocity_build}/downloads/velocity-${velocity_ver}-${velocity_build}.jar
+  velocity_ver=$(curl -s -X 'GET' 'https://fill.papermc.io/v3/projects/velocity/versions' -H 'accept: application/json' | jq -r '.versions[0].version.id')
+  velocity_build=$(curl -s -X 'GET' "https://fill.papermc.io/v3/projects/velocity/versions/${velocity_ver}/builds/latest" -H 'accept: application/json' | jq -r '.downloads["server:default"].url')
+  wget ${velocity_build}
   mv velocity-*.jar velocity.jar
   starterFile
 }

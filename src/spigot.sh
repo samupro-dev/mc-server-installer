@@ -117,7 +117,7 @@ function stepsSpigot {
 ## paper ##
 function paper {
   spigot_setup
-  paperver_list=$(curl -s -X 'GET' 'https://api.papermc.io/v2/projects/paper' -H 'accept: application/json' | jq -r '.versions[]' | grep -v '-' | tac)
+  paperver_list=$(curl -s -X 'GET' 'https://fill.papermc.io/v3/projects/paper/versions' -H 'accept: application/json' | jq -r '.versions[].version.id' | grep -v '-')
   paperver=($paperver_list "Cancel")
   echo -e "${CYAN} ( * ) Select the server version: ${COLOR_NULL}"
   select paperver_sel in "${paperver[@]}"; do
@@ -134,9 +134,8 @@ function paper {
 function stepsPaper {
   echo -e " "
   cd ${spigotfolder:-/root/spigot}
-  paper_temp=$(curl -s -X 'GET' "https://api.papermc.io/v2/projects/paper/versions/${paperver_sel}" -H 'accept: application/json')
-  paper_build=$(echo "$paper_temp" | jq -r '.builds | last')
-  wget "https://api.papermc.io/v2/projects/paper/versions/${paperver_sel}/builds/${paper_build}/downloads/paper-${paperver_sel}-${paper_build}.jar"
+  paper_build=$(curl -s -X 'GET' "https://fill.papermc.io/v3/projects/paper/versions/${paperver_sel}/builds/latest" -H 'accept: application/json' | jq -r '.downloads["server:default"].url')
+  wget ${paper_build}
   mv paper-*.jar paper-${paperver_sel}.jar
   starterFile
 }
@@ -236,7 +235,7 @@ function stepsPufferfish {
 ## folia ##
 function folia {
   spigot_setup
-  foliaver_list=$(curl -s -X 'GET' 'https://api.papermc.io/v2/projects/folia' -H 'accept: application/json' | jq -r '.versions[]' | tac)
+  foliaver_list=$(curl -s -X 'GET' 'https://fill.papermc.io/v3/projects/folia/versions' -H 'accept: application/json' | jq -r '.versions[].version.id')
   foliaver=($foliaver_list "Cancel")
   echo -e "${CYAN} ( * ) Select the server version: ${COLOR_NULL}"
   select foliaver_sel in "${foliaver[@]}"; do
@@ -253,9 +252,8 @@ function folia {
 function stepsFolia {
   echo -e " "
   cd ${spigotfolder:-/root/spigot}
-  folia_temp=$(curl -s -X 'GET' "https://api.papermc.io/v2/projects/folia/versions/${foliaver_sel}" -H 'accept: application/json')
-  folia_build=$(echo "$folia_temp" | jq -r '.builds | map(.build) | last')
-  wget "https://api.papermc.io/v2/projects/folia/versions/${foliaver_sel}/builds/${folia_build}/downloads/folia-${foliaver_sel}-${folia_build}.jar"
+  folia_build=$(curl -s -X 'GET' "https://fill.papermc.io/v3/projects/folia/versions/${foliaver_sel}/builds/latest" -H 'accept: application/json' | jq -r '.downloads["server:default"].url')
+  wget ${folia_build}
   mv folia-*.jar folia-${foliaver_sel}.jar
   starterFile
 }

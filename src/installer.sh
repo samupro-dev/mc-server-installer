@@ -28,8 +28,8 @@ sleep 1
 echo -e "${YELLOW} Checking for administrative permissions. . . ${COLOR_NULL}\n"
 sleep 2
 
-if [ "$(id -u)" != "0" ] ; then
-    echo -e "${ERROR} ${LIGHT_RED}This script requires root permissions. Please run this as root! ${COLOR_NULL}"
+if ! sudo -n true 2>/dev/null; then
+    echo -e "${ERROR} ${LIGHT_RED}This script requires sudo permissions. Please run this as root or sudo user! ${COLOR_NULL}"
     exit 1
 fi
 echo -e " ${DONE} ${LIGHT_GREEN}Congratulations, this script will be run as root. ${COLOR_NULL}\n"
@@ -46,7 +46,7 @@ function check_package {
             echo -e -n "${YELLOW} Do you want to install $name (Y/n)? ${COLOR_NULL}"
             read install_package
             case "$install_package" in
-                n|N|no|No|nO|NO) if [[ "$package" == "openjdk-17-jdk" || "$package" == "git" ]]; then break; else exit 1; fi;;
+                n|N|no|No|nO|NO) if [[ "$package" == "git" ]]; then break; else exit 1; fi;;
                 y|Y|yes|Yes|yEs|yeS|YEs|YeS|yES|YES) apt-get -y install "$package" || echo -e "$package could not be installed, please try to install it manually.${COLOR_NULL}"
                 break;;
                 *) echo -e "${ERROR} ${LIGHT_RED}The argument you entered is incorrect!${COLOR_NULL}";;
@@ -59,7 +59,6 @@ function check_package {
 
 check_package "wget" "wget" "wget"
 check_package "curl" "curl" "curl"
-check_package "openjdk-17-jdk" "java 17 [optional]" "java"
 check_package "jq" "jq" "jq"
 check_package "unzip" "unzip" "unzip"
 check_package "git" "git [for Spigot jar only, not Paper etc.]" "git"
