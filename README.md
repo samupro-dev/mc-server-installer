@@ -31,7 +31,7 @@ If you come across any bugs or have suggestions for new features, please don't h
 - [ ] A better interface?
 
 ## Changelogs
-### v5.4
+### v5.5
 - Fixed issue in the Spigot fork that was deleting files it shouldn't have
 ### v5.4
 - Changed the Paper API links
