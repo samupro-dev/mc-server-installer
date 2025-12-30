@@ -110,7 +110,7 @@ function stepsSpigot {
   tar -zxvf ${java_tar}
   java_folder=$(basename "$java_tar" .tar.gz)
   "${spigotfolder:-/root/spigot}/${java_folder}/bin/java" -Xms1024M -jar BuildTools.jar --rev ${spigotver_sel}
-  find . ! -name spigot-${spigotver_sel}.jar 2>/dev/null | xargs rm -r > /dev/null 2>&1
+  find . ! -name spigot-${spigotver_sel}.jar ! -name server.properties ! -name eula.txt 2>/dev/null | xargs rm -r > /dev/null 2>&1
   starterFile
 }
 

@@ -6,7 +6,7 @@ Additionally, it downloads everything from their OFFICIAL SOURCES, ensuring you 
 ## Features
 - **Versatile server support:** install any type of minecraft server whether Spigot, Vanilla, Modded, Bungee or Bedrock quickly and efficiently
 - **Latest stable versions:** always get the most recent and stable versions of your favorite minecraft server software
-- **Automatic java installation:** you don't even have to worry about Java as the script will take care of that and install it for you
+- ~~**Automatic java installation:** you don't even have to worry about Java as the script will take care of that and install it for you~~
 - **Self-updating script:** enjoy new features and improvements without having to manually update the script, as it updates automatically
 
 ## How To Use
@@ -27,10 +27,12 @@ If you come across any bugs or have suggestions for new features, please don't h
 - [ ] ~~Italian translation~~
 - [x] Script optimization
 - [x] More forks
-- [x] Java installation if it is not installed
+- [x] ~~Java installation if it is not installed~~ (removed)
 - [ ] A better interface?
 
 ## Changelogs
+### v5.4
+- Fixed issue in the Spigot fork that was deleting files it shouldn't have
 ### v5.4
 - Changed the Paper API links
 - Now it checks if you have sudo access instead of being the root user
