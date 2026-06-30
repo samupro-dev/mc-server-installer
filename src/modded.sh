@@ -32,7 +32,7 @@ function modded_conf {
   echo -e -n "${CYAN} ( * ) Do you want to accept the EULA for minecraft? (default: true): ${COLOR_NULL}"
   read moddedeula
   echo -e "\n${LIGHT_RED} !! ${CYAN}Server type selected: ${YELLOW}MODDED ${COLOR_NULL}"
-  moddedtype=("Forge" "Magma" "Mohist" "Arclight" "SpongeForge" "CatServer" "Crucible" "Krypton" "Banner" "Fabric" "Cancel")
+  moddedtype=("Forge" "Magma" "Youer" "Arclight" "SpongeForge" "CatServer" "Crucible" "Fabric" "Mohist" "Cancel")
   echo -e "${CYAN} ( * ) Select the type of fork that suits you best! ${COLOR_NULL}"
   select moddedtype_sel in "${moddedtype[@]}"; do
     case "$REPLY" in
@@ -118,7 +118,7 @@ function stepsMagma {
 ## mohist ##
 function mohist {
   modded_setup
-  mohistver_list=$(curl -s -X 'GET' 'https://mohistmc.com/api/v2/projects/mohist' -H 'accept: application/json' | jq -r '.versions[]' | tac)
+  mohistver_list=$(curl -s -X 'GET' 'https://api.mohistmc.com/project/mohist/versions' -H 'accept: */*' | jq -r 'map(.name) | sort_by(split(".") | map(tonumber)) | reverse | .[]')
   mohistver=($mohistver_list "Cancel")
   echo -e "${CYAN} ( * ) Select the server version: ${COLOR_NULL}"
   select mohistver_sel in "${mohistver[@]}"; do
@@ -135,8 +135,33 @@ function mohist {
 function stepsMohist {
   echo -e " "
   cd ${moddedfolder:-/root/modded}
-  wget --content-disposition https://mohistmc.com/api/v2/projects/mohist/${mohistver_sel}/builds/latest/download
+  curl -s -X 'GET' "https://api.mohistmc.com/project/mohist/${mohistver_sel}/builds/latest/download" -H 'accept: */*'
   mv mohist-*.jar mohist-${mohistver_sel}.jar
+  starterFile
+}
+
+## youer ##
+function youer {
+  modded_setup
+  youerver_list=$(curl -s -X 'GET' 'https://api.mohistmc.com/project/youer/versions' -H 'accept: */*' | jq -r 'map(.name) | sort_by(split(".") | map(tonumber)) | reverse | .[]')
+  youerver=($youerver_list "Cancel")
+  echo -e "${CYAN} ( * ) Select the server version: ${COLOR_NULL}"
+  select youerver_sel in "${youerver[@]}"; do
+    if [[ $REPLY -ge 1 && $REPLY -lt ${#youerver[@]} ]]; then
+      stepsYouer
+    elif [[ $REPLY -eq ${#youerver[@]} ]]; then
+      exit 0
+    else
+      echo -e "${ERROR} ${LIGHT_RED}The argument you entered is incorrect! ${COLOR_NULL}"
+    fi
+  done
+}
+
+function stepsYouer {
+  echo -e " "
+  cd ${moddedfolder:-/root/modded}
+  curl -s -X 'GET' "https://api.youermc.com/project/youer/${youerver_sel}/builds/latest/download" -H 'accept: */*'
+  mv youer-*.jar youer-${youerver_sel}.jar
   starterFile
 }
 
@@ -250,28 +275,6 @@ function stepsCrucible {
   starterFile
 }
 
-## krypton ##
-function krypton {
-  modded_setup
-  kryptonver=("Latest" "Cancel")
-  echo -e "${CYAN} ( * ) Select the server version: ${COLOR_NULL}"
-  select kryptonver_sel in "${kryptonver[@]}"; do
-    case "$REPLY" in
-    1) stepsKrypton ;;
-    2) exit 0 ;;
-    *) echo -e "${ERROR} ${LIGHT_RED}The argument you entered is incorrect! ${COLOR_NULL}";;
-    esac
-  done
-}
-
-function stepsKrypton {
-  echo -e " "
-  cd ${moddedfolder:-/root/modded}
-  wget --content-disposition https://api.kryptonmc.org/downloads/v1/krypton/latest/download
-  mv krypton-*.jar krypton-latest.jar
-  starterFile
-}
-
 ## fabric ##
 function fabric {
   modded_setup
@@ -296,31 +299,6 @@ function stepsFabric {
   fabric_build=$(curl -s "https://meta.fabricmc.net/v2/versions/loader/${fabricver_sel}" | jq -r '.[0].loader.version')
   wget --content-disposition https://meta.fabricmc.net/v2/versions/loader/${fabricver_sel}/${fabric_build}/${fabric_temp}/server/jar
   mv fabric-*.jar fabric-${fabricver_sel}.jar
-  starterFile
-}
-
-## banner ##
-function banner {
-  modded_setup
-  bannerver_list=$(curl -s -X 'GET' 'https://mohistmc.com/api/v2/projects/banner' -H 'accept: application/json' | jq -r '.versions[]' | tac)
-  bannerver=($bannerver_list "Cancel")
-  echo -e "${CYAN} ( * ) Select the server version: ${COLOR_NULL}"
-  select bannerver_sel in "${bannerver[@]}"; do
-    if [[ $REPLY -ge 1 && $REPLY -lt ${#bannerver[@]} ]]; then
-      stepsBanner
-    elif [[ $REPLY -eq ${#bannerver[@]} ]]; then
-      exit 0
-    else
-      echo -e "${ERROR} ${LIGHT_RED}The argument you entered is incorrect! ${COLOR_NULL}"
-    fi
-  done
-}
-
-function stepsBanner {
-  echo -e " "
-  cd ${moddedfolder:-/root/modded}
-  wget --content-disposition https://mohistmc.com/api/v2/projects/banner/${bannerver_sel}/builds/latest/download
-  mv banner-*.jar banner-${bannerver_sel}.jar
   starterFile
 }
 

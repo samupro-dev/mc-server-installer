@@ -31,6 +31,15 @@ If you come across any bugs or have suggestions for new features, please don't h
 - [ ] A better interface?
 
 ## Changelogs
+### v5.6
+- Added compilation support for Java 25 for Spigot jar 26.x
+- Fixed issue with download links for Microsoft's Bedrock jar
+- Fixed issue with NukkitX links
+- Fixed issue with PowerNukkitX links
+- Updated Mohist fork APIs
+- Added Youer fork to modded
+- Removed Krypton fork from modded
+- Removed Banner fork from modded
 ### v5.5
 - Fixed issue in the Spigot fork that was deleting files it shouldn't have
 ### v5.4

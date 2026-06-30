@@ -75,7 +75,7 @@ function stepsBedrock {
   echo -e " "
   cd ${bedrockfolder:-/root/bedrock}
   useragent=$(curl -s https://jnrbsn.github.io/user-agents/user-agents.json | jq -r '[.[] | select(. | contains("Linux x86_64")) | select(. | contains("Chrome"))][1]')
-  bedrockver=$(curl -sL -A "${useragent}" -H "Accept-Language: en" -H "Accept-Encoding: gzip, deflate" https://www.minecraft.net/en-us/download/server/bedrock | zgrep -o 'https://minecraft.azureedge.net/bin-linux/[^"]*')
+  bedrockver=$(curl -sL -A "${useragent}" -H "Accept-Language: en" -H "Accept-Encoding: gzip, deflate" https://www.minecraft.net/en-us/download/server/bedrock | zgrep -o 'https://www.minecraft.net/bedrockdedicatedserver/bin-linux/[^"]*')
   wget ${bedrockver}
   unzip bedrock-server*.zip
   rm bedrock-server*.zip
@@ -86,7 +86,7 @@ function stepsBedrockPrev {
   echo -e " "
   cd ${bedrockfolder:-/root/bedrock}
   useragent=$(curl -s https://jnrbsn.github.io/user-agents/user-agents.json | jq -r '[.[] | select(. | contains("Linux x86_64")) | select(. | contains("Chrome"))][1]')
-  bedrockver=$(curl -sL -A "${useragent}" -H "Accept-Language: en" -H "Accept-Encoding: gzip, deflate" https://www.minecraft.net/en-us/download/server/bedrock | zgrep -o 'https://minecraft.azureedge.net/bin-linux-preview/[^"]*')
+  bedrockver=$(curl -sL -A "${useragent}" -H "Accept-Language: en" -H "Accept-Encoding: gzip, deflate" https://www.minecraft.net/en-us/download/server/bedrock | zgrep -o 'https://www.minecraft.net/bedrockdedicatedserver/bin-linux-preview/[^"]*')
   wget ${bedrockver}
   unzip bedrock-server*.zip
   rm bedrock-server*.zip
@@ -110,8 +110,8 @@ function nukkitx {
 function stepsNukkitX {
   echo -e " "
   cd ${bedrockfolder:-/root/bedrock}
-  wget https://ci.opencollab.dev/job/NukkitX/job/Nukkit/job/master/lastSuccessfulBuild/artifact/target/nukkit-1.0-SNAPSHOT.jar
-  mv nukkit-1.0-SNAPSHOT.jar nukkitx.jar
+  wget --content-disposition https://repo.opencollab.dev/api/maven/latest/file/maven-snapshots/cn/nukkit/nukkit/1.0-SNAPSHOT?extension=jar
+  mv nukkit-1.0-*.jar nukkitx.jar
   starterFile
 }
 
@@ -132,9 +132,7 @@ function powernukkitx {
 function stepsPowerNukkitX {
   echo -e " "
   cd ${bedrockfolder:-/root/bedrock}
-  powernukkitx_build=$(curl -s https://api.github.com/repos/PowerNukkitX/PNX-CLI/releases | jq -r '.[0].assets[] | select(.content_type == "application/java-archive") | .browser_download_url')
-  wget ${powernukkitx_build}
-  mv PNX-CLI-*.jar PNX-CLI.jar
+  wget https://github.com/PowerNukkitX/PowerNukkitX/releases/download/snapshot/powernukkitx.jar
   starterFile
 }
 
@@ -144,8 +142,6 @@ function starterFile {
   cd ${bedrockfolder:-/root/bedrock}
   if [ "$bedrocktype_sel" = "Bedrock" ]; then
     java_args="./bedrock_server"
-  elif [ "$bedrocktype_sel" = "PowerNukkitX" ]; then
-    java_args="java -jar PNX-CLI.jar start"
   else
     java_args="java -Xms128M -Xmx${bedrockmem:-2048}M -jar ${bedrock_name}.jar nogui"
   fi
