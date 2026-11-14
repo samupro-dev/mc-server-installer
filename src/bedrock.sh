@@ -76,6 +76,8 @@ function endstone {
 function nukkitx {
   bedrock_setup
   download "https://repo.opencollab.dev/api/maven/latest/file/maven-snapshots/cn/nukkit/nukkit/1.0-SNAPSHOT?extension=jar" "$JAR"
+  # without nukkit.yml the first start asks for the language
+  [ -f nukkit.yml ] || printf 'settings:\n  language: eng\n' > nukkit.yml
   starterFile
 }
 

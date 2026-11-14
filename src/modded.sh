@@ -203,6 +203,11 @@ function crucible {
 function stepsCrucible {
   modded_setup
   download_asset "$(github_asset CrucibleMC/Crucible '-server\.jar$')" "$JAR"
+  # the first start only downloads the libraries and exits
+  if [ ! -d libraries ]; then
+    download_java 8
+    timeout 600 "$JAVA" -jar "$JAR" nogui >/dev/null 2>&1
+  fi
   starterFile
 }
 

@@ -54,7 +54,8 @@ PATH="$T/java8:$PATH0"
 check "java_major 1.8" "$(java_major)" 8
 check "check_java 1.16.5 ok" "$(check_java 1.16.5)" ""
 check "exact silent on Java 8 for 1.12.2" "$(check_java 1.12.2 exact)" ""
-PATH="$T/none" # no java at all (only builtins run until PATH is restored)
+# shellcheck disable=SC2123 # no java at all (only builtins run until PATH is restored)
+PATH="$T/none"
 missing=$(check_java 1.21.1); missing_proxy=$(check_java)
 PATH=$PATH0
 check "check_java missing" "$(grep -c 'not installed, install Java 21' <<< "$missing")" 1
@@ -85,7 +86,7 @@ check "starter runs from elsewhere" "$(cd / && "$T/a/b/c/starter.sh" | tail -n 1
 FOLDER="$T/a/b/c"
 (make_temp; echo "$INSTALL_TEMP" > "$T/tmpname"; exit 0); check "temp removed on exit" "$(ls -d "$(cat "$T/tmpname")" 2>/dev/null)" ""
 check "make_temp creates one folder" "$(make_temp; first=$INSTALL_TEMP; make_temp; [ "$first" = "$INSTALL_TEMP" ] && echo same)" same
-(make_temp; die boom >/dev/null); check "temp removed on die" "$(ls -A | grep -c installer)" 0
+(make_temp; die boom >/dev/null); check "temp removed on die" "$(find . -maxdepth 1 -name '.installer.*' | wc -l | tr -d ' ')" 0
 bash -c 'source "$1/src/common.sh"; FOLDER=$2; make_temp; echo "$INSTALL_TEMP" > "$2/tmpname"; kill -INT $$; sleep 5' _ "$R" "$T" >/dev/null 2>&1
 check "INT exit code" "$?" 130
 check "INT removes temp" "$(ls -d "$(cat "$T/tmpname")" 2>/dev/null)" ""

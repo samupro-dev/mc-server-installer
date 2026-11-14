@@ -114,6 +114,12 @@ function stepsLeaf {
   file=$(fetch "https://api.leafmc.one/v2/projects/leaf/versions/${VERSION}/builds/${build}" | jq -c '.downloads.primary')
   download "https://api.leafmc.one/v2/projects/leaf/versions/${VERSION}/builds/${build}/downloads/$(jq -r '.name' <<< "$file")" "$JAR" \
     "sha256:$(jq -r '.sha256 // empty' <<< "$file")"
+  # the first start only writes config/leaf-loader.yml and exits
+  if [ ! -f config/leaf-loader.yml ]; then
+    download_java "$(java_for_mc "$VERSION")"
+    timeout 120 "$JAVA" -jar "$JAR" >/dev/null 2>&1
+  fi
+  warn "Check config/leaf-loader.yml before starting the server."
   starterFile
 }
 
@@ -216,7 +222,7 @@ function lophine {
 
 function stepsLophine {
   spigot_setup
-  download_asset "$(jq -c --arg v "$VERSION" '[.[] | select(.draft | not) | select(.tag_name | startswith($v + "-"))][0].assets[] | select(.name | test("^lophine-.*-paperclip\\.jar$"))' <<< "$lophine_releases")" "$JAR"
+  download_asset "$(jq -c --arg v "$VERSION" '[.[] | select(.draft | not) | select(.tag_name | startswith($v + "-"))][0].assets[] | select(.name | test("^lophine-.*\\.jar$"))' <<< "$lophine_releases")" "$JAR"
   starterFile
 }
 
