@@ -28,6 +28,7 @@ ask_number MEM ram 2048 128 1048576 <<< '' >/dev/null; check "ask_number default
 ask_yes_no X q <<< $'maybe\nYES' >/dev/null; check "ask_yes_no yes" "$X" true
 ask_yes_no X q n <<< '' >/dev/null; check "ask_yes_no default" "$X" false
 (ask_yes_no X q < /dev/null >/dev/null); check "ask_yes_no EOF exits" "$?" 1
+# shellcheck disable=SC2088 # the tilde is typed by the user, ask_basics expands it
 ask_basics srv <<< '~/mc' >/dev/null; check "ask_basics tilde" "$FOLDER" "$HOME/mc"
 ask_basics srv <<< '' >/dev/null; check "ask_basics default folder" "$FOLDER" "$HOME/srv"
 
@@ -106,6 +107,15 @@ check "mismatched file deleted" "$(ls bad 2>/dev/null)" ""
 (download null f.jar >/dev/null 2>&1); check "download null dies" "$?" 1
 (download https://raw.githubusercontent.com/samupro-dev/mc-server-installer/main/missing f.jar >/dev/null 2>&1); check "download error dies" "$?" 1
 check "failed download leaves no file" "$(ls f.jar 2>/dev/null)" ""
+
+## fetch (curl replaced by a fake that returns the exit codes listed in $T/codes, one per call) ##
+curl() { local code; code=$(head -n 1 "$T/codes"); sed -i 1d "$T/codes"; echo x >> "$T/calls"; [ "$code" = 0 ] && echo body; return "$code"; }
+fake() { printf '%s\n' "$@" > "$T/codes"; : > "$T/calls"; }
+calls() { wc -l < "$T/calls" | tr -d ' '; }
+fake 92 92 0; check "fetch retries network errors" "$(fetch https://x.test):$(calls)" "body:3"
+fake 92 92 92; check "fetch gives nothing after 3 failures" "$(fetch https://x.test || echo failed):$(calls)" "failed:3"
+fake 22 0; check "fetch does not retry HTTP errors" "$(fetch https://x.test || echo failed):$(calls)" "failed:1"
+unset -f curl fake calls
 
 ## other ##
 (require bash ls >/dev/null 2>&1); check "require present" "$?" 0

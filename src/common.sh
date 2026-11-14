@@ -23,13 +23,17 @@ trap 'exit 130' INT TERM HUP
 die() { echo -e "\n${ERROR} ${LIGHT_RED}$1 ${COLOR_NULL}"; exit 1; }
 warn() { echo -e "${LIGHT_RED} !! ${YELLOW}$1 ${COLOR_NULL}"; }
 step() { echo -e "${YELLOW} $1 ${COLOR_NULL}"; }
-fetch() {
+fetch() { # fetch <url>: prints the whole response or nothing, so a broken download never gives a cut list
+  local try body auth=()
   # a GITHUB_TOKEN (set in the GitHub checks) raises the GitHub API rate limit, it is sent only to api.github.com
-  if [ -n "${GITHUB_TOKEN:-}" ] && [[ $1 == https://api.github.com/* ]]; then
-    curl -fsSL -m 60 -H "Authorization: Bearer ${GITHUB_TOKEN}" "$1"
-  else
-    curl -fsSL -m 60 "$1"
-  fi
+  [ -n "${GITHUB_TOKEN:-}" ] && [[ $1 == https://api.github.com/* ]] && auth=(-H "Authorization: Bearer ${GITHUB_TOKEN}")
+  for try in 1 2 3; do
+    body=$(curl -fsSL -m 60 "${auth[@]}" "$1") && { printf '%s\n' "$body"; return 0; }
+    # 22 is an HTTP error (like 404): only network errors are retried
+    [ $? = 22 ] && return 1
+    [ "$try" = 3 ] || sleep 2
+  done
+  return 1
 }
 valid_name() { [[ $1 =~ ^[A-Za-z0-9._+-]+$ ]]; } # versions from remote APIs end up in file names and starter.sh
 

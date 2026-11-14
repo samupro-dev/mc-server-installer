@@ -132,7 +132,7 @@ function youer {
   # the API also lists versions without builds
   mapfile -t versions < <(
     for version in $(fetch https://api.mohistmc.com/project/youer/versions | jq -r '.[].name' | sort -rV); do
-      fetch "https://api.mohistmc.com/project/youer/${version}/builds/latest" >/dev/null && echo "$version"
+      fetch "https://api.mohistmc.com/project/youer/${version}/builds/latest" &>/dev/null && echo "$version"
     done)
   choose_version "${versions[@]}"
   stepsYouer
@@ -152,7 +152,7 @@ function mohist {
   # the API also lists versions without builds
   mapfile -t versions < <(
     for version in $(fetch https://api.mohistmc.com/project/mohist/versions | jq -r '.[].name' | sort -rV); do
-      fetch "https://api.mohistmc.com/project/mohist/${version}/builds/latest" >/dev/null && echo "$version"
+      fetch "https://api.mohistmc.com/project/mohist/${version}/builds/latest" &>/dev/null && echo "$version"
     done)
   choose_version "${versions[@]}"
   stepsMohist

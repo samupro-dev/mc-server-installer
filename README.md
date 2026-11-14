@@ -50,6 +50,7 @@ If you come across any bugs or have suggestions for new features, please don't h
 - Fixed issue where Bedrock asked to overwrite server.properties during the installation
 - Fixed issue where sudo users were not really running the script with root permissions: now sudo is asked only when a package must be installed (so a dedicated user without sudo can use the script) and the server is installed in the user's home folder
 - Failed downloads now stop the script with an error instead of showing a successful installation
+- The version lists are downloaded again when the connection drops, instead of showing an incomplete list
 - The EULA must now be accepted explicitly and online-mode is enabled by default
 - The RAM, port and max players values are now validated
 - The script asks before installing in a folder that is not empty

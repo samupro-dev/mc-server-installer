@@ -24,7 +24,8 @@ echo "Installed files:"; ls -la "$folder"
 [ "$boot" = true ] || exit 0
 
 ## start the server with the Java version it needs ##
-version=$(sed -n 's/.*Version: [^ ]* \([^ ]*\).*/\1/p' "$log")
+# only the summary line: the Spigot build also prints "Java Version: Java 25"
+version=$(sed -n 's/.*\* Version: [^ ]* \([^ ]*\).*/\1/p' "$log")
 need=$(bash -c 'source "$1/src/common.sh"; java_for_mc "$2"' _ "$R" "$version")
 java_home="JAVA_HOME_${need}_X64" # set by actions/setup-java for every installed version
 [ -n "${!java_home}" ] && export PATH="${!java_home}/bin:$PATH"
