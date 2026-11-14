@@ -28,8 +28,8 @@ ask_number MEM ram 2048 128 1048576 <<< '' >/dev/null; check "ask_number default
 ask_yes_no X q <<< $'maybe\nYES' >/dev/null; check "ask_yes_no yes" "$X" true
 ask_yes_no X q n <<< '' >/dev/null; check "ask_yes_no default" "$X" false
 (ask_yes_no X q < /dev/null >/dev/null); check "ask_yes_no EOF exits" "$?" 1
-ask_basics srv <<< $'\n~/mc' >/dev/null; check "ask_basics tilde" "$FOLDER" "$HOME/mc"
-ask_basics srv <<< $'\n' >/dev/null; check "ask_basics default folder" "$FOLDER" "$HOME/srv"
+ask_basics srv <<< '~/mc' >/dev/null; check "ask_basics tilde" "$FOLDER" "$HOME/mc"
+ask_basics srv <<< '' >/dev/null; check "ask_basics default folder" "$FOLDER" "$HOME/srv"
 
 ## choose ##
 choose V a b <<< $'9\n2' >/dev/null 2>&1; check "choose picks" "$V" b
@@ -112,6 +112,7 @@ check "failed download leaves no file" "$(ls f.jar 2>/dev/null)" ""
 (require bash no-such-cmd-xyz >/dev/null 2>&1); check "require missing dies" "$?" 1
 check "success shows port" "$(MEM=1024 PORT=25565 success "Paper 1.21" | grep -c 'Port')" 1
 check "success hides empty port" "$(MEM=1024 PORT="" success "Velocity" | grep -c 'Port')" 0
+check "success hides RAM when not asked" "$(MEM="" PORT="" success "Gate" | grep -c 'RAM')" 0
 
 cd / && rm -rf "$T"
 if [ "$fail" = 0 ]; then echo "ALL PASSED"; else exit 1; fi

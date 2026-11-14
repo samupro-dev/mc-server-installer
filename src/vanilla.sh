@@ -7,10 +7,11 @@ require curl wget jq
 
 function vanilla_conf {
   ask_basics vanilla
-  ask_game 25565
   echo -e "\n${LIGHT_RED} !! ${CYAN}Server type selected: ${YELLOW}VANILLA ${COLOR_NULL}"
   echo -e "${CYAN} ( * ) Select the one that suits you best! ${COLOR_NULL}"
   choose TYPE "Vanilla" "Snapshot" "Pumpkin"
+  # Pumpkin does not run on Java and has its own config files
+  [ "$TYPE" = "Pumpkin" ] || { ask_ram; ask_game 25565; }
   step "Fetching the versions. . . (it might take a while)\n"
   case "$TYPE" in
     Vanilla) vanilla ;;

@@ -90,11 +90,14 @@ ask_yes_no() { # ask_yes_no <var> <question> [default y|n]: stores true or false
   done
 }
 
-ask_basics() { # ask_basics <default folder name>: sets MEM and FOLDER
+ask_basics() { # ask_basics <default folder name>: sets FOLDER
   echo -e "\n${YELLOW}[[[--- Welcome to the setup for configuring your server! ---]]]${COLOR_NULL}\n"
-  ask_number MEM "Enter the amount of RAM to allocate in megabytes" 2048 128 1048576
   ask FOLDER "Enter the directory where the server will be installed" "$HOME/$1"
   FOLDER=${FOLDER/#\~/$HOME}
+}
+
+ask_ram() { # sets MEM, only for the software that runs on Java
+  ask_number MEM "Enter the amount of RAM to allocate in megabytes" 2048 128 1048576
 }
 
 ask_game() { # ask_game <default port>: sets PORT, ONLINE_MODE, MAX_PLAYERS and EULA
@@ -245,7 +248,7 @@ EOF
 success() { # success <installed version>
   echo -e " "
   echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
-  echo -e "${LIGHT_GREEN} Your server was successfully installed!\n   ${CYAN}* Version: ${WHITE}$1\n   ${CYAN}* Location: ${WHITE}${FOLDER}\n   ${CYAN}* RAM: ${WHITE}${MEM}M${PORT:+\n   ${CYAN}* Port: ${WHITE}${PORT}} ${COLOR_NULL}"
+  echo -e "${LIGHT_GREEN} Your server was successfully installed!\n   ${CYAN}* Version: ${WHITE}$1\n   ${CYAN}* Location: ${WHITE}${FOLDER}${MEM:+\n   ${CYAN}* RAM: ${WHITE}${MEM}M}${PORT:+\n   ${CYAN}* Port: ${WHITE}${PORT}} ${COLOR_NULL}"
   echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
   echo -e "${YELLOW}To start the server use the ${LIGHT_RED}${FOLDER}/starter.sh ${YELLOW}command${COLOR_NULL}"
   exit 0

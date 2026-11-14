@@ -7,10 +7,11 @@ require curl wget jq
 
 function spigot_conf {
   ask_basics spigot
-  ask_game 25565
   echo -e "\n${LIGHT_RED} !! ${CYAN}Server type selected: ${YELLOW}SPIGOT ${COLOR_NULL}"
   echo -e "${CYAN} ( * ) Select the type of fork that suits you best! ${COLOR_NULL}"
   choose TYPE "Spigot" "Paper" "Purpur" "Folia" "Leaf" "Canvas" "DivineMC" "ShreddedPaper" "Sakura" "Gale" "PandaSpigot" "Lophine"
+  ask_ram
+  ask_game 25565
   step "Fetching the versions. . . (it might take a while)\n"
   case "$TYPE" in
     Spigot) spigot ;;

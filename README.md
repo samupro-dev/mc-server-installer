@@ -55,6 +55,8 @@ If you come across any bugs or have suggestions for new features, please don't h
 - The script asks before installing in a folder that is not empty
 - The startup file is no longer duplicated when reinstalling and works from any folder
 - Forge 1.17+ now uses the RAM value chosen during the setup
+- The RAM is asked only for the software that runs on Java, and the server settings (port, premium users, max players, EULA) only for the software that uses server.properties
+- Reinstalling Forge or NeoForge in the same folder no longer adds the RAM line to user_jvm_args.txt again
 - Added a warning when Java is not installed or too old for the selected version
 - The Spigot version list loads much faster
 - Added the Leaf, Canvas, DivineMC, ShreddedPaper, Sakura, Gale, PandaSpigot and Lophine forks to Spigot

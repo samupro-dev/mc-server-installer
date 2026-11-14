@@ -2,7 +2,7 @@
 # End-to-end check: installs one server with the real script, then starts it until it is ready.
 # usage: tests/run-install.sh <script> <answers> <expected version text> <boot: true|false>
 #   answers: the replies to the questions, separated by ";" (FOLDER is replaced with the install folder)
-#   example: tests/run-install.sh spigot ";FOLDER;;;;y;2;1" "Paper" true
+#   example: tests/run-install.sh spigot "FOLDER;2;;;;;y;1" "Paper" true
 R=$(cd "$(dirname "$0")/.." && pwd)
 script=$1 answers=$2 expected=$3 boot=$4
 folder="${RUNNER_TEMP:-$(mktemp -d)}/server"

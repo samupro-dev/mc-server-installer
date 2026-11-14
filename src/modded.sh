@@ -7,10 +7,11 @@ require curl wget jq
 
 function modded_conf {
   ask_basics modded
-  ask_game 25565
   echo -e "\n${LIGHT_RED} !! ${CYAN}Server type selected: ${YELLOW}MODDED ${COLOR_NULL}"
   echo -e "${CYAN} ( * ) Select the type of fork that suits you best! ${COLOR_NULL}"
   choose TYPE "Forge" "NeoForge" "Fabric" "Quilt" "Youer" "Mohist" "Arclight" "SpongeVanilla" "Crucible"
+  ask_ram
+  ask_game 25565
   step "Fetching the versions. . . (it might take a while)\n"
   case "$TYPE" in
     Forge) forge ;;
@@ -58,7 +59,8 @@ function run_forge_installer { # <installer jar> <server jar pattern for old ver
   "$JAVA" -jar "$1" --installServer || die "The $TYPE installer failed, check the log above."
   rm -f "$1" "$1.log"
   if [ -f run.sh ]; then
-    # run.sh reads the RAM from user_jvm_args.txt
+    # run.sh reads the RAM from user_jvm_args.txt, the line of a previous install is replaced
+    [ -f user_jvm_args.txt ] && sed -i '/^-Xms[0-9]*M -Xmx[0-9]*M$/d' user_jvm_args.txt
     echo "-Xms128M -Xmx${MEM}M" >> user_jvm_args.txt
     START="./run.sh nogui"
   else

@@ -10,6 +10,11 @@ function proxy_conf {
   echo -e "\n${LIGHT_RED} !! ${CYAN}Server type selected: ${YELLOW}PROXY ${COLOR_NULL}"
   echo -e "${CYAN} ( * ) Select the type of fork that suits you best! ${COLOR_NULL}"
   choose TYPE "BungeeCord" "Velocity" "Velocity-CTD" "Geyser" "Gate" "ViaProxy" "WaterdogPE" "Infrarust" "Limbo" "PicoLimbo" "NanoLimbo"
+  # Gate, Infrarust and PicoLimbo do not run on Java
+  case "$TYPE" in
+    Gate|Infrarust|PicoLimbo) ;;
+    *) ask_ram ;;
+  esac
   case "$TYPE" in
     BungeeCord) bungeecord ;;
     Velocity) velocity ;;

@@ -7,10 +7,15 @@ require curl wget jq unzip
 
 function bedrock_conf {
   ask_basics bedrock
-  ask_game 19132
   echo -e "\n${LIGHT_RED} !! ${CYAN}Server type selected: ${YELLOW}BEDROCK ${COLOR_NULL}"
   echo -e "${CYAN} ( * ) Select the type of fork that suits you best! ${COLOR_NULL}"
   choose TYPE "Bedrock" "Endstone" "NukkitX" "Nukkit-MOT" "Lumi" "PowerNukkitX" "Allay"
+  # Bedrock and Endstone do not run on Java, Allay uses server-settings.yml instead of server.properties
+  case "$TYPE" in
+    Bedrock|Endstone) ask_game 19132 ;;
+    Allay) ask_ram ;;
+    *) ask_ram; ask_game 19132 ;;
+  esac
   VERSION="Latest"
   case "$TYPE" in
     Bedrock) bedrock ;;
@@ -121,7 +126,7 @@ function allay {
 ## end ##
 function starterFile {
   # after the download, so the server.properties shipped with Bedrock gets the settings
-  write_properties
+  [ "$TYPE" = "Allay" ] || write_properties
   # Nukkit uses xbox-auth instead of online-mode
   case "$TYPE" in
     NukkitX|Nukkit-MOT|Lumi) set_property xbox-auth "$ONLINE_MODE" ;;

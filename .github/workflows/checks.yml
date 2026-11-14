@@ -57,52 +57,53 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        # answers: replies to the questions separated by ";" (RAM;folder;port;premium;players;EULA;type;version)
+        # answers: replies to the questions separated by ";", in this order: folder;type;RAM;port;premium;players;EULA;version
+        # (RAM only for Java software, port/premium/players/EULA only where server.properties is used)
         include:
-          - { name: Vanilla, script: vanilla, answers: ";FOLDER;;;;y;1;1", expected: Vanilla }
-          - { name: Snapshot, script: vanilla, answers: ";FOLDER;;;;y;2", expected: Snapshot }
-          - { name: Pumpkin, script: vanilla, answers: ";FOLDER;;;;y;3", expected: Pumpkin }
-          - { name: Spigot, script: spigot, answers: ";FOLDER;;;;y;1;1", expected: Spigot }
-          - { name: Paper, script: spigot, answers: ";FOLDER;;;;y;2;1", expected: Paper }
-          - { name: Purpur, script: spigot, answers: ";FOLDER;;;;y;3;1", expected: Purpur }
-          - { name: Folia, script: spigot, answers: ";FOLDER;;;;y;4;1", expected: Folia }
-          - { name: Leaf, script: spigot, answers: ";FOLDER;;;;y;5;1", expected: Leaf }
-          - { name: Canvas, script: spigot, answers: ";FOLDER;;;;y;6;1", expected: Canvas }
-          - { name: DivineMC, script: spigot, answers: ";FOLDER;;;;y;7;1", expected: DivineMC }
-          - { name: ShreddedPaper, script: spigot, answers: ";FOLDER;;;;y;8;1", expected: ShreddedPaper }
-          - { name: Sakura, script: spigot, answers: ";FOLDER;;;;y;9;1", expected: Sakura }
-          - { name: Gale, script: spigot, answers: ";FOLDER;;;;y;10;1", expected: Gale }
-          - { name: PandaSpigot, script: spigot, answers: ";FOLDER;;;;y;11;1", expected: PandaSpigot }
-          - { name: Lophine, script: spigot, answers: ";FOLDER;;;;y;12;1", expected: Lophine }
+          - { name: Vanilla, script: vanilla, answers: "FOLDER;1;;;;;y;1", expected: Vanilla }
+          - { name: Snapshot, script: vanilla, answers: "FOLDER;2;;;;;y", expected: Snapshot }
+          - { name: Pumpkin, script: vanilla, answers: "FOLDER;3", expected: Pumpkin }
+          - { name: Spigot, script: spigot, answers: "FOLDER;1;;;;;y;1", expected: Spigot }
+          - { name: Paper, script: spigot, answers: "FOLDER;2;;;;;y;1", expected: Paper }
+          - { name: Purpur, script: spigot, answers: "FOLDER;3;;;;;y;1", expected: Purpur }
+          - { name: Folia, script: spigot, answers: "FOLDER;4;;;;;y;1", expected: Folia }
+          - { name: Leaf, script: spigot, answers: "FOLDER;5;;;;;y;1", expected: Leaf }
+          - { name: Canvas, script: spigot, answers: "FOLDER;6;;;;;y;1", expected: Canvas }
+          - { name: DivineMC, script: spigot, answers: "FOLDER;7;;;;;y;1", expected: DivineMC }
+          - { name: ShreddedPaper, script: spigot, answers: "FOLDER;8;;;;;y;1", expected: ShreddedPaper }
+          - { name: Sakura, script: spigot, answers: "FOLDER;9;;;;;y;1", expected: Sakura }
+          - { name: Gale, script: spigot, answers: "FOLDER;10;;;;;y;1", expected: Gale }
+          - { name: PandaSpigot, script: spigot, answers: "FOLDER;11;;;;;y;1", expected: PandaSpigot }
+          - { name: Lophine, script: spigot, answers: "FOLDER;12;;;;;y;1", expected: Lophine }
           # BungeeCord goes through installer.sh, so the full path from the menu is checked too
-          - { name: BungeeCord, script: installer, answers: "1;;FOLDER;1", expected: BungeeCord }
-          - { name: Velocity, script: proxy, answers: ";FOLDER;2", expected: Velocity }
-          - { name: Velocity-CTD, script: proxy, answers: ";FOLDER;3", expected: Velocity-CTD }
-          - { name: Geyser, script: proxy, answers: ";FOLDER;4", expected: Geyser }
-          - { name: Gate, script: proxy, answers: ";FOLDER;5", expected: Gate }
-          - { name: ViaProxy, script: proxy, answers: ";FOLDER;6", expected: ViaProxy }
-          - { name: WaterdogPE, script: proxy, answers: ";FOLDER;7", expected: WaterdogPE }
-          - { name: Infrarust, script: proxy, answers: ";FOLDER;8", expected: Infrarust }
-          - { name: Limbo, script: proxy, answers: ";FOLDER;9", expected: Limbo }
-          - { name: PicoLimbo, script: proxy, answers: ";FOLDER;10", expected: PicoLimbo }
-          - { name: NanoLimbo, script: proxy, answers: ";FOLDER;11", expected: NanoLimbo }
-          - { name: Bedrock, script: bedrock, answers: ";FOLDER;;;;y;1;1", expected: Bedrock Latest }
-          - { name: Bedrock Preview, script: bedrock, answers: ";FOLDER;;;;y;1;2", expected: Bedrock Preview }
-          - { name: Endstone, script: bedrock, answers: ";FOLDER;;;;y;2", expected: Endstone }
-          - { name: NukkitX, script: bedrock, answers: ";FOLDER;;;;y;3", expected: NukkitX }
-          - { name: Nukkit-MOT, script: bedrock, answers: ";FOLDER;;;;y;4", expected: Nukkit-MOT }
-          - { name: Lumi, script: bedrock, answers: ";FOLDER;;;;y;5", expected: Lumi }
-          - { name: PowerNukkitX, script: bedrock, answers: ";FOLDER;;;;y;6", expected: PowerNukkitX }
-          - { name: Allay, script: bedrock, answers: ";FOLDER;;;;y;7", expected: Allay }
-          - { name: Forge, script: modded, answers: ";FOLDER;;;;y;1;1", expected: Forge }
-          - { name: NeoForge, script: modded, answers: ";FOLDER;;;;y;2;1", expected: NeoForge }
-          - { name: Fabric, script: modded, answers: ";FOLDER;;;;y;3;1", expected: Fabric }
-          - { name: Quilt, script: modded, answers: ";FOLDER;;;;y;4;1", expected: Quilt }
-          - { name: Youer, script: modded, answers: ";FOLDER;;;;y;5;1", expected: Youer }
-          - { name: Mohist, script: modded, answers: ";FOLDER;;;;y;6;1", expected: Mohist }
-          - { name: Arclight, script: modded, answers: ";FOLDER;;;;y;7;1", expected: Arclight }
-          - { name: SpongeVanilla, script: modded, answers: ";FOLDER;;;;y;8;1", expected: SpongeVanilla }
-          - { name: Crucible, script: modded, answers: ";FOLDER;;;;y;9;1", expected: Crucible }
+          - { name: BungeeCord, script: installer, answers: "1;FOLDER;1;", expected: BungeeCord }
+          - { name: Velocity, script: proxy, answers: "FOLDER;2;", expected: Velocity }
+          - { name: Velocity-CTD, script: proxy, answers: "FOLDER;3;", expected: Velocity-CTD }
+          - { name: Geyser, script: proxy, answers: "FOLDER;4;", expected: Geyser }
+          - { name: Gate, script: proxy, answers: "FOLDER;5", expected: Gate }
+          - { name: ViaProxy, script: proxy, answers: "FOLDER;6;", expected: ViaProxy }
+          - { name: WaterdogPE, script: proxy, answers: "FOLDER;7;", expected: WaterdogPE }
+          - { name: Infrarust, script: proxy, answers: "FOLDER;8", expected: Infrarust }
+          - { name: Limbo, script: proxy, answers: "FOLDER;9;", expected: Limbo }
+          - { name: PicoLimbo, script: proxy, answers: "FOLDER;10", expected: PicoLimbo }
+          - { name: NanoLimbo, script: proxy, answers: "FOLDER;11;", expected: NanoLimbo }
+          - { name: Bedrock, script: bedrock, answers: "FOLDER;1;;;;y;1", expected: Bedrock Latest }
+          - { name: Bedrock Preview, script: bedrock, answers: "FOLDER;1;;;;y;2", expected: Bedrock Preview }
+          - { name: Endstone, script: bedrock, answers: "FOLDER;2;;;;y", expected: Endstone }
+          - { name: NukkitX, script: bedrock, answers: "FOLDER;3;;;;;y", expected: NukkitX }
+          - { name: Nukkit-MOT, script: bedrock, answers: "FOLDER;4;;;;;y", expected: Nukkit-MOT }
+          - { name: Lumi, script: bedrock, answers: "FOLDER;5;;;;;y", expected: Lumi }
+          - { name: PowerNukkitX, script: bedrock, answers: "FOLDER;6;;;;;y", expected: PowerNukkitX }
+          - { name: Allay, script: bedrock, answers: "FOLDER;7;", expected: Allay }
+          - { name: Forge, script: modded, answers: "FOLDER;1;;;;;y;1", expected: Forge }
+          - { name: NeoForge, script: modded, answers: "FOLDER;2;;;;;y;1", expected: NeoForge }
+          - { name: Fabric, script: modded, answers: "FOLDER;3;;;;;y;1", expected: Fabric }
+          - { name: Quilt, script: modded, answers: "FOLDER;4;;;;;y;1", expected: Quilt }
+          - { name: Youer, script: modded, answers: "FOLDER;5;;;;;y;1", expected: Youer }
+          - { name: Mohist, script: modded, answers: "FOLDER;6;;;;;y;1", expected: Mohist }
+          - { name: Arclight, script: modded, answers: "FOLDER;7;;;;;y;1", expected: Arclight }
+          - { name: SpongeVanilla, script: modded, answers: "FOLDER;8;;;;;y;1", expected: SpongeVanilla }
+          - { name: Crucible, script: modded, answers: "FOLDER;9;;;;;y;1", expected: Crucible }
     steps:
       - uses: actions/checkout@v7
         with:
