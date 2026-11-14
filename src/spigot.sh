@@ -1,290 +1,231 @@
 #!/bin/bash
-DONE="\e[0;32m ✔\e[0m"
-ERROR="\e[0;31m ✘\e[0m"
-YELLOW="\e[1;33m"
-LIGHT_RED="\e[1;31m"
-LIGHT_GREEN="\e[1;32m"
-COLOR_NULL="\e[0m"
-PURPLE="\e[0;35m"
-CYAN="\e[0;36m"
-WHITE="\e[1;37m"
-LIGHT_PURPLE="\e[1;35m"
-
-clear
-echo -e "\n${LIGHT_PURPLE}      ╔╦╗╔═╗  ╔═╗╔═╗╦═╗╦  ╦╔═╗╦═╗  ╦╔╗╔╔═╗╔╦╗╔═╗╦  ╦  ╔═╗╦═╗
-      ║║║║    ╚═╗║╣ ╠╦╝╚╗╔╝║╣ ╠╦╝  ║║║║╚═╗ ║ ╠═╣║  ║  ║╣ ╠╦╝
-      ╩ ╩╚═╝  ╚═╝╚═╝╩╚═ ╚╝ ╚═╝╩╚═  ╩╝╚╝╚═╝ ╩ ╩ ╩╩═╝╩═╝╚═╝╩╚═
-             ${PURPLE}You are using the auto updated script${COLOR_NULL}\n"
-sleep 1
+COMMON=${MCSI_COMMON:-$(wget -qO- https://raw.githubusercontent.com/samupro-dev/mc-server-installer/main/src/common.sh)} || { echo "Could not download common.sh, check your internet connection."; exit 1; }
+# shellcheck source=src/common.sh
+source /dev/stdin <<< "$COMMON"
+declare -F die >/dev/null || { echo "Could not load common.sh, please try again later."; exit 1; }
+require curl wget jq
 
 function spigot_conf {
-  echo -e "\n${YELLOW}[[[--- Welcome to the setup for configuring your server! ---]]]${COLOR_NULL}\n"
-  echo -e -n "${CYAN} ( * ) Enter the amount of RAM to allocate in megabytes (default: 2048): ${COLOR_NULL}"
-  read spigotmem
-  echo -e -n "${CYAN} ( * ) Enter the directory where the server will be installed (default: /root/spigot): ${COLOR_NULL}"
-  read spigotfolder
-  echo -e -n "${CYAN} ( * ) Enter the port where to host the server (default: 25565): ${COLOR_NULL}"
-  read spigotport
-  echo -e -n "${CYAN} ( * ) Do you want to grant server access only to premium users? (default: false): ${COLOR_NULL}"
-  read spigotomode
-  echo -e -n "${CYAN} ( * ) How many maximum players should the server have? (default: 20): ${COLOR_NULL}"
-  read spigotmplayers
-  echo -e -n "${CYAN} ( * ) Do you want to accept the EULA for minecraft? (default: true): ${COLOR_NULL}"
-  read spigoteula
+  ask_basics spigot
+  ask_game 25565
   echo -e "\n${LIGHT_RED} !! ${CYAN}Server type selected: ${YELLOW}SPIGOT ${COLOR_NULL}"
-  spigottype=("Spigot" "Paper" "Purpur" "Glowstone" "Pufferfish" "Folia" "Cancel")
   echo -e "${CYAN} ( * ) Select the type of fork that suits you best! ${COLOR_NULL}"
-  select spigottype_sel in "${spigottype[@]}"; do
-    case "$REPLY" in
-    1) spigot ;;
-    2) paper ;;
-    3) purpur ;;
-    4) glowstone ;;
-    5) pufferfish ;;
-    6) folia ;;
-    7) exit 0 ;;
-    *) echo -e "${ERROR} ${LIGHT_RED}The argument you entered is incorrect! ${COLOR_NULL}";;
-    esac
-  done
+  choose TYPE "Spigot" "Paper" "Purpur" "Folia" "Leaf" "Canvas" "DivineMC" "ShreddedPaper" "Sakura" "Gale" "PandaSpigot" "Lophine"
+  step "Fetching the versions. . . (it might take a while)\n"
+  case "$TYPE" in
+    Spigot) spigot ;;
+    Paper) paper ;;
+    Purpur) purpur ;;
+    Folia) folia ;;
+    Leaf) leaf ;;
+    Canvas) canvas ;;
+    DivineMC) divinemc ;;
+    ShreddedPaper) shreddedpaper ;;
+    Sakura) sakura ;;
+    Gale) gale ;;
+    PandaSpigot) pandaspigot ;;
+    Lophine) lophine ;;
+  esac
 }
 
 function spigot_setup {
-  echo -e "\n"
-  mkdir ${spigotfolder:-/root/spigot}
-  cd ${spigotfolder:-/root/spigot}
-  echo -e "${YELLOW} Setting up the server settings. . . ${COLOR_NULL}"
-  echo -e "server-port=${spigotport:-25565}\nonline-mode=${spigotomode:-false}\nmax-players=${spigotmplayers:-20}" > server.properties
-  echo -e "${YELLOW} Setting up the EULA file. . . ${COLOR_NULL}"
-  echo -e "# The minecraft EULA file has been set to ' ${spigoteula:-true} ' by the user who ran the script.\n# https://github.com/samupro-dev/mc-server-installer\neula=${spigoteula:-true}" > eula.txt
-  echo -e "${YELLOW} Fetching the versions. . . (it might take a while)\n ${COLOR_NULL}"
+  prepare_folder
+  write_properties
+  step "Downloading the jar file. . ."
+  JAR="${TYPE,,}-${VERSION}.jar"
 }
 
 ## spigot ##
 function spigot {
-  spigot_setup
-  spigot_temp=$(curl -s https://hub.spigotmc.org/nexus/content/repositories/snapshots/org/spigotmc/spigot-api/maven-metadata.xml | grep -oP '<version>\K\d+(\.\d+)+(?=-R0)' | tr '\n' ' ' | sed 's/ \{1,\}/\n/g')
-  echo '{ "versions": [' > versions.json
-  first=true
-  for spigot_tempver in $spigot_temp; do
-    build_number=$(curl -s https://hub.spigotmc.org/versions/$spigot_tempver.json | jq -r '.name')
-    if [ "$first" = false ]; then
-      echo ',' >> versions.json
-    else
-      first=false
-    fi
-    echo '  {"version": "'"$spigot_tempver"'", "build_number": "'"$build_number"'"}' >> versions.json
-  done
-  echo '  ] }' >> versions.json
-  spigotver_list=$(cat versions.json | jq -r 'reduce .versions[] as $v ({}; .[$v.build_number] = $v.version) | .[]' | tac)
-  rm versions.json
-  spigotver=($spigotver_list "Cancel")
-  echo -e "${CYAN} ( * ) Select the server version: ${COLOR_NULL}"
-  select spigotver_sel in "${spigotver[@]}"; do
-    if [[ $REPLY -ge 1 && $REPLY -lt ${#spigotver[@]} ]]; then
-      stepsSpigot
-    elif [[ $REPLY -eq ${#spigotver[@]} ]]; then
-      exit 0
-    else
-      echo -e "${ERROR} ${LIGHT_RED}The argument you entered is incorrect! ${COLOR_NULL}"
-    fi
-  done
+  command -v git &>/dev/null || die "Spigot needs git to be built, install it and run the script again."
+  mapfile -t versions < <(fetch https://hub.spigotmc.org/nexus/content/repositories/snapshots/org/spigotmc/spigot-api/maven-metadata.xml | grep -oP '<version>\K\d+(\.\d+)+(?=-R0)' | sort -urV)
+  choose_version "${versions[@]}"
+  stepsSpigot
 }
 
 function stepsSpigot {
-  echo -e " "
-  cd ${spigotfolder:-/root/spigot}
-  wget https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar
-  echo -e "${YELLOW} The building of the jar is in progress. . . (it will take a while)${COLOR_NULL}"
-  if [ "$spigotver_sel" = ^26.* ]; then
-    java_version="25"
-  elif [[ $spigotver_sel =~ ^1.21.* ||  "$spigotver_sel" = "1.20.6" ]]; then
-    java_version="21"
-  elif [[ $spigotver_sel =~ ^1.20.* || $spigotver_sel =~ ^1.19.* || $spigotver_sel =~ ^1.18.* || $spigotver_sel == "1.17.1" ]]; then
-    java_version="17"
-  elif [ "$spigotver_sel" = "1.17" ]; then
-    java_version="16"
-  else
-    java_version="8"
-  fi
-  java_jdk=$(curl -s -X GET "https://api.azul.com/metadata/v1/zulu/packages/?java_version=${java_version}&os=linux&arch=x64&archive_type=tar.gz&java_package_type=jdk&latest=true&release_status=ga&availability_types=CA&page=1&page_size=100" -H "accept: application/json" | jq -r 'map(select(.download_url | test("zulu.*-ca-jdk.*-linux_x64.tar.gz")) | .download_url) | .[0]')
-  wget ${java_jdk}
-  java_tar=$(find . -type f -name "*.tar.gz" | sed 's/^\.\///')
-  tar -zxvf ${java_tar}
-  java_folder=$(basename "$java_tar" .tar.gz)
-  "${spigotfolder:-/root/spigot}/${java_folder}/bin/java" -Xms1024M -jar BuildTools.jar --rev ${spigotver_sel}
-  find . ! -name spigot-${spigotver_sel}.jar ! -name server.properties ! -name eula.txt 2>/dev/null | xargs rm -r > /dev/null 2>&1
+  spigot_setup
+  local java_version
+  # javaVersions holds class file versions: the Java version is the value - 44 (52 is Java 8)
+  java_version=$(fetch "https://hub.spigotmc.org/versions/${VERSION}.json" | jq -r '.javaVersions[0] // empty | . - 44')
+  download_java "${java_version:-$(java_for_mc "$VERSION")}"
+  download https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar "$INSTALL_TEMP/BuildTools.jar"
+  step "The building of the jar is in progress. . . (it will take a while)"
+  (cd "$INSTALL_TEMP" && "$JAVA" -Xms1024M -jar BuildTools.jar --rev "$VERSION") || die "The Spigot build failed, check the log above."
+  mv "$INSTALL_TEMP/spigot-${VERSION}.jar" "$JAR" || die "Could not find the built Spigot jar."
   starterFile
 }
 
 ## paper ##
 function paper {
-  spigot_setup
-  paperver_list=$(curl -s -X 'GET' 'https://fill.papermc.io/v3/projects/paper/versions' -H 'accept: application/json' | jq -r '.versions[].version.id' | grep -v '-')
-  paperver=($paperver_list "Cancel")
-  echo -e "${CYAN} ( * ) Select the server version: ${COLOR_NULL}"
-  select paperver_sel in "${paperver[@]}"; do
-    if [[ $REPLY -ge 1 && $REPLY -lt ${#paperver[@]} ]]; then
-      stepsPaper
-    elif [[ $REPLY -eq ${#paperver[@]} ]]; then
-      exit 0
-    else
-      echo -e "${ERROR} ${LIGHT_RED}The argument you entered is incorrect! ${COLOR_NULL}"
-    fi
-  done
+  mapfile -t versions < <(fetch https://fill.papermc.io/v3/projects/paper/versions | jq -r '.versions[].version.id' | grep -v -- '-')
+  choose_version "${versions[@]}"
+  stepsPaper
 }
 
 function stepsPaper {
-  echo -e " "
-  cd ${spigotfolder:-/root/spigot}
-  paper_build=$(curl -s -X 'GET' "https://fill.papermc.io/v3/projects/paper/versions/${paperver_sel}/builds/latest" -H 'accept: application/json' | jq -r '.downloads["server:default"].url')
-  wget ${paper_build}
-  mv paper-*.jar paper-${paperver_sel}.jar
-  starterFile
-}
-
-## glowstone ##
-function glowstone {
   spigot_setup
-  glowstonever=("1.19" "1.12.2" "Cancel")
-  echo -e "${CYAN} ( * ) Select the server version: ${COLOR_NULL}"
-  select glowstonever_sel in "${glowstonever[@]}"; do
-    case "$REPLY" in
-    1) glowstone119 ;;
-    2) glowstone1122 ;;
-    3) exit 0 ;;
-    *) echo -e "${ERROR} ${LIGHT_RED}The argument you entered is incorrect! ${COLOR_NULL}";;
-    esac
-  done
-}
-
-function glowstone119 {
-  echo -e " "
-  cd ${glowstonefolder}
-  wget https://repo.glowstone.net/repository/snapshots/net/glowstone/glowstone/2022.6.1-SNAPSHOT/glowstone-2022.6.1-20220704.134955-17.jar
-  mv glowstone-2022.6.1-20220704.134955-17.jar glowstone-1.19.jar
-  starterFile
-}
-
-function glowstone1122 {
-  echo -e " "
-  cd ${glowstonefolder}
-  wget https://repo.glowstone.net/repository/releases/net/glowstone/glowstone/2021.8.0/glowstone-2021.8.0.jar
-  mv glowstone-2021.8.0.jar glowstone-1.12.2.jar
+  local file
+  file=$(fetch "https://fill.papermc.io/v3/projects/paper/versions/${VERSION}/builds/latest" | jq -c '.downloads["server:default"]')
+  download "$(jq -r '.url' <<< "$file")" "$JAR" "sha256:$(jq -r '.checksums.sha256 // empty' <<< "$file")"
   starterFile
 }
 
 ## purpur ##
 function purpur {
-  spigot_setup
-  purpurver_list=$(curl -s -X 'GET' 'https://api.purpurmc.org/v2/purpur' H 'accept: */*' | jq -r '.versions[]' | tac)
-  purpurver=($purpurver_list "Cancel")
-  echo -e "${CYAN} ( * ) Select the server version: ${COLOR_NULL}"
-  select purpurver_sel in "${purpurver[@]}"; do
-    if [[ $REPLY -ge 1 && $REPLY -lt ${#purpurver[@]} ]]; then
-      stepsPurpur
-    elif [[ $REPLY -eq ${#purpurver[@]} ]]; then
-      exit 0
-    else
-      echo -e "${ERROR} ${LIGHT_RED}The argument you entered is incorrect! ${COLOR_NULL}"
-    fi
-  done
+  mapfile -t versions < <(fetch https://api.purpurmc.org/v2/purpur | jq -r '.versions[]' | tac)
+  choose_version "${versions[@]}"
+  stepsPurpur
 }
 
 function stepsPurpur {
-  echo -e " "
-  cd ${spigotfolder:-/root/spigot}
-  wget --content-disposition https://api.purpurmc.org/v2/purpur/${purpurver_sel}/latest/download
-  mv purpur-*.jar purpur-${purpurver_sel}.jar
-  starterFile
-}
-
-## pufferfish ##
-function pufferfish {
   spigot_setup
-  pufferfish_templist=""
-  pufferfish_api=$(curl -s https://ci.pufferfish.host/api/json | jq -r '.jobs[] | select(.name | test("^Pufferfish-[0-9]+")) | .name')
-  for pufferfish_temp in $pufferfish_api; do
-    pufferfish_temp=$(curl -s "https://ci.pufferfish.host/job/${pufferfish_temp}/lastSuccessfulBuild/api/json" | jq -r '.artifacts[].fileName | capture("(?<version>[0-9]+(?:\\.[0-9]+){1,2})") | .version')
-    if [ ! -z "$pufferfish_temp" ]; then
-      pufferfish_templist+="$pufferfish_temp"$'\n'
-    fi
-  done
-  pufferfishver_list=$(echo -e "$pufferfish_templist" | tac)
-  pufferfishver=($pufferfishver_list "Cancel")
-  echo -e "${CYAN} ( * ) Select the server version: ${COLOR_NULL}"
-  select pufferfishver_sel in "${pufferfishver[@]}"; do
-    if [[ $REPLY -ge 1 && $REPLY -lt ${#pufferfishver[@]} ]]; then
-      stepsPufferfish
-    elif [[ $REPLY -eq ${#pufferfishver[@]} ]]; then
-      exit 0
-    else
-      echo -e "${ERROR} ${LIGHT_RED}The argument you entered is incorrect! ${COLOR_NULL}"
-    fi
-  done
-}
-
-function stepsPufferfish {
-  echo -e " "
-  cd ${spigotfolder:-/root/spigot}
-  pufferfish_tempver=$(echo "${pufferfishver_sel}" | cut -d '.' -f 1,2)
-  wget https://ci.pufferfish.host/job/Pufferfish-${pufferfish_tempver}/lastSuccessfulBuild/artifact/build/libs/*zip*/libs.zip
-  unzip libs.zip
-  mv libs/*ufferfish-*.jar pufferfish-${pufferfishver_sel}.jar
-  rm -r libs/ libs.zip
+  download "https://api.purpurmc.org/v2/purpur/${VERSION}/latest/download" "$JAR" \
+    "md5:$(fetch "https://api.purpurmc.org/v2/purpur/${VERSION}/latest" | jq -r '.md5 // empty')"
   starterFile
 }
 
 ## folia ##
 function folia {
-  spigot_setup
-  foliaver_list=$(curl -s -X 'GET' 'https://fill.papermc.io/v3/projects/folia/versions' -H 'accept: application/json' | jq -r '.versions[].version.id')
-  foliaver=($foliaver_list "Cancel")
-  echo -e "${CYAN} ( * ) Select the server version: ${COLOR_NULL}"
-  select foliaver_sel in "${foliaver[@]}"; do
-    if [[ $REPLY -ge 1 && $REPLY -lt ${#foliaver[@]} ]]; then
-      stepsFolia
-    elif [[ $REPLY -eq ${#foliaver[@]} ]]; then
-      exit 0
-    else
-      echo -e "${ERROR} ${LIGHT_RED}The argument you entered is incorrect! ${COLOR_NULL}"
-    fi
-  done
+  mapfile -t versions < <(fetch https://fill.papermc.io/v3/projects/folia/versions | jq -r '.versions[].version.id')
+  choose_version "${versions[@]}"
+  stepsFolia
 }
 
 function stepsFolia {
-  echo -e " "
-  cd ${spigotfolder:-/root/spigot}
-  folia_build=$(curl -s -X 'GET' "https://fill.papermc.io/v3/projects/folia/versions/${foliaver_sel}/builds/latest" -H 'accept: application/json' | jq -r '.downloads["server:default"].url')
-  wget ${folia_build}
-  mv folia-*.jar folia-${foliaver_sel}.jar
+  spigot_setup
+  local file
+  file=$(fetch "https://fill.papermc.io/v3/projects/folia/versions/${VERSION}/builds/latest" | jq -c '.downloads["server:default"]')
+  download "$(jq -r '.url' <<< "$file")" "$JAR" "sha256:$(jq -r '.checksums.sha256 // empty' <<< "$file")"
+  starterFile
+}
+
+## leaf ##
+function leaf {
+  mapfile -t versions < <(fetch https://api.leafmc.one/v2/projects/leaf | jq -r '.versions[]' | sort -rV)
+  choose_version "${versions[@]}"
+  stepsLeaf
+}
+
+function stepsLeaf {
+  spigot_setup
+  local build file
+  build=$(fetch "https://api.leafmc.one/v2/projects/leaf/versions/${VERSION}" | jq -r '.builds | max')
+  file=$(fetch "https://api.leafmc.one/v2/projects/leaf/versions/${VERSION}/builds/${build}" | jq -c '.downloads.primary')
+  download "https://api.leafmc.one/v2/projects/leaf/versions/${VERSION}/builds/${build}/downloads/$(jq -r '.name' <<< "$file")" "$JAR" \
+    "sha256:$(jq -r '.sha256 // empty' <<< "$file")"
+  starterFile
+}
+
+## canvas ##
+function canvas {
+  canvas_build=$(fetch "https://jenkins.canvasmc.io/job/Canvas/lastSuccessfulBuild/api/json?tree=displayName,artifacts%5BrelativePath%5D")
+  choose_version "$(jq -r '.displayName | sub(".* - "; "")' <<< "$canvas_build")"
+  stepsCanvas
+}
+
+function stepsCanvas {
+  spigot_setup
+  download "https://jenkins.canvasmc.io/job/Canvas/lastSuccessfulBuild/artifact/$(jq -r '.artifacts[0].relativePath' <<< "$canvas_build")" "$JAR"
+  starterFile
+}
+
+## divinemc ##
+function divinemc {
+  mapfile -t versions < <(fetch https://api.bxteam.org/v2/projects/divinemc | jq -r '.versions[]')
+  choose_version "${versions[@]}"
+  stepsDivineMC
+}
+
+function stepsDivineMC {
+  spigot_setup
+  divinemc_build=$(fetch "https://api.bxteam.org/v2/projects/divinemc/versions/${VERSION}/builds/latest")
+  download "$(jq -r '.downloads.application.url' <<< "$divinemc_build")" "$JAR" "sha256:$(jq -r '.downloads.application.sha256 // empty' <<< "$divinemc_build")"
+  starterFile
+}
+
+## shreddedpaper ##
+function shreddedpaper {
+  mapfile -t versions < <(fetch https://api.multipaper.io/v2/projects/shreddedpaper | jq -r '.versions[]' | sort -rV)
+  choose_version "${versions[@]}"
+  stepsShreddedPaper
+}
+
+function stepsShreddedPaper {
+  spigot_setup
+  local build file
+  build=$(fetch "https://api.multipaper.io/v2/projects/shreddedpaper/versions/${VERSION}" | jq -r '.builds | max')
+  file=$(fetch "https://api.multipaper.io/v2/projects/shreddedpaper/versions/${VERSION}/builds/${build}" | jq -c '.downloads.application')
+  download "https://api.multipaper.io/v2/projects/shreddedpaper/versions/${VERSION}/builds/${build}/downloads/$(jq -r '.name' <<< "$file")" "$JAR" \
+    "sha256:$(jq -r '.sha256 // empty' <<< "$file")"
+  starterFile
+}
+
+## sakura ##
+function sakura {
+  sakura_releases=$(fetch https://api.github.com/repos/Samsuik/Sakura/releases)
+  mapfile -t versions < <(jq -r '.[] | select(.draft | not) | .tag_name | split("+")[1] // empty' <<< "$sakura_releases" | sort -urV)
+  choose_version "${versions[@]}"
+  stepsSakura
+}
+
+function stepsSakura {
+  spigot_setup
+  download_asset "$(jq -c --arg v "$VERSION" '[.[] | select(.draft | not) | select(.tag_name | endswith("+" + $v))][0].assets[] | select(.name | test("^sakura-paperclip-.*\\.jar$"))' <<< "$sakura_releases")" "$JAR"
+  starterFile
+}
+
+## gale ##
+function gale {
+  gale_run=$(fetch "https://api.github.com/repos/GaleMC/Gale/actions/workflows/build.yml/runs?branch=main&status=success&per_page=1" | jq -r '.workflow_runs[0].id // empty')
+  gale_artifact=$(fetch "https://api.github.com/repos/GaleMC/Gale/actions/runs/${gale_run}/artifacts" | jq -c '.artifacts[0] // empty')
+  choose_version "$(jq -r '.name | capture("^gale-(?<v>.+)-[0-9]+\\.jar$").v // empty' <<< "$gale_artifact")"
+  stepsGale
+}
+
+function stepsGale {
+  spigot_setup
+  # GitHub serves artifacts only to logged in users: galemc.org serves the same file, checked with the GitHub digest
+  download "https://www.galemc.org/api/v2/download/artifact?run_id=${gale_run}" "$JAR" "$(jq -r '.digest // empty' <<< "$gale_artifact")"
+  starterFile
+}
+
+## pandaspigot ##
+function pandaspigot {
+  mapfile -t versions < <(fetch https://downloads.hpfxd.com/v2/projects/pandaspigot | jq -r '.versions[]' | sort -rV)
+  choose_version "${versions[@]}"
+  stepsPandaSpigot
+}
+
+function stepsPandaSpigot {
+  spigot_setup
+  local build sha256
+  build=$(fetch "https://downloads.hpfxd.com/v2/projects/pandaspigot/versions/${VERSION}" | jq -r '.builds | max')
+  sha256=$(fetch "https://downloads.hpfxd.com/v2/projects/pandaspigot/versions/${VERSION}/builds/${build}" | jq -r '.downloads.paperclip.sha256 // empty')
+  download "https://downloads.hpfxd.com/v2/projects/pandaspigot/versions/${VERSION}/builds/${build}/downloads/paperclip" "$JAR" "sha256:${sha256}"
+  starterFile
+}
+
+## lophine ##
+function lophine {
+  lophine_releases=$(fetch https://api.github.com/repos/LophineLabs/Lophine/releases)
+  mapfile -t versions < <(jq -r '.[] | select(.draft | not) | .tag_name | split("-")[0]' <<< "$lophine_releases" | sort -urV)
+  choose_version "${versions[@]}"
+  stepsLophine
+}
+
+function stepsLophine {
+  spigot_setup
+  download_asset "$(jq -c --arg v "$VERSION" '[.[] | select(.draft | not) | select(.tag_name | startswith($v + "-"))][0].assets[] | select(.name | test("^lophine-.*-paperclip\\.jar$"))' <<< "$lophine_releases")" "$JAR"
   starterFile
 }
 
 ## end ##
 function starterFile {
-  spigot_name=$(echo "${spigottype_sel}" | tr '[:upper:]' '[:lower:]')
-  final_name="${spigot_name}ver_sel"
-  server_version="${!final_name}"
-  cd ${spigotfolder:-/root/spigot}
-  echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
-  echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
-  / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
-  \__ \ /(__)\  )    (  )(__)(  )___/ )   / )(_)( 
-  (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
-          https://github.com/samupro-dev'
-  echo -e ' '
-  java -Xms128M -Xmx${spigotmem:-2048}M -jar ${spigot_name}-${server_version}.jar nogui" >> starter.sh
-  chmod +x starter.sh
-  successInstall
+  write_starter "java -Xms128M -Xmx${MEM}M -jar ${JAR} nogui"
+  check_java "$VERSION"
+  success "$TYPE $VERSION"
 }
 
-function successInstall {
-  echo -e " "
-  echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
-  echo -e "${LIGHT_GREEN} Your server was successfully installed!\n   ${CYAN}* Version: ${WHITE}${spigottype_sel} ${server_version}\n   ${CYAN}* Location: ${WHITE}${spigotfolder:-/root/spigot}\n   ${CYAN}* RAM: ${WHITE}${spigotmem:-2048}M\n   ${CYAN}* Port: ${WHITE}${spigotport:-25565} ${COLOR_NULL}"
-  echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
-  echo -e "${YELLOW}To start the server use the ${LIGHT_RED}./starter.sh ${YELLOW}command${COLOR_NULL}"
-  exit 0
-}
-
+banner
 spigot_conf

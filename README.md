@@ -9,8 +9,14 @@ Additionally, it downloads everything from their OFFICIAL SOURCES, ensuring you 
 - ~~**Automatic java installation:** you don't even have to worry about Java as the script will take care of that and install it for you~~
 - **Self-updating script:** enjoy new features and improvements without having to manually update the script, as it updates automatically
 
+## Requirements
+- A Debian or Ubuntu based system (missing packages are installed with `apt-get`)
+- Java, to run the server: the script does not install it, but it tells you which version the server needs
+- Python 3.11 or newer, only for Endstone (the script offers to install `python3-venv` if it is missing)
+- Root or sudo permissions, only needed to install the missing packages
+
 ## How To Use
-It's super easy! Just type in the following command as root in order to commence with the installation. After that the script will help you through the entire process of installing the server of your choice:
+It's super easy! Just type in the following command as root or as a user with sudo permissions in order to commence with the installation. The server is installed in the home folder of the user who runs the script. After that the script will help you through the entire process of installing the server of your choice:
 ```bash
 bash <(wget -O - 'https://raw.githubusercontent.com/samupro-dev/mc-server-installer/main/server-installer.sh')
 ```
@@ -31,6 +37,56 @@ If you come across any bugs or have suggestions for new features, please don't h
 - [ ] A better interface?
 
 ## Changelogs
+### v5.7
+- Fixed issue where the Spigot fork could delete the files in the current folder if the install folder could not be created
+- The Spigot jar is now built in a temporary folder, so the other files in the install folder are never touched
+- Fixed issue where Spigot 26.x was built with the wrong Java version
+- Fixed issue where Spigot 1.20.5 was built with the wrong Java version
+- Fixed the modded menu: Youer, Fabric and Mohist now install the right fork and Cancel no longer installs Fabric
+- Fixed issue where Mohist and Youer jars were not saved
+- Fixed issue with Youer download links
+- Fixed issue where the BungeeCord startup file pointed to the wrong jar
+- Bedrock now uses the official Mojang download API and the right default port (19132)
+- Fixed issue where Bedrock asked to overwrite server.properties during the installation
+- Fixed issue where sudo users were not really running the script with root permissions: now sudo is asked only when a package must be installed (so a dedicated user without sudo can use the script) and the server is installed in the user's home folder
+- Failed downloads now stop the script with an error instead of showing a successful installation
+- The EULA must now be accepted explicitly and online-mode is enabled by default
+- The RAM, port and max players values are now validated
+- The script asks before installing in a folder that is not empty
+- The startup file is no longer duplicated when reinstalling and works from any folder
+- Forge 1.17+ now uses the RAM value chosen during the setup
+- Added a warning when Java is not installed or too old for the selected version
+- The Spigot version list loads much faster
+- Added the Leaf, Canvas, DivineMC, ShreddedPaper, Sakura, Gale, PandaSpigot and Lophine forks to Spigot
+- Added the NeoForge, Quilt and SpongeVanilla forks to modded
+- Added the Velocity-CTD, Geyser (standalone), Gate, ViaProxy, WaterdogPE and Infrarust proxies, and the Limbo, PicoLimbo and NanoLimbo servers
+- Added Pumpkin (a server for Java and Bedrock players, still in development) to vanilla
+- The Forge, NeoForge, Quilt and ViaProxy installers now run with their own temporary Java, like the Spigot build, so Java is only needed to start the server
+- The Java version used to build Spigot is now read from the official BuildTools data of each version
+- Added the Endstone, Nukkit-MOT, Lumi and Allay Bedrock servers (Endstone needs Python 3.11 or newer)
+- Removed the Pufferfish fork (no longer updated)
+- Removed the Glowstone fork (no longer updated)
+- Removed the Waterfall fork (end of life, use Velocity)
+- Removed the CatServer fork (no longer updated and its download server is offline)
+- Removed the SpongeForge fork (it is a Forge mod and could not start a server, use SpongeVanilla)
+- Removed the Magma fork (its download API is offline)
+- Mohist and Youer only show the versions that can be downloaded
+- Arclight versions are now sorted by version
+- Forge installs the recommended build when there is one
+- Moved the shared code to common.sh
+- Added automatic checks on GitHub: ShellCheck, unit tests and a real install and start of every server software, also run every week to notice download sources that stop working
+- The package list is updated before installing the missing packages
+- The installer now shows an error when a script cannot be downloaded instead of doing nothing
+- Downloads now time out instead of hanging, and every file is checked with its official checksum when the source publishes one (all of them except Arclight, Canvas, Fabric, BungeeCord, Limbo, NukkitX, PowerNukkitX, Bedrock and the Spigot BuildTools; Endstone is installed with pip from PyPI)
+- Versions received from the download sources are now validated before being used
+- Spigot can now be built on ARM (aarch64) servers
+- Bedrock shows a clear error on systems where the official server cannot run
+- Reinstalling Bedrock no longer overwrites server.properties, allowlist.json and permissions.json
+- The premium users option now also works for NukkitX
+- Fixed the download of old Forge versions (1.7.10 - 1.9.4)
+- Old modded servers now warn when Java 8 is not the installed version
+- Server files are no longer readable by other users of the system
+- Temporary files are removed even when the script is interrupted
 ### v5.6
 - Added compilation support for Java 25 for Spigot jar 26.x
 - Fixed issue with download links for Microsoft's Bedrock jar

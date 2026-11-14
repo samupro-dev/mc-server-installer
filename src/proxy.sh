@@ -1,105 +1,170 @@
 #!/bin/bash
-DONE="\e[0;32m ✔\e[0m"
-ERROR="\e[0;31m ✘\e[0m"
-YELLOW="\e[1;33m"
-LIGHT_RED="\e[1;31m"
-LIGHT_GREEN="\e[1;32m"
-COLOR_NULL="\e[0m"
-PURPLE="\e[0;35m"
-CYAN="\e[0;36m"
-WHITE="\e[1;37m"
-LIGHT_PURPLE="\e[1;35m"
+COMMON=${MCSI_COMMON:-$(wget -qO- https://raw.githubusercontent.com/samupro-dev/mc-server-installer/main/src/common.sh)} || { echo "Could not download common.sh, check your internet connection."; exit 1; }
+# shellcheck source=src/common.sh
+source /dev/stdin <<< "$COMMON"
+declare -F die >/dev/null || { echo "Could not load common.sh, please try again later."; exit 1; }
+require curl wget jq
 
-clear
-echo -e "\n${LIGHT_PURPLE}      ╔╦╗╔═╗  ╔═╗╔═╗╦═╗╦  ╦╔═╗╦═╗  ╦╔╗╔╔═╗╔╦╗╔═╗╦  ╦  ╔═╗╦═╗
-      ║║║║    ╚═╗║╣ ╠╦╝╚╗╔╝║╣ ╠╦╝  ║║║║╚═╗ ║ ╠═╣║  ║  ║╣ ╠╦╝
-      ╩ ╩╚═╝  ╚═╝╚═╝╩╚═ ╚╝ ╚═╝╩╚═  ╩╝╚╝╚═╝ ╩ ╩ ╩╩═╝╩═╝╚═╝╩╚═
-             ${PURPLE}You are using the auto updated script${COLOR_NULL}\n"
-sleep 1
-
-function bungee_conf {
-  echo -e "\n${YELLOW}[[[--- Welcome to the setup for configuring your server! ---]]]${COLOR_NULL}\n"
-  echo -e -n "${CYAN} ( * ) Enter the amount of RAM to allocate in megabytes (default: 2048): ${COLOR_NULL}"
-  read bungeemem
-  echo -e -n "${CYAN} ( * ) Enter the directory where the server will be installed (default: /root/bungee): ${COLOR_NULL}"
-  read bungeefolder
-  echo -e "\n${LIGHT_RED} !! ${CYAN}Server type selected: ${YELLOW}BUNGEE ${COLOR_NULL}"
-  bungeetype=("BungeeCord" "Waterfall" "Velocity" "Cancel")
+function proxy_conf {
+  ask_basics proxy
+  echo -e "\n${LIGHT_RED} !! ${CYAN}Server type selected: ${YELLOW}PROXY ${COLOR_NULL}"
   echo -e "${CYAN} ( * ) Select the type of fork that suits you best! ${COLOR_NULL}"
-  select bungeetype_sel in "${bungeetype[@]}"; do
-    case "$REPLY" in
-    1) bungeecord ;;
-    2) waterfall ;;
-    3) velocity ;;
-    4) exit 0 ;;
-    *) echo -e "${ERROR} ${LIGHT_RED}The argument you entered is incorrect! ${COLOR_NULL}";;
-    esac
-  done
+  choose TYPE "BungeeCord" "Velocity" "Velocity-CTD" "Geyser" "Gate" "ViaProxy" "WaterdogPE" "Infrarust" "Limbo" "PicoLimbo" "NanoLimbo"
+  case "$TYPE" in
+    BungeeCord) bungeecord ;;
+    Velocity) velocity ;;
+    Velocity-CTD) velocity_ctd ;;
+    Geyser) geyser ;;
+    Gate) gate ;;
+    ViaProxy) viaproxy ;;
+    WaterdogPE) waterdogpe ;;
+    Infrarust) infrarust ;;
+    Limbo) limbo ;;
+    PicoLimbo) picolimbo ;;
+    NanoLimbo) nanolimbo ;;
+  esac
 }
 
-function bungee_setup {
-  echo -e "\n"
-  mkdir ${bungeefolder:-/root/bungee}
-  cd ${bungeefolder:-/root/bungee}
-  echo -e "${YELLOW} Fetching the versions. . . (it might take a while)\n ${COLOR_NULL}"
+function proxy_setup {
+  prepare_folder
+  step "Downloading the proxy. . ."
+  JAR="${TYPE,,}.jar"
+  START="java -Xms128M -Xmx${MEM}M -jar ${JAR} nogui"
 }
 
 ## bungeecord ##
 function bungeecord {
-  bungee_setup
-  cd ${bungeefolder:-/root/bungee}
-  echo -e "${YELLOW} Downloading the jar file. . . ${COLOR_NULL}"
-  wget https://ci.md-5.net/job/BungeeCord/lastSuccessfulBuild/artifact/bootstrap/target/BungeeCord.jar
-  starterFile
-}
-
-## waterfall ##
-function waterfall {
-  bungee_setup
-  cd ${bungeefolder:-/root/bungee}
-  echo -e "${YELLOW} Downloading the jar file. . . ${COLOR_NULL}"
-  waterfall_ver=$(curl -s -X 'GET' 'https://fill.papermc.io/v3/projects/waterfall/versions' -H 'accept: application/json' | jq -r '.versions[0].version.id')
-  waterfall_build=$(curl -s -X 'GET' "https://fill.papermc.io/v3/projects/waterfall/versions/${waterfall_ver}/builds/latest" -H 'accept: application/json' | jq -r '.downloads["server:default"].url')
-  wget ${waterfall_build}
-  mv waterfall-*.jar waterfall.jar
+  proxy_setup
+  download https://ci.md-5.net/job/BungeeCord/lastSuccessfulBuild/artifact/bootstrap/target/BungeeCord.jar "$JAR"
   starterFile
 }
 
 ## velocity ##
 function velocity {
-  bungee_setup
-  cd ${bungeefolder:-/root/bungee}
-  echo -e "${YELLOW} Downloading the jar file. . . ${COLOR_NULL}"
-  velocity_ver=$(curl -s -X 'GET' 'https://fill.papermc.io/v3/projects/velocity/versions' -H 'accept: application/json' | jq -r '.versions[0].version.id')
-  velocity_build=$(curl -s -X 'GET' "https://fill.papermc.io/v3/projects/velocity/versions/${velocity_ver}/builds/latest" -H 'accept: application/json' | jq -r '.downloads["server:default"].url')
-  wget ${velocity_build}
-  mv velocity-*.jar velocity.jar
+  proxy_setup
+  local version file
+  version=$(fetch https://fill.papermc.io/v3/projects/velocity/versions | jq -r '.versions[0].version.id')
+  file=$(fetch "https://fill.papermc.io/v3/projects/velocity/versions/${version}/builds/latest" | jq -c '.downloads["server:default"]')
+  download "$(jq -r '.url' <<< "$file")" "$JAR" "sha256:$(jq -r '.checksums.sha256 // empty' <<< "$file")"
+  starterFile
+}
+
+## velocity-ctd ##
+function velocity_ctd {
+  proxy_setup
+  download_asset "$(github_asset GemstoneGG/Velocity-CTD '^velocity-ctd-[0-9].*\.jar$')" "$JAR"
+  starterFile
+}
+
+## geyser ##
+function geyser {
+  proxy_setup
+  local build
+  build=$(fetch https://download.geysermc.org/v2/projects/geyser/versions/latest/builds/latest)
+  download "https://download.geysermc.org/v2/projects/geyser/versions/$(jq -r '.version' <<< "$build")/builds/$(jq -r '.build' <<< "$build")/downloads/standalone" \
+    "$JAR" "sha256:$(jq -r '.downloads.standalone.sha256 // empty' <<< "$build")"
+  starterFile
+}
+
+## gate ##
+function gate {
+  local arch
+  case "$(uname -m)" in
+    x86_64) arch="amd64" ;;
+    aarch64|arm64) arch="arm64" ;;
+    *) die "Gate is only available for x86_64 and aarch64 systems." ;;
+  esac
+  proxy_setup
+  download_asset "$(github_asset minekube/gate "^gate_[0-9.]+_linux_${arch}$")" gate
+  chmod +x gate
+  START="./gate"
+  starterFile
+}
+
+## viaproxy ##
+function viaproxy {
+  proxy_setup
+  download_asset "$(github_asset ViaVersion/ViaProxy '^ViaProxy-[0-9.]+\.jar$')" "$JAR"
+  START="java -Xms128M -Xmx${MEM}M -jar ${JAR} config viaproxy.yml"
+  # the first start only writes viaproxy.yml and exits
+  download_java 21
+  "$JAVA" -jar "$JAR" config viaproxy.yml >/dev/null 2>&1
+  warn "Set the address of your server in viaproxy.yml before starting ViaProxy."
+  starterFile
+}
+
+## waterdogpe ##
+function waterdogpe {
+  proxy_setup
+  download_asset "$(github_asset WaterdogPE/WaterdogPE '^Waterdog\.jar$')" "$JAR"
+  START="java -Xms128M -Xmx${MEM}M -jar ${JAR}"
+  starterFile
+}
+
+## infrarust ##
+function infrarust {
+  local arch
+  case "$(uname -m)" in
+    x86_64) arch="x86_64" ;;
+    aarch64|arm64) arch="arm64" ;;
+    *) die "Infrarust is only available for x86_64 and aarch64 systems." ;;
+  esac
+  proxy_setup
+  make_temp
+  download_asset "$(github_asset Shadowner/Infrarust "^infrarust-linux-${arch}\.tar\.gz$")" "$INSTALL_TEMP/infrarust.tar.gz"
+  tar -xzf "$INSTALL_TEMP/infrarust.tar.gz" -C "$INSTALL_TEMP" && mv "$(find "$INSTALL_TEMP" -type f -name infrarust -print -quit)" infrarust || die "Could not extract Infrarust."
+  chmod +x infrarust
+  # without infrarust.toml Infrarust starts an interactive setup
+  mkdir -p servers
+  [ -f infrarust.toml ] || printf 'bind = "0.0.0.0:25565"\nservers_dir = "./servers"\n' > infrarust.toml
+  warn "Add your servers as .toml files in the servers folder, see https://infrarust.dev/guide/"
+  START="./infrarust"
+  starterFile
+}
+
+## limbo ##
+function limbo {
+  proxy_setup
+  local build
+  build=$(fetch "https://ci.loohpjames.com/job/Limbo/lastSuccessfulBuild/api/json?tree=artifacts%5BfileName,relativePath%5D")
+  download "https://ci.loohpjames.com/job/Limbo/lastSuccessfulBuild/artifact/$(jq -r '.artifacts[] | select(.fileName | test("^Limbo-.*\\.jar$")) | .relativePath' <<< "$build")" "$JAR"
+  starterFile
+}
+
+## picolimbo ##
+function picolimbo {
+  local arch
+  case "$(uname -m)" in
+    x86_64) arch="x86_64" ;;
+    aarch64|arm64) arch="aarch64" ;;
+    *) die "PicoLimbo is only available for x86_64 and aarch64 systems." ;;
+  esac
+  proxy_setup
+  make_temp
+  download_asset "$(github_asset Quozul/PicoLimbo "^pico_limbo_linux-${arch}-gnu\.tar\.gz$")" "$INSTALL_TEMP/picolimbo.tar.gz"
+  tar -xzf "$INSTALL_TEMP/picolimbo.tar.gz" -C "$INSTALL_TEMP" && mv "$(find "$INSTALL_TEMP" -type f -name pico_limbo -print -quit)" pico_limbo || die "Could not extract PicoLimbo."
+  chmod +x pico_limbo
+  START="./pico_limbo"
+  starterFile
+}
+
+## nanolimbo ##
+function nanolimbo {
+  proxy_setup
+  download_asset "$(github_asset BoomEaro/NanoLimbo '^NanoLimbo\.jar$')" "$JAR"
+  START="java -Xms128M -Xmx${MEM}M -jar ${JAR}"
   starterFile
 }
 
 ## end ##
 function starterFile {
-  bungee_name=$(echo "${bungeetype_sel}" | tr '[:upper:]' '[:lower:]')
-  cd ${bungeefolder:-/root/bungee}
-  echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
-  echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
-  / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
-  \__ \ /(__)\  )    (  )(__)(  )___/ )   / )(_)( 
-  (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
-          https://github.com/samupro-dev'
-  echo -e ' '
-  java -Xms128M -Xmx${bungeemem:-2048}M -jar ${bungee_name}.jar nogui" >> starter.sh
-  chmod +x starter.sh
-  successInstall
+  write_starter "$START"
+  case "$TYPE" in
+    Gate|Infrarust|PicoLimbo) ;;
+    *) check_java ;;
+  esac
+  success "$TYPE"
 }
 
-function successInstall {
-  echo -e " "
-  echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
-  echo -e "${LIGHT_GREEN} Your server was successfully installed!\n   ${CYAN}* Version: ${WHITE}${bungeetype_sel}\n   ${CYAN}* Location: ${WHITE}${bungeefolder:-/root/bungee}\n   ${CYAN}* RAM: ${WHITE}${bungeemem:-2048}M ${COLOR_NULL}"
-  echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
-  echo -e "${YELLOW}To start the server use the ${LIGHT_RED}./starter.sh ${YELLOW}command${COLOR_NULL}"
-  exit 0
-}
-
-bungee_conf
+banner
+proxy_conf

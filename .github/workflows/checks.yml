@@ -1,0 +1,126 @@
+name: Checks
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+  schedule:
+    - cron: "17 6 * * 1" # every Monday, to notice download sources that stop working
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  lint:
+    name: Syntax, ShellCheck and actionlint
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - name: Workflow syntax
+        run: docker run --rm -v "$PWD:/repo" --workdir /repo rhysd/actionlint:1.7.12 -color
+      - name: Bash syntax
+        run: |
+          for file in server-installer.sh src/*.sh tests/*.sh tests/bin/wget; do
+            [ "$file" = src/version.sh ] && continue
+            bash -n "$file"
+          done
+      - name: ShellCheck
+        run: |
+          command -v shellcheck >/dev/null || sudo apt-get install -y shellcheck
+          shopt -s extglob
+          # style notes (like "A && B || C") are used on purpose, only warnings and errors fail the check
+          shellcheck -x --severity=warning server-installer.sh src/!(version).sh tests/*.sh tests/bin/wget
+
+  unit:
+    name: Unit tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - name: Test common.sh
+        run: bash tests/test_common.sh
+
+  install:
+    # installs every server software with the real scripts, then starts it until it is ready
+    name: Install ${{ matrix.name }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    strategy:
+      fail-fast: false
+      matrix:
+        # answers: replies to the questions separated by ";" (RAM;folder;port;premium;players;EULA;type;version)
+        include:
+          - { name: Vanilla, script: vanilla, answers: ";FOLDER;;;;y;1;1", expected: Vanilla }
+          - { name: Snapshot, script: vanilla, answers: ";FOLDER;;;;y;2", expected: Snapshot }
+          - { name: Pumpkin, script: vanilla, answers: ";FOLDER;;;;y;3", expected: Pumpkin }
+          - { name: Spigot, script: spigot, answers: ";FOLDER;;;;y;1;1", expected: Spigot }
+          - { name: Paper, script: spigot, answers: ";FOLDER;;;;y;2;1", expected: Paper }
+          - { name: Purpur, script: spigot, answers: ";FOLDER;;;;y;3;1", expected: Purpur }
+          - { name: Folia, script: spigot, answers: ";FOLDER;;;;y;4;1", expected: Folia }
+          - { name: Leaf, script: spigot, answers: ";FOLDER;;;;y;5;1", expected: Leaf }
+          - { name: Canvas, script: spigot, answers: ";FOLDER;;;;y;6;1", expected: Canvas }
+          - { name: DivineMC, script: spigot, answers: ";FOLDER;;;;y;7;1", expected: DivineMC }
+          - { name: ShreddedPaper, script: spigot, answers: ";FOLDER;;;;y;8;1", expected: ShreddedPaper }
+          - { name: Sakura, script: spigot, answers: ";FOLDER;;;;y;9;1", expected: Sakura }
+          - { name: Gale, script: spigot, answers: ";FOLDER;;;;y;10;1", expected: Gale }
+          - { name: PandaSpigot, script: spigot, answers: ";FOLDER;;;;y;11;1", expected: PandaSpigot }
+          - { name: Lophine, script: spigot, answers: ";FOLDER;;;;y;12;1", expected: Lophine }
+          # BungeeCord goes through installer.sh, so the full path from the menu is checked too
+          - { name: BungeeCord, script: installer, answers: "1;;FOLDER;1", expected: BungeeCord }
+          - { name: Velocity, script: proxy, answers: ";FOLDER;2", expected: Velocity }
+          - { name: Velocity-CTD, script: proxy, answers: ";FOLDER;3", expected: Velocity-CTD }
+          - { name: Geyser, script: proxy, answers: ";FOLDER;4", expected: Geyser }
+          - { name: Gate, script: proxy, answers: ";FOLDER;5", expected: Gate }
+          - { name: ViaProxy, script: proxy, answers: ";FOLDER;6", expected: ViaProxy }
+          - { name: WaterdogPE, script: proxy, answers: ";FOLDER;7", expected: WaterdogPE }
+          - { name: Infrarust, script: proxy, answers: ";FOLDER;8", expected: Infrarust }
+          - { name: Limbo, script: proxy, answers: ";FOLDER;9", expected: Limbo }
+          - { name: PicoLimbo, script: proxy, answers: ";FOLDER;10", expected: PicoLimbo }
+          - { name: NanoLimbo, script: proxy, answers: ";FOLDER;11", expected: NanoLimbo }
+          - { name: Bedrock, script: bedrock, answers: ";FOLDER;;;;y;1;1", expected: Bedrock Latest }
+          - { name: Bedrock Preview, script: bedrock, answers: ";FOLDER;;;;y;1;2", expected: Bedrock Preview }
+          - { name: Endstone, script: bedrock, answers: ";FOLDER;;;;y;2", expected: Endstone }
+          - { name: NukkitX, script: bedrock, answers: ";FOLDER;;;;y;3", expected: NukkitX }
+          - { name: Nukkit-MOT, script: bedrock, answers: ";FOLDER;;;;y;4", expected: Nukkit-MOT }
+          - { name: Lumi, script: bedrock, answers: ";FOLDER;;;;y;5", expected: Lumi }
+          - { name: PowerNukkitX, script: bedrock, answers: ";FOLDER;;;;y;6", expected: PowerNukkitX }
+          - { name: Allay, script: bedrock, answers: ";FOLDER;;;;y;7", expected: Allay }
+          - { name: Forge, script: modded, answers: ";FOLDER;;;;y;1;1", expected: Forge }
+          - { name: NeoForge, script: modded, answers: ";FOLDER;;;;y;2;1", expected: NeoForge }
+          - { name: Fabric, script: modded, answers: ";FOLDER;;;;y;3;1", expected: Fabric }
+          - { name: Quilt, script: modded, answers: ";FOLDER;;;;y;4;1", expected: Quilt }
+          - { name: Youer, script: modded, answers: ";FOLDER;;;;y;5;1", expected: Youer }
+          - { name: Mohist, script: modded, answers: ";FOLDER;;;;y;6;1", expected: Mohist }
+          - { name: Arclight, script: modded, answers: ";FOLDER;;;;y;7;1", expected: Arclight }
+          - { name: SpongeVanilla, script: modded, answers: ";FOLDER;;;;y;8;1", expected: SpongeVanilla }
+          - { name: Crucible, script: modded, answers: ";FOLDER;;;;y;9;1", expected: Crucible }
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-java@v6
+        with:
+          distribution: temurin
+          # the last one is the default java, the others are picked by tests/run-install.sh
+          java-version: |
+            8
+            17
+            21
+            25
+      - name: Install and start the server
+        env:
+          SCRIPT: ${{ matrix.script }}
+          ANSWERS: ${{ matrix.answers }}
+          EXPECTED: ${{ matrix.expected }}
+          # many jobs call the GitHub API at the same time, without a token they hit its rate limit
+          GITHUB_TOKEN: ${{ github.token }}
+        run: bash tests/run-install.sh "$SCRIPT" "$ANSWERS" "$EXPECTED" true

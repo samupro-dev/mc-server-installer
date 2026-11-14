@@ -1,0 +1,24 @@
+#!/bin/bash
+# Test wrapper for wget: files of this repository are served from the checkout instead of
+# raw.githubusercontent.com, so the checks test the code being pushed and not the main branch.
+# Every other URL goes to the real wget.
+repo=$(cd "$(dirname "$0")/../.." && pwd)
+prefix="https://raw.githubusercontent.com/samupro-dev/mc-server-installer/main/"
+out="" url=""
+args=("$@")
+for ((i = 0; i < ${#args[@]}; i++)); do
+  case "${args[i]}" in
+    -qO-|-O-) out="-" ;;
+    -O) out=${args[i + 1]} ;;
+    "$prefix"*) url=${args[i]} ;;
+  esac
+done
+if [ -n "$url" ]; then
+  file="$repo/${url#"$prefix"}"
+  [ -f "$file" ] || exit 8 # same exit code as wget for a server error
+  if [ "$out" = "-" ]; then cat "$file"; else cp "$file" "$out"; fi
+  exit
+fi
+real=$(type -P -a wget | grep -vx "$repo/tests/bin/wget" | head -n 1)
+[ -n "$real" ] || { echo "wget is not installed" >&2; exit 1; }
+exec "$real" "$@"

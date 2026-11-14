@@ -1,169 +1,136 @@
 #!/bin/bash
-DONE="\e[0;32m ✔\e[0m"
-ERROR="\e[0;31m ✘\e[0m"
-YELLOW="\e[1;33m"
-LIGHT_RED="\e[1;31m"
-LIGHT_GREEN="\e[1;32m"
-COLOR_NULL="\e[0m"
-PURPLE="\e[0;35m"
-CYAN="\e[0;36m"
-WHITE="\e[1;37m"
-LIGHT_PURPLE="\e[1;35m"
-
-clear
-echo -e "\n${LIGHT_PURPLE}      ╔╦╗╔═╗  ╔═╗╔═╗╦═╗╦  ╦╔═╗╦═╗  ╦╔╗╔╔═╗╔╦╗╔═╗╦  ╦  ╔═╗╦═╗
-      ║║║║    ╚═╗║╣ ╠╦╝╚╗╔╝║╣ ╠╦╝  ║║║║╚═╗ ║ ╠═╣║  ║  ║╣ ╠╦╝
-      ╩ ╩╚═╝  ╚═╝╚═╝╩╚═ ╚╝ ╚═╝╩╚═  ╩╝╚╝╚═╝ ╩ ╩ ╩╩═╝╩═╝╚═╝╩╚═
-             ${PURPLE}You are using the auto updated script${COLOR_NULL}\n"
-sleep 1
+COMMON=${MCSI_COMMON:-$(wget -qO- https://raw.githubusercontent.com/samupro-dev/mc-server-installer/main/src/common.sh)} || { echo "Could not download common.sh, check your internet connection."; exit 1; }
+# shellcheck source=src/common.sh
+source /dev/stdin <<< "$COMMON"
+declare -F die >/dev/null || { echo "Could not load common.sh, please try again later."; exit 1; }
+require curl wget jq unzip
 
 function bedrock_conf {
-  echo -e "\n${YELLOW}[[[--- Welcome to the setup for configuring your server! ---]]]${COLOR_NULL}\n"
-  echo -e -n "${CYAN} ( * ) Enter the amount of RAM to allocate in megabytes (default: 2048): ${COLOR_NULL}"
-  read bedrockmem
-  echo -e -n "${CYAN} ( * ) Enter the directory where the server will be installed (default: /root/bedrock): ${COLOR_NULL}"
-  read bedrockfolder
-  echo -e -n "${CYAN} ( * ) Enter the port where to host the server (default: 25565): ${COLOR_NULL}"
-  read bedrockport
-  echo -e -n "${CYAN} ( * ) Do you want to grant server access only to premium users? (default: false): ${COLOR_NULL}"
-  read bedrockomode
-  echo -e -n "${CYAN} ( * ) How many maximum players should the server have? (default: 20): ${COLOR_NULL}"
-  read bedrockmplayers
-  echo -e -n "${CYAN} ( * ) Do you want to accept the EULA for minecraft? (default: true): ${COLOR_NULL}"
-  read bedrockeula
+  ask_basics bedrock
+  ask_game 19132
   echo -e "\n${LIGHT_RED} !! ${CYAN}Server type selected: ${YELLOW}BEDROCK ${COLOR_NULL}"
-  bedrocktype=("Bedrock" "NukkitX" "PowerNukkitX" "Cancel")
   echo -e "${CYAN} ( * ) Select the type of fork that suits you best! ${COLOR_NULL}"
-  select bedrocktype_sel in "${bedrocktype[@]}"; do
-    case "$REPLY" in
-    1) bedrock ;;
-    2) nukkitx ;;
-    3) powernukkitx ;;
-    4) exit 0 ;;
-    *) echo -e "${ERROR} ${LIGHT_RED}The argument you entered is incorrect! ${COLOR_NULL}";;
-    esac
-  done
+  choose TYPE "Bedrock" "Endstone" "NukkitX" "Nukkit-MOT" "Lumi" "PowerNukkitX" "Allay"
+  VERSION="Latest"
+  case "$TYPE" in
+    Bedrock) bedrock ;;
+    Endstone) endstone ;;
+    NukkitX) nukkitx ;;
+    Nukkit-MOT) nukkit_mot ;;
+    Lumi) lumi ;;
+    PowerNukkitX) powernukkitx ;;
+    Allay) allay ;;
+  esac
 }
 
 function bedrock_setup {
-  echo -e "\n"
-  mkdir ${bedrockfolder:-/root/bedrock}
-  cd ${bedrockfolder:-/root/bedrock}
-  echo -e "${YELLOW} Setting up the server settings. . . ${COLOR_NULL}"
-  echo -e "server-port=${bedrockport:-25565}\nonline-mode=${bedrockomode:-false}\nmax-players=${bedrockmplayers:-20}" > server.properties
-  echo -e "${YELLOW} Setting up the EULA file. . . ${COLOR_NULL}"
-  echo -e "# The minecraft EULA file has been set to ' ${bedrockeula:-true} ' by the user who ran the script.\n# https://github.com/samupro-dev/mc-server-installer\neula=${bedrockeula:-true}" > eula.txt
-  echo -e "${YELLOW} Fetching the versions. . . (it might take a while)\n ${COLOR_NULL}"
+  prepare_folder
+  step "Downloading the server files. . ."
+  JAR="${TYPE,,}.jar"
+  START="java -Xms128M -Xmx${MEM}M -jar ${JAR} nogui"
 }
 
 ## bedrock ##
 function bedrock {
-  bedrock_setup
-  bedrockver=("Latest" "Preview" "Cancel")
-  echo -e "${CYAN} ( * ) Select the server version: ${COLOR_NULL}"
-  select bedrockver_sel in "${bedrockver[@]}"; do
-    case "$REPLY" in
-    1) stepsBedrock ;;
-    2) stepsBedrockPrev ;;
-    3) exit 0 ;;
-    *) echo -e "${ERROR} ${LIGHT_RED}The argument you entered is incorrect! ${COLOR_NULL}";;
-    esac
-  done
+  [ "$(uname -m)" = "x86_64" ] || die "The official Bedrock server only runs on x86_64 systems, choose a Nukkit based server or Allay instead."
+  choose_version "Latest" "Preview"
+  stepsBedrock
 }
 
 function stepsBedrock {
-  echo -e " "
-  cd ${bedrockfolder:-/root/bedrock}
-  useragent=$(curl -s https://jnrbsn.github.io/user-agents/user-agents.json | jq -r '[.[] | select(. | contains("Linux x86_64")) | select(. | contains("Chrome"))][1]')
-  bedrockver=$(curl -sL -A "${useragent}" -H "Accept-Language: en" -H "Accept-Encoding: gzip, deflate" https://www.minecraft.net/en-us/download/server/bedrock | zgrep -o 'https://www.minecraft.net/bedrockdedicatedserver/bin-linux/[^"]*')
-  wget ${bedrockver}
-  unzip bedrock-server*.zip
-  rm bedrock-server*.zip
+  bedrock_setup
+  local link_type url unzip_args config
+  link_type="serverBedrockLinux"
+  [ "$VERSION" = "Preview" ] && link_type="serverBedrockPreviewLinux"
+  url=$(fetch https://net-secondary.web.minecraft-services.net/api/v1.0/download/links | jq -r --arg t "$link_type" '.result.links[] | select(.downloadType == $t) | .downloadUrl')
+  download "$url" bedrock-server.zip
+  unzip_args=(-oq bedrock-server.zip)
+  for config in server.properties allowlist.json permissions.json; do
+    [ -f "$config" ] && unzip_args+=(-x "$config")
+  done
+  unzip "${unzip_args[@]}" || die "Could not extract the Bedrock server."
+  rm bedrock-server.zip
+  VERSION="$VERSION $(basename "$url" .zip | sed 's/^bedrock-server-//')"
+  START="./bedrock_server"
   starterFile
 }
 
-function stepsBedrockPrev {
-  echo -e " "
-  cd ${bedrockfolder:-/root/bedrock}
-  useragent=$(curl -s https://jnrbsn.github.io/user-agents/user-agents.json | jq -r '[.[] | select(. | contains("Linux x86_64")) | select(. | contains("Chrome"))][1]')
-  bedrockver=$(curl -sL -A "${useragent}" -H "Accept-Language: en" -H "Accept-Encoding: gzip, deflate" https://www.minecraft.net/en-us/download/server/bedrock | zgrep -o 'https://www.minecraft.net/bedrockdedicatedserver/bin-linux-preview/[^"]*')
-  wget ${bedrockver}
-  unzip bedrock-server*.zip
-  rm bedrock-server*.zip
+## endstone ##
+function endstone {
+  [ "$(uname -m)" = "x86_64" ] || die "Endstone only runs on x86_64 systems, choose a Nukkit based server or Allay instead."
+  bedrock_setup
+  local install_it
+  command -v python3 &>/dev/null || install_package python3 || die "Endstone needs Python 3.11 or newer, please install it."
+  python3 -c 'import sys; sys.exit(sys.version_info < (3, 11))' || die "Endstone needs Python 3.11 or newer (Debian 12, Ubuntu 24.04 or newer systems)."
+  if ! python3 -m venv .venv &>/dev/null; then
+    ask_yes_no install_it "Endstone needs the python3-venv package, do you want to install it?" y
+    [ "$install_it" = true ] && install_package python3-venv && python3 -m venv .venv || die "Could not create the Python environment, install python3-venv and try again."
+  fi
+  .venv/bin/pip install --upgrade endstone || die "Could not install Endstone, check the log above."
+  VERSION=$(.venv/bin/python -c 'import importlib.metadata as m; print(m.version("endstone"))')
+  START=".venv/bin/endstone --yes --server-folder ."
   starterFile
 }
 
 ## nukkitx ##
 function nukkitx {
   bedrock_setup
-  nukkitxver=("Latest" "Cancel")
-  echo -e "${CYAN} ( * ) Select the server version: ${COLOR_NULL}"
-  select nukkitxver_sel in "${nukkitxver[@]}"; do
-    case "$REPLY" in
-    1) stepsNukkitX ;;
-    2) exit 0 ;;
-    *) echo -e "${ERROR} ${LIGHT_RED}The argument you entered is incorrect! ${COLOR_NULL}";;
-    esac
-  done
+  download "https://repo.opencollab.dev/api/maven/latest/file/maven-snapshots/cn/nukkit/nukkit/1.0-SNAPSHOT?extension=jar" "$JAR"
+  starterFile
 }
 
-function stepsNukkitX {
-  echo -e " "
-  cd ${bedrockfolder:-/root/bedrock}
-  wget --content-disposition https://repo.opencollab.dev/api/maven/latest/file/maven-snapshots/cn/nukkit/nukkit/1.0-SNAPSHOT?extension=jar
-  mv nukkit-1.0-*.jar nukkitx.jar
+## nukkit-mot ##
+# GitHub serves artifacts only to logged in users: nightly.link serves the same file, checked with the GitHub digest
+function nukkit_mot {
+  bedrock_setup
+  local run artifact jar
+  run=$(fetch "https://api.github.com/repos/MemoriesOfTime/Nukkit-MOT/actions/workflows/maven.yml/runs?branch=master&status=success&per_page=1" | jq -r '.workflow_runs[0].id // empty')
+  [ -n "$run" ] || die "Could not find the latest Nukkit-MOT build, the source may be offline."
+  artifact=$(fetch "https://api.github.com/repos/MemoriesOfTime/Nukkit-MOT/actions/runs/${run}/artifacts" | jq -c '.artifacts[] | select(.name == "Nukkit-MOT")')
+  make_temp
+  download "https://nightly.link/MemoriesOfTime/Nukkit-MOT/actions/runs/${run}/Nukkit-MOT.zip" "$INSTALL_TEMP/nukkit-mot.zip" "$(jq -r '.digest // empty' <<< "$artifact")"
+  jar=$(unzip -Z1 "$INSTALL_TEMP/nukkit-mot.zip" | grep -E '^Nukkit-MOT-.*\.jar$' | grep -vE 'Lite|sources' | head -n 1)
+  [ -n "$jar" ] && unzip -q "$INSTALL_TEMP/nukkit-mot.zip" "$jar" -d "$INSTALL_TEMP" && mv "$INSTALL_TEMP/$jar" "$JAR" || die "Could not find the Nukkit-MOT jar in the build."
+  starterFile
+}
+
+## lumi ##
+function lumi {
+  bedrock_setup
+  download_asset "$(github_asset KoshakMineDEV/Lumi '^Lumi-[0-9.]+\.jar$')" "$JAR"
   starterFile
 }
 
 ## powernukkitx ##
 function powernukkitx {
   bedrock_setup
-  powernukkitxver=("Latest" "Cancel")
-  echo -e "${CYAN} ( * ) Select the server version: ${COLOR_NULL}"
-  select powernukkitxver_sel in "${powernukkitxver[@]}"; do
-    case "$REPLY" in
-    1) stepsPowerNukkitX ;;
-    2) exit 0 ;;
-    *) echo -e "${ERROR} ${LIGHT_RED}The argument you entered is incorrect! ${COLOR_NULL}";;
-    esac
-  done
+  download https://github.com/PowerNukkitX/PowerNukkitX/releases/download/snapshot/powernukkitx.jar "$JAR"
+  starterFile
 }
 
-function stepsPowerNukkitX {
-  echo -e " "
-  cd ${bedrockfolder:-/root/bedrock}
-  wget https://github.com/PowerNukkitX/PowerNukkitX/releases/download/snapshot/powernukkitx.jar
+## allay ##
+function allay {
+  bedrock_setup
+  download_asset "$(fetch https://api.github.com/repos/AllayMC/Allay/releases/tags/nightly | jq -c '.assets[] | select(.name | test("^allay-server-.*-shaded\\.jar$"))')" "$JAR"
+  warn "Allay is still in development and uses server-settings.yml: set the port and the other settings there after the first start."
   starterFile
 }
 
 ## end ##
 function starterFile {
-  bedrock_name=$(echo "${bedrocktype_sel}" | tr '[:upper:]' '[:lower:]')
-  cd ${bedrockfolder:-/root/bedrock}
-  if [ "$bedrocktype_sel" = "Bedrock" ]; then
-    java_args="./bedrock_server"
-  else
-    java_args="java -Xms128M -Xmx${bedrockmem:-2048}M -jar ${bedrock_name}.jar nogui"
-  fi
-  echo -e "${YELLOW} The startup file has been created. ${COLOR_NULL}"
-  echo "  echo -e '   ___    __    __  __  __  __  ____  ____  _____ 
-  / __)  /__\  (  \/  )(  )(  )(  _ \(  _ \(  _  )
-  \__ \ /(__)\  )    (  )(__)(  )___/ )   / )(_)( 
-  (___/(__)(__)(_/\/\_)(______)(__)  (_)\_)(_____)
-          https://github.com/samupro-dev'
-  echo -e ' '
-  ${java_args}" >> starter.sh
-  chmod +x starter.sh
-  successInstall
+  # after the download, so the server.properties shipped with Bedrock gets the settings
+  write_properties
+  # Nukkit uses xbox-auth instead of online-mode
+  case "$TYPE" in
+    NukkitX|Nukkit-MOT|Lumi) set_property xbox-auth "$ONLINE_MODE" ;;
+  esac
+  write_starter "$START"
+  case "$TYPE" in
+    Bedrock|Endstone) ;;
+    *) check_java ;;
+  esac
+  success "$TYPE $VERSION"
 }
 
-function successInstall {
-  echo -e " "
-  echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
-  echo -e "${LIGHT_GREEN} Your server was successfully installed!\n   ${CYAN}* Version: ${WHITE}${bedrocktype_sel}\n   ${CYAN}* Location: ${WHITE}${bedrockfolder:-/root/bedrock}\n   ${CYAN}* RAM: ${WHITE}${bedrockmem:-2048}M\n   ${CYAN}* Port: ${WHITE}${bedrockport:-19132} ${COLOR_NULL}"
-  echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
-  echo -e "${YELLOW}To start the server use the ${LIGHT_RED}./starter.sh ${YELLOW}command${COLOR_NULL}"
-  exit 0
-}
-
+banner
 bedrock_conf
