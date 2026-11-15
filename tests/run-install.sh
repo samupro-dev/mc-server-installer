@@ -31,7 +31,8 @@ java_home="JAVA_HOME_${need}_X64" # set by actions/setup-java for every installe
 echo "Starting the server with Java ${need:-(default)}. . ."
 cd "$folder" || exit 1
 # new session, so the whole process tree can be stopped; stdin stays open like a real console
-setsid bash -c 'sleep infinity | ./starter.sh' > boot.log 2>&1 &
+# Cleanroom without Fugue and Scalar waits for "/fml confirm": it is typed like a user would
+setsid bash -c '{ until grep -q "/fml confirm" boot.log 2>/dev/null; do sleep 1; done; echo "/fml confirm"; sleep infinity; } | ./starter.sh' > boot.log 2>&1 &
 pid=$!
 for _ in $(seq 480); do
   # ready messages: Java servers and Velocity, BungeeCord and PicoLimbo, Bedrock, Gate, ViaProxy, Allay, WaterdogPE, Limbo, Infrarust, Pumpkin

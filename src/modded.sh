@@ -247,6 +247,7 @@ function stepsCleanroom {
   "$JAVA" -jar "$INSTALL_TEMP/cleanroom-installer.jar" server --dir . --memory "${MEM}M" --java "$JAVA" --no-provision-java --no-gui --yes || die "The Cleanroom installer failed, check the log above."
   # the temporary Java is removed at the end, run.sh must use the installed one
   sed -i "s|${JAVA}|java|g" run.sh || die "Could not find the Cleanroom run.sh."
+  warn "Without the Fugue and Scalar mods (needed by old mods) Cleanroom waits at every start: type /fml confirm to continue, or set DISABLE_PATCH_MOD_CHECK=true in config/forge_early.cfg."
   START="./run.sh nogui"
   starterFile
 }
