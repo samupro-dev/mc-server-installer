@@ -61,6 +61,10 @@ missing=$(check_java 1.21.1); missing_proxy=$(check_java)
 PATH=$PATH0
 check "check_java missing" "$(grep -c 'not installed, install Java 21' <<< "$missing")" 1
 check "check_java missing proxy" "$(grep -c 'not installed, install Java before' <<< "$missing_proxy")" 1
+PATH="$T/java17:$PATH0"
+check "JAVA_VERSION overrides the Minecraft one" "$(JAVA_VERSION=25; check_java 1.12.2 | grep -c 'at least Java 25')" 1
+check "check_java sets JAVA_VERSION" "$(check_java 1.21.1 >/dev/null; echo "$JAVA_VERSION")" 21
+PATH=$PATH0
 
 ## folders ##
 FOLDER="$T/a/b/c"; (prepare_folder >/dev/null && pwd > "$T/pwd"); check "prepare nested folder" "$(cat "$T/pwd")" "$T/a/b/c"
@@ -123,6 +127,8 @@ unset -f curl fake calls
 check "success shows port" "$(MEM=1024 PORT=25565 success "Paper 1.21" | grep -c 'Port')" 1
 check "success hides empty port" "$(MEM=1024 PORT="" success "Velocity" | grep -c 'Port')" 0
 check "success hides RAM when not asked" "$(MEM="" PORT="" success "Gate" | grep -c 'RAM')" 0
+check "success shows Java" "$(MEM=1024 JAVA_VERSION=25 success "Cleanroom 1.12.2" | sed 's/\x1b\[[0-9;]*m//g' | grep -c '\* Java: 25')" 1
+check "success hides empty Java" "$(MEM=1024 JAVA_VERSION="" success "Velocity" | grep -c 'Java')" 0
 
 cd / && rm -rf "$T"
 if [ "$fail" = 0 ]; then echo "ALL PASSED"; else exit 1; fi

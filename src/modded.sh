@@ -9,7 +9,7 @@ function modded_conf {
   ask_basics modded
   echo -e "\n${LIGHT_RED} !! ${CYAN}Server type selected: ${YELLOW}MODDED ${COLOR_NULL}"
   echo -e "${CYAN} ( * ) Select the type of fork that suits you best! ${COLOR_NULL}"
-  choose TYPE "Forge" "NeoForge" "Fabric" "Quilt" "Youer" "Mohist" "Arclight" "SpongeVanilla" "Crucible"
+  choose TYPE "Forge" "NeoForge" "Fabric" "Quilt" "Youer" "Mohist" "Arclight" "SpongeVanilla" "Crucible" "LegacyFabric" "Cleanroom"
   ask_ram
   ask_game 25565
   step "Fetching the versions. . . (it might take a while)\n"
@@ -23,6 +23,8 @@ function modded_conf {
     Arclight) arclight ;;
     SpongeVanilla) spongevanilla ;;
     Crucible) crucible ;;
+    LegacyFabric) legacyfabric ;;
+    Cleanroom) cleanroom ;;
   esac
 }
 
@@ -213,12 +215,48 @@ function stepsCrucible {
   starterFile
 }
 
+## legacyfabric ##
+function legacyfabric {
+  mapfile -t versions < <(fetch https://meta.legacyfabric.net/v2/versions/game | jq -r '.[] | select(.stable == true) | .version')
+  choose_version "${versions[@]}"
+  stepsLegacyFabric
+}
+
+function stepsLegacyFabric {
+  modded_setup
+  local installer loader
+  installer=$(fetch https://meta.legacyfabric.net/v2/versions/installer | jq -r '.[0].version')
+  loader=$(fetch "https://meta.legacyfabric.net/v2/versions/loader/${VERSION}" | jq -r '.[0].loader.version')
+  download "https://meta.legacyfabric.net/v2/versions/loader/${VERSION}/${loader}/${installer}/server/jar" "$JAR"
+  starterFile
+}
+
+## cleanroom ##
+function cleanroom {
+  choose_version "1.12.2"
+  stepsCleanroom
+}
+
+function stepsCleanroom {
+  modded_setup
+  # Cleanroom runs on Java 25, not on the Java 8 of Minecraft 1.12.2
+  JAVA_VERSION=25
+  download_java 25
+  download_asset "$(github_asset CleanroomMC/Cleanroom '^cleanroom-.*-installer\.jar$')" "$INSTALL_TEMP/cleanroom-installer.jar"
+  # the installer writes run.sh and user_jvm_args.txt with the RAM, like Forge
+  "$JAVA" -jar "$INSTALL_TEMP/cleanroom-installer.jar" server --dir . --memory "${MEM}M" --java "$JAVA" --no-provision-java --no-gui --yes || die "The Cleanroom installer failed, check the log above."
+  # the temporary Java is removed at the end, run.sh must use the installed one
+  sed -i "s|${JAVA}|java|g" run.sh || die "Could not find the Cleanroom run.sh."
+  START="./run.sh nogui"
+  starterFile
+}
+
 ## end ##
 function starterFile {
   write_starter "$START"
   # old modded servers only start with Java 8
   local java_mode=""
-  [ "$(java_for_mc "$VERSION")" = 8 ] && java_mode="exact"
+  [ -z "$JAVA_VERSION" ] && [ "$(java_for_mc "$VERSION")" = 8 ] && java_mode="exact"
   check_java "$VERSION" "$java_mode"
   success "$TYPE $VERSION"
 }

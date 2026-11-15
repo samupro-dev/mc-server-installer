@@ -13,7 +13,7 @@ CYAN="\e[0;36m"
 WHITE="\e[1;37m"
 LIGHT_PURPLE="\e[1;35m"
 
-TYPE="" VERSION="" MEM="" FOLDER="" PORT="" ONLINE_MODE="" MAX_PLAYERS="" EULA="" INSTALL_TEMP="" JAVA=""
+TYPE="" VERSION="" MEM="" FOLDER="" PORT="" ONLINE_MODE="" MAX_PLAYERS="" EULA="" INSTALL_TEMP="" JAVA="" JAVA_VERSION=""
 
 # server files readable only by the owner (server.properties may hold the rcon password)
 umask 027
@@ -218,8 +218,10 @@ download_java() { # download_java <java version>: downloads a JDK from Azul into
 java_major() { java -version 2>&1 | awk -F'"' '/version/ {split($2, v, "."); print (v[1] == 1 ? v[2] : v[1] + 0); exit}'; }
 
 check_java() { # check_java [minecraft version] [exact]: warns when Java is missing, too old, or (exact) different
-  local need="" have
-  [ -n "$1" ] && need=$(java_for_mc "$1")
+  local need have
+  # a software that needs another Java than its Minecraft version sets JAVA_VERSION before, success shows it
+  [ -z "$JAVA_VERSION" ] && [ -n "$1" ] && JAVA_VERSION=$(java_for_mc "$1")
+  need=$JAVA_VERSION
   if ! command -v java &>/dev/null; then
     warn "Java is not installed, install Java${need:+ $need} before starting the server."
   elif [ -n "$need" ]; then
@@ -252,7 +254,7 @@ EOF
 success() { # success <installed version>
   echo -e " "
   echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
-  echo -e "${LIGHT_GREEN} Your server was successfully installed!\n   ${CYAN}* Version: ${WHITE}$1\n   ${CYAN}* Location: ${WHITE}${FOLDER}${MEM:+\n   ${CYAN}* RAM: ${WHITE}${MEM}M}${PORT:+\n   ${CYAN}* Port: ${WHITE}${PORT}} ${COLOR_NULL}"
+  echo -e "${LIGHT_GREEN} Your server was successfully installed!\n   ${CYAN}* Version: ${WHITE}$1\n   ${CYAN}* Location: ${WHITE}${FOLDER}${MEM:+\n   ${CYAN}* RAM: ${WHITE}${MEM}M}${JAVA_VERSION:+\n   ${CYAN}* Java: ${WHITE}${JAVA_VERSION}}${PORT:+\n   ${CYAN}* Port: ${WHITE}${PORT}} ${COLOR_NULL}"
   echo -e "${LIGHT_PURPLE}_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_/-/_${COLOR_NULL}"
   echo -e "${YELLOW}To start the server use the ${LIGHT_RED}${FOLDER}/starter.sh ${YELLOW}command${COLOR_NULL}"
   exit 0

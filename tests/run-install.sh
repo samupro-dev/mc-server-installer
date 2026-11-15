@@ -24,12 +24,11 @@ echo "Installed files:"; ls -la "$folder"
 [ "$boot" = true ] || exit 0
 
 ## start the server with the Java version it needs ##
-# only the summary line: the Spigot build also prints "Java Version: Java 25"
-version=$(sed -n 's/.*\* Version: [^ ]* \([^ ]*\).*/\1/p' "$log")
-need=$(bash -c 'source "$1/src/common.sh"; java_for_mc "$2"' _ "$R" "$version")
+# the Java shown in the summary, none for software that does not say it (the default Java is used)
+need=$(sed -n 's/.*\* Java: \([0-9]*\).*/\1/p' "$log")
 java_home="JAVA_HOME_${need}_X64" # set by actions/setup-java for every installed version
-[ -n "${!java_home}" ] && export PATH="${!java_home}/bin:$PATH"
-echo "Starting the server with Java $need. . ."
+[ -n "$need" ] && [ -n "${!java_home}" ] && export PATH="${!java_home}/bin:$PATH"
+echo "Starting the server with Java ${need:-(default)}. . ."
 cd "$folder" || exit 1
 # new session, so the whole process tree can be stopped; stdin stays open like a real console
 setsid bash -c 'sleep infinity | ./starter.sh' > boot.log 2>&1 &

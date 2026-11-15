@@ -9,7 +9,7 @@ function spigot_conf {
   ask_basics spigot
   echo -e "\n${LIGHT_RED} !! ${CYAN}Server type selected: ${YELLOW}SPIGOT ${COLOR_NULL}"
   echo -e "${CYAN} ( * ) Select the type of fork that suits you best! ${COLOR_NULL}"
-  choose TYPE "Spigot" "Paper" "Purpur" "Folia" "Leaf" "Canvas" "DivineMC" "ShreddedPaper" "Sakura" "Gale" "PandaSpigot" "Lophine"
+  choose TYPE "Spigot" "Paper" "Purpur" "Folia" "Leaf" "Canvas" "DivineMC" "ShreddedPaper" "Sakura" "Gale" "PandaSpigot" "Lophine" "WindSpigot" "Poseidon"
   ask_ram
   ask_game 25565
   step "Fetching the versions. . . (it might take a while)\n"
@@ -26,6 +26,8 @@ function spigot_conf {
     Gale) gale ;;
     PandaSpigot) pandaspigot ;;
     Lophine) lophine ;;
+    WindSpigot) windspigot ;;
+    Poseidon) poseidon ;;
   esac
 }
 
@@ -224,6 +226,42 @@ function lophine {
 function stepsLophine {
   spigot_setup
   download_asset "$(jq -c --arg v "$VERSION" '[.[] | select(.draft | not) | select(.tag_name | startswith($v + "-"))][0].assets[] | select(.name | test("^lophine-.*\\.jar$"))' <<< "$lophine_releases")" "$JAR"
+  starterFile
+}
+
+## windspigot ##
+function windspigot {
+  windspigot_run=$(fetch "https://api.github.com/repos/Wind-Development/WindSpigot/actions/workflows/windspigot-build-and-upload.yml/runs?branch=master&status=success&per_page=1" | jq -r '.workflow_runs[0].id // empty')
+  [ -n "$windspigot_run" ] || die "Could not find the latest WindSpigot build, the source may be offline."
+  choose_version "1.8.8"
+  stepsWindSpigot
+}
+
+function stepsWindSpigot {
+  spigot_setup
+  local artifact
+  command -v unzip &>/dev/null || install_package unzip || die "WindSpigot needs unzip, please install it."
+  artifact=$(fetch "https://api.github.com/repos/Wind-Development/WindSpigot/actions/runs/${windspigot_run}/artifacts" | jq -c '.artifacts[] | select(.name == "WindSpigot-server")')
+  make_temp
+  # GitHub serves artifacts only to logged in users: nightly.link serves the same file, checked with the GitHub digest
+  download "https://nightly.link/Wind-Development/WindSpigot/actions/runs/${windspigot_run}/WindSpigot-server.zip" "$INSTALL_TEMP/windspigot.zip" "$(jq -r '.digest // empty' <<< "$artifact")"
+  unzip -q "$INSTALL_TEMP/windspigot.zip" WindSpigot.jar -d "$INSTALL_TEMP" && mv "$INSTALL_TEMP/WindSpigot.jar" "$JAR" || die "Could not find the WindSpigot jar in the build."
+  # WindSpigot runs on Java 11 to 25, not on the Java 8 of Minecraft 1.8.8
+  JAVA_VERSION=11
+  starterFile
+}
+
+## poseidon ##
+function poseidon {
+  choose_version "b1.7.3"
+  stepsPoseidon
+}
+
+function stepsPoseidon {
+  spigot_setup
+  download_asset "$(github_asset retromcorg/Project-Poseidon '^poseidon-craftbukkit-.*\.jar$')" "$JAR"
+  # Poseidon is built for Java 8 (b1.7.3 is not a version java_for_mc knows)
+  JAVA_VERSION=8
   starterFile
 }
 

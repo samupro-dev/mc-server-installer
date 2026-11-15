@@ -75,6 +75,8 @@ jobs:
           - { name: Gale, script: spigot, answers: "FOLDER;10;;;;;y;1", expected: Gale }
           - { name: PandaSpigot, script: spigot, answers: "FOLDER;11;;;;;y;1", expected: PandaSpigot }
           - { name: Lophine, script: spigot, answers: "FOLDER;12;;;;;y;1", expected: Lophine }
+          - { name: WindSpigot, script: spigot, answers: "FOLDER;13;;;;;y;1", expected: WindSpigot }
+          - { name: Poseidon, script: spigot, answers: "FOLDER;14;;;;;y;1", expected: Poseidon }
           # BungeeCord goes through installer.sh, so the full path from the menu is checked too
           - { name: BungeeCord, script: installer, answers: "1;FOLDER;1;", expected: BungeeCord }
           - { name: Velocity, script: proxy, answers: "FOLDER;2;", expected: Velocity }
@@ -104,6 +106,8 @@ jobs:
           - { name: Arclight, script: modded, answers: "FOLDER;7;;;;;y;1", expected: Arclight }
           - { name: SpongeVanilla, script: modded, answers: "FOLDER;8;;;;;y;1", expected: SpongeVanilla }
           - { name: Crucible, script: modded, answers: "FOLDER;9;;;;;y;1", expected: Crucible }
+          - { name: LegacyFabric, script: modded, answers: "FOLDER;10;;;;;y;1", expected: LegacyFabric }
+          - { name: Cleanroom, script: modded, answers: "FOLDER;11;;;;;y;1", expected: Cleanroom }
     steps:
       - uses: actions/checkout@v7
         with:

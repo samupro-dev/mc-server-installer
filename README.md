@@ -37,6 +37,11 @@ If you come across any bugs or have suggestions for new features, please don't h
 - [ ] A better interface?
 
 ## Changelogs
+### v5.8
+- Added the WindSpigot (1.8.8) and Project Poseidon (Beta 1.7.3) forks to Spigot
+- Added the Legacy Fabric (1.3 - 1.13.2) and Cleanroom (1.12.2) forks to modded
+- The summary at the end of the installation now shows the Java version the server needs
+
 ### v5.7
 - Fixed issue where the Spigot fork could delete the files in the current folder if the install folder could not be created
 - The Spigot jar is now built in a temporary folder, so the other files in the install folder are never touched
@@ -51,6 +56,7 @@ If you come across any bugs or have suggestions for new features, please don't h
 - Fixed issue where sudo users were not really running the script with root permissions: now sudo is asked only when a package must be installed (so a dedicated user without sudo can use the script) and the server is installed in the user's home folder
 - Failed downloads now stop the script with an error instead of showing a successful installation
 - The version lists are downloaded again when the connection drops, instead of showing an incomplete list
+- Mohist and Youer no longer show download errors while loading the version list
 - The EULA must now be accepted explicitly and online-mode is enabled by default
 - The RAM, port and max players values are now validated
 - The script asks before installing in a folder that is not empty
@@ -60,7 +66,7 @@ If you come across any bugs or have suggestions for new features, please don't h
 - Reinstalling Forge or NeoForge in the same folder no longer adds the RAM line to user_jvm_args.txt again
 - Added a warning when Java is not installed or too old for the selected version
 - The Spigot version list loads much faster
-- Added the Leaf, Canvas, DivineMC, ShreddedPaper, Sakura, Gale, PandaSpigot and Lophine forks to Spigot
+- Added the Leaf, Canvas, DivineMC, ShreddedPaper, Sakura, Gale, PandaSpigot (1.8.8) and Lophine forks to Spigot
 - Added the NeoForge, Quilt and SpongeVanilla forks to modded
 - Added the Velocity-CTD, Geyser (standalone), Gate, ViaProxy, WaterdogPE and Infrarust proxies, and the Limbo, PicoLimbo and NanoLimbo servers
 - Added Pumpkin (a server for Java and Bedrock players, still in development) to vanilla
